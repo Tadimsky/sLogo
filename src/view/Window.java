@@ -40,6 +40,7 @@ public class Window extends JFrame {
     private static final int INPUT_FIELD_SIZE = 70;
     private JFileChooser myChooser;
     private ResourceBundle myResources;
+    private Workspace myCurrentWorkspace;
     // private Workspace myCurrentWorkspace;
 
     // Create Listeners
@@ -48,6 +49,8 @@ public class Window extends JFrame {
     private MouseListener myMouseListener;
     
     private JTextField myCommandField;
+    private Canvas myCanvas;
+    private InformationView myInfoView;
 
     public Window() {
         setTitle("SLogo");
@@ -57,8 +60,11 @@ public class Window extends JFrame {
         myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
 
         createListeners();
-
-        getContentPane().add(makeWorkspace(), BorderLayout.CENTER);
+        myCanvas = new Canvas();
+        myInfoView = new InformationView();
+        
+        getContentPane().add(myCanvas, BorderLayout.CENTER);
+        getContentPane().add(makeInformationView(), BorderLayout.EAST);
         getContentPane().add(createInputField(), BorderLayout.SOUTH);
 
         setJMenuBar(makeJMenuBar());
@@ -69,14 +75,14 @@ public class Window extends JFrame {
 
     }
 
-    private JComponent makeWorkspace() {
-        JPanel result = new JPanel();
-        Workspace w = new Workspace();
-        result.add(w.getMyCanvas());
-        JScrollPane InfoScrollPane = new JScrollPane(w.getMyInformationView());
+    private JComponent makeInformationView() {
+        JPanel infoPanel = new JPanel();
+        //Workspace w = new Workspace();
+        //result.add(w.getMyCanvas());
+        JScrollPane InfoScrollPane = new JScrollPane(myInfoView);
         InfoScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        result.add(InfoScrollPane);
-        return result;
+        infoPanel.add(InfoScrollPane);
+        return infoPanel;
     }
 
     private JMenuBar makeJMenuBar() {
@@ -153,8 +159,7 @@ public class Window extends JFrame {
      */
     private JComponent createInputField() {
         JPanel inputPanel = new JPanel();
-        inputPanel.add(new JLabel("Command>"));
-        inputPanel.add(createTextInput());
+        inputPanel.add(new InputField(INPUT_FIELD_SIZE));
         inputPanel.add(createCommandButton());
         inputPanel.add(createExpandTextButton());
         return inputPanel;
