@@ -1,22 +1,33 @@
-package View;
 
+package view;
+
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.JComponent;
+import javax.swing.JTextArea;
 
-public class InformationView extends JComponent implements Observer {
+public class InformationView extends JTextArea implements Observer {
     
-    public final static Dimension VIEW_DIMENSION = new Dimension(300, 600);
+    private final static Color BACKGROUND = Color.WHITE;
+    private final static Dimension VIEW_DIMENSION = new Dimension(200, 600);
     
     public InformationView(){
         setSize(VIEW_DIMENSION);
         setPreferredSize(VIEW_DIMENSION);
     }
+    
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        g.setColor(BACKGROUND);
+        g.fillRect(0,0,getWidth(),getHeight());
+
+    }
 
     @Override
     public void update (Observable o, Object arg) {
-        // TODO Auto-generated method stub
+       // TODO 
         
     }
 
