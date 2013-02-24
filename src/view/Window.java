@@ -9,6 +9,14 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.ResourceBundle;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -18,6 +26,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -37,6 +46,8 @@ public class Window extends JFrame {
     private ActionListener myActionListener;
     private KeyListener myKeyListener;
     private MouseListener myMouseListener;
+    
+    private JTextField myCommandField;
 
     public Window() {
         setTitle("SLogo");
@@ -89,11 +100,11 @@ public class Window extends JFrame {
                 try {
                     int response = myChooser.showOpenDialog(null);
                     if (response == myChooser.APPROVE_OPTION) {
-                        // TODO open file with file reader
+                        echo(new FileReader(myChooser.getSelectedFile()));
                     }
                 }
                 catch (Exception exception) {
-                    // TODO implement exception to messageBox
+                    showError(exception.toString());
                 }
             }
         });
@@ -102,25 +113,17 @@ public class Window extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    // TODO implement saving file (no idea how to do)
+                    int response = myChooser.showSaveDialog(null);
+                    if (response == myChooser.APPROVE_OPTION) {
+                        echo(new FileWriter(myChooser.getSelectedFile()));
+                    }
                 }
                 catch (Exception exception) {
-                    // TODO implement exception to messageBox
+                    showError(exception.toString());
                 }
             }
         });
 
-        menu.add(new AbstractAction(myResources.getString("CloseFile")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    // TODO implement saving file (no idea how to do)
-                }
-                catch (Exception exception) {
-                    // TODO implement exception to messageBox
-                }
-            }
-        });
         menu.add(new JSeparator());
         menu.add(new AbstractAction(myResources.getString("QuitProgram")) {
             @Override
@@ -158,18 +161,18 @@ public class Window extends JFrame {
     }
 
     private JTextField createTextInput() {
-        final JTextField textField = new JTextField(INPUT_FIELD_SIZE);
+        myCommandField = new JTextField(INPUT_FIELD_SIZE);
 
         // Get the command after press enter
-        textField.addActionListener(new ActionListener() {
+        myCommandField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String command = textField.getText();
+                String command = myCommandField.getText();
                 // test
                 System.out.println(command);
             }
         });
 
-        return textField;
+        return myCommandField;
     }
 
     /**
@@ -225,6 +228,46 @@ public class Window extends JFrame {
             }
         };
     }
+    
+   
+    /**
+     * Echo data read from reader to display
+     */
+    private void echo (Reader r) {
+        try {
+            String s = "";
+            BufferedReader input = new BufferedReader(r);
+            String line = input.readLine();
+            while (line != null) {
+                s += line + "\n";
+                line = input.readLine();
+            }
+            myCommandField.setText(s);
+        }
+        catch (IOException e) {
+            showError(e.toString());
+        }
+    }
+    
+    /**
+     * Echo display to writer
+     */
+    private void echo (Writer w) {
+        PrintWriter output = new PrintWriter(w);
+        output.println(myCommandField.getText());
+        output.flush();
+        output.close();
+    }
+    
+    /**
+     * Display any string message in a popup error dialog.
+     */
+    public void showError (String message) {
+        JOptionPane.showMessageDialog(this, message, 
+                                      myResources.getString("ErrorTitle"),
+                                      JOptionPane.ERROR_MESSAGE);
+    }
+
 
     // Use to test the view
     public static void main(String[] args) {
