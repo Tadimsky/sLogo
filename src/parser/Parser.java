@@ -5,5 +5,10 @@ public class Parser {
     public Parser () {
         // TODO Auto-generated constructor stub
     }
+    
+    public void parseCommand(String command)
+    {
+        
+    }
 
 }
