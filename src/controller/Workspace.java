@@ -9,7 +9,7 @@ import view.InformationView;
 public class Workspace extends JComponent {
     private Canvas myCanvas;
     private InformationView myInformationView;
-    private Turtle myTurtle;
+    private Turtle myTurtle;    
 
     public Workspace() {
         setMyCanvas(new Canvas());
@@ -44,5 +44,17 @@ public class Workspace extends JComponent {
     public void setMyTurtle(Turtle myTurtle) {
         this.myTurtle = myTurtle;
     }
+    
+    public int getVariable(String var)
+    {
+        return 0;
+    }
+    
+    public void setVariable(String var, Integer val)
+    {
+        
+    }
+    
+    
 
 }
