@@ -15,6 +15,10 @@ public class Controller {
         myWindow = new Window(this);      
     }
     
+    /**
+     * Creates a new workspace and handles its place in Window
+     * This method is called whenever new is selected on the file menu
+     */
     public void createWorkspace(){
         Workspace workspace = new Workspace(WORKSPACE_NAME + workspaceIndex);
         workspaceIndex++;
@@ -22,6 +26,10 @@ public class Controller {
         myWindow.setWorkspace(workspace);
     }
     
+    /**
+     * This method is called whenever the run button or enter is pressed 
+     * @param command string in input Text Field
+     */
     public void processCommand(String command){
         System.out.println(command);
         myWindow.getWorkspace().getTurtle().move(100);
