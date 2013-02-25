@@ -43,6 +43,9 @@ public class Window extends JFrame {
     private static final String USER_DIR = "user.dir";
     private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
     private static final int INPUT_FIELD_SIZE = 70;
+    private static final String WORKSPACE_NAME = "Workspace ";
+    
+    private int workspaceIndex = 1;
     private JFileChooser myChooser;
     private ResourceBundle myResources;
 
@@ -54,12 +57,12 @@ public class Window extends JFrame {
     private InputField myInputField;
     
     private JTextField myCommandField;
-    private Workspace myCurrentWorkspace;
+    private Canvas myCurrentCanvas;
     private InformationView myInfoView;
     private JTabbedPane myTabbedPane;
 
-    public Window(Controller controller) {
-        myController = controller;
+    public Window() {
+        myController = new Controller();
         
         setTitle("SLogo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -67,7 +70,6 @@ public class Window extends JFrame {
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
         myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
 
-        
         myInfoView = new InformationView();
         myTabbedPane = new JTabbedPane();
         setTabListener();
@@ -91,9 +93,9 @@ public class Window extends JFrame {
     public void setTabListener(){
         myTabbedPane.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent changeEvent) {
-                Canvas canvas = (Canvas) myTabbedPane.getSelectedComponent();
-                myCurrentWorkspace = canvas.getWorkspace();
-                myCurrentWorkspace.update();
+                myCurrentCanvas = (Canvas) myTabbedPane.getSelectedComponent();
+                myCurrentCanvas.update();
+                myInputField.setText("");
               }
             });
     }
@@ -103,9 +105,8 @@ public class Window extends JFrame {
      * @param turtle Observed turtle
      */
     private void setObservers(Observable turtle){
-        turtle.addObserver(myCurrentWorkspace.getCanvas());
+        turtle.addObserver(myCurrentCanvas);
         turtle.addObserver(myInfoView);
-        turtle.notifyObservers();
     }
     
     /**
@@ -113,15 +114,16 @@ public class Window extends JFrame {
      * Workspace
      * @param workspace Newly created workspace
      */
-    public void setWorkspace(Workspace workspace){
-        myCurrentWorkspace = workspace;
-        myTabbedPane.addTab(workspace.getName(), myCurrentWorkspace.getCanvas());
-        myTabbedPane.setSelectedComponent(myCurrentWorkspace.getCanvas());
-        setObservers(workspace.getTurtle()); 
+    public void createCanvas(){
+        myCurrentCanvas = new Canvas(WORKSPACE_NAME + workspaceIndex);
+        workspaceIndex++;
+        myTabbedPane.addTab(myCurrentCanvas.getName(), myCurrentCanvas);
+        myTabbedPane.setSelectedComponent(myCurrentCanvas);
+        setObservers(myCurrentCanvas.getTurtle());
     }
     
-    public Workspace getWorkspace(){
-        return myCurrentWorkspace;
+    public Canvas getCanvas(){
+        return myCurrentCanvas;
     }
 
     /**
@@ -158,7 +160,7 @@ public class Window extends JFrame {
         menu.add(new AbstractAction(myResources.getString("NewWorkspace")) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                myController.createWorkspace();
+                createCanvas();
             }
         });
         menu.add(new AbstractAction(myResources.getString("OpenFile")) {
@@ -228,7 +230,7 @@ public class Window extends JFrame {
         myRunCommandListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                myController.processCommand(myInputField.getText());
+                myController.processCommand(myInputField.getText(), myCurrentCanvas);
                 myInputField.setText("");
             }
         };
@@ -334,5 +336,4 @@ public class Window extends JFrame {
                                       myResources.getString("ErrorTitle"),
                                       JOptionPane.ERROR_MESSAGE);
     }
-
 }

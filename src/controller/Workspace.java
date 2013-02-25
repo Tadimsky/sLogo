@@ -7,52 +7,31 @@ import model.Turtle;
 
 
 public class Workspace  {
-    private Canvas myCanvas;
-    private Turtle myTurtle;
-    private String myName;  
-
-
-    public Workspace(String name) {
-        myTurtle = new Turtle();
-        myCanvas = new Canvas(this);
-        myName = name;
-    }
-    
-    public void update(){
-        myTurtle.update();
-    }
+    // some methods and instances (such as the variable map) are commmented
+    // out, once figure out how to implement, uncommenting them might save
+    // some time
+    //private Map<variable,value> myVariableMap;
+    //private Map<command,syntax> myCommandMap;
 
     public void handleCommand() {
         // TODO
     }
     
-    public String getName(){
-        return myName;
-    }
-
-    public Canvas getCanvas() {
-        return myCanvas;
-    }
-
-    public void setCanvas(Canvas canvas) {
-        myCanvas = canvas;
-    }
-
-//    public InformationView getInformationView() {
-//        return myInformationView;
+//    public Map getVariableMap(){
+//        return myVariableMap;
 //    }
 //
-//    public void setInformationView(InformationView informationView) {
-//        myInformationView = informationView;
+//    public Map getCommandMap() {
+//        return myCommandMap;
 //    }
-
-    public Turtle getTurtle() {
-        return myTurtle;
-    }
-
-    public void setTurtle(Turtle turtle) {
-        myTurtle = turtle;
-    }
+//
+//    public void addVariable(String variable, int value) {
+//        myVariableMap.put(variable, value);
+//    }
+//
+//    public void addCommand(String command, Node syntax) {
+//        return myCommandMap.put(command, syntax);
+//    }
     
     public int getVariable(String var)
     {
@@ -63,7 +42,4 @@ public class Workspace  {
     {
         
     }
-    
-    
-
 }
