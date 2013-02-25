@@ -6,44 +6,51 @@ import view.InformationView;
 import model.Turtle;
 
 
-public class Workspace extends JComponent {
-    
+public class Workspace  {
     private Canvas myCanvas;
-    private InformationView myInformationView;
-    private Turtle myTurtle;   
+    private Turtle myTurtle;
+    private String myName;  
 
 
-    public Workspace() {
-//        setMyCanvas(new Canvas());
-//        setMyInformationView(new InformationView());
-        setMyTurtle(new Turtle());
+    public Workspace(String name) {
+        myTurtle = new Turtle();
+        myCanvas = new Canvas(this);
+        myName = name;
+    }
+    
+    public void update(){
+        myTurtle.update();
     }
 
     public void handleCommand() {
         // TODO
     }
+    
+    public String getName(){
+        return myName;
+    }
 
-//    public Canvas getMyCanvas() {
-//        return myCanvas;
-//    }
-//
-//    public void setMyCanvas(Canvas myCanvas) {
-//        this.myCanvas = myCanvas;
-//    }
-//
-//    public InformationView getMyInformationView() {
+    public Canvas getCanvas() {
+        return myCanvas;
+    }
+
+    public void setCanvas(Canvas canvas) {
+        myCanvas = canvas;
+    }
+
+//    public InformationView getInformationView() {
 //        return myInformationView;
 //    }
 //
-//    public void setMyInformationView(InformationView myInformationView) {
-//        this.myInformationView = myInformationView;
+//    public void setInformationView(InformationView informationView) {
+//        myInformationView = informationView;
 //    }
 
     public Turtle getTurtle() {
         return myTurtle;
     }
 
-    public void setMyTurtle(Turtle turtle) {
+    public void setTurtle(Turtle turtle) {
         myTurtle = turtle;
     }
     

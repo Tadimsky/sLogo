@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.util.Observable;
 import java.util.ResourceBundle;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -30,7 +31,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import controller.Controller;
 import controller.Workspace;
 
 
@@ -40,51 +45,101 @@ public class Window extends JFrame {
     private static final int INPUT_FIELD_SIZE = 70;
     private JFileChooser myChooser;
     private ResourceBundle myResources;
-    private Workspace myCurrentWorkspace;
-    // private Workspace myCurrentWorkspace;
 
     // Create Listeners
-    private ActionListener myActionListener;
+    private ActionListener myRunCommandListener;
     private KeyListener myKeyListener;
     private MouseListener myMouseListener;
+    private Controller myController;
+    private InputField myInputField;
     
     private JTextField myCommandField;
-    private Canvas myCanvas;
+    private Workspace myCurrentWorkspace;
     private InformationView myInfoView;
+    private JTabbedPane myTabbedPane;
 
-    public Window() {
+    public Window(Controller controller) {
+        myController = controller;
+        
         setTitle("SLogo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
         myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
 
-        createListeners();
-        myCanvas = new Canvas();
-        myInfoView = new InformationView();
         
-        getContentPane().add(myCanvas, BorderLayout.CENTER);
+        myInfoView = new InformationView();
+        myTabbedPane = new JTabbedPane();
+        setTabListener();
+        
+        getContentPane().add(myTabbedPane, BorderLayout.CENTER);
         getContentPane().add(makeInformationView(), BorderLayout.EAST);
         getContentPane().add(createInputField(), BorderLayout.SOUTH);
 
         setJMenuBar(makeJMenuBar());
+        createListeners();
 
         pack();
 
         setVisible(true);
-
+    }
+    
+    /**
+     * Set the Listener to update the current canvas whenever 
+     * tabs are changed
+     */
+    public void setTabListener(){
+        myTabbedPane.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent changeEvent) {
+                Canvas canvas = (Canvas) myTabbedPane.getSelectedComponent();
+                myCurrentWorkspace = canvas.getWorkspace();
+                myCurrentWorkspace.update();
+              }
+            });
+    }
+    
+    /**
+     * Sets the necessary observers for the turtle of this Workspace
+     * @param turtle Observed turtle
+     */
+    private void setObservers(Observable turtle){
+        turtle.addObserver(myCurrentWorkspace.getCanvas());
+        turtle.addObserver(myInfoView);
+        turtle.notifyObservers();
+    }
+    
+    /**
+     * Defines the necessary parameter the Window needs to hold from the
+     * Workspace
+     * @param workspace Newly created workspace
+     */
+    public void setWorkspace(Workspace workspace){
+        myCurrentWorkspace = workspace;
+        myTabbedPane.addTab(workspace.getName(), myCurrentWorkspace.getCanvas());
+        myTabbedPane.setSelectedComponent(myCurrentWorkspace.getCanvas());
+        setObservers(workspace.getTurtle()); 
+    }
+    
+    public Workspace getWorkspace(){
+        return myCurrentWorkspace;
     }
 
+    /**
+     * Creates a scrollable informationView
+     * @return Information View of this program
+     */
     private JComponent makeInformationView() {
         JPanel infoPanel = new JPanel();
-        //Workspace w = new Workspace();
-        //result.add(w.getMyCanvas());
         JScrollPane InfoScrollPane = new JScrollPane(myInfoView);
-        InfoScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        InfoScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         infoPanel.add(InfoScrollPane);
         return infoPanel;
     }
 
+    /**
+     * Responsible for creating the menu bar
+     * @return menu bar for the program
+     */
     private JMenuBar makeJMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(makeFileMenu());
@@ -100,6 +155,12 @@ public class Window extends JFrame {
      */
     private JMenu makeFileMenu() {
         JMenu menu = new JMenu(myResources.getString("FileMenu"));
+        menu.add(new AbstractAction(myResources.getString("NewWorkspace")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myController.createWorkspace();
+            }
+        });
         menu.add(new AbstractAction(myResources.getString("OpenFile")) {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -140,6 +201,10 @@ public class Window extends JFrame {
         return menu;
     }
 
+    /**
+     * Sets the command menu option for this program
+     * @return JMenu with Command options
+     */
     private JMenu makeCommandMenu() {
         JMenu menu = new JMenu(myResources.getString("CommandMenu"));
         menu.add(new AbstractAction(myResources.getString("UndoAction")) {
@@ -159,25 +224,19 @@ public class Window extends JFrame {
      */
     private JComponent createInputField() {
         JPanel inputPanel = new JPanel();
-        inputPanel.add(new InputField(INPUT_FIELD_SIZE));
+        myInputField = new InputField(INPUT_FIELD_SIZE);
+        myRunCommandListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myController.processCommand(myInputField.getText());
+                myInputField.setText("");
+            }
+        };
+        myInputField.addActionListener(myRunCommandListener);
+        inputPanel.add(myInputField);
         inputPanel.add(createCommandButton());
         inputPanel.add(createExpandTextButton());
         return inputPanel;
-    }
-
-    private JTextField createTextInput() {
-        myCommandField = new JTextField(INPUT_FIELD_SIZE);
-
-        // Get the command after press enter
-        myCommandField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String command = myCommandField.getText();
-                // test
-                System.out.println(command);
-            }
-        });
-
-        return myCommandField;
     }
 
     /**
@@ -186,8 +245,7 @@ public class Window extends JFrame {
      */
     protected JButton createCommandButton() {
         JButton button = new JButton(myResources.getString("RunButton"));
-        button.addActionListener(myActionListener);
-        button.addMouseListener(myMouseListener);
+        button.addActionListener(myRunCommandListener);
         return button;
     }
 
@@ -196,18 +254,22 @@ public class Window extends JFrame {
      */
     protected JButton createExpandTextButton() {
         JButton button = new JButton(myResources.getString("Expand"));
-        button.addActionListener(myActionListener);
-        button.addMouseListener(myMouseListener);
+        //button.addActionListener(myActionListener);
+        //button.addMouseListener(myMouseListener);
         return button;
     }
 
+    /**
+     * Creates the listeners for this window
+     */
     private void createListeners() {
-        myActionListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO implement action
-            }
-        };
+//        myRunCommandListener = new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                myController.processCommand(myInputField.getText());
+//                myInputField.setText("");
+//            }
+//        };
 
         myKeyListener = new KeyAdapter() {
             @Override
@@ -273,9 +335,4 @@ public class Window extends JFrame {
                                       JOptionPane.ERROR_MESSAGE);
     }
 
-
-    // Use to test the view
-    public static void main(String[] args) {
-        new Window();
-    }
 }

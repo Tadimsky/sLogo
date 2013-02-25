@@ -42,6 +42,15 @@ class InputField extends JTextField implements FocusListener {
             super.setText(HINT);
         }
     }
+    
+    @Override
+    public void setText(String text) {
+        super.setText(text);
+        if(text.isEmpty()) {
+            super.setFont(HINT_FONT);
+            super.setText(HINT);
+        }
+    }
 
     @Override
     public String getText() {

@@ -1,7 +1,8 @@
-package view;
+package util;
 
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
+import view.Canvas;
 
 public class Location extends Point2D.Double {
     private static final Dimension myCanvasDimension = Canvas.CANVAS_DIMENSION;

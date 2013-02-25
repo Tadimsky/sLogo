@@ -28,9 +28,8 @@ public class InformationView extends JPanel implements Observer {
     }
 
     @Override
-    public void update (Observable o, Object arg) {
-       // TODO 
-        
+    public void update (Observable object, Object arg) {
+         // TODO implement view update using information from turtle
     }
 
 }
