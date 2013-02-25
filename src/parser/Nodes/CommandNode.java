@@ -1,9 +1,16 @@
-package parser.Nodes;
+package parser.nodes;
 
-public class CommandNode {
+import controller.Workspace;
+
+public class CommandNode implements ISyntaxNode {
 
     public CommandNode () {
-        // TODO Auto-generated constructor stub
+        
+    }
+
+    @Override
+    public int evaluate (Workspace w) {        
+        return 0;
     }
 
 }

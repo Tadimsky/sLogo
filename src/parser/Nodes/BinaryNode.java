@@ -1,6 +1,4 @@
-package parser.Nodes;
-
-import controller.Workspace;
+package parser.nodes;
 
 public abstract class BinaryNode implements ISyntaxNode {
     private ISyntaxNode myLeft;
@@ -9,10 +7,7 @@ public abstract class BinaryNode implements ISyntaxNode {
     public BinaryNode (ISyntaxNode left, ISyntaxNode right) {
         this.myLeft = left;
         this.myRight = right;
-    }
-
-    @Override
-    public abstract int evaluate (Workspace w);
+    }    
     
     public ISyntaxNode getLeft()
     {
