@@ -1,4 +1,4 @@
-package parser.Nodes;
+package parser.nodes;
 
 import controller.Workspace;
 
@@ -9,8 +9,8 @@ import controller.Workspace;
  * @author Jonathan Schmidt
  * 
  */
-public interface ISyntaxNode {
-
+public interface ISyntaxNode {    
+    
     /**
      * Evaluates the current node of the expression. 
      * @param w The active workspace.

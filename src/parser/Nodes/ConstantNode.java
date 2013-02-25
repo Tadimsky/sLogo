@@ -1,4 +1,4 @@
-package parser.Nodes;
+package parser.nodes;
 
 import controller.Workspace;
 
