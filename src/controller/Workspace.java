@@ -9,7 +9,8 @@ import model.Turtle;
 public class Workspace extends JComponent {
     private Canvas myCanvas;
     private Turtle myTurtle;
-    private String myName;
+    private String myName;  
+
 
     public Workspace(String name) {
         myTurtle = new Turtle();
@@ -48,5 +49,17 @@ public class Workspace extends JComponent {
     public void setTurtle(Turtle turtle) {
         myTurtle = turtle;
     }
+    
+    public int getVariable(String var)
+    {
+        return 0;
+    }
+    
+    public void setVariable(String var, Integer val)
+    {
+        
+    }
+    
+    
 
 }
