@@ -93,6 +93,7 @@ public class Window extends JFrame {
             public void stateChanged(ChangeEvent changeEvent) {
                 Canvas canvas = (Canvas) myTabbedPane.getSelectedComponent();
                 myCurrentWorkspace = canvas.getWorkspace();
+                myCurrentWorkspace.update();
               }
             });
     }
@@ -115,8 +116,8 @@ public class Window extends JFrame {
     public void setWorkspace(Workspace workspace){
         myCurrentWorkspace = workspace;
         myTabbedPane.addTab(workspace.getName(), myCurrentWorkspace.getCanvas());
-        setObservers(workspace.getTurtle());
-        
+        myTabbedPane.setSelectedComponent(myCurrentWorkspace.getCanvas());
+        setObservers(workspace.getTurtle()); 
     }
     
     public Workspace getWorkspace(){
@@ -130,7 +131,7 @@ public class Window extends JFrame {
     private JComponent makeInformationView() {
         JPanel infoPanel = new JPanel();
         JScrollPane InfoScrollPane = new JScrollPane(myInfoView);
-        InfoScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        InfoScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         infoPanel.add(InfoScrollPane);
         return infoPanel;
     }

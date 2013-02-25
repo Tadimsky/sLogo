@@ -6,7 +6,7 @@ import view.InformationView;
 import model.Turtle;
 
 
-public class Workspace extends JComponent {
+public class Workspace  {
     private Canvas myCanvas;
     private Turtle myTurtle;
     private String myName;  
@@ -16,6 +16,10 @@ public class Workspace extends JComponent {
         myTurtle = new Turtle();
         myCanvas = new Canvas(this);
         myName = name;
+    }
+    
+    public void update(){
+        myTurtle.update();
     }
 
     public void handleCommand() {

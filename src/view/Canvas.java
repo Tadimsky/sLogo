@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JComponent;
+import model.Paintable;
 import controller.Workspace;
 
 public class Canvas extends JComponent implements Observer{

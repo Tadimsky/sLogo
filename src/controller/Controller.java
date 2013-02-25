@@ -32,7 +32,7 @@ public class Controller {
      */
     public void processCommand(String command){
         System.out.println(command);
-        myWindow.getWorkspace().getTurtle().move(100);
+        myWindow.getWorkspace().getTurtle().move(10);
     }
     
     // Use to test the view

@@ -4,16 +4,17 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.Observable;
-import view.Location;
-import view.Paintable;
-import view.Vector;
+import util.Location;
+import util.Vector;
 
-public class Turtle extends Observable implements Paintable{
+public class Turtle extends Observable implements Paintable, IState{
     private Location myLocation;
     private Vector myHeading;
+    private Pen myPen;
     private static final Dimension TURTLE_DIMENSION = new Dimension(20,10);
     
     public Turtle () {
+        myPen = new Pen();
         myLocation = new Location();
         myHeading = new Vector(270,0);
         this.setChanged();
@@ -22,11 +23,11 @@ public class Turtle extends Observable implements Paintable{
     public void move(int pixels){
         myHeading.setMagnitude(pixels);
         myLocation.translate(myHeading);
-        updatePosition();
+        update();
     }
     
-    public void updatePosition(){
-        setChanged();
+    public void update(){
+        //setChanged();
         notifyObservers();
     }
 
@@ -38,6 +39,16 @@ public class Turtle extends Observable implements Paintable{
         System.out.println("X "+myLocation.getX()+" Y "+myLocation.getY());
         pen.fillOval((int) myLocation.getX(), (int) myLocation.getY(), 
                      TURTLE_DIMENSION.width,TURTLE_DIMENSION.height); 
+    }
+
+    @Override
+    public Location getLocation () {
+        return myLocation;
+    }
+
+    @Override
+    public Vector getHeading () {
+        return myHeading;
     }
     
 
