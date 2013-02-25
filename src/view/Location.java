@@ -19,7 +19,7 @@ public class Location extends Point2D.Double {
      * Create a location at given (x, y) coordinates.
      */
     public Location (double x, double y) {
-        super(x+X_OFFSET, -y+Y_OFFSET);
+        super(x + X_OFFSET, -y + Y_OFFSET);
     }
 
     /**
@@ -35,6 +35,16 @@ public class Location extends Point2D.Double {
     public void reset () {
         setLocation(X_OFFSET, Y_OFFSET);
     }
+    
+//    @Override
+//    public double getX(){
+//        return super.getX() - X_OFFSET;
+//    }
+    
+//    @Override
+//    public double getY(){
+//        return super.getY() - Y_OFFSET;
+//    }
 
     /**
      * Move this location by given vector.
