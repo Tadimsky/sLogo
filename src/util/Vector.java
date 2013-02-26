@@ -4,10 +4,10 @@ import java.awt.geom.Point2D;
 
 /**
  * This class represents a mathematical vector as a direction and magnitude.
+ * Originally created by Duvall, modified for this program
  * 
- * Note, this class has no relation to java.util.Vector!
+ * @author Henrique Moraes
  * 
- * @author Robert C. Duvall
  */
 public class Vector {
     // angle in degrees
@@ -108,7 +108,7 @@ public class Vector {
      * Returns the angle between this vector and the given other vector.
      */
     public double getAngleBetween (Vector other) {
-        return getDirection() - other.getDirection();
+        return -(getDirection()%360 - other.getDirection()%360);
     }
 
     /**

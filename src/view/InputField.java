@@ -8,6 +8,11 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JTextField;
 
+/**
+ * Text field that holds inputs
+ * @author Henrique Moraes
+ *
+ */
 class InputField extends JTextField implements FocusListener {
 
     private static final String HINT = "Command";

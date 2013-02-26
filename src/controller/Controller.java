@@ -34,7 +34,7 @@ public class Controller {
      */
     public void processCommand(String command, Canvas canvas){
         System.out.println(command);
-        canvas.getTurtle().move(10);
+        canvas.getTurtle().turnTo(90);
     }
     
 //    // Use to test the view

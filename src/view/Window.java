@@ -38,7 +38,12 @@ import javax.swing.event.ChangeListener;
 import controller.Controller;
 import controller.Workspace;
 
-
+/**
+ * Window that holds all the user interface. Sends commands to controller
+ * in case user inputs anything
+ * @author Henrique Moraes, Ziqiang
+ *
+ */
 public class Window extends JFrame {
     private static final String USER_DIR = "user.dir";
     private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
@@ -51,6 +56,8 @@ public class Window extends JFrame {
 
     // Create Listeners
     private ActionListener myRunCommandListener;
+    private int DEFAULT_MOVE_VALUE = 100;
+    private int DEFAULT_TURN_VALUE = 220;
     private KeyListener myKeyListener;
     private MouseListener myMouseListener;
     private Controller myController;
@@ -207,8 +214,59 @@ public class Window extends JFrame {
      * Sets the command menu option for this program
      * @return JMenu with Command options
      */
+    // USED MOSTLY FOR TESTING!
     private JMenu makeCommandMenu() {
         JMenu menu = new JMenu(myResources.getString("CommandMenu"));
+        menu.add(new AbstractAction(myResources.getString("ForwardCommand")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myCurrentCanvas.getTurtle().move(DEFAULT_MOVE_VALUE);
+            }
+        });
+        menu.add(new AbstractAction(myResources.getString("BackwardCommand")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myCurrentCanvas.getTurtle().move(-DEFAULT_MOVE_VALUE);
+            }
+        });
+        menu.add(new AbstractAction(myResources.getString("TurnRightCommand")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myCurrentCanvas.getTurtle().turn(DEFAULT_TURN_VALUE);
+            }
+        });
+        menu.add(new AbstractAction(myResources.getString("TurnLeftCommand")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myCurrentCanvas.getTurtle().turn(-DEFAULT_TURN_VALUE);
+            }
+        });
+        menu.add(new JSeparator());
+        menu.add(new AbstractAction(myResources.getString("ShowCommand")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myCurrentCanvas.getTurtle().setHiding(false);
+            }
+        });
+        menu.add(new AbstractAction(myResources.getString("HideCommand")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myCurrentCanvas.getTurtle().setHiding(true);
+            }
+        });
+        menu.add(new AbstractAction(myResources.getString("PenUpCommand")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myCurrentCanvas.getTurtle().setPenWriting(false);
+            }
+        });
+        menu.add(new AbstractAction(myResources.getString("PenDownCommand")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myCurrentCanvas.getTurtle().setPenWriting(true);
+            }
+        });
+        menu.add(new JSeparator());
         menu.add(new AbstractAction(myResources.getString("UndoAction")) {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -256,8 +314,6 @@ public class Window extends JFrame {
      */
     protected JButton createExpandTextButton() {
         JButton button = new JButton(myResources.getString("Expand"));
-        //button.addActionListener(myActionListener);
-        //button.addMouseListener(myMouseListener);
         return button;
     }
 
@@ -265,14 +321,6 @@ public class Window extends JFrame {
      * Creates the listeners for this window
      */
     private void createListeners() {
-//        myRunCommandListener = new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                myController.processCommand(myInputField.getText());
-//                myInputField.setText("");
-//            }
-//        };
-
         myKeyListener = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {

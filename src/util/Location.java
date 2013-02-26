@@ -37,15 +37,13 @@ public class Location extends Point2D.Double {
         setLocation(X_OFFSET, Y_OFFSET);
     }
     
-//    @Override
-//    public double getX(){
-//        return super.getX() - X_OFFSET;
-//    }
+    public int getIntX(){
+        return (int) super.getX();
+    }
     
-//    @Override
-//    public double getY(){
-//        return super.getY() - Y_OFFSET;
-//    }
+    public int getIntY(){
+        return (int) super.getY();
+    }
 
     /**
      * Move this location by given vector.
@@ -55,6 +53,14 @@ public class Location extends Point2D.Double {
     public void translate (Vector amount) {
         setLocation(getX() + amount.getXChange(), getY() + amount.getYChange());
     }
+    
+    /**
+     * Move this location by given coordinates.
+     */
+    public void translate (double x, double y) {
+        super.x = super.x + x;
+        super.y = super.y - y;
+    }
 
     /**
      * Returns a vector that is the difference between this location and
@@ -62,5 +68,13 @@ public class Location extends Point2D.Double {
      */
     public Vector difference (Point2D other) {
         return new Vector(this, other);
-    }  
+    } 
+    
+    public void setX(double x){
+        super.x = x;
+    }
+    
+    public void setY(double y){
+        super.y = y;
+    }
 }

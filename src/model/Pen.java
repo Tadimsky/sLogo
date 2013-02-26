@@ -7,6 +7,11 @@ import java.util.List;
 import util.Location;
 import util.PenLine;
 
+/**
+ * Pen object that hold the lines that has to be drawn on the canvas
+ * @author Henrique Moraes
+ *
+ */
 public class Pen {
     List<PenLine> myLines;
     private boolean penWriting = true;

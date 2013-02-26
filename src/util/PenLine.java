@@ -3,6 +3,11 @@ package util;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+/**
+ * Contains an instance of a line that will be painted on the canvas
+ * @author Henrique Moraes
+ *
+ */
 public class PenLine {
     private int myX1;
     private int myX2;
