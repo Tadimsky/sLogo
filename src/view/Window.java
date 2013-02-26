@@ -35,6 +35,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import view.components.ErrorBox;
+import view.components.InputField;
 import controller.Controller;
 import controller.Workspace;
 
@@ -58,8 +60,7 @@ public class Window extends JFrame {
     private ActionListener myRunCommandListener;
     private int DEFAULT_MOVE_VALUE = 100;
     private int DEFAULT_TURN_VALUE = 220;
-    private KeyListener myKeyListener;
-    private MouseListener myMouseListener;
+
     private Controller myController;
     private InputField myInputField;
     
@@ -79,32 +80,19 @@ public class Window extends JFrame {
 
         myInfoView = new InformationView();
         myTabbedPane = new JTabbedPane();
-        setTabListener();
+        myInputField = new InputField(INPUT_FIELD_SIZE);
+        ErrorBox.setWindow(this);
+        makeListeners();
         
         getContentPane().add(myTabbedPane, BorderLayout.CENTER);
         getContentPane().add(makeInformationView(), BorderLayout.EAST);
         getContentPane().add(createInputField(), BorderLayout.SOUTH);
 
         setJMenuBar(makeJMenuBar());
-        createListeners();
-
+        
         pack();
 
         setVisible(true);
-    }
-    
-    /**
-     * Set the Listener to update the current canvas whenever 
-     * tabs are changed
-     */
-    public void setTabListener(){
-        myTabbedPane.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent changeEvent) {
-                myCurrentCanvas = (Canvas) myTabbedPane.getSelectedComponent();
-                myCurrentCanvas.update();
-                myInputField.setText("");
-              }
-            });
     }
     
     /**
@@ -127,6 +115,7 @@ public class Window extends JFrame {
         myTabbedPane.addTab(myCurrentCanvas.getName(), myCurrentCanvas);
         myTabbedPane.setSelectedComponent(myCurrentCanvas);
         setObservers(myCurrentCanvas.getTurtle());
+        myCurrentCanvas.getTurtle().update();
     }
     
     public Canvas getCanvas(){
@@ -284,14 +273,6 @@ public class Window extends JFrame {
      */
     private JComponent createInputField() {
         JPanel inputPanel = new JPanel();
-        myInputField = new InputField(INPUT_FIELD_SIZE);
-        myRunCommandListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                myController.processCommand(myInputField.getText(), myCurrentCanvas);
-                myInputField.setText("");
-            }
-        };
         myInputField.addActionListener(myRunCommandListener);
         inputPanel.add(myInputField);
         inputPanel.add(createCommandButton());
@@ -316,34 +297,41 @@ public class Window extends JFrame {
         JButton button = new JButton(myResources.getString("Expand"));
         return button;
     }
-
+    
     /**
-     * Creates the listeners for this window
+     * creates listeners for this window
      */
-    private void createListeners() {
-        myKeyListener = new KeyAdapter() {
+    public void makeListeners(){
+        setRunCommandListener();
+        setTabListener();
+    }
+    
+    /**
+     * set Listener to send the input string to controller whenever the 
+     * run button or enter is pressed
+     */
+    public void setRunCommandListener(){
+        myRunCommandListener = new ActionListener() {
             @Override
-            public void keyPressed(KeyEvent e) {
-                // TODO implement key
+            public void actionPerformed(ActionEvent e) {
+                myController.processCommand(myInputField.getText(), myCurrentCanvas);
+                myInputField.setText("");
             }
         };
-
-        myMouseListener = new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // TODO implement
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                // TODO implement
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                // TODO Auto-generated method stub
-            }
-        };
+    }
+    
+    /**
+     * Set the Listener to update the current canvas whenever 
+     * tabs are changed
+     */
+    public void setTabListener(){
+        myTabbedPane.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent changeEvent) {
+                myCurrentCanvas = (Canvas) myTabbedPane.getSelectedComponent();
+                myCurrentCanvas.update();
+                myInputField.setText("");
+              }
+            });
     }
     
    
@@ -384,4 +372,8 @@ public class Window extends JFrame {
                                       myResources.getString("ErrorTitle"),
                                       JOptionPane.ERROR_MESSAGE);
     }
+    
+    
+    
+    
 }

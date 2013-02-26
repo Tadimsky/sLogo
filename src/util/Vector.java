@@ -108,7 +108,7 @@ public class Vector {
      * Returns the angle between this vector and the given other vector.
      */
     public double getAngleBetween (Vector other) {
-        return -(getDirection()%360 - other.getDirection()%360);
+        return (other.getDirection() - getDirection()) % 360;
     }
 
     /**

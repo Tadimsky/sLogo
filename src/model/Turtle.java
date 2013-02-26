@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
 import util.Location;
 import util.Vector;
 import view.Canvas;
+import view.components.ErrorBox;
+import view.components.Error;
 
 /**
  * Creates a Turtle object that moves on the Canvas according to the user's
@@ -36,7 +38,7 @@ public class Turtle extends Observable implements Paintable, IState{
         try {
             myImage = ImageIO.read(this.getClass().getResource(IMAGE_PATH));
         }
-        catch (IOException e) { };
+        catch (Exception e) { ErrorBox.showError(Error.INVALID_IMAGE); };
         myWidth = myImage.getWidth();
         myHeight = myImage.getHeight();
         

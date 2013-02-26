@@ -92,7 +92,7 @@ public class Canvas extends JComponent implements Observer{
     }
     
     public void update () {
-        repaint();   
+        myTurtle.update();   
     }
     
     public String getName(){
