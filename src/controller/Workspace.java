@@ -54,7 +54,7 @@ public class Workspace  {
         myTurtle = turtle;
     }
     
-    public int getVariable(String var)
+    public Integer getVariable(String var)
     {
         return 0;
     }

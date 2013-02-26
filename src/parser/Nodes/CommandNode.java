@@ -2,7 +2,7 @@ package parser.nodes;
 
 import controller.Workspace;
 
-public class CommandNode implements ISyntaxNode {
+public class CommandNode extends SyntaxNode {
 
     public CommandNode () {
         

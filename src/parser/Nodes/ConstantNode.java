@@ -1,8 +1,9 @@
 package parser.nodes;
 
+import parser.nodes.exceptions.InvalidSemanticsException;
 import controller.Workspace;
 
-public class ConstantNode implements ISyntaxNode {
+public class ConstantNode extends SimpleNode {
     // {int}
     
     private int myValue;
@@ -12,12 +13,18 @@ public class ConstantNode implements ISyntaxNode {
     }
     
     public ConstantNode (String val) {
-        this.myValue  = Integer.parseInt(val);        
+        try 
+        {
+            myValue = Integer.parseInt(val);
+        }
+        catch (NumberFormatException e)
+        {            
+            throw new InvalidSemanticsException(INVALID_FORMAT, val);
+        }
     }
 
     @Override
     public int evaluate (Workspace w) {        
         return this.myValue;
-    }
-
+    }   
 }

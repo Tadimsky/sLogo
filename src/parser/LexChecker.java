@@ -32,9 +32,7 @@ public class LexChecker {
         while (split.hasMoreTokens())            
         {   
             tokens.add(split.nextToken());
-        }
-        // in polish notation
-        Collections.reverse(tokens);
+        } 
         return tokens;
     }
     

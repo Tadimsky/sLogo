@@ -1,14 +1,28 @@
 package parser.nodes;
 
-public abstract class UnaryNode implements ISyntaxNode {
-    
-    private ISyntaxNode myArgument;    
+import java.util.Deque;
+import parser.nodes.exceptions.InvalidArgumentsException;
 
-    public UnaryNode (ISyntaxNode arg) {
-        this.myArgument = arg;
-    }    
+public abstract class UnaryNode extends ParameterNode {
     
-    public ISyntaxNode getArgument()
+    private SyntaxNode myArgument;  
+    
+    public UnaryNode (Deque<SyntaxNode> queue) {        
+        this(queue.pop());
+    }
+
+    public UnaryNode (SyntaxNode arg) {
+        if (arg != null)
+        {
+            myArgument = arg;
+        }
+        else
+        {
+            throw new InvalidArgumentsException(InvalidArgumentsException.INCORRECT_NUMBER_ARGS, "");
+        }
+    }       
+    
+    public SyntaxNode getArgument()
     {
         return myArgument;
     }

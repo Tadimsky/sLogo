@@ -1,20 +1,26 @@
 package parser.nodes;
 
-public abstract class BinaryNode implements ISyntaxNode {
-    private ISyntaxNode myLeft;
-    private ISyntaxNode myRight;
+import java.util.Deque;
+
+public abstract class BinaryNode extends SyntaxNode {
+    private SyntaxNode myLeft;
+    private SyntaxNode myRight;
     
-    public BinaryNode (ISyntaxNode left, ISyntaxNode right) {
+    public BinaryNode (SyntaxNode left, SyntaxNode right) {
         this.myLeft = left;
         this.myRight = right;
-    }    
+    }   
     
-    public ISyntaxNode getLeft()
+    public BinaryNode (Deque<SyntaxNode> queue) {        
+        this(queue.pop(), queue.pop());
+    }
+    
+    public SyntaxNode getLeft()
     {
         return myLeft;
     }
     
-    public ISyntaxNode getRight()
+    public SyntaxNode getRight()
     {
         return myRight;
     }
