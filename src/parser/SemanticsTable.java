@@ -75,12 +75,6 @@ public class SemanticsTable {
             }
         }
         
-        /*
-        int ind = myNodeList.indexOf(token);
-        if (ind > 0)            
-        {
-            return myNodeList.get(ind);
-        }*/
         return null;
     }
     

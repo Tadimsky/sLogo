@@ -20,8 +20,10 @@ public class Main {
         {
             String input = in.nextLine();
             List<SyntaxNode> l = p.parseCommand(input);
-            
-            System.out.println(l.toString());
+            for (SyntaxNode f : l)
+            {
+                System.out.println(f.evaluate(null));
+            }
         }
     }
 
