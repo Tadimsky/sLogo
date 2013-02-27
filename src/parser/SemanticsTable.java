@@ -66,10 +66,10 @@ public class SemanticsTable {
     
     public NodeInformation getTokenClass(String token)
     {
-        
+        String lower = token.toLowerCase();
         for (NodeInformation n : myNodeList)
         {
-            if (n.equals(token))
+            if (n.equals(lower))
             {
                 return n;
             }
