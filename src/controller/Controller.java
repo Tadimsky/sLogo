@@ -6,14 +6,24 @@ import java.util.List;
 import view.Canvas;
 import view.Window;
 
+/**
+ * Holds list of all workspaces, able to create new workspace
+ * Receives input from view and pass them to Parser
+ * Receives parsed input and send it to Executor with current workspace as parameter.
+ * 
+ * @author Xu Rui
+ *
+ */
 public class Controller {
 
-//    private static final String WORKSPACE_NAME = "Workspace ";
-//    private int workspaceIndex = 1;
+ //   private static final String WORKSPACE_NAME = "Workspace ";
+    private int workspaceIndex = 1;
+    private ArrayList<Workspace> myWorkspaces;
+    private Window myWindow;
 
     public Controller () {
-        //myWorkspaces = new ArrayList<Workspace>();
-        //myWindow = new Window(this);      
+        myWorkspaces = new ArrayList<Workspace>();
+        myWindow = new Window(this);      
     }
     
     /**
@@ -23,5 +33,25 @@ public class Controller {
     public void processCommand(String command, Canvas canvas){
         System.out.println(command);
         canvas.getTurtle().setColor(Color.RED);
+    }
+    
+    public Workspace createWorkspace(int index){
+    	Workspace newWorkspace = new Workspace(index);
+    	myWorkspaces.add(newWorkspace);
+    	return newWorkspace;
+    }
+    
+    public Workspace selectWorkspace(int index){
+    	try {
+    	for (Workspace ws: myWorkspaces){
+    		if (ws.getIndex() == index){
+    			return ws;
+    		}
+    	}
+    	}catch(Exception e){
+    		System.out.println("no such workspace exists");
+    	}
+		return null;
+
     }
 }
