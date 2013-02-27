@@ -32,5 +32,10 @@ public class VariableNode extends SimpleNode{
         }
         return val;
     }
+    
+    public String getName()
+    {
+        return myName;
+    }
 
 }

@@ -1,5 +1,6 @@
 package parser.nodes;
 
+import java.util.Deque;
 import parser.nodes.exceptions.InvalidSemanticsException;
 
 public abstract class SimpleNode extends SyntaxNode {
