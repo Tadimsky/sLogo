@@ -31,34 +31,34 @@ public class InformationView extends JPanel implements Observer {
     private static final String[] LABEL_DESCRIPTIONS = 
         {"Absolute Heading: ","X Position: ", "Y Position: ",
          "Pen Down? ","Is Hiding? "};
-    private static final TempNode[] NODES = {new TempHead(), new TempLocX(),new TempLocY(), 
-                                       new TempPenUp(), new TempHiding()};
-    
-    private List<LogoLabel> myLabelList;
-    
+//    private static final TempNode[] NODES = {new TempHead(), new TempLocX(),new TempLocY(), 
+//                                       new TempPenUp(), new TempHiding()};
+//    
+//    private List<LogoLabel> myLabelList;
+//    
     public InformationView(){
         setSize(VIEW_DIMENSION);
         setPreferredSize(VIEW_DIMENSION);
         
-        myLabelList = new ArrayList<LogoLabel>();
+        //myLabelList = new ArrayList<LogoLabel>();
         setLayout(new GridBagLayout());
         setBorder(BorderFactory.createMatteBorder(0, 3, 5, 0, Color.GRAY));
           
-        setLabels();
+        //setLabels();
          
     }
     
-    public void setLabels(){
-        TitleLabel title = new TitleLabel(TITLE);
-        myLabelList.add(title);
-        add(title, title.getGridBagConstraints());
-        
-        for (int i = 0; i< LABEL_DESCRIPTIONS.length; i++){
-            InformationLabel label = new InformationLabel(i+1,LABEL_DESCRIPTIONS[i],NODES[i]);
-            myLabelList.add(label);
-            add(label,label.getGridBagConstraints());
-        }
-    }
+//    public void setLabels(){
+//        TitleLabel title = new TitleLabel(TITLE);
+//        myLabelList.add(title);
+//        add(title, title.getGridBagConstraints());
+//        
+//        for (int i = 0; i< LABEL_DESCRIPTIONS.length; i++){
+//            InformationLabel label = new InformationLabel(i+1,LABEL_DESCRIPTIONS[i],NODES[i]);
+//            myLabelList.add(label);
+//            add(label,label.getGridBagConstraints());
+//        }
+//    }
     
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -70,10 +70,10 @@ public class InformationView extends JPanel implements Observer {
     @Override
     public void update (Observable object, Object arg) {
          IState turtle = (IState) object;
-         for (int i = 0; i< myLabelList.size(); i++){
-             LogoLabel j = myLabelList.get(i);
-             j.setText(turtle);
-         }
+//         for (int i = 0; i< myLabelList.size(); i++){
+//             LogoLabel j = myLabelList.get(i);
+//             j.setText(turtle);
+//         }
     }
 
 }

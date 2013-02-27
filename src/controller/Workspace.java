@@ -13,17 +13,26 @@ public class Workspace  {
 	// some methods and instances (such as the variable map) are commmented
 	// out, once figure out how to implement, uncommenting them might save
 	// some time
-	private Map<variable,value> myVariableMap;
-	private Map<command,syntax> myCommandMap;
+//	private Map<variable,value> myVariableMap;
+//	private Map<command,syntax> myCommandMap;
 	public static final String WORKSPACE_NAME = "Workspace ";
+	//test
+        private Map<String,Integer> myVariableMap;
+        private Map<String,Integer> myCommandMap;
 	private Turtle myTurtle;
 	private int myIndex;
 
-
+        public Workspace() {
+          //test save and load
+            myVariableMap = new HashMap<String, Integer>();
+            myCommandMap = new HashMap<String, Integer>();
+            myVariableMap.put("var1", 1);
+            myVariableMap.put("var2", 2);
+        }
 
 	public Workspace(int index){
+	        this();
 		myIndex = index;
-		myVariableMap = new HashMap<variable, value>();
 	}
 	public void handleCommand() {
 		// TODO
@@ -40,8 +49,8 @@ public class Workspace  {
 		myVariableMap.put(variable, value);
 	}
 
-	public void addCommand(String command, Node syntax) {
-		return myCommandMap.put(command, syntax);
+	public void addCommand(String command, Integer syntax) {
+		myCommandMap.put(command, syntax);
 	}
 
 	public Turtle getTurtle(){

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.util.Map;
 import java.util.Observable;
 import java.util.ResourceBundle;
 import javax.swing.AbstractAction;
@@ -46,6 +47,8 @@ public class Window extends JFrame {
     private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
     private static final int INPUT_FIELD_SIZE = 70;
     private static final String WORKSPACE_NAME = "Workspace ";
+    private static final String VARIABLE_KEYWORD = "Variable";
+    private static final String COMMAND_KEYWORD = "Command";
     
     private int workspaceIndex = 1;
     private JFileChooser myChooser;
@@ -59,7 +62,6 @@ public class Window extends JFrame {
     private Controller myController;
     private InputField myInputField;
     
-    private JTextField myCommandField;
     private Canvas myCurrentCanvas;
     private InformationView myInfoView;
     private JTabbedPane myTabbedPane;
@@ -71,6 +73,7 @@ public class Window extends JFrame {
         
         setTitle("SLogo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
 
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
         myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
@@ -162,7 +165,7 @@ public class Window extends JFrame {
                 try {
                     int response = myChooser.showOpenDialog(null);
                     if (response == myChooser.APPROVE_OPTION) {
-                        echo(new FileReader(myChooser.getSelectedFile()));
+                        loadWorkspace(new FileReader(myChooser.getSelectedFile()));
                     }
                 }
                 catch (Exception exception) {
@@ -177,7 +180,7 @@ public class Window extends JFrame {
                 try {
                     int response = myChooser.showSaveDialog(null);
                     if (response == myChooser.APPROVE_OPTION) {
-                        echo(new FileWriter(myChooser.getSelectedFile()));
+                        saveWorkspace(new FileWriter(myChooser.getSelectedFile()));
                     }
                 }
                 catch (Exception exception) {
@@ -353,18 +356,23 @@ public class Window extends JFrame {
     
    
     /**
-     * Echo data read from reader to display
+     * load a file of variable and command to a current workspace
      */
-    private void echo (Reader r) {
+    private void loadWorkspace (Reader r) {
         try {
-            String s = "";
             BufferedReader input = new BufferedReader(r);
             String line = input.readLine();
             while (line != null) {
-                s += line + "\n";
+                String[] str = line.split(" ");
+                if(str[0].equals(VARIABLE_KEYWORD)) { 
+                    myCurrentCanvas.getWorkspace().getVariableMap().put(str[0], Integer.parseInt(str[1]));
+                }
+                if(str[0].equals(COMMAND_KEYWORD)) { 
+                    myCurrentCanvas.getWorkspace().getCommandMap().put(str[0], Integer.parseInt(str[1]));
+                }
+                System.out.println(str[0] + str[1]);
                 line = input.readLine();
             }
-            myCommandField.setText(s);
         }
         catch (IOException e) {
             showError(e.toString());
@@ -372,11 +380,20 @@ public class Window extends JFrame {
     }
     
     /**
-     * Echo display to writer
+     * save the variables and commands from the current workspace to a file
      */
-    private void echo (Writer w) {
+    private void saveWorkspace (Writer w) {
         PrintWriter output = new PrintWriter(w);
-        output.println(myCommandField.getText());
+        Map<String,Integer> varMap = myCurrentCanvas.getWorkspace().getVariableMap();
+        Map<String,Integer> comMap = myCurrentCanvas.getWorkspace().getCommandMap();
+        
+        for(String varName : varMap.keySet()) {
+            output.println(VARIABLE_KEYWORD + varName + " " + varMap.get(varName));
+        }
+        
+        for(String comName : comMap.keySet()) {
+            output.println(COMMAND_KEYWORD + comName + " " + varMap.get(comName));
+        }
         output.flush();
         output.close();
     }

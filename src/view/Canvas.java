@@ -43,7 +43,7 @@ public class Canvas extends JComponent implements Observer{
      */
     public Canvas(){
         setPreferredSize(CANVAS_DIMENSION);
-        //myWorkspace = new Workspace();
+        myWorkspace = new Workspace();
         myTurtle = new Turtle();
     }
     
