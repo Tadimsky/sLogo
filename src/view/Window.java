@@ -3,12 +3,6 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -36,6 +30,7 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import view.components.ErrorBox;
+import view.components.Error;
 import view.components.InputField;
 import controller.Controller;
 import controller.Workspace;
@@ -211,25 +206,45 @@ public class Window extends JFrame {
         menu.add(new AbstractAction(myResources.getString("ForwardCommand")) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                myCurrentCanvas.getTurtle().move(DEFAULT_MOVE_VALUE);
+                try{
+                    myCurrentCanvas.getTurtle().move(DEFAULT_MOVE_VALUE);
+                }
+                catch(Exception e1){
+                    ErrorBox.showError(Error.NO_WORKSPACE);
+                }
             }
         });
         menu.add(new AbstractAction(myResources.getString("BackwardCommand")) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                myCurrentCanvas.getTurtle().move(-DEFAULT_MOVE_VALUE);
+                try{
+                    myCurrentCanvas.getTurtle().move(-DEFAULT_MOVE_VALUE);
+                }
+                catch(Exception e1){
+                    ErrorBox.showError(Error.NO_WORKSPACE);
+                }
             }
         });
         menu.add(new AbstractAction(myResources.getString("TurnRightCommand")) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                myCurrentCanvas.getTurtle().turn(DEFAULT_TURN_VALUE);
+                try{
+                    myCurrentCanvas.getTurtle().turn(DEFAULT_TURN_VALUE);
+                }
+                catch(Exception e1){
+                    ErrorBox.showError(Error.NO_WORKSPACE);
+                }
             }
         });
         menu.add(new AbstractAction(myResources.getString("TurnLeftCommand")) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                myCurrentCanvas.getTurtle().turn(-DEFAULT_TURN_VALUE);
+                try{
+                    myCurrentCanvas.getTurtle().turn(-DEFAULT_TURN_VALUE);
+                }
+                catch(Exception e1){
+                    ErrorBox.showError(Error.NO_WORKSPACE);
+                }
             }
         });
         menu.add(new JSeparator());

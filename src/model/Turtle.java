@@ -122,11 +122,11 @@ public class Turtle extends Observable implements Paintable, IState{
 
     @Override
     public Location getCenter () {
-        return myCenter;
+        return myCenter.getVisualLocation();
     }
     
     @Override
-    public double getAbsoluteHeading () {
+    public double getHeading () {
         return viewerDegreeConversion(myHeading.getDirection());
     }
     

@@ -15,7 +15,7 @@ public interface IState {
      * @return the absolute heading of the object on the perspective of 
      * the user
      */
-    public double getAbsoluteHeading();
+    public double getHeading();
     
     public boolean isPenWriting();
     

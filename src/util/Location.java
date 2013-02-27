@@ -61,6 +61,17 @@ public class Location extends Point2D.Double {
         super.x = super.x + x;
         super.y = super.y - y;
     }
+    
+    /**
+     * Used to convert a point from the program's coordinates to the user's
+     * visual perspective
+     * @return Location with coordinates manipulated to the user's point
+     * of view
+     */
+    public Location getVisualLocation(){
+        return new Location(this.getIntX()-myCanvasDimension.width,
+                            this.getIntY());
+    }
 
     /**
      * Returns a vector that is the difference between this location and

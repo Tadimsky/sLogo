@@ -32,7 +32,6 @@ public abstract class LogoLabel extends JLabel {
     
     @Override
     public void setText(String text){
-        System.out.println("im here and I got "+text);
         super.setText(myDescription+text);
     }
     
@@ -44,13 +43,19 @@ public abstract class LogoLabel extends JLabel {
         setText(""+text);
     }
     
+    public void setText(boolean text){
+        if(text)
+            setText("Yes");
+        else
+            setText("No");
+    }
+    
     public void setText(){
         setText("");
     }
     
     public void setText(IState object){
         if(myNode!=null){
-            System.out.println("value is "+myNode.getValue(object));
             setText(myNode.getValue(object));
         }
         else
