@@ -14,10 +14,11 @@ public class To extends TernaryNode {
     }
 
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {
-        int times = getLeft().evaluate(w);
-        if (times != 0) { return getMiddle().evaluate(w); }
-        return getRight().evaluate(w);
+    public int evaluate (Workspace w) throws InvalidArgumentsException {        
+        
+        
+        
+        return 0;
     }
 
 }
