@@ -365,12 +365,11 @@ public class Window extends JFrame {
             while (line != null) {
                 String[] str = line.split(" ");
                 if(str[0].equals(VARIABLE_KEYWORD)) { 
-                    myCurrentCanvas.getWorkspace().getVariableMap().put(str[0], Integer.parseInt(str[1]));
+                    myCurrentCanvas.getWorkspace().getVariableMap().put(str[1], Integer.parseInt(str[2]));
                 }
                 if(str[0].equals(COMMAND_KEYWORD)) { 
-                    myCurrentCanvas.getWorkspace().getCommandMap().put(str[0], Integer.parseInt(str[1]));
+                    myCurrentCanvas.getWorkspace().getCommandMap().put(str[1], Integer.parseInt(str[2]));
                 }
-                System.out.println(str[0] + str[1]);
                 line = input.readLine();
             }
         }
@@ -388,11 +387,11 @@ public class Window extends JFrame {
         Map<String,Integer> comMap = myCurrentCanvas.getWorkspace().getCommandMap();
         
         for(String varName : varMap.keySet()) {
-            output.println(VARIABLE_KEYWORD + varName + " " + varMap.get(varName));
+            output.println(VARIABLE_KEYWORD + " " + varName + " " + varMap.get(varName));
         }
         
         for(String comName : comMap.keySet()) {
-            output.println(COMMAND_KEYWORD + comName + " " + varMap.get(comName));
+            output.println(COMMAND_KEYWORD + " " + comName + " " + varMap.get(comName));
         }
         output.flush();
         output.close();
