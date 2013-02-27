@@ -23,7 +23,7 @@ public class Controller {
 
     public Controller () {
         myWorkspaces = new ArrayList<Workspace>();
-        myWindow = new Window(this);      
+        //myWindow = new Window(this);      
     }
     
     /**

@@ -12,51 +12,57 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import view.labels.TempNode;
 import model.IState;
+import view.labels.*;
 
 public class InformationView extends JPanel implements Observer {
-    
-    private final static Color BACKGROUND = Color.WHITE;
+    private final static int GRAY_TONE = 230;
+    private final static Color BACKGROUND_COLOR = new Color(GRAY_TONE,GRAY_TONE,GRAY_TONE);
     private final static Dimension VIEW_DIMENSION = new Dimension(200, 600);
+    private static final String TITLE = "Turtle Information";
+    
     private static final String[] LABEL_DESCRIPTIONS = 
         {"Absolute Heading: ","X Position: ", "Y Position: ",
          "Pen Down? ","Is Hiding? "};
-    private List<JLabel> myLabelList;
+    private static final TempNode[] NODES = {new TempHead(), new TempLocX(),new TempLocY(), 
+                                       new TempPenUp(), new TempHiding()};
+    
+    private List<LogoLabel> myLabelList;
     
     public InformationView(){
         setSize(VIEW_DIMENSION);
         setPreferredSize(VIEW_DIMENSION);
-        myLabelList = new ArrayList<JLabel>();
+        
+        myLabelList = new ArrayList<LogoLabel>();
         setLayout(new GridBagLayout());
-        
-        
-        for (int i = 0; i< LABEL_DESCRIPTIONS.length; i++){
-            JLabel label = new JLabel(LABEL_DESCRIPTIONS[i]);
-            label.setHorizontalTextPosition(SwingConstants.LEFT);
-            myLabelList.add(label);
-            add(label,setGridPosition(i));
-        }
+        setBorder(BorderFactory.createMatteBorder(0, 3, 5, 0, Color.GRAY));
+          
+        setLabels();
          
     }
     
-    private GridBagConstraints setGridPosition(int y){
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridx = 0;
-        c.gridy = y;
-        c.ipady = 20;
-        //c.anchor = GridBagConstraints.;
-        //c.fill = c.BOTH;
-        return c;
+    public void setLabels(){
+        TitleLabel title = new TitleLabel(TITLE);
+        myLabelList.add(title);
+        add(title, title.getGridBagConstraints());
+        
+        for (int i = 0; i< LABEL_DESCRIPTIONS.length; i++){
+            InformationLabel label = new InformationLabel(i+1,LABEL_DESCRIPTIONS[i],NODES[i]);
+            myLabelList.add(label);
+            add(label,label.getGridBagConstraints());
+        }
     }
     
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.setColor(BACKGROUND);
+        g.setColor(BACKGROUND_COLOR);
         g.fillRect(0,0,getWidth(),getHeight());
 
     }
@@ -65,8 +71,8 @@ public class InformationView extends JPanel implements Observer {
     public void update (Observable object, Object arg) {
          IState turtle = (IState) object;
          for (int i = 0; i< myLabelList.size(); i++){
-             JLabel j = myLabelList.get(i);
-             j.setText(LABEL_DESCRIPTIONS[i]+turtle.getAbsoluteHeading());
+             LogoLabel j = myLabelList.get(i);
+             j.setText(turtle);
          }
     }
 

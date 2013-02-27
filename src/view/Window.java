@@ -70,10 +70,9 @@ public class Window extends JFrame {
     private JTabbedPane myTabbedPane;
 
     public Window() {
-    	//needs to be changed to take in controller
     
         myController = new Controller();
-        //myController = controller;
+        
         
         setTitle("SLogo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
