@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
  */
 public class LexChecker {
     
+	//return list of tokens
     public static List<String> splitTokens(String s)
     {
         ArrayList<String> tokens = new ArrayList<String>();        
