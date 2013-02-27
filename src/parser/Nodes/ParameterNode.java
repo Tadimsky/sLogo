@@ -10,6 +10,6 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  * @author Jonathan Schmidt
  * 
  */
-public abstract class ParameterNode extends SyntaxNode {    
-    
+public abstract class ParameterNode extends SyntaxNode {
+
 }

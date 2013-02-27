@@ -3,6 +3,7 @@ package parser.tests;
 import static org.junit.Assert.*;
 import java.util.List;
 import java.util.Random;
+import org.junit.Before;
 import org.junit.Test;
 import parser.Parser;
 import parser.nodes.SyntaxNode;
@@ -10,8 +11,14 @@ import parser.nodes.SyntaxNode;
 
 public class MathTester {
 
-    private Parser myParser = new Parser();
-    private Random myRandom = new Random();
+    private Parser myParser;
+    private Random myRandom;
+    
+    @Before
+    public void setUp () throws Exception {
+        myParser = new Parser();
+        myRandom = new Random();
+    }
 
     @Test
      public void testSum () {

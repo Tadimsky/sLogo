@@ -37,6 +37,7 @@ public class SemanticsTable {
         String[] tokenArray = tokens.split(LIST_SEPERATOR); 
         for (String tok : tokenArray)
         {
+            tok = tok.trim();
             try
             {
                 NodeInformation ni = new NodeInformation(tok, myResource);
