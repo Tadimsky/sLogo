@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.List;
-import java.util.Stack;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Reflection;
 import parser.nodes.NodeInformation;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.ClassDefinitionException;
