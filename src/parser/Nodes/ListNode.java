@@ -34,4 +34,11 @@ public class ListNode extends SyntaxNode {
         return val;
     }
 
+    /**
+     * @return the contents
+     */
+    public List<SyntaxNode> getContents () {
+        return myContents;
+    }
+
 }

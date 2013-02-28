@@ -2,7 +2,7 @@ package parser.nodes;
 
 import java.util.Deque;
 
-public abstract class BinaryNode extends SyntaxNode {
+public abstract class BinaryNode extends ParameterNode {
     private SyntaxNode myLeft;
     private SyntaxNode myRight;
     

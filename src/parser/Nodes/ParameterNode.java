@@ -11,5 +11,5 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  * 
  */
 public abstract class ParameterNode extends SyntaxNode {
-
+    
 }

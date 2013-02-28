@@ -8,6 +8,7 @@ import java.util.Deque;
 import java.util.List;
 import parser.nodes.NodeInformation;
 import parser.nodes.SyntaxNode;
+import parser.nodes.TokenNode;
 import parser.nodes.exceptions.ClassDefinitionException;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import parser.reflection.ReflectionHelper;
@@ -63,7 +64,8 @@ public class SemanticsChecker {
     {       
         if (n.getArgs() == 0)
         {
-            return ReflectionHelper.createInstanceOf(n.getType(), token);
+            // Add the token as the first itme in the queue.
+            params.push(new TokenNode(token));            
         }
         if (params.size() >= n.getArgs())
         {

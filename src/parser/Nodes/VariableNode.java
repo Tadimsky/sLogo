@@ -1,5 +1,6 @@
 package parser.nodes;
 
+import java.util.Deque;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import parser.nodes.exceptions.InvalidSemanticsException;
 import controller.Workspace;
@@ -21,6 +22,11 @@ public class VariableNode extends SimpleNode{
             throw new InvalidSemanticsException(INVALID_FORMAT, name);
         }
     }
+    
+    public VariableNode (Deque<SyntaxNode> stack)
+    {        
+        this(((TokenNode)stack.pop()).getToken());
+    } 
 
     @Override
     public int evaluate (Workspace w) {
