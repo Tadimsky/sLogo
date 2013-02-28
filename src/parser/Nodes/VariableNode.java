@@ -15,7 +15,7 @@ public class VariableNode extends SimpleNode{
     {   
         if (name.indexOf(':') == 0)
         {
-            this.myName = name.substring(1);
+            this.myName = name;
         }
         else
         {
