@@ -19,6 +19,7 @@ public class Controller {
 
     // private static final String WORKSPACE_NAME = "Workspace ";
     private int workspaceIndex = 1;
+    private Workspace myWorkspace;
     private ArrayList<Workspace> myWorkspaces;
     private Window myWindow;
 
@@ -36,7 +37,7 @@ public class Controller {
         System.out.println(command);
         canvas.getTurtle().setColor(Color.RED);
     }
-
+    
     public Workspace createWorkspace (int index) {
         Workspace newWorkspace = new Workspace(index);
         myWorkspaces.add(newWorkspace);
@@ -55,4 +56,26 @@ public class Controller {
         return null;
 
     }
+   
+    public void executeCommand() {
+    	
+    }
+   /* public Workspace createWorkspace(int index){
+    	Workspace newWorkspace = new Workspace(index);
+    	myWorkspaces.add(newWorkspace);
+    	return newWorkspace;
+    }
+    
+    public Workspace selectWorkspace(int index){
+    	try {
+    	for (Workspace ws: myWorkspaces){
+    		if (ws.getIndex() == index){
+    			return ws;
+    		}
+    	}
+    	}catch(Exception e){
+    		System.out.println("no such workspace exists");
+    	}
+		return null;
+    }*/
 }
