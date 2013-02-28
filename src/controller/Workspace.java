@@ -17,8 +17,8 @@ public class Workspace  {
 //	private Map<command,syntax> myCommandMap;
 	public static final String WORKSPACE_NAME = "Workspace ";
 	//test
-        private Map<String,Integer> myVariableMap;
-        private Map<String,Integer> myCommandMap;
+    private Map<String,Integer> myVariableMap;
+    private Map<String,Integer> myCommandMap;
 	private Turtle myTurtle;
 	private int myIndex;
 
