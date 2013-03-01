@@ -33,13 +33,21 @@ public class Controller {
 
     /**
      * This method is called whenever the run button or enter is pressed
+     * Parses command using parser
+     * Loops through the command list and executes every command
+     * Update the workspace command list 
+     * *Note: need to update variable list?
      * 
      * @param command string in input Text Field
      */
     public void processCommand (String command, Canvas canvas) {
         System.out.println(command);
         canvas.getTurtle().setColor(Color.RED);
-        myParser.parseCommand(command);
+        List<SyntaxNode> commandList = myParser.parseCommand(command);
+        for (SyntaxNode node: commandList){
+        	int syntax = executeCommand(node);
+        	myWorkspace.addCommand(command, syntax);
+        }
     }
     
     public Workspace selectWorkspace (int index) {
@@ -59,8 +67,8 @@ public class Controller {
      * @return
      */
 
-    public void executeCommand(SyntaxNode syntaxNode) {
-    	syntaxNode.evaluate(myWorkspace);
+    public int executeCommand(SyntaxNode syntaxNode) {
+    	return syntaxNode.evaluate(myWorkspace);
     }
     
    /* public Workspace createWorkspace(int index){

@@ -21,7 +21,6 @@ public class Parser {
         mySemantics = new SemanticsChecker();
     }
  
-    
     /**
      * Parses a string command and turns it into a list of trees.
      * Each SyntaxNode is the head of a tree that represents a command.
