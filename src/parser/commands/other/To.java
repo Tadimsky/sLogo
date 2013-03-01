@@ -8,7 +8,13 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.TernaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
-
+/**
+ * Implements the To function.
+ * Creates a custom function.
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class To extends TernaryNode {
 
     private static final String FUNCTIONS_PARAM = "Third parameter is not a list of functions to be run.";

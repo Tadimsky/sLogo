@@ -8,8 +8,8 @@ import parser.nodes.exceptions.InvalidArgumentsException;
 
 /**
  * Implements the If control structure.
- * If the left parameters' value is not 0, runs the 
- * Returns the left parameter's value - right parameter's value
+ * If the left parameter's value is not 0, the list of commands to the right runs. 
+ * Otherwise nothing happens.
  * 
  * @author Jonathan Schmidt
  *

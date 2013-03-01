@@ -7,6 +7,13 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.VariableNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+/**
+ * Implements the Make function.
+ * Creates a variable and sets its value to the provided value.
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class Make extends BinaryNode {        
     private static final String PARAMETER_TYPE = "The first parameter must be in the format :<var_name>.";
 
