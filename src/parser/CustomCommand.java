@@ -23,7 +23,7 @@ public class CustomCommand {
     
     public CustomCommand (String name, ListNode params, ListNode commands) {
         myName = name;
-        myArgs = new ArrayList<>();
+        myArgs = new ArrayList<VariableNode>();
         myCommands = commands;
         for (SyntaxNode s : params.getContents())
         {

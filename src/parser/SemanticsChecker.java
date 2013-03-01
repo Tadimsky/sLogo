@@ -55,8 +55,7 @@ public class SemanticsChecker {
                     SyntaxNode sn = createNode(token, node, stack);
                     stack.push(sn);
                 }
-                catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-                        | InvocationTargetException | ClassDefinitionException e) {
+                catch (Exception e) {
                     // Fatal error with this node.
                     return null;
                 }               

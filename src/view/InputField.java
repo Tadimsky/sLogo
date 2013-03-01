@@ -18,7 +18,7 @@ class InputField extends JTextField implements FocusListener {
     private static final Font HINT_FONT = new Font("Sans-Serif",Font.ITALIC,14);
     private static final Font REGULAR_FONT = new Font("Helvetica", Font.PLAIN, 14);
 
-    public InputField(final int fieldSize) {
+    public InputField(final int fieldSize) {        
         super(HINT, fieldSize);
         super.setFont(HINT_FONT);
         super.addFocusListener(this);
@@ -35,15 +35,15 @@ class InputField extends JTextField implements FocusListener {
     @Override
     public void focusGained(FocusEvent e) {
         super.setFont(REGULAR_FONT);
-        if(this.getText().isEmpty()) {
+        if(this.getText().isEmpty() || this.getText().equals(HINT)) {
             super.setText("");
         }
     }
     @Override
     public void focusLost(FocusEvent e) {
         if(this.getText().isEmpty()) {
-            super.setFont(HINT_FONT);
-            super.setText(HINT);
+            //super.setFont(HINT_FONT);
+            //super.setText(HINT);
         }
     }
     
@@ -51,8 +51,8 @@ class InputField extends JTextField implements FocusListener {
     public void setText(String text) {
         super.setText(text);
         if(text.isEmpty()) {
-            super.setFont(HINT_FONT);
-            super.setText(HINT);
+            //super.setFont(HINT_FONT);
+            //super.setText(HINT);
         }
     }
 

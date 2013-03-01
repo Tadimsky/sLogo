@@ -58,7 +58,6 @@ public class Window extends JFrame {
     
         myController = control;
         
-        
         setTitle("SLogo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
@@ -80,6 +79,7 @@ public class Window extends JFrame {
         pack();
 
         setVisible(true);
+        createWorkspace();
     }
     
     /**

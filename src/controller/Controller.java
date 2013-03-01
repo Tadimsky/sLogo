@@ -55,8 +55,7 @@ public class Controller {
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
         myResource = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
         myWindow = new Window(this);
-        myParser = new Parser();
-        myWorkspaces = new ArrayList<Workspace>();
+        myParser = new Parser();        
         // myWindow = new Window(this);
     }
 
@@ -65,14 +64,13 @@ public class Controller {
      * Parses command using parser
      * Loops through the command list and executes every command
      * Update the workspace command list 
-     * *Note: need to update variable list?
+     * Note: need to update variable list?
      * 
      * @param command string in input Text Field
      */
     public void processCommand (String command, Canvas canvas) {
         System.out.println(command);
-        //.getTurtle().setColor(Color.RED);
-        canvas.getTurtle().setColor(Color.RED);
+        //.getTurtle().setColor(Color.RED);        
         List<SyntaxNode> commandList = myParser.parseCommand(command);
         for (SyntaxNode node: commandList){
         	int syntax = executeCommand(node);
@@ -95,7 +93,7 @@ public class Controller {
      * so this class can handle its functions
      */
     private Workspace getWorkspace(){
-        return (Workspace) myWindow.getCanvas().getPaintableResource();
+        return (Workspace)myWindow.getCanvas().getPaintableResource();
     }
     
     /**
