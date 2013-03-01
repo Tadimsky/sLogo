@@ -7,6 +7,13 @@ import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import controller.Workspace;
 
+/**
+ * Implements the Random function.
+ * Returns a random value with a maximum value provided by the parameter.
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class Random extends UnaryNode{
     
     java.util.Random myRand;

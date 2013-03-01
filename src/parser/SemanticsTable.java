@@ -11,6 +11,14 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.NodeInformation;
 import parser.nodes.exceptions.NodeDefinitionException;
 
+/**
+ * The Semantics Table stores all the different nodes that can be created
+ * from commands that are entered. It links these to the format that the
+ * commands are in so that new instances of a node can be created.
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class SemanticsTable {
     public static final String PARSER_RESOURCES = "parser.resources.";
     public static final String SEMANTICS_FILE = "tokens";
@@ -25,11 +33,18 @@ public class SemanticsTable {
     
     List<NodeInformation> myNodeList;
 
+    /**
+     * Creates a new instance of the Semantics Table and loads the properties file.
+     */
     public SemanticsTable () {      
         myResource = PropertyResourceBundle.getBundle(PARSER_RESOURCES + SEMANTICS_FILE);
         buildMap();
     }
     
+    /**
+     * Reads in every item in the properties file and turns it into a Node Information.
+     * Builds the list of nodes that can be created.
+     */
     private void buildMap()
     {
         myNodeList = new ArrayList<NodeInformation>();
@@ -51,6 +66,11 @@ public class SemanticsTable {
         }
     }
 
+    /**
+     * Returns the instance of the SemanticsTable
+     * 
+     * @return Singleton
+     */
     public static SemanticsTable getInstance ()
     {
         if (instance == null)
@@ -65,6 +85,14 @@ public class SemanticsTable {
         return instance;
     }
     
+    /**
+     * Returns the Node Information for a specific token.
+     * This will be used to get information about what a 
+     * token represents in this application.
+     * 
+     * @param token The token of which the information is required.
+     * @return
+     */
     public NodeInformation getTokenClass(String token)
     {
         String lower = token.toLowerCase();

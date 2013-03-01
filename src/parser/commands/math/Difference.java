@@ -6,6 +6,13 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import controller.Workspace;
 
+/**
+ * Implements the Difference function.
+ * Returns the left parameter's value - right parameter's value
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class Difference extends BinaryNode {
    
     public Difference (Deque<SyntaxNode> queue) {

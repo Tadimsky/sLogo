@@ -13,6 +13,18 @@ import parser.nodes.exceptions.ClassDefinitionException;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import parser.reflection.ReflectionHelper;
 
+/**
+ * This class takes tokens and builds them into something that
+ * can be run by the application. These SyntaxNodes are created
+ * by reading in a properties file containing all the information
+ * about a node in the tree.
+ * 
+ * The nodes are then created using reflection.
+ * Some basic syntax checking is performed in the creation of these nodes.
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class SemanticsChecker {
 
     private SemanticsTable myTable;    
@@ -22,11 +34,11 @@ public class SemanticsChecker {
     }    
     
     /**
-     * Takes in a list of tokens in reverse order and turns them into SyntaxNodes
-     * Builds trees and returns a list of all the 
+     * Takes in a list of tokens of input and turns them into SyntaxNodes
+     * Builds trees and returns a list of all the roots of the trees.
      * 
-     * @param tokens
-     * @return
+     * @param tokens a list of tokens that have been processed.
+     * @return List of SyntaxNodes representing the roots of trees.
      */
     public List<SyntaxNode> evaluateExpression(List<String> tokens)
     {
@@ -60,6 +72,19 @@ public class SemanticsChecker {
         return result;
     }
     
+    /**
+     * Creates a Node using the specified information and reflection.
+     * 
+     * @param token
+     * @param n
+     * @param params
+     * @return
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws IllegalArgumentException
+     * @throws InvocationTargetException
+     * @throws ClassDefinitionException
+     */
     private SyntaxNode createNode(String token, NodeInformation n, Deque<SyntaxNode> params) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ClassDefinitionException
     {       
         if (n.getArgs() == 0)

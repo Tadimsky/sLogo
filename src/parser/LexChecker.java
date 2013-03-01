@@ -1,7 +1,6 @@
 package parser;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
@@ -15,7 +14,13 @@ import java.util.regex.Pattern;
  */
 public class LexChecker {
     
-	//return list of tokens
+    /**
+     * Takes in a string of commands and splits it into tokens.
+     * Checks for invalid (non-ASCII) characters.
+     * 
+     * @param s The string to parse.
+     * @return A list of String tokens.
+     */
     public static List<String> splitTokens(String s)
     {
         ArrayList<String> tokens = new ArrayList<String>();        

@@ -7,6 +7,13 @@ import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import controller.Workspace;
 
+/**
+ * Implements the Minus function.
+ * Returns the negative value of the parameter's value.
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class Minus extends UnaryNode {
    
     public Minus (Deque<SyntaxNode> queue) {

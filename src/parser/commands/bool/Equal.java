@@ -6,6 +6,14 @@ import parser.nodes.BinaryNode;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+/**
+ * This implements an EQUAL boolean command.
+ * Returns 1 if both parameters have equal value.
+ * Otherwise returns 0.
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class Equal extends BinaryNode {
 
     public Equal (Deque<SyntaxNode> queue) {

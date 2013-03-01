@@ -60,6 +60,7 @@ public class Controller {
     public void executeCommand() {
     	
     }
+    
    /* public Workspace createWorkspace(int index){
     	Workspace newWorkspace = new Workspace(index);
     	myWorkspaces.add(newWorkspace);

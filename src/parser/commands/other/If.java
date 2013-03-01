@@ -6,6 +6,14 @@ import parser.nodes.BinaryNode;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+/**
+ * Implements the If control structure.
+ * If the left parameters' value is not 0, runs the 
+ * Returns the left parameter's value - right parameter's value
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class If extends BinaryNode {
 
     public If (Deque<SyntaxNode> queue) {

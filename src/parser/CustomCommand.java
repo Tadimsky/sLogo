@@ -7,6 +7,11 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.VariableNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+/**
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class CustomCommand {
 
     private String myName;

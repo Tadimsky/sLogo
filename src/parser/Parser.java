@@ -3,14 +3,32 @@ package parser;
 import java.util.List;
 import parser.nodes.SyntaxNode;
 
+/**
+ * The main class for parsing commands into usable things.
+ * Uses the Lex Checker and Semantics Checker to build abstract syntax trees.
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class Parser {
 
     private SemanticsChecker mySemantics;
     
+    /**
+     * Creates a new instance of the parser.
+     */
     public Parser () {
         mySemantics = new SemanticsChecker();
     }
+ 
     
+    /**
+     * Parses a string command and turns it into a list of trees.
+     * Each SyntaxNode is the head of a tree that represents a command.
+     *  
+     * @param command The string input that the parser parses.
+     * @return a list of roots of each tree.
+     */
     public List<SyntaxNode> parseCommand(String command)
     {
         if (command.isEmpty()) {
