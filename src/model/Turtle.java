@@ -49,7 +49,7 @@ public class Turtle extends Observable implements Paintable, IState{
      * currently heading
      * @param pixels pixels to move
      */
-    public void move(int pixels){
+    public void move(double pixels){
         myHeading.setMagnitude(pixels);
         Location initialPosition = new Location(myCenter);
         myCenter.translate(myHeading);
@@ -63,7 +63,7 @@ public class Turtle extends Observable implements Paintable, IState{
      * Turns the turtle by the number of degrees
      * @param degrees degrees to turn
      */
-    public void turn(int degrees){
+    public void turn(double degrees){
         myHeading.turn(degrees);
         update();
     }
@@ -77,15 +77,47 @@ public class Turtle extends Observable implements Paintable, IState{
     }
     
     /**
-     * Turns this turtle to the specified absolute heading
+     * Turns the turtle to the specified heading in degrees. Returns the number of degrees it turned by.
      * @param degrees Absolute heading to turn to. this number is 
      * on the perspective of the user
      */
-    public void turnTo(int degrees){
+    public double turnTo(double degrees){
         Vector absolute = new Vector(viewerDegreeConversion(degrees), 0);
         double angle = myHeading.getAngleBetween(absolute);
         myHeading.turn(angle);
         update();
+        return angle;
+    }
+    
+    /**
+     * Turns the turtle to face towards the specified location. Returns the number of degrees the turtle turned by.
+     * @param point
+     * @return
+     */
+    public double faceTowards(Location point){
+    	double angle = Vector.angleBetween(point, myCenter);
+    	myHeading.turn(angle);
+    	return angle;
+    	
+    }
+    
+    /**
+     * Moves the turtle to the center of the screen. Returns the number of pixels moved.
+
+     * @param point
+     * @return
+     */
+    public double moveTo(Location point){
+    	this.faceTowards(point);
+    	double distanceToMove = Vector.distanceBetween(point, myCenter);
+    	this.move(distanceToMove);
+    	return distanceToMove;
+    }
+    /**
+     * Moves the turtle to the center of the screen. Returns the number of pixels moved.
+     */
+    public void goHome(){
+    	this.moveTo(new Location(0,0));
     }
     
     /**
@@ -120,11 +152,13 @@ public class Turtle extends Observable implements Paintable, IState{
         
     }
 
+
     @Override
     public Location getCenter () {
         return myCenter.getVisualLocation();
     }
     
+
     @Override
     public double getHeading () {
         return viewerDegreeConversion(myHeading.getDirection());

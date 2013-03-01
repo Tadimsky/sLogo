@@ -3,6 +3,9 @@ package controller;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+
+import parser.*;
+import parser.Nodes.SyntaxNode;
 import view.Canvas;
 import view.Window;
 
@@ -22,6 +25,7 @@ public class Controller {
     private Workspace myWorkspace;
     private ArrayList<Workspace> myWorkspaces;
     private Window myWindow;
+    private Parser myParser;
 
     public Controller () {
         myWorkspaces = new ArrayList<Workspace>();
@@ -36,6 +40,8 @@ public class Controller {
     public void processCommand (String command, Canvas canvas) {
         System.out.println(command);
         canvas.getTurtle().setColor(Color.RED);
+        myParser.parseCommand(command);
+        
     }
     
     public Workspace createWorkspace (int index) {
@@ -57,8 +63,13 @@ public class Controller {
 
     }
    
-    public void executeCommand() {
-    	
+    /**
+     * Parses command and returns a list of syntax nodes.
+     * @return
+     */
+
+    public void executeCommand(SyntaxNode syntaxNode) {
+    	syntaxNode.evaluate(myWorkspace);
     }
     
    /* public Workspace createWorkspace(int index){
