@@ -59,7 +59,6 @@ public class Controller {
         myParser = new Parser();
 =======
         myWorkspaces = new ArrayList<Workspace>();
-        myParser = new Parser();
         // myWindow = new Window(this);
 >>>>>>> updated controller
     }
@@ -82,7 +81,6 @@ public class Controller {
 
 >>>>>>> updated controller
         List<SyntaxNode> commandList = myParser.parseCommand(command);
-        System.out.println(commandList);
         for (SyntaxNode node: commandList){
         	int syntax = executeCommand(node);
         	System.out.println(syntax);
