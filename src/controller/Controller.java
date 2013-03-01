@@ -29,6 +29,7 @@ public class Controller {
     public Controller () {
         myWorkspaces = new ArrayList<Workspace>();
         // myWindow = new Window(this);
+        myParser = new Parser();
     }
 
     /**
@@ -42,10 +43,11 @@ public class Controller {
      */
     public void processCommand (String command, Canvas canvas) {
         System.out.println(command);
-        canvas.getTurtle().setColor(Color.RED);
+        //.getTurtle().setColor(Color.RED);
         List<SyntaxNode> commandList = myParser.parseCommand(command);
         for (SyntaxNode node: commandList){
         	int syntax = executeCommand(node);
+        	System.out.println(syntax);
         	//myWorkspace.addCommand(command, syntax);
         }
     }
