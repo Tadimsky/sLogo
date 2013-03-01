@@ -16,7 +16,7 @@ public class SetHeading extends UnaryNode {
     @Override
     public int evaluate (Workspace w) throws InvalidArgumentsException {
         int deg = getArgument().evaluate(w);
-        return w.getTurtle().turnTo(deg);
+        return w.getTurtle().setHeading(deg);
     }
 
 }

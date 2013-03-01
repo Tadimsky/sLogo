@@ -21,6 +21,7 @@ import view.components.Error;
  * @author Henrique Moraes
  *
  */
+
 public class Turtle extends Observable implements Paintable, IState{
     private Location myCenter;
     private Vector myHeading;
@@ -49,7 +50,7 @@ public class Turtle extends Observable implements Paintable, IState{
      * currently heading
      * @param pixels pixels to move
      */
-    public void move(double pixels){
+    public int move(int pixels){
         myHeading.setMagnitude(pixels);
         Location initialPosition = new Location(myCenter);
         myCenter.translate(myHeading);
@@ -57,15 +58,17 @@ public class Turtle extends Observable implements Paintable, IState{
         myPen.addLine(initialPosition, finalPosition);
 
         update();
+        return pixels;
     }
     
     /**
      * Turns the turtle by the number of degrees
      * @param degrees degrees to turn
      */
-    public void turn(double degrees){
+    public int turn(int degrees){
         myHeading.turn(degrees);
         update();
+        return degrees;
     }
     
     /**
@@ -81,9 +84,9 @@ public class Turtle extends Observable implements Paintable, IState{
      * @param degrees Absolute heading to turn to. this number is 
      * on the perspective of the user
      */
-    public double turnTo(double degrees){
+    public int setHeading(int  degrees){
         Vector absolute = new Vector(viewerDegreeConversion(degrees), 0);
-        double angle = myHeading.getAngleBetween(absolute);
+        int  angle = (int) myHeading.getAngleBetween(absolute);
         myHeading.turn(angle);
         update();
         return angle;
@@ -94,11 +97,11 @@ public class Turtle extends Observable implements Paintable, IState{
      * @param point
      * @return
      */
-    public double faceTowards(Location point){
-    	double angle = Vector.angleBetween(point, myCenter);
+    public int faceTowards(int x, int y){
+    	Location point = new Location(x,y);
+    	int  angle = (int) Vector.angleBetween(point, myCenter);
     	myHeading.turn(angle);
     	return angle;
-    	
     }
     
     /**
@@ -107,17 +110,18 @@ public class Turtle extends Observable implements Paintable, IState{
      * @param point
      * @return
      */
-    public double moveTo(Location point){
-    	this.faceTowards(point);
-    	double distanceToMove = Vector.distanceBetween(point, myCenter);
+    public int setPosition(int x, int y){
+    	this.faceTowards(x, y);
+    	Location point = new Location(x,y);
+    	int  distanceToMove = (int) Vector.distanceBetween(point, myCenter);
     	this.move(distanceToMove);
     	return distanceToMove;
     }
     /**
      * Moves the turtle to the center of the screen. Returns the number of pixels moved.
      */
-    public void goHome(){
-    	this.moveTo(new Location(0,0));
+    public int goHome(){
+    	return this.setPosition(0,0);
     }
     
     /**
@@ -149,9 +153,7 @@ public class Turtle extends Observable implements Paintable, IState{
 
         pen.drawImage(op.filter(myImage,null),point.getIntX(), 
                        point.getIntY(), null);
-        
     }
-
 
     @Override
     public Location getCenter () {
@@ -160,8 +162,8 @@ public class Turtle extends Observable implements Paintable, IState{
     
 
     @Override
-    public double getHeading () {
-        return viewerDegreeConversion(myHeading.getDirection());
+    public int getHeading () {
+        return viewerDegreeConversion((int) myHeading.getDirection());
     }
     
     /**
@@ -172,7 +174,7 @@ public class Turtle extends Observable implements Paintable, IState{
      * if the program uses its heading to display to the user, the degrees
      * are converted to the user's perspective and vice-versa
      */
-    private double viewerDegreeConversion(double degrees){
+    private int  viewerDegreeConversion(int  degrees){
         return (360 - degrees) % 360;
     }
     
@@ -212,4 +214,14 @@ public class Turtle extends Observable implements Paintable, IState{
     public void setColor(Color color){
         myPen.setPenColor(color);
     }
+
+    /**
+     * Clear as called by parser. Move elsewhere?
+     * 
+     * @return
+     */
+	public int clear() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

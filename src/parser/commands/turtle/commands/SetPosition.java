@@ -16,7 +16,6 @@ public class SetPosition extends BinaryNode {
     public int evaluate (Workspace w) throws InvalidArgumentsException {
         int x = getLeft().evaluate(w);
         int y = getRight().evaluate(w);
-        
         return w.getTurtle().setPosition(x,y);
     }
 
