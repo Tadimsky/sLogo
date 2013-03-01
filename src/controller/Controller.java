@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -56,7 +57,7 @@ public class Controller {
         myResource = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
         myWindow = new Window(this);
         myParser = new Parser();
-        myWorkspaces = new ArrayList<Workspace>();
+        //myWorkspaces = new ArrayList<Workspace>();
         // myWindow = new Window(this);
     }
 
@@ -72,7 +73,7 @@ public class Controller {
     public void processCommand (String command, Canvas canvas) {
         System.out.println(command);
         //.getTurtle().setColor(Color.RED);
-        canvas.getTurtle().setColor(Color.RED);
+        //canvas.getTurtle().setColor(Color.RED);
         List<SyntaxNode> commandList = myParser.parseCommand(command);
         for (SyntaxNode node: commandList){
         	int syntax = executeCommand(node);
