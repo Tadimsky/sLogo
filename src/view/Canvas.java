@@ -24,7 +24,6 @@ public class Canvas extends JComponent implements Observer{
     private final static Color BACKGROUND_COLOR = Color.WHITE;
     public final static Dimension CANVAS_DIMENSION = new Dimension(850, 600);
     private Workspace myWorkspace;
-    private Turtle myTurtle;
     private String myName;
     
     /**
@@ -34,6 +33,7 @@ public class Canvas extends JComponent implements Observer{
      */
     public Canvas(String name){
         this();
+        
         myName = name;
     }
     
@@ -43,8 +43,7 @@ public class Canvas extends JComponent implements Observer{
      */
     public Canvas(){
         setPreferredSize(CANVAS_DIMENSION);
-        myWorkspace = new Workspace();
-        myTurtle = new Turtle();
+        myWorkspace = new Workspace();        
     }
     
     /**
@@ -55,7 +54,7 @@ public class Canvas extends JComponent implements Observer{
         Graphics2D pen = (Graphics2D) g;
         pen.setColor(BACKGROUND_COLOR);
         pen.fillRect(0,0,getWidth(),getHeight());
-        myTurtle.paint(pen);
+        getTurtle().paint(pen);
     }
     
     /**
@@ -69,7 +68,7 @@ public class Canvas extends JComponent implements Observer{
      * @return The Turtle associated to this Canvas
      */
     public Turtle getTurtle(){
-        return myTurtle;
+        return myWorkspace.getTurtle();
     }
     
     @Override
@@ -81,18 +80,18 @@ public class Canvas extends JComponent implements Observer{
     //WARNING THESE IF STATEMENTS ARE HORRIBLE, THIS SOLUTION SHOULD
     // BE TEMPORARY IF ANYONE THINK OF SOMETHING EASIER PLEASE IMPLEMENT
     private void checkTurtleBounds(){
-        Rectangle turtleBounds = myTurtle.getBounds();
+        Rectangle turtleBounds = getTurtle().getBounds();
         
         if(turtleBounds.getMaxX()>=CANVAS_DIMENSION.width || 
                 turtleBounds.getMinX()<=0)
-            myTurtle.wrapOnX();
+            getTurtle().wrapOnX();
         if(turtleBounds.getMinY()>=CANVAS_DIMENSION.height || 
                 turtleBounds.getMaxY()<=0)
-            myTurtle.wrapOnY();     
+            getTurtle().wrapOnY();     
     }
     
     public void update () {
-        myTurtle.update();   
+        getTurtle().update();   
     }
     
     public String getName(){

@@ -405,10 +405,6 @@ public class Window extends JFrame {
                                       myResources.getString("ErrorTitle"),
                                       JOptionPane.ERROR_MESSAGE);
     }
-    
-    
-    
-    
 }
 
 

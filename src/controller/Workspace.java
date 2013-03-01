@@ -24,6 +24,7 @@ public class Workspace  {
         // test save and load
         myVariableMap = new HashMap<String, Integer>();
         myCommandMap = new HashMap<String, Integer>();
+        myTurtle = new Turtle();
     }
 
     public Workspace (int index) {
