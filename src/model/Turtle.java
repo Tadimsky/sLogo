@@ -101,6 +101,7 @@ public class Turtle extends Observable implements Paintable, IState{
         Vector toTurn = new Vector(myCenter, toFace);
         int angle = (int) myHeading.getAngleBetween(toTurn);
         myHeading.turn(angle);
+        update();
         return angle;
     }
     
