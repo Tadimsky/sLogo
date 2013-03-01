@@ -1,15 +1,12 @@
 package parser;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
-import parser.nodes.SyntaxNode;
-import parser.nodes.NodeInformation;
-import parser.nodes.exceptions.NodeDefinitionException;
+import parser.Nodes.NodeInformation;
+import parser.Nodes.exceptions.NodeDefinitionException;
 
 /**
  * The Semantics Table stores all the different nodes that can be created

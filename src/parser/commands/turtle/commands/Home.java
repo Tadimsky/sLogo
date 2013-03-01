@@ -1,9 +1,9 @@
 package parser.commands.turtle.commands;
 
 import java.util.Deque;
+import parser.Nodes.SyntaxNode;
+import parser.Nodes.exceptions.InvalidArgumentsException;
 import controller.Workspace;
-import parser.nodes.SyntaxNode;
-import parser.nodes.exceptions.InvalidArgumentsException;
 
 public class Home extends BasicControl {
 

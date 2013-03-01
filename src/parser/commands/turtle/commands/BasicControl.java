@@ -1,10 +1,8 @@
 package parser.commands.turtle.commands;
 
 import java.util.Deque;
-import controller.Workspace;
-import parser.nodes.SimpleNode;
-import parser.nodes.SyntaxNode;
-import parser.nodes.exceptions.InvalidArgumentsException;
+import parser.Nodes.SimpleNode;
+import parser.Nodes.SyntaxNode;
 
 public abstract class BasicControl extends SimpleNode {
     

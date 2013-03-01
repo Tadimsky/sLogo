@@ -1,7 +1,6 @@
 package model;
 
 import util.Location;
-import util.Vector;
 
 /**
  * Interface that provides information on the state of the object implemented

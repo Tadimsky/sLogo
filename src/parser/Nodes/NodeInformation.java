@@ -2,7 +2,7 @@ package parser.nodes;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-import parser.nodes.exceptions.NodeDefinitionException;
+import parser.Nodes.exceptions.NodeDefinitionException;
 
 /**
  * This class represents the information that is stored in the properties file.

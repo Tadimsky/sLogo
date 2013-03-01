@@ -1,8 +1,8 @@
 package parser.nodes;
 
 import java.util.Deque;
-import parser.nodes.exceptions.InvalidArgumentsException;
-import parser.nodes.exceptions.InvalidSemanticsException;
+import parser.Nodes.exceptions.InvalidArgumentsException;
+import parser.Nodes.exceptions.InvalidSemanticsException;
 import controller.Workspace;
 
 /**

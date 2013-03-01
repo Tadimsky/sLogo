@@ -1,12 +1,12 @@
 package parser.commands.other;
 
 import java.util.Deque;
+import parser.Nodes.CommandNode;
+import parser.Nodes.ListNode;
+import parser.Nodes.SyntaxNode;
+import parser.Nodes.TernaryNode;
+import parser.Nodes.exceptions.InvalidArgumentsException;
 import controller.Workspace;
-import parser.nodes.CommandNode;
-import parser.nodes.ListNode;
-import parser.nodes.SyntaxNode;
-import parser.nodes.TernaryNode;
-import parser.nodes.exceptions.InvalidArgumentsException;
 
 /**
  * Implements the To function.

@@ -1,7 +1,5 @@
 package parser.nodes.exceptions;
 
-import controller.Workspace;
-import parser.nodes.ParameterNode;
 
 public class NodeDefinitionException extends RuntimeException {
     private static final long serialVersionUID = 1L;

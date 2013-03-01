@@ -3,7 +3,7 @@ package parser.nodes;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
-import parser.nodes.exceptions.InvalidArgumentsException;
+import parser.Nodes.exceptions.InvalidArgumentsException;
 import controller.Workspace;
 
 /**

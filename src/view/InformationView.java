@@ -2,25 +2,25 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
-import view.labels.TempNode;
 import model.IState;
-import view.labels.*;
+import view.labels.InformationLabel;
+import view.labels.LogoLabel;
+import view.labels.TempHead;
+import view.labels.TempHiding;
+import view.labels.TempLocX;
+import view.labels.TempLocY;
+import view.labels.TempNode;
+import view.labels.TempPenUp;
+import view.labels.TitleLabel;
 
 public class InformationView extends JPanel implements Observer {
     private final static int GRAY_TONE = 230;

@@ -1,7 +1,7 @@
 package parser;
 
 import java.util.List;
-import parser.nodes.SyntaxNode;
+import parser.Nodes.SyntaxNode;
 
 /**
  * The main class for parsing commands into usable things.

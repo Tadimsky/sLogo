@@ -4,14 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Writer;
-import java.util.Map;
 import java.util.Observable;
 import java.util.ResourceBundle;
 import javax.swing.AbstractAction;
@@ -19,7 +17,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
@@ -27,11 +24,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import view.components.ErrorBox;
 import view.components.Error;
+import view.components.ErrorBox;
 import view.components.InputField;
 import controller.Controller;
 import controller.Workspace;
@@ -43,40 +39,31 @@ import controller.Workspace;
  *
  */
 public class Window extends JFrame {
-    private static final String USER_DIR = "user.dir";
-    private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
     private static final int INPUT_FIELD_SIZE = 70;
     private static final String WORKSPACE_NAME = "Workspace ";
-    private static final String VARIABLE_KEYWORD = "Variable";
-    private static final String COMMAND_KEYWORD = "Command";
     
     private int workspaceIndex = 1;
-    private JFileChooser myChooser;
-    private ResourceBundle myResources;
+    private ResourceBundle myResource;
 
-    // Create Listeners
     private ActionListener myRunCommandListener;
-    private int DEFAULT_MOVE_VALUE = 100;
-    private int DEFAULT_TURN_VALUE = 220;
 
     private Controller myController;
-    private InputField myInputField;
     
     private Canvas myCurrentCanvas;
     private InformationView myInfoView;
     private JTabbedPane myTabbedPane;
+    private InputField myInputField;
 
-    public Window() {
+    public Window(Controller control) {
     
-        myController = new Controller();
+        myController = control;
         
         
         setTitle("SLogo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
 
-        myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
-        myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
+        myResource = myController.getResource();
 
         myInfoView = new InformationView();
         myTabbedPane = new JTabbedPane();
@@ -88,7 +75,7 @@ public class Window extends JFrame {
         getContentPane().add(makeInformationView(), BorderLayout.EAST);
         getContentPane().add(createInputField(), BorderLayout.SOUTH);
 
-        setJMenuBar(makeJMenuBar());
+        setJMenuBar(myController.createJMenuBar());
         
         pack();
 
@@ -105,20 +92,23 @@ public class Window extends JFrame {
     }
     
     /**
-     * Defines the necessary parameter the Window needs to hold from the
-     * Workspace
-     * @param workspace Newly created workspace
+     * Creates a new workspace and sets the associated canvas to it
+     * on the tabbed pane
      */
-    public void createCanvas(){
-        myCurrentCanvas = new Canvas(WORKSPACE_NAME + workspaceIndex);
+    public void createWorkspace () {
+        Workspace workspace = new Workspace(WORKSPACE_NAME + workspaceIndex);
         workspaceIndex++;
-        myTabbedPane.addTab(myCurrentCanvas.getName(), myCurrentCanvas);
+        myCurrentCanvas = new Canvas(workspace);
+        myTabbedPane.addTab(workspace.getName(), myCurrentCanvas);
         myTabbedPane.setSelectedComponent(myCurrentCanvas);
-        setObservers(myCurrentCanvas.getTurtle());
-        myCurrentCanvas.getTurtle().update();
+        setObservers(workspace.getTurtle());
+        myCurrentCanvas.repaint();
     }
-    
-    public Canvas getCanvas(){
+
+    /**
+     * @return Currently selected Canvas
+     */
+    public Canvas getCanvas () {
         return myCurrentCanvas;
     }
 
@@ -132,157 +122,6 @@ public class Window extends JFrame {
         InfoScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         infoPanel.add(InfoScrollPane);
         return infoPanel;
-    }
-
-    /**
-     * Responsible for creating the menu bar
-     * @return menu bar for the program
-     */
-    private JMenuBar makeJMenuBar() {
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.add(makeFileMenu());
-        menuBar.add(makeCommandMenu());
-        return menuBar;
-    }
-
-    /**
-     * creates the File option on the menu bar
-     * Maybe separate a menu creator on its own class...
-     * 
-     * @return File Menu option
-     */
-    private JMenu makeFileMenu() {
-        JMenu menu = new JMenu(myResources.getString("FileMenu"));
-        menu.add(new AbstractAction(myResources.getString("NewWorkspace")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                createCanvas();
-            }
-        });
-        menu.add(new AbstractAction(myResources.getString("OpenFile")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    int response = myChooser.showOpenDialog(null);
-                    if (response == myChooser.APPROVE_OPTION) {
-                        loadWorkspace(new FileReader(myChooser.getSelectedFile()));
-                    }
-                }
-                catch (Exception exception) {
-                    showError(exception.toString());
-                }
-            }
-        });
-
-        menu.add(new AbstractAction(myResources.getString("SaveFile")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    int response = myChooser.showSaveDialog(null);
-                    if (response == myChooser.APPROVE_OPTION) {
-                        saveWorkspace(new FileWriter(myChooser.getSelectedFile()));
-                    }
-                }
-                catch (Exception exception) {
-                    showError(exception.toString());
-                }
-            }
-        });
-
-        menu.add(new JSeparator());
-        menu.add(new AbstractAction(myResources.getString("QuitProgram")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        return menu;
-    }
-
-    /**
-     * Sets the command menu option for this program
-     * @return JMenu with Command options
-     */
-    // USED MOSTLY FOR TESTING!
-    private JMenu makeCommandMenu() {
-        JMenu menu = new JMenu(myResources.getString("CommandMenu"));
-        menu.add(new AbstractAction(myResources.getString("ForwardCommand")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    myCurrentCanvas.getTurtle().move(DEFAULT_MOVE_VALUE);
-                }
-                catch(Exception e1){
-                    ErrorBox.showError(Error.NO_WORKSPACE);
-                }
-            }
-        });
-        menu.add(new AbstractAction(myResources.getString("BackwardCommand")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    myCurrentCanvas.getTurtle().move(-DEFAULT_MOVE_VALUE);
-                }
-                catch(Exception e1){
-                    ErrorBox.showError(Error.NO_WORKSPACE);
-                }
-            }
-        });
-        menu.add(new AbstractAction(myResources.getString("TurnRightCommand")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    myCurrentCanvas.getTurtle().turn(DEFAULT_TURN_VALUE);
-                }
-                catch(Exception e1){
-                    ErrorBox.showError(Error.NO_WORKSPACE);
-                }
-            }
-        });
-        menu.add(new AbstractAction(myResources.getString("TurnLeftCommand")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    myCurrentCanvas.getTurtle().turn(-DEFAULT_TURN_VALUE);
-                }
-                catch(Exception e1){
-                    ErrorBox.showError(Error.NO_WORKSPACE);
-                }
-            }
-        });
-        menu.add(new JSeparator());
-        menu.add(new AbstractAction(myResources.getString("ShowCommand")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                myCurrentCanvas.getTurtle().setHiding(false);
-            }
-        });
-        menu.add(new AbstractAction(myResources.getString("HideCommand")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                myCurrentCanvas.getTurtle().setHiding(true);
-            }
-        });
-        menu.add(new AbstractAction(myResources.getString("PenUpCommand")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                myCurrentCanvas.getTurtle().setPenWriting(false);
-            }
-        });
-        menu.add(new AbstractAction(myResources.getString("PenDownCommand")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                myCurrentCanvas.getTurtle().setPenWriting(true);
-            }
-        });
-        menu.add(new JSeparator());
-        menu.add(new AbstractAction(myResources.getString("UndoAction")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO implement undo (maybe)
-            }
-        });
-        return menu;
     }
 
     /**
@@ -305,7 +144,7 @@ public class Window extends JFrame {
      * field to Controller
      */
     protected JButton createCommandButton() {
-        JButton button = new JButton(myResources.getString("RunButton"));
+        JButton button = new JButton(myResource.getString("RunButton"));
         button.addActionListener(myRunCommandListener);
         return button;
     }
@@ -314,7 +153,7 @@ public class Window extends JFrame {
      * Create a standard button to increase the area of the text field
      */
     protected JButton createExpandTextButton() {
-        JButton button = new JButton(myResources.getString("Expand"));
+        JButton button = new JButton(myResource.getString("Expand"));
         return button;
     }
     
@@ -348,64 +187,10 @@ public class Window extends JFrame {
         myTabbedPane.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent changeEvent) {
                 myCurrentCanvas = (Canvas) myTabbedPane.getSelectedComponent();
-                myCurrentCanvas.update();
+                myCurrentCanvas.repaint();
                 myInputField.setText("");
               }
             });
-    }
-    
-   
-    /**
-     * load a file of variable and command to a current workspace
-     */
-    private void loadWorkspace (Reader r) {
-        try {
-            BufferedReader input = new BufferedReader(r);
-            String line = input.readLine();
-            while (line != null) {
-                String[] str = line.split(" ");
-                if(str[0].equals(VARIABLE_KEYWORD)) { 
-                    //myCurrentCanvas.getWorkspace().getVariableMap().put(str[1], Integer.parseInt(str[2]));
-                }
-                if(str[0].equals(COMMAND_KEYWORD)) { 
-                    //myCurrentCanvas.getWorkspace().getCommandMap().put(str[1], Integer.parseInt(str[2]));
-                }
-                line = input.readLine();
-            }
-        }
-        catch (IOException e) {
-            showError(e.toString());
-        }
-    }
-    
-    /**
-     * save the variables and commands from the current workspace to a file
-     */
-    private void saveWorkspace (Writer w) {
-        PrintWriter output = new PrintWriter(w);
-        /*
-        Map<String,Integer> varMap = myCurrentCanvas.getWorkspace().getVariableMap();
-        Map<String,Integer> comMap = myCurrentCanvas.getWorkspace().getCommandMap();
-        
-        for(String varName : varMap.keySet()) {
-            output.println(VARIABLE_KEYWORD + " " + varName + " " + varMap.get(varName));
-        }
-        
-        for(String comName : comMap.keySet()) {
-            output.println(COMMAND_KEYWORD + " " + comName + " " + varMap.get(comName));
-        }
-        */
-        output.flush();
-        output.close();
-    }
-    
-    /**
-     * Display any string message in a popup error dialog.
-     */
-    public void showError (String message) {
-        JOptionPane.showMessageDialog(this, message, 
-                                      myResources.getString("ErrorTitle"),
-                                      JOptionPane.ERROR_MESSAGE);
     }
 }
 

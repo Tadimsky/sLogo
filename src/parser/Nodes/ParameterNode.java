@@ -1,7 +1,5 @@
 package parser.nodes;
 
-import java.util.Deque;
-import parser.nodes.exceptions.InvalidArgumentsException;
 
 /**
  * This node is the super class for all nodes that have parameters.

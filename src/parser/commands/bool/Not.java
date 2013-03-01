@@ -1,10 +1,10 @@
 package parser.commands.bool;
 
 import java.util.Deque;
+import parser.Nodes.SyntaxNode;
+import parser.Nodes.UnaryNode;
+import parser.Nodes.exceptions.InvalidArgumentsException;
 import controller.Workspace;
-import parser.nodes.SyntaxNode;
-import parser.nodes.UnaryNode;
-import parser.nodes.exceptions.InvalidArgumentsException;
 
 /**
  * This implements a NOT command.

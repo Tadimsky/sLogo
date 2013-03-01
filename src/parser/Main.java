@@ -2,7 +2,7 @@ package parser;
 
 import java.util.List;
 import java.util.Scanner;
-import parser.nodes.SyntaxNode;
+import parser.Nodes.SyntaxNode;
 
 public class Main {
 

@@ -1,7 +1,7 @@
 package parser.nodes;
 
 import java.util.Deque;
-import parser.nodes.exceptions.InvalidArgumentsException;
+import parser.Nodes.exceptions.InvalidArgumentsException;
 import controller.Workspace;
 
 

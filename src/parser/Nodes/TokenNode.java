@@ -1,6 +1,6 @@
 package parser.nodes;
 
-import parser.nodes.exceptions.InvalidArgumentsException;
+import parser.Nodes.exceptions.InvalidArgumentsException;
 import controller.Workspace;
 
 
