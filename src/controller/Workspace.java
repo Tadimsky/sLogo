@@ -13,8 +13,6 @@ public class Workspace  {
 	// some methods and instances (such as the variable map) are commmented
 	// out, once figure out how to implement, uncommenting them might save
 	// some time
-//	private Map<variable,value> myVariableMap;
-//	private Map<command,syntax> myCommandMap;
 	public static final String WORKSPACE_NAME = "Workspace ";
 	//test
     private Map<String,Integer> myVariableMap;

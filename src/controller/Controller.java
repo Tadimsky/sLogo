@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import parser.*;
-import parser.Nodes.SyntaxNode;
+import parser.nodes.SyntaxNode;
 import view.Canvas;
 import view.Window;
 
@@ -18,9 +18,8 @@ import view.Window;
  * @author Xu Rui
  * 
  */
-public class Controller {
 
-    // private static final String WORKSPACE_NAME = "Workspace ";
+public class Controller {
     private int workspaceIndex = 1;
     private Workspace myWorkspace;
     private ArrayList<Workspace> myWorkspaces;
@@ -41,15 +40,8 @@ public class Controller {
         System.out.println(command);
         canvas.getTurtle().setColor(Color.RED);
         myParser.parseCommand(command);
-        
     }
     
-    public Workspace createWorkspace (int index) {
-        Workspace newWorkspace = new Workspace(index);
-        myWorkspaces.add(newWorkspace);
-        return newWorkspace;
-    }
-
     public Workspace selectWorkspace (int index) {
         try {
             for (Workspace ws : myWorkspaces) {
@@ -60,7 +52,6 @@ public class Controller {
             System.out.println("no such workspace exists");
         }
         return null;
-
     }
    
     /**

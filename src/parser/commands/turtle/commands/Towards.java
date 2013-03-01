@@ -17,7 +17,7 @@ public class Towards extends BinaryNode {
         int x = getLeft().evaluate(w);
         int y = getRight().evaluate(w);
         
-        w.getTurtle().face(x,y);
+        w.getTurtle().faceTowards(x,y);
         return 0; // value from function
     }
 
