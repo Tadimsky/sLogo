@@ -3,13 +3,14 @@ package controller;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JComponent;
+import parser.nodes.CommandNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import view.Canvas;
 import view.InformationView;
 import model.Turtle;
 
 
-public class Workspace  {
+public class Workspace implements IParserProvider  {
 	// some methods and instances (such as the variable map) are commmented
 	// out, once figure out how to implement, uncommenting them might save
 	// some time
@@ -44,14 +45,6 @@ public class Workspace  {
         return myCommandMap;
     }
 
-    public void addVariable (String variable, int value) {
-        myVariableMap.put(variable, value);
-    }
-
-    public void addCommand (String command, Integer syntax) {
-        myCommandMap.put(command, syntax);
-    }
-
     public Turtle getTurtle () {
         return myTurtle;
     }
@@ -72,5 +65,17 @@ public class Workspace  {
 
     public int getIndex () {
         return myIndex;
+    }
+
+    @Override
+    public void addCommand (String command, CommandNode com) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public CommandNode getCommand (String command) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

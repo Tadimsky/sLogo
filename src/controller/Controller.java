@@ -46,7 +46,7 @@ public class Controller {
         List<SyntaxNode> commandList = myParser.parseCommand(command);
         for (SyntaxNode node: commandList){
         	int syntax = executeCommand(node);
-        	myWorkspace.addCommand(command, syntax);
+        	//myWorkspace.addCommand(command, syntax);
         }
     }
     
