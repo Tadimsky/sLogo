@@ -2,11 +2,8 @@ package controller;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JComponent;
 import parser.nodes.CommandNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import view.Canvas;
-import view.InformationView;
 import model.Turtle;
 
 
@@ -35,14 +32,6 @@ public class Workspace implements IParserProvider  {
 
     public void handleCommand () {
         // TODO
-    }
-
-    public Map getVariableMap () {
-        return myVariableMap;
-    }
-
-    public Map getCommandMap () {
-        return myCommandMap;
     }
 
     public Turtle getTurtle () {
