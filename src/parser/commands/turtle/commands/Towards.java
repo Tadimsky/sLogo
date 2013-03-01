@@ -16,7 +16,6 @@ public class Towards extends BinaryNode {
     public int evaluate (Workspace w) throws InvalidArgumentsException {
         int x = getLeft().evaluate(w);
         int y = getRight().evaluate(w);
-        
         w.getTurtle().faceTowards(x,y);
         return 0; // value from function
     }

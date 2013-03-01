@@ -17,7 +17,7 @@ import view.components.ErrorBox;
 /**
  * Creates a Turtle object that moves on the Canvas according to the user's
  * input
- * @author Henrique Moraes
+ * @author Henrique Moraes, Ziqiang Huang
  *
  */
 
@@ -219,12 +219,13 @@ public class Turtle extends Observable implements Paintable, IState{
     }
 
     /**
-     * Clear as called by parser. Move elsewhere?
+     * Erases turtle's trails and sends it to the home position
      * 
-     * @return
+     * @return the distance turtle moved
      */
-	public int clear() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    public int clear() {
+        int distanceMoved = goHome();
+        myPen.myLines.clear();
+        return distanceMoved;
+    }
 }
