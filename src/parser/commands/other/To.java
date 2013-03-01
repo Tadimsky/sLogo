@@ -30,7 +30,6 @@ public class To extends TernaryNode {
         checkSyntax();
         
         
-        
         return 0;
     }
     

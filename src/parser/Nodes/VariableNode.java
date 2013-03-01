@@ -5,6 +5,13 @@ import parser.nodes.exceptions.InvalidArgumentsException;
 import parser.nodes.exceptions.InvalidSemanticsException;
 import controller.Workspace;
 
+/**
+ * Represents a variable in the tree.
+ * Gets the value from the workspace when it is evaluated.
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class VariableNode extends SimpleNode{
         
     private static final String INVALID_VARIABLE = "The variable {0} does not exist in the current workspace.";
@@ -39,6 +46,11 @@ public class VariableNode extends SimpleNode{
         return val;
     }
     
+    /**
+     * Returns the name of the variable.
+     * 
+     * @return
+     */
     public String getName()
     {
         return myName;

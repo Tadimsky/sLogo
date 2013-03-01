@@ -6,6 +6,13 @@ import java.util.List;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import controller.Workspace;
 
+/**
+ * This represents a list in the tree. It contains all the nodes
+ * that are in the list.
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class ListNode extends SyntaxNode {
 
     private List<SyntaxNode> myContents;

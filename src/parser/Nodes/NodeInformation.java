@@ -4,7 +4,13 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import parser.nodes.exceptions.NodeDefinitionException;
 
-
+/**
+ * This class represents the information that is stored in the properties file.
+ * This is all the information that is required to generate a new node.
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class NodeInformation {
 
     private static final String PROP_TOKEN = "token";

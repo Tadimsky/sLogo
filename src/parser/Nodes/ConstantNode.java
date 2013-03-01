@@ -4,6 +4,12 @@ import java.util.Deque;
 import parser.nodes.exceptions.InvalidSemanticsException;
 import controller.Workspace;
 
+/**
+ * Represents a node that stores a constant integer value.
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class ConstantNode extends SimpleNode {
     // {int}
     
