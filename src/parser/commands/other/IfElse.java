@@ -1,9 +1,9 @@
 package parser.commands.other;
 
 import java.util.Deque;
-import parser.Nodes.SyntaxNode;
-import parser.Nodes.TernaryNode;
-import parser.Nodes.exceptions.InvalidArgumentsException;
+import parser.nodes.SyntaxNode;
+import parser.nodes.TernaryNode;
+import parser.nodes.exceptions.InvalidArgumentsException;
 import controller.Workspace;
 
 /**

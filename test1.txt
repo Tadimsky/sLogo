@@ -1,2 +1,0 @@
-Variablevar1 1
-Variablevar2 2

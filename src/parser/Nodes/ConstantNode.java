@@ -1,7 +1,7 @@
 package parser.nodes;
 
 import java.util.Deque;
-import parser.Nodes.exceptions.InvalidSemanticsException;
+import parser.nodes.exceptions.InvalidSemanticsException;
 import controller.Workspace;
 
 /**

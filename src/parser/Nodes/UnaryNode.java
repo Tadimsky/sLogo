@@ -1,7 +1,7 @@
 package parser.nodes;
 
 import java.util.Deque;
-import parser.Nodes.exceptions.InvalidArgumentsException;
+import parser.nodes.exceptions.InvalidArgumentsException;
 
 /**
  * The base class for a fuunction that takes only one argument.

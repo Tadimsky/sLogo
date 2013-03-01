@@ -1,8 +1,8 @@
 package parser.commands.turtle.commands;
 
 import java.util.Deque;
-import parser.Nodes.SimpleNode;
-import parser.Nodes.SyntaxNode;
+import parser.nodes.SimpleNode;
+import parser.nodes.SyntaxNode;
 
 public abstract class BasicControl extends SimpleNode {
     

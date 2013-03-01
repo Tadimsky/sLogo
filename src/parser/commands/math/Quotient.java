@@ -1,9 +1,9 @@
 package parser.commands.math;
 
 import java.util.Deque;
-import parser.Nodes.BinaryNode;
-import parser.Nodes.SyntaxNode;
-import parser.Nodes.exceptions.InvalidArgumentsException;
+import parser.nodes.BinaryNode;
+import parser.nodes.SyntaxNode;
+import parser.nodes.exceptions.InvalidArgumentsException;
 import controller.Workspace;
 
 /**

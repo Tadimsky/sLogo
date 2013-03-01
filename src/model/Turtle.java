@@ -96,11 +96,12 @@ public class Turtle extends Observable implements Paintable, IState{
      * @param point
      * @return
      */
-    public int faceTowards(int x, int y){
-    	Location point = new Location(x,y);
-    	int  angle = (int) Vector.angleBetween(point, myCenter);
-    	myHeading.turn(angle);
-    	return angle;
+    public int faceTowards(int x, int y){  	
+        Location toFace = new Location(x,y);
+        Vector toTurn = new Vector(myCenter, toFace);
+        int angle = (int) myHeading.getAngleBetween(toTurn);
+        myHeading.turn(angle);
+        return angle;
     }
     
     /**
@@ -120,7 +121,9 @@ public class Turtle extends Observable implements Paintable, IState{
      * Moves the turtle to the center of the screen. Returns the number of pixels moved.
      */
     public int goHome(){
-    	return this.setPosition(0,0);
+    	int distanceMoved = this.setPosition(0,0);
+    	setHeading(90);
+    	return distanceMoved;
     }
     
     /**

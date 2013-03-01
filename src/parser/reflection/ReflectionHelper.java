@@ -2,8 +2,8 @@ package parser.reflection;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import parser.Nodes.SyntaxNode;
-import parser.Nodes.exceptions.ClassDefinitionException;
+import parser.nodes.SyntaxNode;
+import parser.nodes.exceptions.ClassDefinitionException;
 
 
 public class ReflectionHelper {

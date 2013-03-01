@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
-import parser.Nodes.NodeInformation;
-import parser.Nodes.exceptions.NodeDefinitionException;
+import parser.nodes.NodeInformation;
+import parser.nodes.exceptions.NodeDefinitionException;
 
 /**
  * The Semantics Table stores all the different nodes that can be created

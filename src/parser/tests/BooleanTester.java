@@ -1,9 +1,12 @@
 package parser.tests;
 
+import static org.junit.Assert.*;
 import java.util.List;
 import java.util.Random;
+import org.junit.Before;
+import org.junit.Test;
 import parser.Parser;
-import parser.Nodes.SyntaxNode;
+import parser.nodes.SyntaxNode;
 
 
 public class BooleanTester {

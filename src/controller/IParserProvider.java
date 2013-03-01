@@ -1,7 +1,7 @@
 package controller;
 
-import parser.Nodes.CommandNode;
-import parser.Nodes.exceptions.InvalidArgumentsException;
+import parser.nodes.CommandNode;
+import parser.nodes.exceptions.InvalidArgumentsException;
 
 public interface IParserProvider {
     

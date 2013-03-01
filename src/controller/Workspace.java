@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import model.Paintable;
 import model.Turtle;
-import parser.Nodes.exceptions.InvalidArgumentsException;
+import parser.nodes.exceptions.InvalidArgumentsException;
 import view.Canvas;
 
 

@@ -19,7 +19,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import parser.Parser;
-import parser.Nodes.SyntaxNode;
+import parser.nodes.SyntaxNode;
 import view.Canvas;
 import view.Window;
 
@@ -35,7 +35,7 @@ import view.Window;
 
 public class Controller {
     private int DEFAULT_MOVE_VALUE = 100;
-    private int DEFAULT_TURN_VALUE = 220;
+    private int DEFAULT_TURN_VALUE = 90;
     private static final String VARIABLE_KEYWORD = "Variable";
     private static final String COMMAND_KEYWORD = "Command";
     

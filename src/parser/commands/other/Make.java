@@ -1,10 +1,10 @@
 package parser.commands.other;
 
 import java.util.Deque;
-import parser.Nodes.BinaryNode;
-import parser.Nodes.SyntaxNode;
-import parser.Nodes.VariableNode;
-import parser.Nodes.exceptions.InvalidArgumentsException;
+import parser.nodes.BinaryNode;
+import parser.nodes.SyntaxNode;
+import parser.nodes.VariableNode;
+import parser.nodes.exceptions.InvalidArgumentsException;
 import controller.Workspace;
 
 /**
