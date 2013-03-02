@@ -185,28 +185,36 @@ public class Turtle extends Observable implements Paintable, IState{
     }
     
     public void wrapOnY(){
-        /*if(myCenter.getX() < Canvas.CANVAS_DIMENSION.width/2)
-            myCenter.setX(Canvas.CANVAS_DIMENSION.width);
-        else
-            myCenter.setX(0);*/
-        if (myCenter.getY() > Canvas.CANVAS_DIMENSION.height){
-        	myCenter.setY(Canvas.CANVAS_DIMENSION.height);
+       	System.out.printf("position X of turtle is %f\n", myCenter.getX());
+    	System.out.printf("position Y of turtle is %f\n", myCenter.getY());
+        if (myCenter.getY() > Canvas.CANVAS_DIMENSION.height-50){
+        	System.out.println("exceeded bottom bound");
+        	myCenter.setY(Canvas.CANVAS_DIMENSION.height-50);
+        	System.out.printf("position Y of turtle is now %f\n", myCenter.getY());
+
         }
-        if (myCenter.getY() < 0){
+        if (myCenter.getY() < 0){ //working
+        	System.out.println("exceeded top bound");
         	myCenter.setY(0);
+        	System.out.printf("position Y of turtle is now %f\n", myCenter.getY());
+
         }
     }
     
     public void wrapOnX(){
-        /*if(myCenter.getY() < Canvas.CANVAS_DIMENSION.height/2)
-            myCenter.setY(Canvas.CANVAS_DIMENSION.height);
-        else
-            myCenter.setY(0);*/
+    	System.out.printf("position X of turtle is %f\n", myCenter.getX());
+    	System.out.printf("position Y of turtle is %f\n", myCenter.getY());
         if (myCenter.getX() > Canvas.CANVAS_DIMENSION.width){
+        	System.out.println("exceeded right bound");
         	myCenter.setX(Canvas.CANVAS_DIMENSION.width);
+           	System.out.printf("position X of turtle is now %f\n", myCenter.getX());
+
         }
-        if (myCenter.getX() < 0){
+        if (myCenter.getX() < 0){ 
+        	System.out.println("exceeded left bound");
         	myCenter.setX(0);
+           	System.out.printf("position X of turtle is now %f\n", myCenter.getX());
+
         }
     }
     
