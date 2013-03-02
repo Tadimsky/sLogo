@@ -49,13 +49,16 @@ public class Turtle extends Observable implements Paintable, IState{
      * currently heading
      * @param pixels pixels to move
      */
+    
+
     public int move(int pixels){
         myHeading.setMagnitude(pixels);
         Location initialPosition = new Location(myCenter);
         myCenter.translate(myHeading);
+        wrapOnX();
+        wrapOnY();
         Location finalPosition = new Location(myCenter);
         myPen.addLine(initialPosition, finalPosition);
-
         update();
         return pixels;
     }
@@ -181,18 +184,30 @@ public class Turtle extends Observable implements Paintable, IState{
         return (360 - degrees) % 360;
     }
     
-    public void wrapOnX(){
-        if(myCenter.getX() < Canvas.CANVAS_DIMENSION.width/2)
+    public void wrapOnY(){
+        /*if(myCenter.getX() < Canvas.CANVAS_DIMENSION.width/2)
             myCenter.setX(Canvas.CANVAS_DIMENSION.width);
         else
-            myCenter.setX(0);
+            myCenter.setX(0);*/
+        if (myCenter.getY() > Canvas.CANVAS_DIMENSION.height){
+        	myCenter.setY(Canvas.CANVAS_DIMENSION.height);
+        }
+        if (myCenter.getY() < 0){
+        	myCenter.setY(0);
+        }
     }
     
-    public void wrapOnY(){
-        if(myCenter.getY() < Canvas.CANVAS_DIMENSION.height/2)
+    public void wrapOnX(){
+        /*if(myCenter.getY() < Canvas.CANVAS_DIMENSION.height/2)
             myCenter.setY(Canvas.CANVAS_DIMENSION.height);
         else
-            myCenter.setY(0);
+            myCenter.setY(0);*/
+        if (myCenter.getX() > Canvas.CANVAS_DIMENSION.width){
+        	myCenter.setX(Canvas.CANVAS_DIMENSION.width);
+        }
+        if (myCenter.getX() < 0){
+        	myCenter.setX(0);
+        }
     }
     
     public void setPenWriting(boolean write){
