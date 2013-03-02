@@ -56,8 +56,14 @@ public class Controller {
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
         myResource = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
         myWindow = new Window(this);
+<<<<<<< HEAD
         myParser = new Parser();        
 
+=======
+        myParser = new Parser();
+        
+        //myWorkspaces = new ArrayList<Workspace>();
+>>>>>>> none
         // myWindow = new Window(this);
     }
 
@@ -72,7 +78,12 @@ public class Controller {
      */
     public void processCommand (String command, Canvas canvas) {
         System.out.println(command);
+<<<<<<< HEAD
+=======
+        //canvas.getTurtle().setColor(Color.RED);
+>>>>>>> none
         List<SyntaxNode> commandList = myParser.parseCommand(command);
+        System.out.println(commandList);
         for (SyntaxNode node: commandList){
         	int syntax = executeCommand(node);
         	System.out.println(syntax);
