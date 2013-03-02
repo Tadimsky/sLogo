@@ -41,7 +41,7 @@ public class Controller {
     private static final String COMMAND_KEYWORD = "Command";
     
     private static final String USER_DIR = "user.dir";
-    private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
+    public static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
     
     private Parser myParser;
     private Window myWindow;
@@ -56,9 +56,7 @@ public class Controller {
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
         myResource = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
         myWindow = new Window(this);
-        myParser = new Parser();        
-
-        // myWindow = new Window(this);
+        myParser = new Parser();
     }
 
     /**
@@ -73,10 +71,10 @@ public class Controller {
     public void processCommand (String command, Canvas canvas) {
         System.out.println(command);
         List<SyntaxNode> commandList = myParser.parseCommand(command);
+        System.out.println(commandList);
         for (SyntaxNode node: commandList){
         	int syntax = executeCommand(node);
-        	System.out.println(syntax);
-        	//myWorkspace.addCommand(command, syntax);
+        	getWorkspace().addCommand(command, syntax);
         }
     }
     
@@ -150,11 +148,11 @@ public class Controller {
                 try {
                     int response = myChooser.showOpenDialog(null);
                     if (response == JFileChooser.APPROVE_OPTION) {
-                        loadWorkspace(new FileReader(myChooser.getSelectedFile()));
+                        getWorkspace().loadWorkspace(new FileReader(myChooser.getSelectedFile()));
                     }
                 }
                 catch (Exception exception) {
-                    showError(exception.toString());
+                    getWorkspace().showError(exception.toString());
                 }
             }
         });
@@ -164,11 +162,11 @@ public class Controller {
                 try {
                     int response = myChooser.showSaveDialog(null);
                     if (response == JFileChooser.APPROVE_OPTION) {
-                        saveWorkspace(new FileWriter(myChooser.getSelectedFile()));
+                        getWorkspace().saveWorkspace(new FileWriter(myChooser.getSelectedFile()));
                     }
                 }
                 catch (Exception exception) {
-                    showError(exception.toString());
+                    getWorkspace().showError(exception.toString());
                 }
             }
         });
@@ -282,58 +280,4 @@ public class Controller {
             }
         });
     }
-    
-    /**
-     * load a file of variable and command to a current workspace
-     */
-    private void loadWorkspace (Reader r) {
-        try {
-            BufferedReader input = new BufferedReader(r);
-            String line = input.readLine();
-            while (line != null) {
-                String[] str = line.split(" ");
-                if(str[0].equals(VARIABLE_KEYWORD)) { 
-                    getWorkspace().getVariableMap().put(str[1], Integer.parseInt(str[2]));
-                }
-                if(str[0].equals(COMMAND_KEYWORD)) { 
-                    getWorkspace().getCommandMap().put(str[1], Integer.parseInt(str[2]));
-                }
-                line = input.readLine();
-            }
-        }
-        catch (IOException e) {
-            showError(e.toString());
-        }
-    }
-    
-    /**
-     * save the variables and commands from the current workspace to a file
-     */
-    private void saveWorkspace (Writer w) {
-        PrintWriter output = new PrintWriter(w);
-        
-        Map<String,Integer> varMap = getWorkspace().getVariableMap();
-        Map<String,Integer> comMap = getWorkspace().getCommandMap();
-        
-        for(String varName : varMap.keySet()) {
-            output.println(VARIABLE_KEYWORD + " " + varName + " " + varMap.get(varName));
-        }
-        
-        for(String comName : comMap.keySet()) {
-            output.println(COMMAND_KEYWORD + " " + comName + " " + varMap.get(comName));
-        }
-        
-        output.flush();
-        output.close();
-    }
-    
-    /**
-     * Display any string message in a popup error dialog.
-     */
-    public void showError (String message) {
-        JOptionPane.showMessageDialog(null, message,
-                                      myResource.getString("ErrorTitle"),
-                                      JOptionPane.ERROR_MESSAGE);
-    }  
-
 }
