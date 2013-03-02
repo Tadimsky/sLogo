@@ -1,6 +1,7 @@
 package parser;
 
 import java.util.List;
+import java.util.Scanner;
 import parser.nodes.SyntaxNode;
 
 /**
@@ -37,6 +38,17 @@ public class Parser {
         List<String> tokens = LexChecker.splitTokens(command);
         List<SyntaxNode> nodes = mySemantics.evaluateExpression(tokens);
         return nodes;
+    }
+    
+    public List<SyntaxNode> parseCommand(Scanner s)
+    {
+        StringBuilder fullCommand = new StringBuilder();
+        while (s.hasNext())
+        {
+            fullCommand.append(s.nextLine().trim());
+            fullCommand.append(" ");            
+        }
+        return parseCommand(fullCommand.toString());
     }
 
 }
