@@ -1,8 +1,17 @@
 package controller;
 
 import java.awt.Graphics2D;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
+
 import model.Paintable;
 import model.Turtle;
 import parser.nodes.exceptions.InvalidArgumentsException;
@@ -11,11 +20,12 @@ import view.Canvas;
 
 public class Workspace  implements Paintable{
     public static final String UNTITLED = "Untitled";
-    
+    private static final String VARIABLE_KEYWORD = "Variable";
+    private static final String COMMAND_KEYWORD = "Command";
     private Map<String,Integer> myVariableMap;
     private Map<String,Integer> myCommandMap;
     private Turtle myTurtle;
-    //private Canvas myCanvas;
+    private ResourceBundle myResource;
     private String myName;
 
     public Workspace (String name) {
@@ -28,7 +38,7 @@ public class Workspace  implements Paintable{
         myVariableMap = new HashMap<String, Integer>();
         myCommandMap = new HashMap<String, Integer>();
         myTurtle = new Turtle();
-        //myCanvas = new Canvas(this);
+        myResource = ResourceBundle.getBundle(Controller.DEFAULT_RESOURCE_PACKAGE + "English");
         myName = UNTITLED;
         new Canvas(this);
         
@@ -74,21 +84,6 @@ public class Workspace  implements Paintable{
     public String getName () {
         return myName;
     }
-    
-//  // WARNING THESE IF STATEMENTS ARE HORRIBLE, THIS SOLUTION SHOULD
-//  // BE TEMPORARY IF ANYONE THINK OF SOMETHING EASIER PLEASE IMPLEMENT
-//  private void checkTurtleBounds () {
-//      Rectangle turtleBounds = myTurtle.getBounds();
-//
-//      if (turtleBounds.getMaxX() >= CANVAS_DIMENSION.width ||
-//          turtleBounds.getMinX() <= 0) {
-//          myTurtle.wrapOnX();
-//      }
-//      if (turtleBounds.getMinY() >= CANVAS_DIMENSION.height ||
-//          turtleBounds.getMaxY() <= 0) {
-//          myTurtle.wrapOnY();
-//      }
-//  }
 
     public Integer getVariable (String var) throws InvalidArgumentsException
     {
@@ -103,4 +98,60 @@ public class Workspace  implements Paintable{
     {
         myVariableMap.put(var, val);
     }
+    
+    
+    
+    /**
+     * load a file of variable and command to a current workspace
+     */
+    public void loadWorkspace (Reader r) {
+        try {
+            BufferedReader input = new BufferedReader(r);
+            String line = input.readLine();
+            while (line != null) {
+                String[] str = line.split(" ");
+                if(str[0].equals(VARIABLE_KEYWORD)) { 
+                    myVariableMap.put(str[1], Integer.parseInt(str[2]));
+                }
+                if(str[0].equals(COMMAND_KEYWORD)) { 
+                    myCommandMap.put(str[1], Integer.parseInt(str[2]));
+                }
+                line = input.readLine();
+            }
+        }
+        catch (IOException e) {
+            showError(e.toString());
+        }
+    }
+    
+    /**
+     * save the variables and commands from the current workspace to a file
+     */
+    public void saveWorkspace (Writer w) {
+        PrintWriter output = new PrintWriter(w);
+        
+        Map<String,Integer> varMap = myVariableMap;
+        Map<String,Integer> comMap = myCommandMap;
+        
+        for(String varName : varMap.keySet()) {
+            output.printf("%s %s %s\n", VARIABLE_KEYWORD, varName, varMap.get(varName));
+        }
+        
+        for(String comName : comMap.keySet()) {
+            output.printf("%s %s %s \n", COMMAND_KEYWORD, comName, varMap.get(comName));
+        }
+        
+        output.flush();
+        output.close();
+    }
+    
+    /**
+     * Display any string message in a popup error dialog.
+     */
+    public void showError (String message) {
+        JOptionPane.showMessageDialog(null, message,
+                                      myResource.getString("ErrorTitle"),
+                                      JOptionPane.ERROR_MESSAGE);
+    }  
+    
 }
