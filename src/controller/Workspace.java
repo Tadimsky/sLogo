@@ -1,12 +1,7 @@
 package controller;
 
 import java.awt.Graphics2D;
-import java.io.BufferedReader;
-import java.util.Scanner;
-import java.io.File;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;

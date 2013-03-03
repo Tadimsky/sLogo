@@ -11,7 +11,6 @@ import javax.imageio.ImageIO;
 import util.Location;
 import util.Vector;
 import view.Canvas;
-import view.Window;
 import view.components.Error;
 import view.components.ErrorBox;
 
