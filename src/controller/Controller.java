@@ -39,9 +39,6 @@ import view.Window;
 public class Controller {
     private int DEFAULT_MOVE_VALUE = 100;
     private int DEFAULT_TURN_VALUE = 90;
-    private static final String VARIABLE_KEYWORD = "Variable";
-    private static final String COMMAND_KEYWORD = "Command";
-    
     private static final String USER_DIR = "user.dir";
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
     
@@ -62,45 +59,28 @@ public class Controller {
     }
 
     /**
-     * This method is called whenever the run button or enter is pressed
-     * Parses command using parser
-     * Loops through the command list and executes every command
-     * Update the workspace command list 
-     * Note: need to update variable list?
-     * 
+     * Parses command using parser, executes every command, update workspace command list
      * @param command string in input Text Field
      */
     public void processCommand (String command, Canvas canvas) {
         System.out.println(command);
         List<SyntaxNode> commandList = myParser.parseCommand(command);
-        System.out.println(commandList);
         for (SyntaxNode node: commandList){
-        	int syntax = node.evaluate(getWorkspace());
-        	getWorkspace().addCommand(command, syntax);
+        	int returnValue = node.evaluate(getWorkspace());
+        	getWorkspace().addCommand(command, returnValue);
         }
-    }
-    
-    
-    
-    public void processFile(Scanner input) {
-        List<SyntaxNode> commandList = myParser.parseCommand(input);
-        for (SyntaxNode node: commandList ){
-        	node.evaluate(getWorkspace());
-        }
-        System.out.println(commandList);
-
     }
     
     /**
-     * Parses command and returns a list of syntax nodes.
-     * @return
+     * Parses file using parser, executes every command in file
+     * @param input
      */
- /*   public void executeCommand(List<SyntaxNode> commandList) {
-        for (SyntaxNode node: commandList){
-        	int syntax = node.evaluate(getWorkspace());
-        	getWorkspace().addCommand(command, syntax);
+    public void processFile(Scanner inputFile) {
+        List<SyntaxNode> commandList = myParser.parseCommand(inputFile);
+        for (SyntaxNode node: commandList ){
+        	node.evaluate(getWorkspace());
         }
-    }*/
+    }
     
     /**
      * This method is set private so the Window does not have access to it

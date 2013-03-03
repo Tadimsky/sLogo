@@ -27,7 +27,7 @@ public class Workspace  implements Paintable{
     private Map<String,Integer> myVariableMap;
     private Map<String,Integer> myCommandMap;
     private Turtle myTurtle;
-    private ResourceBundle myResource;
+    private ResourceBundle myErrorResource;
     private String myName;
 
     public Workspace (String name) {
@@ -40,7 +40,7 @@ public class Workspace  implements Paintable{
         myVariableMap = new HashMap<String, Integer>();
         myCommandMap = new HashMap<String, Integer>();
         myTurtle = new Turtle();
-        myResource = ResourceBundle.getBundle(Controller.DEFAULT_RESOURCE_PACKAGE + "English");
+        myErrorResource = ResourceBundle.getBundle(Controller.DEFAULT_RESOURCE_PACKAGE + "error."+ "ErrorEnglish");
         myName = UNTITLED;
         new Canvas(this);
         
@@ -100,11 +100,7 @@ public class Workspace  implements Paintable{
     {
         myVariableMap.put(var, val);
     }
-    
-    
-    
-
-    
+   
     /**
      * save the variables and commands from the current workspace to a file
      */
@@ -131,7 +127,7 @@ public class Workspace  implements Paintable{
      */
     public void showError (String message) {
         JOptionPane.showMessageDialog(null, message,
-                                      myResource.getString("ErrorTitle"),
+                                      myErrorResource.getString("ErrorTitle"),
                                       JOptionPane.ERROR_MESSAGE);
     }  
     
