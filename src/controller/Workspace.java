@@ -2,6 +2,8 @@ package controller;
 
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
+import java.util.Scanner;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
@@ -101,28 +103,7 @@ public class Workspace  implements Paintable{
     
     
     
-    /**
-     * load a file of variable and command to a current workspace
-     */
-    public void loadWorkspace (Reader r) {
-        try {
-            BufferedReader input = new BufferedReader(r);
-            String line = input.readLine();
-            while (line != null) {
-                String[] str = line.split(" ");
-                if(str[0].equals(VARIABLE_KEYWORD)) { 
-                    myVariableMap.put(str[1], Integer.parseInt(str[2]));
-                }
-                if(str[0].equals(COMMAND_KEYWORD)) { 
-                    myCommandMap.put(str[1], Integer.parseInt(str[2]));
-                }
-                line = input.readLine();
-            }
-        }
-        catch (IOException e) {
-            showError(e.toString());
-        }
-    }
+
     
     /**
      * save the variables and commands from the current workspace to a file

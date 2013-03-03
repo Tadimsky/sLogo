@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Scanner;
+
 import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
@@ -73,18 +75,32 @@ public class Controller {
         List<SyntaxNode> commandList = myParser.parseCommand(command);
         System.out.println(commandList);
         for (SyntaxNode node: commandList){
-        	int syntax = executeCommand(node);
+        	int syntax = node.evaluate(getWorkspace());
         	getWorkspace().addCommand(command, syntax);
         }
+    }
+    
+    
+    
+    public void processFile(Scanner input) {
+        List<SyntaxNode> commandList = myParser.parseCommand(input);
+        for (SyntaxNode node: commandList ){
+        	node.evaluate(getWorkspace());
+        }
+        System.out.println(commandList);
+
     }
     
     /**
      * Parses command and returns a list of syntax nodes.
      * @return
      */
-    public int executeCommand(SyntaxNode syntaxNode) {
-        return syntaxNode.evaluate(getWorkspace());
-    }
+ /*   public void executeCommand(List<SyntaxNode> commandList) {
+        for (SyntaxNode node: commandList){
+        	int syntax = node.evaluate(getWorkspace());
+        	getWorkspace().addCommand(command, syntax);
+        }
+    }*/
     
     /**
      * This method is set private so the Window does not have access to it
@@ -148,7 +164,7 @@ public class Controller {
                 try {
                     int response = myChooser.showOpenDialog(null);
                     if (response == JFileChooser.APPROVE_OPTION) {
-                        getWorkspace().loadWorkspace(new FileReader(myChooser.getSelectedFile()));
+                        loadWorkspace(new FileReader(myChooser.getSelectedFile()));
                     }
                 }
                 catch (Exception exception) {
@@ -279,5 +295,14 @@ public class Controller {
                 // TODO implement undo (maybe)
             }
         });
+    }
+    
+    /**
+     * load a file of variable and command to a current workspace
+     */
+    public void loadWorkspace (Reader r) throws IOException {
+        BufferedReader input = new BufferedReader(r);
+		Scanner file = new Scanner(input);
+		processFile(file);
     }
 }
