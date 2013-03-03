@@ -15,8 +15,6 @@ import parser.nodes.exceptions.InvalidArgumentsException;
 public class CustomCommand {
 
     private String myName;
-    
-    
 
     private List<VariableNode> myArgs;
     private ListNode myCommands;

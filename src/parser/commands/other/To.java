@@ -1,6 +1,7 @@
 package parser.commands.other;
 
 import java.util.Deque;
+import parser.CustomCommand;
 import parser.nodes.CommandNode;
 import parser.nodes.ListNode;
 import parser.nodes.SyntaxNode;
@@ -28,6 +29,10 @@ public class To extends TernaryNode {
     @Override
     public int evaluate (Workspace w) throws InvalidArgumentsException {        
         checkSyntax();
+        String n = ((CommandNode)getLeft()).getName();
+        ListNode parms = ((ListNode)getMiddle());
+        ListNode com = ((ListNode)getRight());
+        CustomCommand cc = new CustomCommand(n, parms, com);
         
         
         return 0;
