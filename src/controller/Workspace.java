@@ -19,10 +19,14 @@ import model.Turtle;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import view.Canvas;
 
-
+/**
+ * Contains command information (history) for the particular workspace, holds turtle, allows saving of workspace
+ * 
+ * @author XuRui
+ *
+ */
 public class Workspace  implements Paintable{
     public static final String UNTITLED = "Untitled";
-    private static final String VARIABLE_KEYWORD = "Variable";
     private static final String COMMAND_KEYWORD = "Command";
     private Map<String,Integer> myVariableMap;
     private Map<String,Integer> myCommandMap;
@@ -35,23 +39,15 @@ public class Workspace  implements Paintable{
         myName = name;
     }
     
+    /**
+     * Workspace constructor
+     */
     public Workspace () {
-        // test save and load
-        myVariableMap = new HashMap<String, Integer>();
         myCommandMap = new HashMap<String, Integer>();
         myTurtle = new Turtle();
         myErrorResource = ResourceBundle.getBundle(Controller.DEFAULT_RESOURCE_PACKAGE + "error."+ "ErrorEnglish");
         myName = UNTITLED;
         new Canvas(this);
-        
-    }
-
-    public void handleCommand () {
-        // TODO
-    }
-
-    public Map<String,Integer> getVariableMap () {
-        return myVariableMap;
     }
 
     public Map<String,Integer> getCommandMap () {
@@ -106,18 +102,10 @@ public class Workspace  implements Paintable{
      */
     public void saveWorkspace (Writer w) {
         PrintWriter output = new PrintWriter(w);
-        
-        Map<String,Integer> varMap = myVariableMap;
-        Map<String,Integer> comMap = myCommandMap;
-        
-        for(String varName : varMap.keySet()) {
-            output.printf("%s %s %s\n", VARIABLE_KEYWORD, varName, varMap.get(varName));
+        Map<String,Integer> commandMap = myCommandMap;
+        for(String comName : commandMap.keySet()) {
+            output.printf("%s %s\n", COMMAND_KEYWORD, comName);
         }
-        
-        for(String comName : comMap.keySet()) {
-            output.printf("%s %s %s \n", COMMAND_KEYWORD, comName, varMap.get(comName));
-        }
-        
         output.flush();
         output.close();
     }

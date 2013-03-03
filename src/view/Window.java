@@ -3,34 +3,21 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Reader;
-import java.io.Writer;
 import java.util.Observable;
 import java.util.ResourceBundle;
-import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import view.components.Error;
 import view.components.ErrorBox;
 import view.components.InputField;
 import controller.Controller;
 import controller.Workspace;
+
 
 /**
  * Window that holds all the user interface. Sends commands to controller
@@ -55,15 +42,12 @@ public class Window extends JFrame {
     private InputField myInputField;
 
     public Window(Controller control) {
-    
-        myController = control;
-        
+        myController = control;     
         setTitle("SLogo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
 
         myResource = myController.getResource();
-
         myInfoView = new InformationView();
         myTabbedPane = new JTabbedPane();
         myInputField = new InputField(INPUT_FIELD_SIZE);

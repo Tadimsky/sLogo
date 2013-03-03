@@ -1,17 +1,12 @@
 package controller;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Reader;
-import java.io.Writer;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -19,7 +14,6 @@ import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import parser.Parser;
 import parser.nodes.SyntaxNode;
@@ -63,25 +57,18 @@ public class Controller {
      * @param command string in input Text Field
      */
     public void processCommand (String command, Canvas canvas) {
-        System.out.println(command);
-        List<SyntaxNode> commandList = myParser.parseCommand(command);
-        for (SyntaxNode node: commandList){
-        	int returnValue = node.evaluate(getWorkspace());
-        	getWorkspace().addCommand(command, returnValue);
-        }
+    	List<SyntaxNode> commandList = myParser.parseCommand(command);
+    	try{
+    		for (SyntaxNode node: commandList){
+    			int returnValue = node.evaluate(getWorkspace());
+    			getWorkspace().addCommand(command, returnValue);
+    		}
+    	}
+    	catch (Exception e){
+    		getWorkspace().showError("No command input: please input command.");
+    	}
     }
-    
-    /**
-     * Parses file using parser, executes every command in file
-     * @param input
-     */
-    public void processFile(Scanner inputFile) {
-        List<SyntaxNode> commandList = myParser.parseCommand(inputFile);
-        for (SyntaxNode node: commandList ){
-        	node.evaluate(getWorkspace());
-        }
-    }
-    
+
     /**
      * This method is set private so the Window does not have access to it
      * @return the current workspace selected on the tab used internally
@@ -118,11 +105,9 @@ public class Controller {
      */
     private JMenu createFileMenu () {
         JMenu menu = new JMenu(myResource.getString("FileMenu"));
-        
         createFileCommands(menu);
         menu.add(new JSeparator());
         createQuitCommand(menu);
-        
         return menu;
     }
     
@@ -189,13 +174,10 @@ public class Controller {
      */
     private JMenu createCommandMenu () {       
         JMenu menu = new JMenu(myResource.getString("CommandMenu"));
-        
         createPhysicalCommands(menu);
         menu.add(new JSeparator());
         createVisualCommands(menu);
-        menu.add(new JSeparator());
-        createUndoCommand(menu);
-        
+        menu.add(new JSeparator());   
         return menu;
     }
    
@@ -209,18 +191,23 @@ public class Controller {
             @Override
             public void actionPerformed (ActionEvent e) {
                 getWorkspace().getTurtle().move(DEFAULT_MOVE_VALUE);
+                getWorkspace().addCommand(myResource.getString("ForwardCommand"), DEFAULT_MOVE_VALUE);
             }
         });
         menu.add(new AbstractAction(myResource.getString("BackwardCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 getWorkspace().getTurtle().move(-DEFAULT_MOVE_VALUE);
+                getWorkspace().addCommand(myResource.getString("BackwardCommand"), DEFAULT_MOVE_VALUE);
+
             }
         });
         menu.add(new AbstractAction(myResource.getString("TurnRightCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 getWorkspace().getTurtle().turn(DEFAULT_TURN_VALUE);
+                getWorkspace().addCommand(myResource.getString("TurnRightCommand"), DEFAULT_TURN_VALUE);
+
 
             }
         });
@@ -228,6 +215,8 @@ public class Controller {
             @Override
             public void actionPerformed (ActionEvent e) {
                 getWorkspace().getTurtle().turn(-DEFAULT_TURN_VALUE);
+                getWorkspace().addCommand(myResource.getString("TurnLeftCommand"), DEFAULT_TURN_VALUE);
+
             }
         });
     }
@@ -264,25 +253,22 @@ public class Controller {
     }
     
     /**
-     * Adds undo option to the menu item
-     * @param menu menu to have the items added
-     */
-    private void createUndoCommand(JMenu menu){
-        menu.add(new JSeparator());
-        menu.add(new AbstractAction(myResource.getString("UndoAction")) {
-            @Override
-            public void actionPerformed (ActionEvent e) {
-                // TODO implement undo (maybe)
-            }
-        });
-    }
-    
-    /**
-     * load a file of variable and command to a current workspace
+     * Loads a file of variable and command to a current workspace.
      */
     public void loadWorkspace (Reader r) throws IOException {
         BufferedReader input = new BufferedReader(r);
 		Scanner file = new Scanner(input);
 		processFile(file);
+    }
+    
+    /**
+     * Parses file using parser, executes every command in file
+     * @param input
+     */
+    public void processFile(Scanner inputFile) {
+        List<SyntaxNode> commandList = myParser.parseCommand(inputFile);
+        for (SyntaxNode node: commandList ){
+        	node.evaluate(getWorkspace());
+        }
     }
 }

@@ -18,7 +18,7 @@ import view.components.ErrorBox;
 /**
  * Creates a Turtle object that moves on the Canvas according to the user's
  * input
- * @author Henrique Moraes, Ziqiang Huang
+ * @author Henrique Moraes, Ziqiang Huang, Xu Rui
  *
  */
 
@@ -185,37 +185,33 @@ public class Turtle extends Observable implements Paintable, IState{
         return (360 - degrees) % 360;
     }
     
+    /**
+     * Checks for top and bottom bounds
+     */
     public void wrapOnY(){
-       	//System.out.printf("position X of turtle is %f\n", myCenter.getX());
-    	//System.out.printf("position Y of turtle is %f\n", myCenter.getY());
         if (myCenter.getY() > Canvas.CANVAS_DIMENSION.height-myHeight){
         	System.out.println("exceeded bottom bound");
         	myCenter.setY(Canvas.CANVAS_DIMENSION.height-myHeight);
-        	//System.out.printf("position Y of turtle is now %f\n", myCenter.getY());
 
         }
-        if (myCenter.getY() < myHeight/2){ //working
+        if (myCenter.getY() < myHeight/2){
         	System.out.println("exceeded top bound");
         	myCenter.setY(0 + myHeight/2);
-        	//System.out.printf("position Y of turtle is now %f\n", myCenter.getY());
 
         }
     }
     
+    /**
+     * Checks for left and right bounds
+     */
     public void wrapOnX(){
-    	//System.out.printf("position X of turtle is %f\n", myCenter.getX());
-    	//System.out.printf("position Y of turtle is %f\n", myCenter.getY());
-        if (myCenter.getX() > Canvas.CANVAS_DIMENSION.width){
+        if (myCenter.getX() > Canvas.CANVAS_DIMENSION.width ){
         	System.out.println("exceeded right bound");
         	myCenter.setX(Canvas.CANVAS_DIMENSION.width);
-           	//System.out.printf("position X of turtle is now %f\n", myCenter.getX());
-
         }
         if (myCenter.getX() < myWidth/2){ 
         	System.out.println("exceeded left bound");
         	myCenter.setX(0 + myWidth/2);
-          	//System.out.printf("position X of turtle is now %f\n", myCenter.getX());
-
         }
     }
     
