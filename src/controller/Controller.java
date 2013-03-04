@@ -70,12 +70,13 @@ public class Controller {
                 getWorkspace().addHistory(command);
             }
         }
-        catch (InvalidArgumentsException e) {            
-            getWorkspace().showError("Invalid Input: " + e.getMessage());
-        }
         catch (NullPointerException ne) {
             getWorkspace().showError("You entered an invalid command.");
         }
+        catch (InvalidArgumentsException e) {            
+            getWorkspace().showError("Invalid Input: " + e.getMessage());
+        }
+
         
     }
 

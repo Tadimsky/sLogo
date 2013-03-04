@@ -51,17 +51,80 @@ public class Turtle extends Observable implements Paintable, IState{
      */
     
 
-    public int move(int pixels){
+   public int move(int pixels){
         myHeading.setMagnitude(pixels);
         Location initialPosition = new Location(myCenter);
         myCenter.translate(myHeading);
-        wrapOnX();
-        wrapOnY();
-        Location finalPosition = new Location(myCenter);
-        myPen.addLine(initialPosition, finalPosition);
+        Location newInitialPosition = wrapOnBoundary(initialPosition);
+        myPen.addLine(initialPosition, newInitialPosition);
         update();
         return pixels;
     }
+    
+
+    
+    public void wrapOnY(){
+        if (myCenter.getY() > Canvas.CANVAS_DIMENSION.height-myHeight){
+        	System.out.println("exceeded bottom bound");
+        	myCenter.setY(Canvas.CANVAS_DIMENSION.height-myHeight);
+
+        }
+        if (myCenter.getY() < myHeight/2){
+        	System.out.println("exceeded top bound");
+        	myCenter.setY(0 + myHeight/2);
+
+        }
+    }
+    
+    /**
+     * Checks for top and bottom bounds
+     */
+    public Location wrapOnBoundary(Location initialPosition){
+        if (myCenter.getY() > Canvas.CANVAS_DIMENSION.height-myHeight){
+        	System.out.println("exceeded bottom bound");
+        	myCenter.setY(Canvas.CANVAS_DIMENSION.height-myHeight);
+        	Location newInitialPosition = new Location(myCenter);
+        	myCenter.setY(0);
+        	return newInitialPosition;
+        	
+        }
+        if (myCenter.getY() < myHeight/2){
+        	System.out.println("exceeded top bound");
+        	myCenter.setY(0);
+        	Location newInitialPosition = new Location(myCenter);
+        	myCenter.setY(Canvas.CANVAS_DIMENSION.height-myHeight);
+        	return newInitialPosition;
+        }
+        if (myCenter.getX() > Canvas.CANVAS_DIMENSION.width ){
+        	System.out.println("exceeded right bound");
+        	myCenter.setX(Canvas.CANVAS_DIMENSION.width);
+        	Location newInitialPosition = new Location(myCenter);
+        	myCenter.setX(0 + myWidth/2);
+        	return newInitialPosition;
+        }
+        if (myCenter.getX() < myWidth/2){ 
+        	System.out.println("exceeded left bound");
+        	myCenter.setX(0 + myWidth/2);
+        	Location newInitialPosition = new Location(myCenter);
+        	myCenter.setX(Canvas.CANVAS_DIMENSION.width);
+        	return newInitialPosition;
+        }
+        return myCenter;
+    }
+    /**
+     * Checks for left and right bounds
+     */
+    public void wrapOnX(){
+        if (myCenter.getX() > Canvas.CANVAS_DIMENSION.width ){
+        	System.out.println("exceeded right bound");
+        	myCenter.setX(Canvas.CANVAS_DIMENSION.width);
+        }
+        if (myCenter.getX() < myWidth/2){ 
+        	System.out.println("exceeded left bound");
+        	myCenter.setX(0 + myWidth/2);
+        }
+    }
+    
     
     /**
      * Turns the turtle by the number of degrees
@@ -184,35 +247,11 @@ public class Turtle extends Observable implements Paintable, IState{
         return (360 - degrees) % 360;
     }
     
-    /**
-     * Checks for top and bottom bounds
-     */
-    public void wrapOnY(){
-        if (myCenter.getY() > Canvas.CANVAS_DIMENSION.height-myHeight){
-        	System.out.println("exceeded bottom bound");
-        	myCenter.setY(Canvas.CANVAS_DIMENSION.height-myHeight);
-
-        }
-        if (myCenter.getY() < myHeight/2){
-        	System.out.println("exceeded top bound");
-        	myCenter.setY(0 + myHeight/2);
-
-        }
-    }
+ 
     
     /**
      * Checks for left and right bounds
      */
-    public void wrapOnX(){
-        if (myCenter.getX() > Canvas.CANVAS_DIMENSION.width ){
-        	System.out.println("exceeded right bound");
-        	myCenter.setX(Canvas.CANVAS_DIMENSION.width);
-        }
-        if (myCenter.getX() < myWidth/2){ 
-        	System.out.println("exceeded left bound");
-        	myCenter.setX(0 + myWidth/2);
-        }
-    }
     
     public void setPenWriting(boolean write){
         myPen.setPenWriting(write);

@@ -94,8 +94,10 @@ public class Workspace  implements Paintable, IParserProvider {
      */
     public void saveWorkspace (Writer w) {
         PrintWriter output = new PrintWriter(w);
-        Map<String,CustomCommand> commandMap = myCommandMap;
-        for(String comName : commandMap.keySet()) {
+        
+        //Map<String,CustomCommand> commandMap = myCommandMap;
+       // List<String> history = myHistory;
+        for(String comName : myHistory) {
             output.printf("%s %s\n", COMMAND_KEYWORD, comName);
         }
         output.flush();
