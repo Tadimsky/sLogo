@@ -1,10 +1,10 @@
 package parser.commands.math;
 
 import java.util.Deque;
+import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 /**
  * Implements the Random function.
@@ -23,7 +23,7 @@ public class Random extends UnaryNode{
     }
 
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int max = getArgument().evaluate(w);
         return myRand.nextInt(max);
     }

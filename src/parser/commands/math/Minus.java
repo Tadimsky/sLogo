@@ -1,10 +1,10 @@
 package parser.commands.math;
 
 import java.util.Deque;
+import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 /**
  * Implements the Minus function.
@@ -20,7 +20,7 @@ public class Minus extends UnaryNode {
     }
 
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         return -1 * getArgument().evaluate(w);
     }
 

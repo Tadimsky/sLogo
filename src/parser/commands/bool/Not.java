@@ -1,10 +1,10 @@
 package parser.commands.bool;
 
 import java.util.Deque;
+import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 /**
  * This implements a NOT command.
@@ -21,7 +21,7 @@ public class Not extends UnaryNode {
     }
 
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         if (getArgument().evaluate(w) == 0) { return 1; }
         return 0;
     }

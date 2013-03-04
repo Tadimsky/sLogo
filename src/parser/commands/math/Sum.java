@@ -1,10 +1,10 @@
 package parser.commands.math;
 
 import java.util.Deque;
+import parser.IParserProvider;
 import parser.nodes.BinaryNode;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 /**
  * Implements the Sum function.
@@ -20,7 +20,7 @@ public class Sum extends BinaryNode {
     }
 
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         return getLeft().evaluate(w) + getRight().evaluate(w);
     }
 

@@ -2,12 +2,13 @@ package parser.commands.other;
 
 import java.util.Deque;
 import parser.CustomCommand;
+import parser.IParserProvider;
 import parser.nodes.CommandNode;
 import parser.nodes.ListNode;
 import parser.nodes.SyntaxNode;
 import parser.nodes.TernaryNode;
+import parser.nodes.TokenNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 /**
  * Implements the To function.
@@ -23,24 +24,24 @@ public class To extends TernaryNode {
     private static final String COMMAND_PARAM = "First parameter is not the name of a command.";
 
     public To (Deque<SyntaxNode> queue) {
-        super(queue);
+        super(queue);       
     }
 
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {        
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {        
         checkSyntax();
-        String n = ((CommandNode)getLeft()).getName();
+        String n = ((TokenNode)getLeft()).getToken();
         ListNode parms = ((ListNode)getMiddle());
         ListNode com = ((ListNode)getRight());
-        CustomCommand cc = new CustomCommand(n, parms, com);
+        CustomCommand cc = w.getCommand(n);
+        cc.addParserInfo(parms, com);
         
-        
-        return 0;
+        return 1;
     }
     
     private void checkSyntax() throws InvalidArgumentsException
     {
-        if (!(getLeft() instanceof CommandNode))
+        if (!(getLeft() instanceof TokenNode))
         {
             throw new InvalidArgumentsException(COMMAND_PARAM, "");
         }

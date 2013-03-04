@@ -1,9 +1,9 @@
 package parser.commands.turtle.commands;
 
 import java.util.Deque;
+import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 public class PenDown extends BasicControl {
 
@@ -12,7 +12,7 @@ public class PenDown extends BasicControl {
     }
 
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         w.getTurtle().setPenWriting(true);
         return 1;
     }

@@ -1,7 +1,7 @@
 package parser.nodes;
 
+import parser.IParserProvider;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 
 /**
@@ -20,7 +20,7 @@ public class TokenNode extends SyntaxNode {
     }
 
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         return 0;
     }
 

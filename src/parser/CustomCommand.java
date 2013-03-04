@@ -16,11 +16,19 @@ public class CustomCommand {
 
     private String myName;
 
+    private int myArgCount;
     private List<VariableNode> myArgs;
-    private ListNode myCommands;
+    private ListNode myCommands;   
+
     
-    public CustomCommand (String name, ListNode params, ListNode commands) {
+    public CustomCommand(String name, int argcount)
+    {        
         myName = name;
+        myArgCount = argcount;
+    }
+    
+    public void addParserInfo(ListNode params, ListNode commands)
+    {
         myArgs = new ArrayList<VariableNode>();
         myCommands = commands;
         for (SyntaxNode s : params.getContents())
@@ -50,7 +58,25 @@ public class CustomCommand {
     
     public int getNumArgs()
     {
-        return myArgs.size();
+        return myArgCount;
+    }
+
+    /**
+     * @return the args
+     */
+    public List<VariableNode> getArgs () {
+        return myArgs;
+    }
+    
+    /**
+     * Returns true if this command has actually been created.
+     * As in all the properties have been added to it.
+     * 
+     * @return
+     */
+    public boolean isCreated()
+    {
+        return myArgs != null;
     }
 
 }

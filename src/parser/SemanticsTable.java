@@ -17,6 +17,7 @@ import parser.nodes.exceptions.NodeDefinitionException;
  *
  */
 public class SemanticsTable {
+    private static final String INVALID_CUSTOM_COMMAND = "The custom command {0} does not exist.";
     public static final String PARSER_RESOURCES = "parser.resources.";
     public static final String SEMANTICS_FILE = "tokens";
     public static final Locale DEFAULT_REGION = Locale.ENGLISH;
@@ -25,6 +26,7 @@ public class SemanticsTable {
     private static final String LIST_SEPERATOR = ",";
     
     private ResourceBundle myResource;
+    private IParserProvider myContext;
 
     private static SemanticsTable instance = null;
     
@@ -97,11 +99,35 @@ public class SemanticsTable {
         {
             if (n.equals(lower))
             {
-                return n;
+                NodeInformation ni = (NodeInformation)n.clone();
+                ni.setToken(lower);
+                return ni;
             }
         }
-        
         return null;
+    }
+    
+    public void setContext(IParserProvider context)
+    {
+        myContext = context;
+    }
+    
+    public void registerCustomCommand(CustomCommand c)
+    {
+        if (myContext != null && c != null)
+        {            
+            myContext.addCommand(c);            
+        }
+    }
+    
+    public CustomCommand getCommand(String name)
+    {
+        if (myContext != null)
+        {
+            return myContext.getCommand(name);
+        }
+        return null;
+        //throw new InvalidSemanticsException(INVALID_CUSTOM_COMMAND, name);        
     }
     
     

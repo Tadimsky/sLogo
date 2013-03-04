@@ -1,10 +1,10 @@
 package parser.commands.bool;
 
 import java.util.Deque;
+import parser.IParserProvider;
 import parser.nodes.BinaryNode;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 /**
  * This implements a less than command.
@@ -21,7 +21,7 @@ public class LessThan extends BinaryNode {
     }
 
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         if ((getLeft().evaluate(w) < getRight().evaluate(w))) { return 1; }
         return 0;
     }

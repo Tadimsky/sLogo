@@ -1,8 +1,8 @@
 package parser.nodes;
 
 import java.util.Deque;
+import parser.IParserProvider;
 import parser.nodes.exceptions.InvalidSemanticsException;
-import controller.Workspace;
 
 /**
  * Represents a node that stores a constant integer value.
@@ -36,7 +36,7 @@ public class ConstantNode extends SimpleNode {
     }   
 
     @Override
-    public int evaluate (Workspace w) {        
+    public int evaluate (IParserProvider w) {        
         return this.myValue;
     }   
 }

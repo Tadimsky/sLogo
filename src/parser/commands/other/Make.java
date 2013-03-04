@@ -1,11 +1,11 @@
 package parser.commands.other;
 
 import java.util.Deque;
+import parser.IParserProvider;
 import parser.nodes.BinaryNode;
 import parser.nodes.SyntaxNode;
 import parser.nodes.VariableNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 /**
  * Implements the Make function.
@@ -22,7 +22,7 @@ public class Make extends BinaryNode {
     }
 
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {        
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {        
         // This is required
         if (!(getLeft() instanceof VariableNode))
         {
@@ -31,7 +31,7 @@ public class Make extends BinaryNode {
         VariableNode vn = (VariableNode)getLeft();
         
         int val = getRight().evaluate(w);
-        w.setVariable(vn.getName(), val);
+        w.getVariables().setVariable(vn.getName(), val);
         return val;
     }
 

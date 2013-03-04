@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import parser.IParserProvider;
 import view.components.ErrorBox;
 import view.components.InputField;
 import controller.Controller;

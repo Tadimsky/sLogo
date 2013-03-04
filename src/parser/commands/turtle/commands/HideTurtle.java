@@ -1,9 +1,9 @@
 package parser.commands.turtle.commands;
 
 import java.util.Deque;
+import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 public class HideTurtle extends BasicControl {
 
@@ -12,7 +12,7 @@ public class HideTurtle extends BasicControl {
     }
 
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         w.getTurtle().setHiding(true);
         return 0;
     }

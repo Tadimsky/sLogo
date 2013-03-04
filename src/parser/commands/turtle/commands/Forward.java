@@ -1,10 +1,10 @@
 package parser.commands.turtle.commands;
 
 import java.util.Deque;
+import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 public class Forward extends UnaryNode {
    
@@ -13,7 +13,7 @@ public class Forward extends UnaryNode {
     }
 
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int amnt = getArgument().evaluate(w);
         return w.getTurtle().move(amnt);
     }

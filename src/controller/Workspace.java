@@ -3,7 +3,9 @@ package controller;
 import java.awt.Graphics2D;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -11,6 +13,10 @@ import javax.swing.JOptionPane;
 
 import model.Paintable;
 import model.Turtle;
+import parser.CustomCommand;
+import parser.IParserProvider;
+import parser.VariableManager;
+import parser.nodes.CommandNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import view.Canvas;
 
@@ -20,42 +26,42 @@ import view.Canvas;
  * @author XuRui
  *
  */
-public class Workspace  implements Paintable{
+public class Workspace  implements Paintable, IParserProvider {
     public static final String UNTITLED = "Untitled";
     private static final String COMMAND_KEYWORD = "Command";
-    private Map<String,Integer> myVariableMap;
-    private Map<String,Integer> myCommandMap;
+    
+    private Map<String, CustomCommand> myCommandMap;
     private Turtle myTurtle;
     private ResourceBundle myErrorResource;
     private String myName;
+    
+    private List<String> myHistory;
+    private VariableManager myVariables;
 
     public Workspace (String name) {
         this();
-        myName = name;
+        myName = name;   
+        
     }
     
     /**
      * Workspace constructor
      */
     public Workspace () {
-        myCommandMap = new HashMap<String, Integer>();
+        myCommandMap = new HashMap<String, CustomCommand>();
         myTurtle = new Turtle();
         myErrorResource = ResourceBundle.getBundle(Controller.DEFAULT_RESOURCE_PACKAGE + "error."+ "ErrorEnglish");
         myName = UNTITLED;
+        myHistory = new ArrayList<String>();
+        myVariables = new VariableManager();
         new Canvas(this);
     }
 
-    public Map<String,Integer> getCommandMap () {
+    public Map<String,CustomCommand> getCommandMap () {
         return myCommandMap;
     }
 
-    public void addVariable (String variable, int value) {
-        myVariableMap.put(variable, value);
-    }
-
-    public void addCommand (String command, Integer syntax) {
-        myCommandMap.put(command, syntax);
-    }
+       
     
     /**
      * Painting method that gets called by the Canvas
@@ -77,27 +83,18 @@ public class Workspace  implements Paintable{
     public String getName () {
         return myName;
     }
-
-    public Integer getVariable (String var) throws InvalidArgumentsException
+    
+    public VariableManager getVariables()
     {
-        if (myVariableMap.containsKey(var))
-        {
-            return myVariableMap.get(var);
-        }
-        throw new InvalidArgumentsException("This variable does not exist.", "");
+        return myVariables;
     }
-
-    public void setVariable (String var, Integer val)
-    {
-        myVariableMap.put(var, val);
-    }
-   
+    
     /**
      * save the variables and commands from the current workspace to a file
      */
     public void saveWorkspace (Writer w) {
         PrintWriter output = new PrintWriter(w);
-        Map<String,Integer> commandMap = myCommandMap;
+        Map<String,CustomCommand> commandMap = myCommandMap;
         for(String comName : commandMap.keySet()) {
             output.printf("%s %s\n", COMMAND_KEYWORD, comName);
         }
@@ -112,6 +109,23 @@ public class Workspace  implements Paintable{
         JOptionPane.showMessageDialog(null, message,
                                       myErrorResource.getString("ErrorTitle"),
                                       JOptionPane.ERROR_MESSAGE);
+    }
+
+    @Override
+    public void addCommand (CustomCommand com) {
+        myCommandMap.put(com.getName(), com);
+        
+    }
+
+    @Override
+    public CustomCommand getCommand (String command) {
+
+        return myCommandMap.get(command);
     }  
+    
+    public void addHistory(String s)
+    {
+        myHistory.add(s);
+    }
     
 }

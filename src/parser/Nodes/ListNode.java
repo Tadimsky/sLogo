@@ -3,8 +3,8 @@ package parser.nodes;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+import parser.IParserProvider;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 /**
  * This represents a list in the tree. It contains all the nodes
@@ -32,7 +32,7 @@ public class ListNode extends SyntaxNode {
     }
     
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int val = 0;
         for (SyntaxNode sn : myContents)
         {

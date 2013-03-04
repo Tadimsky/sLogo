@@ -43,9 +43,14 @@ public class Parser {
     public List<SyntaxNode> parseCommand(Scanner s)
     {
         StringBuilder fullCommand = new StringBuilder();
-        while (s.hasNext())
+        while (s.hasNext())            
         {
-            fullCommand.append(s.nextLine().trim());
+            String l = s.nextLine();
+            if (l.contains("#"))
+            {
+                continue;
+            }       
+            fullCommand.append(l.trim());
             fullCommand.append(" ");            
         }
         return parseCommand(fullCommand.toString());

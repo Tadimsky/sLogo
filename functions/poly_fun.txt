@@ -1,0 +1,20 @@
+to poly [ :length :angle ]
+[
+  repeat 100
+  [
+    fd :length 
+    rt :angle
+  ]
+]
+
+
+to outlinepoly [ :length :angle ]
+[
+  repeat 100
+  [
+    fd :length 
+    rt :angle
+    fd :length 
+    rt product 2 :angle
+  ]
+]

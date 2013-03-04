@@ -1,9 +1,9 @@
 package parser.nodes;
 
 import java.util.Deque;
+import parser.IParserProvider;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import parser.nodes.exceptions.InvalidSemanticsException;
-import controller.Workspace;
 
 /**
  * Represents a variable in the tree.
@@ -36,9 +36,9 @@ public class VariableNode extends SimpleNode{
     } 
 
     @Override
-    public int evaluate (Workspace w) {
+    public int evaluate (IParserProvider w) {
         
-        Integer val = w.getVariable(myName);
+        Integer val = w.getVariables().getVariable(myName);
         if (val == null)
         {
             throw new InvalidArgumentsException(INVALID_VARIABLE, myName);            

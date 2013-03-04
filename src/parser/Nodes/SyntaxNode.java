@@ -1,7 +1,7 @@
 package parser.nodes;
 
+import parser.IParserProvider;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 
 /**
@@ -17,6 +17,6 @@ public abstract class SyntaxNode {
      * @param w The active workspace.
      * @return The integer value of this expression.
      */
-    public abstract int evaluate (Workspace w) throws InvalidArgumentsException;
+    public abstract int evaluate (IParserProvider w) throws InvalidArgumentsException;
     
 }

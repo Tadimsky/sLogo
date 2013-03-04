@@ -1,10 +1,10 @@
 package parser.commands.turtle.queries;
 
 import java.util.Deque;
+import parser.IParserProvider;
 import parser.commands.turtle.commands.BasicControl;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 public class IsPenDown extends BasicControl {
 
@@ -13,7 +13,7 @@ public class IsPenDown extends BasicControl {
     }
 
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         if (w.getTurtle().isPenWriting())
         {
             return 1;

@@ -1,10 +1,10 @@
 package parser.commands.other;
 
 import java.util.Deque;
+import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.TernaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import controller.Workspace;
 
 /**
  * Implements the If Else control structure.
@@ -21,7 +21,7 @@ public class IfElse extends TernaryNode {
     }
 
     @Override
-    public int evaluate (Workspace w) throws InvalidArgumentsException {
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int times = getLeft().evaluate(w);
         if (times != 0) { return getMiddle().evaluate(w); }
         return getRight().evaluate(w);

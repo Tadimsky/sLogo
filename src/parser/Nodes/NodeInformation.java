@@ -11,7 +11,7 @@ import parser.nodes.exceptions.NodeDefinitionException;
  * @author Jonathan Schmidt
  *
  */
-public class NodeInformation {
+public class NodeInformation implements Cloneable {
 
     private static final String PROP_TOKEN = "token";
     private static final String PROP_CLASS = "class";
@@ -23,6 +23,19 @@ public class NodeInformation {
     private String[] myPatterns;
     private String myDesc;
     private String myName;
+    private String myToken;
+    
+    private boolean myshouldCreate = true;
+    
+    private NodeInformation(String name, String[] patterns, Class<?> clazz, int args, String desc, String token)
+    {
+        myName = name;
+        myPatterns = patterns;
+        myClass = clazz;
+        myArgs = args;
+        myDesc = desc;
+        myToken = token;
+    }
 
     public NodeInformation (String name, ResourceBundle info) throws NodeDefinitionException {
 
@@ -103,5 +116,39 @@ public class NodeInformation {
             }
         }
         return false;
+    }
+
+    /**
+     * @return the token
+     */
+    public String getToken () {
+        return myToken;
+    }
+
+    /**
+     * @param token the token to set
+     */
+    public void setToken (String token) {
+        myToken = token;
+    }
+    
+    /**
+     * This is used to clone the particular Node Information. 
+     */
+    @Override
+    public Object clone()
+    {        
+        return new NodeInformation(myName, myPatterns, myClass, myArgs, myDesc, myToken);
+    }
+
+    /**
+     * @param myshouldCreate the myshouldCreate to set
+     */
+    public void setShouldCreate (boolean create) {
+        myshouldCreate = create;
+    }
+    
+    public boolean shouldCreate() {
+        return myshouldCreate;
     }
 }
