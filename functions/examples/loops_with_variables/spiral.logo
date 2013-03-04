@@ -3,5 +3,5 @@ repeat 200
 [
   fd :count 
   rt 89
-  set :count sum 1 :count
+  make :count sum 1 :count
 ]

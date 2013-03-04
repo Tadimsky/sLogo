@@ -1,5 +1,5 @@
-set :length sum 50 random 250
-set :numspikes 18
+make :length sum 50 random 250
+make :numspikes 18
 
 repeat :numspikes
 [
