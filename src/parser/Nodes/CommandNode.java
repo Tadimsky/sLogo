@@ -68,8 +68,7 @@ public class CommandNode extends SimpleNode {
             curVariables[i] = val;
         }
         
-        // Create new Scope of Variables
-        VariableScope old = vm.createVariableScope(myName);
+        // Create new Scope of Variables        
         for (int i = 0; i < myCommand.getNumArgs(); i++)
         {
             VariableNode vn = myCommand.getArgs().get(i);

@@ -119,8 +119,8 @@ public class Workspace  implements Paintable, IParserProvider {
 
     @Override
     public CustomCommand getCommand (String command) {
-
-        return myCommandMap.get(command);
+        
+        return myCommandMap.get(command.toLowerCase());
     }  
     
     public void addHistory(String s)

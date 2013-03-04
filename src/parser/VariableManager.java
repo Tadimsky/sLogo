@@ -12,13 +12,9 @@ public class VariableManager {
     private VariableScope myGlobal = new VariableScope("GLOBAL");
     
     private Deque<VariableScope> myScopes;
-    
-    private VariableScope myCurrentScope;   
-    
 
     public VariableManager () {
-        myScopes = new LinkedList<VariableScope>();                
-        myCurrentScope = myGlobal;
+        myScopes = new LinkedList<VariableScope>();               
         myScopes.add(myGlobal);
     }
 
@@ -63,18 +59,15 @@ public class VariableManager {
      * 
      * @param vs
      */
-    public VariableScope createVariableScope (String  vs) {
-        VariableScope p = myCurrentScope;
+    public void createVariableScope (String  vs) {        
         String curName = vs;
         int index = 0;
         while (myScopes.contains(curName))
         {
             index++;
             curName = vs + "_" + index;
-        }
-        myCurrentScope = new VariableScope(curName);
-        myScopes.addFirst(myCurrentScope);        
-        return p;
+        }        
+        myScopes.addFirst(new VariableScope(curName));
     }
     
     /**
