@@ -18,6 +18,7 @@ import parser.IParserProvider;
 import parser.Parser;
 import parser.SemanticsTable;
 import parser.nodes.SyntaxNode;
+import parser.nodes.exceptions.InvalidArgumentsException;
 import view.Canvas;
 import view.Window;
 
@@ -69,9 +70,13 @@ public class Controller {
                 getWorkspace().addHistory(command);
             }
         }
-        catch (Exception e) {
-            getWorkspace().showError("No command input: please input command." + e.getMessage());
+        catch (InvalidArgumentsException e) {            
+            getWorkspace().showError("Invalid Input: " + e.getMessage());
         }
+        catch (NullPointerException ne) {
+            getWorkspace().showError("You entered an invalid command.");
+        }
+        
     }
 
     /**
