@@ -6,7 +6,12 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
-
+/**
+ * 
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class VariableManager {
 
     private VariableScope myGlobal = new VariableScope("GLOBAL");

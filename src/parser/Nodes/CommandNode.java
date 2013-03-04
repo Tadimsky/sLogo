@@ -10,6 +10,11 @@ import parser.VariableManager;
 import parser.VariableScope;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+/**
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public class CommandNode extends SimpleNode {
 
     private String myName;

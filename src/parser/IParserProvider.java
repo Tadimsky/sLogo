@@ -3,6 +3,11 @@ package parser;
 import model.Turtle;
 import parser.VariableManager;
 
+/**
+ * 
+ * @author Jonathan Schmidt
+ *
+ */
 public interface IParserProvider {
     
     public void addCommand (CustomCommand com);
