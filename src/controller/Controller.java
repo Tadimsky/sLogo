@@ -70,7 +70,7 @@ public class Controller {
             }
         }
         catch (Exception e) {
-            getWorkspace().showError("No command input: please input command.");
+            getWorkspace().showError("No command input: please input command." + e.getMessage());
         }
     }
 
