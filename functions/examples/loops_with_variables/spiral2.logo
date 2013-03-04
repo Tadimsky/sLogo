@@ -1,0 +1,8 @@
+set :count 1
+
+repeat 110 
+[
+  fd :count 
+  rt product :count 3
+  set :count sum 1 :count
+]

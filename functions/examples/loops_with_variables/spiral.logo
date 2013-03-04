@@ -1,0 +1,7 @@
+make :count 1
+repeat 200 
+[
+  fd :count 
+  rt 89
+  set :count sum 1 :count
+]

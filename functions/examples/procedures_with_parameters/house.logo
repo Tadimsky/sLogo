@@ -25,4 +25,5 @@ to house [ :size ]
   triangle :size
 ]
 
-house 50
+
+house

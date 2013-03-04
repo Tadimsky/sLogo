@@ -8,3 +8,4 @@ to regularShape [ :distance :angle ]
 ]
 
 cs
+regularShape
