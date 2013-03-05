@@ -38,11 +38,11 @@ public class Location extends Point2D.Double {
     }
     
     public int getIntX(){
-        return (int) super.getX();
+        return (int) (super.getX());
     }
     
     public int getIntY(){
-        return (int) super.getY();
+        return (int) (super.getY());
     }
 
     /**

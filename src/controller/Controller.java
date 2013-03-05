@@ -65,7 +65,7 @@ public class Controller {
         try {
             for (SyntaxNode node : commandList) {
                 int returnValue = node.evaluate(getWorkspace());
-                System.out.println(returnValue);
+                System.out.printf("my return value is %d", returnValue);
                 getWorkspace().addHistory(command);
             }
         }
