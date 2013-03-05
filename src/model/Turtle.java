@@ -6,8 +6,6 @@ import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Observable;
 import javax.imageio.ImageIO;
 import util.Location;
