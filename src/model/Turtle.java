@@ -79,7 +79,7 @@ public class Turtle extends Observable implements Paintable, IState{
     public boolean wrapOnBoundary(Location initialPosition, int pixels){    	
         if (myCenter.getIntY() > Canvas.CANVAS_DIMENSION.height){
         	System.out.println("exceeded bottom bound");
-        	int distanceMoved = (int) Vector.distanceBetween(initialPosition, new Location(myCenter.getIntX(),Canvas.CANVAS_DIMENSION.height)); 
+        	int distanceMoved = (int) Vector.distanceBetween(initialPosition, (new Location(myCenter.getIntX(),Canvas.CANVAS_DIMENSION.height)).getVisualLocation()); 
         	int remainingDistance = pixels - distanceMoved;
         	myHeading.setMagnitude(remainingDistance);
         	myCenter.setY(0);
