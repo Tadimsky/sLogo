@@ -1,6 +1,5 @@
 package parser;
 
-import java.io.FileReader;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.JFileChooser;

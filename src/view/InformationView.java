@@ -11,6 +11,13 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import parser.commands.turtle.commands.BasicControl;
+import parser.commands.turtle.queries.Heading;
+import parser.commands.turtle.queries.ILabelInformation;
+import parser.commands.turtle.queries.IsPenDown;
+import parser.commands.turtle.queries.IsShowing;
+import parser.commands.turtle.queries.XCor;
+import parser.commands.turtle.queries.YCor;
 import model.IState;
 import view.labels.InformationLabel;
 import view.labels.LogoLabel;
@@ -31,8 +38,9 @@ public class InformationView extends JPanel implements Observer {
     private static final String[] LABEL_DESCRIPTIONS = 
         {"Absolute Heading: ","X Position: ", "Y Position: ",
          "Pen Down? ","Is Hiding? "};
-    private static final TempNode[] NODES = {new TempHead(), new TempLocX(),new TempLocY(), 
-                                       new TempPenUp(), new TempHiding()};
+    private static final ILabelInformation[] TURTLE_QUERIES = {new Heading(null), 
+                                                          new XCor(null),new YCor(null), 
+                                       new IsPenDown(null), new IsShowing(null)};
     
     private List<LogoLabel> myLabelList;
     
@@ -54,7 +62,8 @@ public class InformationView extends JPanel implements Observer {
         add(title, title.getGridBagConstraints());
         
         for (int i = 0; i< LABEL_DESCRIPTIONS.length; i++){
-            InformationLabel label = new InformationLabel(i+1,LABEL_DESCRIPTIONS[i],NODES[i]);
+            InformationLabel label = 
+                    new InformationLabel(i+1,LABEL_DESCRIPTIONS[i],TURTLE_QUERIES[i]);
             myLabelList.add(label);
             add(label,label.getGridBagConstraints());
         }

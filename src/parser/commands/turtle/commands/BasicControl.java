@@ -9,6 +9,8 @@ public abstract class BasicControl extends SimpleNode {
     public BasicControl (Deque<SyntaxNode> stack)
     {
         // remove the token
+        if (stack != null)
         stack.pop();
     }
+    
 }

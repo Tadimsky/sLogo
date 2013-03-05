@@ -8,16 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-
 import javax.swing.JOptionPane;
-
 import model.Paintable;
 import model.Turtle;
 import parser.CustomCommand;
 import parser.IParserProvider;
 import parser.VariableManager;
-import parser.nodes.CommandNode;
-import parser.nodes.exceptions.InvalidArgumentsException;
 import view.Canvas;
 
 /**

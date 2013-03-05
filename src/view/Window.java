@@ -13,7 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import parser.IParserProvider;
 import view.components.ErrorBox;
 import view.components.InputField;
 import controller.Controller;
@@ -74,6 +73,7 @@ public class Window extends JFrame {
     private void setObservers(Observable turtle){
         turtle.addObserver(myCurrentCanvas);
         turtle.addObserver(myInfoView);
+        updateObservers();
     }
     
     /**
@@ -87,7 +87,14 @@ public class Window extends JFrame {
         myTabbedPane.addTab(workspace.getName(), myCurrentCanvas);
         myTabbedPane.setSelectedComponent(myCurrentCanvas);
         setObservers(workspace.getTurtle());
-        myCurrentCanvas.repaint();
+    }
+    
+    /**
+     * Updates both the Canvas and InfoView about the changes on the turtle
+     */
+    private void updateObservers(){
+        Workspace workspace = (Workspace) myCurrentCanvas.getPaintableResource();
+        workspace.getTurtle().update();
     }
 
     /**
@@ -172,7 +179,7 @@ public class Window extends JFrame {
         myTabbedPane.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent changeEvent) {
                 myCurrentCanvas = (Canvas) myTabbedPane.getSelectedComponent();
-                myCurrentCanvas.repaint();
+                updateObservers();
                 myInputField.setText("");
               }
             });

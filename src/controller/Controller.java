@@ -14,7 +14,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JSeparator;
-import parser.IParserProvider;
 import parser.Parser;
 import parser.SemanticsTable;
 import parser.nodes.SyntaxNode;

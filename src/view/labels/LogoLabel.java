@@ -4,21 +4,28 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JLabel;
+import parser.commands.turtle.commands.BasicControl;
+import parser.commands.turtle.queries.ILabelInformation;
 import model.IState;
 
 public abstract class LogoLabel extends JLabel {
     private String myDescription;
-    private TempNode myNode;
+    private ILabelInformation myTurtleQuery;
     public static final Color LETTER_COLOR = Color.DARK_GRAY;
     
-    protected LogoLabel(String description,TempNode node){
-        //Will change!!
-        myNode = node;
+    protected LogoLabel(String description,ILabelInformation query){
+        myTurtleQuery = query;
         
         myDescription = description;
         setText();
         setForeground(LETTER_COLOR);
     }
+    
+    /**
+     * Defines the gridBagConstraints through a function instead of 
+     * dening constraints over and over again
+     * @return the correct constraints for this label
+     */
     protected GridBagConstraints 
     getGridBagConstraint(double weightx,double weighty, int y,int anchor){
         GridBagConstraints c = new GridBagConstraints();
@@ -35,14 +42,26 @@ public abstract class LogoLabel extends JLabel {
         super.setText(myDescription+text);
     }
     
+    /**
+     * Appends a double at the end of the description
+     * @param text
+     */
     public void setText(double text){
         setText(""+text);
     }
     
+    /**
+     * Appends an int at the end of the description
+     * @param text
+     */
     public void setText(int text){
         setText(""+text);
     }
     
+    /**
+     * Appends a boolean at the end of the description
+     * @param text
+     */
     public void setText(boolean text){
         if(text)
             setText("Yes");
@@ -50,13 +69,23 @@ public abstract class LogoLabel extends JLabel {
             setText("No");
     }
     
+    /**
+     * solely displays the description
+     * @param text
+     */
     public void setText(){
         setText("");
     }
     
+    /**
+     * Takes an IState turtle and extracts the respective query for the label
+     * If the label should display the location, it will contain a command
+     * extended from basic control that will return the x position
+     * @param object IState turtle to have the query evaluated
+     */
     public void setText(IState object){
-        if(myNode!=null){
-            setText(myNode.getValue(object));
+        if(myTurtleQuery!=null){
+            setText(myTurtleQuery.evaluateFromTurtle(object));
         }
         else
             setText();

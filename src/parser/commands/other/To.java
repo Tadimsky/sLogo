@@ -3,7 +3,6 @@ package parser.commands.other;
 import java.util.Deque;
 import parser.CustomCommand;
 import parser.IParserProvider;
-import parser.nodes.CommandNode;
 import parser.nodes.ListNode;
 import parser.nodes.SyntaxNode;
 import parser.nodes.TernaryNode;

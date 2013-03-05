@@ -1,7 +1,6 @@
 package parser;
 
 import model.Turtle;
-import parser.VariableManager;
 
 /**
  * 

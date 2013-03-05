@@ -7,7 +7,6 @@ import parser.CustomCommand;
 import parser.IParserProvider;
 import parser.SemanticsTable;
 import parser.VariableManager;
-import parser.VariableScope;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
 /**
