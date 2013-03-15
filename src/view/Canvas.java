@@ -19,7 +19,7 @@ import model.Paintable;
  */
 public class Canvas extends JComponent implements Observer {
     private final static Color BACKGROUND_COLOR = Color.WHITE;
-    public final static Dimension CANVAS_DIMENSION = new Dimension(830, 590);
+    public final static Dimension CANVAS_DIMENSION = new Dimension(830, 575);
     private Paintable myPaintingResource;
 
     /**
