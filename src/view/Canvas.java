@@ -60,5 +60,4 @@ public class Canvas extends JComponent implements Observer {
     public Paintable getPaintableResource(){
         return myPaintingResource;
     }
-
 }

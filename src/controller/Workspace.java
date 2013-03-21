@@ -132,13 +132,17 @@ public class Workspace  implements Paintable, IParserProvider {
     @Override
     public void addColor(int colorIndex, Color color) {
         myPalette.put(colorIndex, color);
-        
     }
 
     @Override
     public int setBackground(int colorIndex) {
-        myCanvas.setBackground(myPalette.get(colorIndex));
-        return colorIndex;
+        Color c = myPalette.get(colorIndex);
+        if (c!= null)
+        {
+            myCanvas.setBackground(c);
+            return colorIndex;
+        }
+        return 0;
     }
     
 }
