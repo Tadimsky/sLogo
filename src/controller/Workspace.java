@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.io.PrintWriter;
 import java.io.Writer;
@@ -19,7 +20,7 @@ import view.Canvas;
 /**
  * Contains command information (history) for the particular workspace, holds turtle, allows saving of workspace
  * 
- * @author XuRui
+ * @author XuRui, Ziqiang Huang
  *
  */
 public class Workspace  implements Paintable, IParserProvider {
@@ -32,6 +33,8 @@ public class Workspace  implements Paintable, IParserProvider {
     private List<String> myHistory;
     private VariableManager myVariables;
     private UndoManager myUndoManager;
+    private Map<Integer,Color> myPalette;
+    private Canvas myCanvas;
 
     public Workspace (String name) {
         this();
@@ -50,7 +53,8 @@ public class Workspace  implements Paintable, IParserProvider {
         myHistory = new ArrayList<String>();
         myVariables = new VariableManager();
         myUndoManager = new UndoManager();
-        new Canvas(this);
+        myPalette = new HashMap<Integer,Color>();
+        myCanvas = new Canvas(this);
     }
 
     public Map<String,CustomCommand> getCommandMap () {
@@ -123,6 +127,18 @@ public class Workspace  implements Paintable, IParserProvider {
     public void addHistory(String s)
     {
         myHistory.add(s);
+    }
+
+    @Override
+    public void addColor(int colorIndex, Color color) {
+        myPalette.put(colorIndex, color);
+        
+    }
+
+    @Override
+    public int setBackground(int colorIndex) {
+        myCanvas.setBackground(myPalette.get(colorIndex));
+        return colorIndex;
     }
     
 }

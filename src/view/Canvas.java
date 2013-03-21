@@ -14,13 +14,14 @@ import model.Paintable;
  * Canvas in which the interface gets painted. It displays the turtle
  * and its respective lines
  * 
- * @author Henrique Moraes
+ * @author Henrique Moraes, Ziqiang Huang
  * 
  */
 public class Canvas extends JComponent implements Observer {
-    private final static Color BACKGROUND_COLOR = Color.WHITE;
+    private final static Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
     public final static Dimension CANVAS_DIMENSION = new Dimension(830, 575);
     private Paintable myPaintingResource;
+    private Color myBackgroundColor;
 
     /**
      * Constructor for this class, automatically creates a workspace
@@ -29,6 +30,7 @@ public class Canvas extends JComponent implements Observer {
     public Canvas (Paintable workspace) {
         setPreferredSize(CANVAS_DIMENSION);
         myPaintingResource = workspace;
+        myBackgroundColor = DEFAULT_BACKGROUND_COLOR;
     }
 
     /**
@@ -38,7 +40,7 @@ public class Canvas extends JComponent implements Observer {
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
         Graphics2D pen = (Graphics2D) g;
-        pen.setColor(BACKGROUND_COLOR);
+        pen.setColor(myBackgroundColor);
         pen.fillRect(0, 0, getWidth(), getHeight());
         myPaintingResource.paint(pen);
     }

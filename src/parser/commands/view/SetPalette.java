@@ -42,6 +42,7 @@ public class SetPalette extends ParameterNode {
             }
         }
         w.addColor(colorIndex, new Color(colors[RED], colors[GREEN], colors[BLUE]));
+        return colorIndex;
     }
 
 }
