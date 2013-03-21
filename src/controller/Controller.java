@@ -6,10 +6,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import javax.swing.AbstractAction;
+import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -19,6 +22,7 @@ import parser.SemanticsTable;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import view.Canvas;
+import view.HelpWindow;
 import view.Window;
 
 
@@ -27,7 +31,7 @@ import view.Window;
  * Receives input from view and pass them to Parser
  * Receives parsed input and send it to Executor with current workspace as parameter.
  * 
- * @author Xu Rui, Henrique Moraes
+ * @author Xu Rui, Henrique Moraes, Ziqiang Huang
  * 
  */
 
@@ -36,12 +40,15 @@ public class Controller {
     private int DEFAULT_TURN_VALUE = 90;
     private static final String USER_DIR = "user.dir";
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
+    protected static final String DEFAULT_URL = "http://www.cs.duke.edu/courses/spring13/compsci308/assign/03_slogo/commands.php";
+    protected static final String HELP_TITLE = "Command Description for SLogo";
 
     private Parser myParser;
     private Window myWindow;
     private ResourceBundle myResource;
     private JFileChooser myChooser;
-
+    private HelpWindow myHelpWindow;
+   
     /**
      * Constructor for controller responsible for initializing the view
      * and the parser
@@ -108,7 +115,30 @@ public class Controller {
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(createFileMenu());
         menuBar.add(createCommandMenu());
+        menuBar.add(createHelpMenu());
         return menuBar;
+    }
+    
+    /**
+     * creates the help page option on the menu bar
+     * 
+     * @return help Menu option
+     */
+    private JMenu createHelpMenu() {
+        JMenu menu = new JMenu(myResource.getString("HelpMenu"));
+        menu.add(new AbstractAction(myResource.getString("CommandDescription")) {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                URL helpPage = null;
+                try {
+                    helpPage = new URL(DEFAULT_URL);
+                } catch (MalformedURLException exception) {
+                    getWorkspace().showError(exception.toString());
+                }
+                new HelpWindow(HELP_TITLE,helpPage);
+            }
+        });
+        return menu;
     }
 
     /**
