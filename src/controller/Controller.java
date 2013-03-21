@@ -1,11 +1,13 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
+import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -16,6 +18,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import parser.Parser;
 import parser.SemanticsTable;
@@ -42,6 +45,7 @@ public class Controller {
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
     protected static final String DEFAULT_URL = "http://www.cs.duke.edu/courses/spring13/compsci308/assign/03_slogo/commands.php";
     protected static final String HELP_TITLE = "Command Description for SLogo";
+    protected static final Object[] DEFAULT_PEN_COLOR_OPTION = {"red","blue","black"};
 
     private Parser myParser;
     private Window myWindow;
@@ -116,9 +120,47 @@ public class Controller {
         menuBar.add(createFileMenu());
         menuBar.add(createCommandMenu());
         menuBar.add(createHelpMenu());
+        menuBar.add(createSettingMenu());
         return menuBar;
     }
     
+    
+    /**
+     * creates the setting options on the menu bar,
+     * enabling user to set certain properties of the workspace,
+     * such as background image, turtle image, pen color, etc
+     * 
+     * @return
+     */
+    private JMenu createSettingMenu() {
+        JMenu menu = new JMenu(myResource.getString("SettingMenu"));
+        menu.add(new AbstractAction(myResource.getString("SetPenColor")) {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                Object[] options = DEFAULT_PEN_COLOR_OPTION;
+                int response = JOptionPane.showOptionDialog(null, 
+                                                            myResource.getString("SetPenDialog"), 
+                                                            "", 
+                                                            JOptionPane.YES_OPTION, 
+                                                            JOptionPane.INFORMATION_MESSAGE, 
+                                                            null, 
+                                                            options, 
+                                                            null);
+
+                Color color;
+                try {
+                    Field field = Color.class.getField(options[response].toString());
+                    color = (Color)field.get(null);
+                } catch (Exception e1) {
+                    color = null;
+                }
+                getWorkspace().getTurtle().setColor(color);
+
+            }
+        });
+        return menu;
+    }
+
     /**
      * creates the help page option on the menu bar
      * 
