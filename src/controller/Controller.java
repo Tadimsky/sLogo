@@ -251,6 +251,7 @@ public class Controller {
         menu.add(new AbstractAction(myResource.getString("HideCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
+                getWorkspace().getTurtle().setHiding(true);
                 getWorkspace().addHistory("hideturtle");
             }
         });

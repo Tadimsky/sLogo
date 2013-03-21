@@ -59,11 +59,10 @@ public class Window extends JFrame {
         getContentPane().add(createInputField(), BorderLayout.SOUTH);
 
         setJMenuBar(myController.createJMenuBar());
-        
+        createWorkspace();
         pack();
 
         setVisible(true);
-        createWorkspace();
     }
     
     /**
