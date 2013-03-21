@@ -164,7 +164,7 @@ public class Window extends JFrame {
         myRunCommandListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                myController.processCommand(myInputField.getText(), myCurrentCanvas);
+                myController.processCommand(myInputField.getText());
                 myInputField.setText("");
             }
         };

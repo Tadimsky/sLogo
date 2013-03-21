@@ -1,5 +1,6 @@
 package parser;
 
+import java.awt.Color;
 import model.Turtle;
 
 /**
@@ -16,4 +17,8 @@ public interface IParserProvider {
     public VariableManager getVariables();
     
     public Turtle getTurtle ();
+
+    public void addColor(int colorIndex, Color color);
+
+    public int setBackground(int colorIndex);
 }
