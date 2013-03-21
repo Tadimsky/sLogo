@@ -7,17 +7,17 @@ import parser.IParserProvider;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
 /**
- * This represents a list in the tree. It contains all the nodes
- * that are in the list.
+ * This represents the start of a list of parameters in the tree. It contains a command and multiple parameters 
+ * that the command will use.
  * 
  * @author Jonathan Schmidt
  *
  */
-public class ListNode extends SyntaxNode {
+public class ParamListNode extends SyntaxNode {
 
     private List<SyntaxNode> myContents;
     
-    public ListNode (Deque<SyntaxNode> queue) {        
+    public ParamListNode (Deque<SyntaxNode> queue) {        
         myContents = new ArrayList<SyntaxNode>();
         
         // pop off all the nodes until we get to a ListEndNode
@@ -47,6 +47,5 @@ public class ListNode extends SyntaxNode {
     public List<SyntaxNode> getContents () {
         return myContents;
     }
-   
 
 }
