@@ -11,8 +11,8 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public abstract class UnaryNode extends ParameterNode {
     
-    private SyntaxNode myArgument;  
-    
+    private static final int PARAM_INDEX = 0;
+
     public UnaryNode (Deque<SyntaxNode> queue) {        
         this(queue.pop());
     }
@@ -20,7 +20,7 @@ public abstract class UnaryNode extends ParameterNode {
     public UnaryNode (SyntaxNode arg) {
         if (arg != null)
         {
-            myArgument = arg;
+            addParameter(PARAM_INDEX, arg);
         }
         else
         {
@@ -35,7 +35,7 @@ public abstract class UnaryNode extends ParameterNode {
      */
     public SyntaxNode getArgument()
     {
-        return myArgument;
+        return getParameter(PARAM_INDEX);
     }
 
 }

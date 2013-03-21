@@ -14,7 +14,6 @@ public class Shape extends BasicControl {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        return w.getTurtle().getShape();
-        
+        return w.getTurtle().getShape();        
     }
 }
