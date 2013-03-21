@@ -36,7 +36,7 @@ public class SetPalette extends ParameterNode {
         }
         for (int i = 0; i < 3; i++)
         {
-            if (0 < colors[i] || colors[i] > 255)
+            if (0 > colors[i] || colors[i] > 255)
             {
                 throw new InvalidArgumentsException("RGB values must be a nunber between 0 and 255", "");
             }
