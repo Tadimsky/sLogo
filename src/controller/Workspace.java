@@ -23,9 +23,7 @@ import view.Canvas;
  *
  */
 public class Workspace  implements Paintable, IParserProvider {
-    public static final String UNTITLED = "Untitled";
-    private static final String COMMAND_KEYWORD = "Command";
-    
+    public static final String UNTITLED = "Untitled";    
     private Map<String, CustomCommand> myCommandMap;
     private Turtle myTurtle;
     private ResourceBundle myErrorResource;
@@ -88,6 +86,8 @@ public class Workspace  implements Paintable, IParserProvider {
     /**
      * save the variables and commands from the current workspace to a file
      */
+    
+    //Edit to save workspace preferences as well
     public void saveWorkspace (Writer w) {
         PrintWriter output = new PrintWriter(w);
         for(String comName : myHistory) {
