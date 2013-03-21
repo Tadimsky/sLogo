@@ -69,7 +69,7 @@ public class Controller {
      * 
      * @param command string in input Text Field
      */
-    public void processCommand (String command, Canvas canvas) {
+    public void processCommand (String command) {
         SemanticsTable.getInstance().setContext(getWorkspace());
         List<SyntaxNode> commandList = myParser.parseCommand(command);
         SemanticsTable.getInstance().setContext(null);
@@ -86,10 +86,18 @@ public class Controller {
         catch (InvalidArgumentsException e) {            
             getWorkspace().showError("Invalid Input: " + e.getMessage());
         }
-
-        
     }
-
+    
+    /**
+     * Executes list of commands (for undo option)
+     * 
+     * @param commandList
+     */
+    public void processCommands(List<String> commandList){
+        for (String command: commandList){
+        	processCommand(command);
+        }
+    }
     /**
      * This method is set private so the Window does not have access to it
      * 

@@ -5,7 +5,14 @@ import java.util.Stack;
 
 import parser.CustomCommand;
 
+/**
+ * Manages undo and redo commands within workspace. Note that undo function may apply to multiple turtles.
+ * 
+ * @author XuRui
+ *
+ */
 //Might use string instead of CustomCommand
+
 public class UndoManager {
     private Stack<CustomCommand> undoneCommands; //stores all undone commands
     private Stack<CustomCommand> myActiveCommands; //stores list of commands
@@ -14,7 +21,6 @@ public class UndoManager {
     	myActiveCommands = new Stack<CustomCommand>();
     	undoneCommands = new Stack<CustomCommand>();
     }
-    
     
     /**
      * Returns list of all active commands to be reloaded in undo.
@@ -25,7 +31,6 @@ public class UndoManager {
     	undoneCommands.add(myActiveCommands.pop());
     	return myActiveCommands;
     }
-    
     
     /**
      * Returns last undone command to be redone in workspace.
