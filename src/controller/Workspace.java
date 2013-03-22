@@ -139,10 +139,15 @@ public class Workspace  implements Paintable, IParserProvider {
         Color c = myPalette.get(colorIndex);
         if (c!= null)
         {
-            myCanvas.setBackground(c);
+            myCanvas.setBackgroundColor(c);
             return colorIndex;
         }
         return 0;
+    }
+
+    @Override
+    public Map<Integer,Color> getPalette() {       
+        return myPalette;
     }
     
 }
