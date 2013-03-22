@@ -30,7 +30,7 @@ public class Canvas extends JComponent implements Observer {
     public Canvas (Paintable workspace) {
         setPreferredSize(CANVAS_DIMENSION);
         myPaintingResource = workspace;
-        myBackgroundColor = DEFAULT_BACKGROUND_COLOR;
+        setBackground(DEFAULT_BACKGROUND_COLOR);
     }
 
     /**
@@ -39,10 +39,10 @@ public class Canvas extends JComponent implements Observer {
     @Override
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
-        Graphics2D pen = (Graphics2D) g;
-        pen.setColor(myBackgroundColor);
-        pen.fillRect(0, 0, getWidth(), getHeight());
-        myPaintingResource.paint(pen);
+        g.setColor(getBackground());
+        System.out.println(getBackground().toString());
+        g.fillRect(0, 0, getWidth(), getHeight());
+        myPaintingResource.paint((Graphics2D) g);
     }
 
     /**
@@ -59,5 +59,11 @@ public class Canvas extends JComponent implements Observer {
      */
     public Paintable getPaintableResource(){
         return myPaintingResource;
+    }
+
+    public void setBackgroundColor(Color c) {
+        setBackground(c);
+        System.out.println(getBackground().toString() + "ha");
+        repaint();
     }
 }
