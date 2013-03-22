@@ -59,12 +59,12 @@ public class Turtle extends Observable implements Paintable, IState{
         update();
         return pixels;
     }
-    
+   
     /**
      * Checks for top and bottom bounds
      */
    public boolean wrapOnBoundary(Location initialPosition, int pixels){   
-	   if (boundsExceeded()){
+	   if (boundsExceeded(myCenter)){
 		   int remainingDistance = 0;
 		   if (myCenter.getIntY() > Canvas.CANVAS_DIMENSION.height){ //exceeded bottom bound
 			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(myCenter.getIntX(),Canvas.CANVAS_DIMENSION.height)).getVisualLocation()); 
@@ -92,11 +92,11 @@ public class Turtle extends Observable implements Paintable, IState{
     * Checks if turtle exceeds bounds.
     * @return
     */
-    public boolean boundsExceeded(){
-    	return (myCenter.getIntY() > Canvas.CANVAS_DIMENSION.height || 
-    			myCenter.getIntY() < 0 ||
-    			myCenter.getIntX() > Canvas.CANVAS_DIMENSION.width ||
-    			myCenter.getIntX() < myWidth/2);	
+    public boolean boundsExceeded(Location loc){
+    	return (loc.getIntY() > Canvas.CANVAS_DIMENSION.height || 
+    	        loc.getIntY() < 0 ||
+        	loc.getIntX() > Canvas.CANVAS_DIMENSION.width ||
+        	loc.getIntX() < myWidth/2);	
     }
     
     /**

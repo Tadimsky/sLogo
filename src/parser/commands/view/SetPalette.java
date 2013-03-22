@@ -38,7 +38,7 @@ public class SetPalette extends ParameterNode {
         {
             if (0 > colors[i] || colors[i] > 255)
             {
-                throw new InvalidArgumentsException("RGB values must be a nunber between 0 and 255", "");
+                throw new InvalidArgumentsException("RGB values must be a number between 0 and 255", "");
             }
         }
         w.addColor(colorIndex, new Color(colors[RED], colors[GREEN], colors[BLUE]));
