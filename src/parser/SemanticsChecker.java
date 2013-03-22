@@ -54,11 +54,6 @@ public class SemanticsChecker {
             String token = tokens.get(i);
             NodeInformation node = myTable.getTokenClass(token);  
             nodes.add(node);
-            /**
-             * Need to figure out a better way to do this.
-             * A property in the definition?
-             * TODO
-             */
             if(node.getName().equals("to"))
             {                 
                 myTable.registerCustomCommand(createCustomCommand(nodes, i));

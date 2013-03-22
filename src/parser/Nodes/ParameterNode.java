@@ -23,4 +23,9 @@ public abstract class ParameterNode extends SyntaxNode {
     {
         return myNodes.get(index);
     }
+    
+    public int getParameterCount()
+    {
+        return myNodes.size();
+    }
 }
