@@ -15,7 +15,7 @@ public class SetPenColor extends UnaryNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int color = getArgument().evaluate(w);
-        w.getTurtle().setColor(w.getPalette().get(color));      
+        w.getTurtle().setColor(w.getColors().getColor(color));      
         return color;
     }
 
