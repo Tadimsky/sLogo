@@ -98,6 +98,7 @@ public class Controller {
         	processCommand(command);
         }
     }
+    
     /**
      * This method is set private so the Window does not have access to it
      * 
