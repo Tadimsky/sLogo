@@ -4,9 +4,8 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JLabel;
-import parser.commands.turtle.commands.BasicControl;
-import parser.commands.turtle.queries.ILabelInformation;
 import model.IState;
+import parser.commands.turtle.queries.ILabelInformation;
 
 public abstract class LogoLabel extends JLabel {
     private String myDescription;

@@ -48,7 +48,7 @@ public class Controller {
      */
     public Controller () {
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
-        myResource = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
+        myResource = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "Portugues");
         myWindow = new Window(this);
         myParser = new Parser();
     }

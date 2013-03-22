@@ -11,22 +11,15 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import parser.commands.turtle.commands.BasicControl;
+import model.IState;
 import parser.commands.turtle.queries.Heading;
 import parser.commands.turtle.queries.ILabelInformation;
 import parser.commands.turtle.queries.IsPenDown;
 import parser.commands.turtle.queries.IsShowing;
 import parser.commands.turtle.queries.XCor;
 import parser.commands.turtle.queries.YCor;
-import model.IState;
 import view.labels.InformationLabel;
 import view.labels.LogoLabel;
-import view.labels.TempHead;
-import view.labels.TempHiding;
-import view.labels.TempLocX;
-import view.labels.TempLocY;
-import view.labels.TempNode;
-import view.labels.TempPenUp;
 import view.labels.TitleLabel;
 
 public class InformationView extends JPanel implements Observer {
