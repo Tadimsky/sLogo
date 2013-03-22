@@ -29,7 +29,26 @@ public class VariableManager {
      * @param variable
      * @param value
      */
-    public void setVariable (String variable, int value) {
+    public void setVariable (String variable, int value) {        
+        Iterator<VariableScope> i = myScopes.iterator();
+        // loop through till it finds variable
+        while (i.hasNext())
+        {         
+            VariableScope cur = i.next();
+            try 
+            {          
+                cur.getVariable(variable);
+            }
+            catch (InvalidArgumentsException ie)
+            {   
+                // not in this scope
+                continue;
+            }
+            // set the variable
+            cur.setVariable(variable, value);
+            return;
+        }
+        // create new variable in active scope
         myScopes.getFirst().setVariable(variable, value);
     }
     /**
