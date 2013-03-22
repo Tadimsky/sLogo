@@ -59,11 +59,10 @@ public class Window extends JFrame {
         getContentPane().add(createInputField(), BorderLayout.SOUTH);
 
         setJMenuBar(myController.createJMenuBar());
-        
+        createWorkspace();
         pack();
 
         setVisible(true);
-        createWorkspace();
     }
     
     /**
@@ -83,7 +82,7 @@ public class Window extends JFrame {
     public void createWorkspace () {
         Workspace workspace = new Workspace(WORKSPACE_NAME + workspaceIndex);
         workspaceIndex++;
-        myCurrentCanvas = new Canvas(workspace);
+        myCurrentCanvas = workspace.getCanvas();
         myTabbedPane.addTab(workspace.getName(), myCurrentCanvas);
         myTabbedPane.setSelectedComponent(myCurrentCanvas);
         setObservers(workspace.getTurtle());
@@ -165,7 +164,7 @@ public class Window extends JFrame {
         myRunCommandListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                myController.processCommand(myInputField.getText(), myCurrentCanvas);
+                myController.processCommand(myInputField.getText());
                 myInputField.setText("");
             }
         };

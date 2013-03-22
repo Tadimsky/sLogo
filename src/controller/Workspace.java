@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.io.PrintWriter;
 import java.io.Writer;
@@ -19,13 +20,11 @@ import view.Canvas;
 /**
  * Contains command information (history) for the particular workspace, holds turtle, allows saving of workspace
  * 
- * @author XuRui
+ * @author XuRui, Ziqiang Huang
  *
  */
 public class Workspace  implements Paintable, IParserProvider {
-    public static final String UNTITLED = "Untitled";
-    private static final String COMMAND_KEYWORD = "Command";
-    
+    public static final String UNTITLED = "Untitled";    
     private Map<String, CustomCommand> myCommandMap;
     private Turtle myTurtle;
     private ResourceBundle myErrorResource;
@@ -33,6 +32,9 @@ public class Workspace  implements Paintable, IParserProvider {
     
     private List<String> myHistory;
     private VariableManager myVariables;
+    private UndoManager myUndoManager;
+    private Map<Integer,Color> myPalette;
+    private Canvas myCanvas;
 
     public Workspace (String name) {
         this();
@@ -50,7 +52,9 @@ public class Workspace  implements Paintable, IParserProvider {
         myName = UNTITLED;
         myHistory = new ArrayList<String>();
         myVariables = new VariableManager();
-        new Canvas(this);
+        myUndoManager = new UndoManager();
+        myPalette = new HashMap<Integer,Color>();
+        myCanvas = new Canvas(this);
     }
 
     public Map<String,CustomCommand> getCommandMap () {
@@ -88,6 +92,8 @@ public class Workspace  implements Paintable, IParserProvider {
     /**
      * save the variables and commands from the current workspace to a file
      */
+    
+    //Edit to save workspace preferences as well
     public void saveWorkspace (Writer w) {
         PrintWriter output = new PrintWriter(w);
         for(String comName : myHistory) {
@@ -121,6 +127,32 @@ public class Workspace  implements Paintable, IParserProvider {
     public void addHistory(String s)
     {
         myHistory.add(s);
+    }
+
+    @Override
+    public void addColor(int colorIndex, Color color) {
+        myPalette.put(colorIndex, color);
+    }
+
+    @Override
+    public int setBackground(int colorIndex) {
+        Color c = myPalette.get(colorIndex);
+        if (c!= null)
+        {
+            myCanvas.setBackgroundColor(c);
+            return colorIndex;
+        }
+        return 0;
+    }
+
+    @Override
+    public Map<Integer,Color> getPalette() {       
+        return myPalette;
+    }
+    
+    public Canvas getCanvas()
+    {
+        return myCanvas;
     }
     
 }

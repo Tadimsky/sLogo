@@ -11,8 +11,7 @@ import parser.nodes.exceptions.InvalidSemanticsException;
  *
  */
 public class ConstantNode extends SimpleNode {
-    // {int}
-    
+
     private int myValue;
     
     public ConstantNode (int val) {

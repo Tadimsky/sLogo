@@ -40,8 +40,7 @@ public class Turtle extends Observable implements Paintable, IState{
         }
         catch (Exception e) { ErrorBox.showError(Error.INVALID_IMAGE); };
         myWidth = myImage.getWidth();
-        myHeight = myImage.getHeight();
-        
+        myHeight = myImage.getHeight();  
     }
 
     /**
@@ -49,62 +48,55 @@ public class Turtle extends Observable implements Paintable, IState{
      * currently heading
      * @param pixels pixels to move
      */
-    
-
    public int move(int pixels){
         myHeading.setMagnitude(pixels);
         Location initialPosition = new Location(myCenter);
       	myCenter.translate(myHeading);
-      	myPen.addLine(initialPosition, myCenter);
+      	myPen.addLine(initialPosition, myCenter);  	
       	if (wrapOnBoundary(initialPosition, pixels)){
-      		Location newInitialPosition = new Location(myCenter);
-      		myCenter.translate(myHeading);
-      		myPen.addLine(newInitialPosition, myCenter);
+      		this.move((int) myHeading.getMagnitude());
       	}
-
-        
         update();
         return pixels;
     }
-    
+   
     /**
      * Checks for top and bottom bounds
      */
-    public boolean wrapOnBoundary(Location initialPosition, int pixels){    	
-        if (myCenter.getIntY() > Canvas.CANVAS_DIMENSION.height){
-        	System.out.println("exceeded bottom bound");
-        	int distanceMoved = (int) Vector.distanceBetween(initialPosition, (new Location(myCenter.getIntX(),Canvas.CANVAS_DIMENSION.height)).getVisualLocation()); 
-        	int remainingDistance = pixels - distanceMoved;
-        	myHeading.setMagnitude(remainingDistance);
-        	myCenter.setY(0);
-        	return true;
-        	
-        }
-        if (myCenter.getIntY() < 0){
-        	System.out.println("exceeded top bound");
-        	int distanceMoved = (int) Vector.distanceBetween(initialPosition, (new Location(myCenter.getIntX(),0)).getVisualLocation()); 
-        	int remainingDistance = pixels - distanceMoved;
-        	myHeading.setMagnitude(remainingDistance);
-        	myCenter.setY(Canvas.CANVAS_DIMENSION.height-myHeight);//move turtle to bottom bound
-        	return true;
-        }
-        if (myCenter.getIntX() > Canvas.CANVAS_DIMENSION.width ){
-        	System.out.println("exceeded right bound");
-        	int distanceMoved = (int) Vector.distanceBetween(initialPosition, (new Location(Canvas.CANVAS_DIMENSION.width, myCenter.getIntY())).getVisualLocation()); 
-        	int remainingDistance = pixels - distanceMoved;
-        	myHeading.setMagnitude(remainingDistance);
-        	myCenter.setX(0 + myWidth/2);
-        	return true;
-        }
-        if (myCenter.getIntX() < myWidth/2){ 
-        	System.out.println("exceeded left bound");
-        	int distanceMoved = (int) Vector.distanceBetween(initialPosition, (new Location(myWidth/2, myCenter.getIntY())).getVisualLocation()); 
-        	int remainingDistance = pixels - distanceMoved;
-        	myHeading.setMagnitude(remainingDistance);        	
-        	myCenter.setX(Canvas.CANVAS_DIMENSION.width);
-        	return true;
-        }
-        return false;
+   public boolean wrapOnBoundary(Location initialPosition, int pixels){   
+	   if (boundsExceeded(myCenter)){
+		   int remainingDistance = 0;
+		   if (myCenter.getIntY() > Canvas.CANVAS_DIMENSION.height){ //exceeded bottom bound
+			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(myCenter.getIntX(),Canvas.CANVAS_DIMENSION.height)).getVisualLocation()); 
+			   myCenter.setY(0);
+		   }
+		   if (myCenter.getIntY() < 0){ //exceeded top bound
+			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(myCenter.getIntX(),0)).getVisualLocation()); 
+			   myCenter.setY(Canvas.CANVAS_DIMENSION.height);//move turtle to bottom bound
+		   }
+		   if (myCenter.getIntX() > Canvas.CANVAS_DIMENSION.width ){ //exceeded right bound
+			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(Canvas.CANVAS_DIMENSION.width, myCenter.getIntY())).getVisualLocation()); 
+			   myCenter.setX(0 + myWidth/2);
+		   }
+		   if (myCenter.getIntX() < myWidth/2){ //exceeded left bound
+			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(myWidth/2, myCenter.getIntY())).getVisualLocation()); 
+			   myCenter.setX(Canvas.CANVAS_DIMENSION.width);
+		   }
+		   myHeading.setMagnitude(remainingDistance);
+		   return true;
+	   }
+	   return false;
+   }
+   
+   /**
+    * Checks if turtle exceeds bounds.
+    * @return
+    */
+    public boolean boundsExceeded(Location loc){
+    	return (loc.getIntY() > Canvas.CANVAS_DIMENSION.height || 
+    	        loc.getIntY() < 0 ||
+        	loc.getIntX() > Canvas.CANVAS_DIMENSION.width ||
+        	loc.getIntX() < myWidth/2);	
     }
     
     /**

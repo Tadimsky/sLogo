@@ -1,24 +1,31 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
+import java.lang.reflect.Field;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import javax.swing.AbstractAction;
+import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import parser.Parser;
 import parser.SemanticsTable;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import view.Canvas;
+import view.HelpWindow;
 import view.Window;
 
 
@@ -27,7 +34,7 @@ import view.Window;
  * Receives input from view and pass them to Parser
  * Receives parsed input and send it to Executor with current workspace as parameter.
  * 
- * @author Xu Rui, Henrique Moraes
+ * @author Xu Rui, Henrique Moraes, Ziqiang Huang
  * 
  */
 
@@ -36,12 +43,16 @@ public class Controller {
     private int DEFAULT_TURN_VALUE = 90;
     private static final String USER_DIR = "user.dir";
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
+    protected static final String DEFAULT_URL = "http://www.cs.duke.edu/courses/spring13/compsci308/assign/03_slogo/commands.php";
+    protected static final String HELP_TITLE = "Command Description for SLogo";
+    protected static final Object[] DEFAULT_PEN_COLOR_OPTION = {"red","blue","black"};
 
     private Parser myParser;
     private Window myWindow;
     private ResourceBundle myResource;
     private JFileChooser myChooser;
-
+    private HelpWindow myHelpWindow;
+   
     /**
      * Constructor for controller responsible for initializing the view
      * and the parser
@@ -58,7 +69,7 @@ public class Controller {
      * 
      * @param command string in input Text Field
      */
-    public void processCommand (String command, Canvas canvas) {
+    public void processCommand (String command) {
         SemanticsTable.getInstance().setContext(getWorkspace());
         List<SyntaxNode> commandList = myParser.parseCommand(command);
         SemanticsTable.getInstance().setContext(null);
@@ -75,10 +86,19 @@ public class Controller {
         catch (InvalidArgumentsException e) {            
             getWorkspace().showError("Invalid Input: " + e.getMessage());
         }
-
-        
     }
-
+    
+    /**
+     * Executes list of commands (for undo option)
+     * 
+     * @param commandList
+     */
+    public void processCommands(List<String> commandList){
+        for (String command: commandList){
+        	processCommand(command);
+        }
+    }
+    
     /**
      * This method is set private so the Window does not have access to it
      * 
@@ -108,7 +128,68 @@ public class Controller {
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(createFileMenu());
         menuBar.add(createCommandMenu());
+        menuBar.add(createHelpMenu());
+        menuBar.add(createSettingMenu());
         return menuBar;
+    }
+    
+    
+    /**
+     * creates the setting options on the menu bar,
+     * enabling user to set certain properties of the workspace,
+     * such as background image, turtle image, pen color, etc
+     * 
+     * @return
+     */
+    private JMenu createSettingMenu() {
+        JMenu menu = new JMenu(myResource.getString("SettingMenu"));
+        menu.add(new AbstractAction(myResource.getString("SetPenColor")) {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                Object[] options = DEFAULT_PEN_COLOR_OPTION;
+                int response = JOptionPane.showOptionDialog(null, 
+                                                            myResource.getString("SetPenDialog"), 
+                                                            "", 
+                                                            JOptionPane.YES_OPTION, 
+                                                            JOptionPane.INFORMATION_MESSAGE, 
+                                                            null, 
+                                                            options, 
+                                                            null);
+
+                Color color;
+                try {
+                    Field field = Color.class.getField(options[response].toString());
+                    color = (Color)field.get(null);
+                } catch (Exception e1) {
+                    color = null;
+                }
+                getWorkspace().getTurtle().setColor(color);
+
+            }
+        });
+        return menu;
+    }
+
+    /**
+     * creates the help page option on the menu bar
+     * 
+     * @return help Menu option
+     */
+    private JMenu createHelpMenu() {
+        JMenu menu = new JMenu(myResource.getString("HelpMenu"));
+        menu.add(new AbstractAction(myResource.getString("CommandDescription")) {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                URL helpPage = null;
+                try {
+                    helpPage = new URL(DEFAULT_URL);
+                } catch (MalformedURLException exception) {
+                    getWorkspace().showError(exception.toString());
+                }
+                new HelpWindow(HELP_TITLE,helpPage);
+            }
+        });
+        return menu;
     }
 
     /**
@@ -251,6 +332,7 @@ public class Controller {
         menu.add(new AbstractAction(myResource.getString("HideCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
+                getWorkspace().getTurtle().setHiding(true);
                 getWorkspace().addHistory("hideturtle");
             }
         });

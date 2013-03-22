@@ -1,5 +1,7 @@
 package parser;
 
+import java.awt.Color;
+import java.util.Map;
 import model.Turtle;
 
 /**
@@ -9,6 +11,8 @@ import model.Turtle;
  */
 public interface IParserProvider {
     
+    public Map<Integer, Color> getPalette();
+
     public void addCommand (CustomCommand com);
     
     public CustomCommand getCommand (String command);
@@ -16,4 +20,8 @@ public interface IParserProvider {
     public VariableManager getVariables();
     
     public Turtle getTurtle ();
+
+    public void addColor(int colorIndex, Color color);
+
+    public int setBackground(int colorIndex);
 }

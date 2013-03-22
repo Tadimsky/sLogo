@@ -41,7 +41,7 @@ public class VariableNode extends SimpleNode{
         Integer val = w.getVariables().getVariable(myName);
         if (val == null)
         {
-            throw new InvalidArgumentsException(INVALID_VARIABLE, myName);            
+            return 0; //throw new InvalidArgumentsException(INVALID_VARIABLE, myName);            
         }
         return val;
     }

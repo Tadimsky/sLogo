@@ -9,12 +9,14 @@ import java.util.Deque;
  *
  */
 public abstract class BinaryNode extends ParameterNode {
-    private SyntaxNode myLeft;
-    private SyntaxNode myRight;
     
+    
+    private static final int LEFT_PARAM = 0;
+    private static final int RIGHT_PARAM = 1;
+
     public BinaryNode (SyntaxNode left, SyntaxNode right) {
-        this.myLeft = left;
-        this.myRight = right;
+        addParameter(LEFT_PARAM, left);
+        addParameter(RIGHT_PARAM, right);
     }   
     
     public BinaryNode (Deque<SyntaxNode> queue) {        
@@ -28,7 +30,7 @@ public abstract class BinaryNode extends ParameterNode {
      */
     public SyntaxNode getLeft()
     {
-        return myLeft;
+        return getParameter(LEFT_PARAM);
     }
     
     /**
@@ -38,7 +40,7 @@ public abstract class BinaryNode extends ParameterNode {
      */
     public SyntaxNode getRight()
     {
-        return myRight;
+        return getParameter(RIGHT_PARAM);
     }
     
 
