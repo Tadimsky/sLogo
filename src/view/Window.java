@@ -82,7 +82,7 @@ public class Window extends JFrame {
     public void createWorkspace () {
         Workspace workspace = new Workspace(WORKSPACE_NAME + workspaceIndex);
         workspaceIndex++;
-        myCurrentCanvas = new Canvas(workspace);
+        myCurrentCanvas = workspace.getCanvas();
         myTabbedPane.addTab(workspace.getName(), myCurrentCanvas);
         myTabbedPane.setSelectedComponent(myCurrentCanvas);
         setObservers(workspace.getTurtle());

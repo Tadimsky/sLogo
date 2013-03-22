@@ -150,4 +150,9 @@ public class Workspace  implements Paintable, IParserProvider {
         return myPalette;
     }
     
+    public Canvas getCanvas()
+    {
+        return myCanvas;
+    }
+    
 }
