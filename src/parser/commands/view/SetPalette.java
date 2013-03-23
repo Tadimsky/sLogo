@@ -14,10 +14,10 @@ public class SetPalette extends ParameterNode {
     private static final int RED = 0;
 
     public SetPalette (Deque<SyntaxNode> queue) {
-        addParameter(RED, queue.pop());
-        addParameter(GREEN, queue.pop());
-        addParameter(BLUE, queue.pop());
-        addParameter(3, queue.pop());
+        addParameter(0, queue.pop());
+        addParameter(RED+1, queue.pop());
+        addParameter(GREEN+1, queue.pop());
+        addParameter(BLUE+1, queue.pop());
     }
 
     @Override
@@ -41,7 +41,7 @@ public class SetPalette extends ParameterNode {
                 throw new InvalidArgumentsException("RGB values must be a number between 0 and 255", "");
             }
         }
-        w.addColor(colorIndex, new Color(colors[RED], colors[GREEN], colors[BLUE]));
+        w.getColors().setColor(colorIndex, new Color(colors[RED], colors[GREEN], colors[BLUE]));
         return colorIndex;
     }
 

@@ -43,13 +43,13 @@ public class SettingsWindow extends JFrame{
         this.setPreferredSize(DEFAULT_DIMENSION);
         
         myWorkspace = w;
-        Map<Integer, Color> colorMap = myWorkspace.getPalette();
+        ColorManager manager = myWorkspace.getColors();
         getContentPane().setLayout(new BoxLayout(getContentPane(),BoxLayout.Y_AXIS));
         
         JPanel optionsPanel = new JPanel();
         optionsPanel.setLayout(new GridLayout(1,2));
         
-        optionsPanel.add(createColorPanel(colorMap));   
+        optionsPanel.add(createColorPanel(manager));   
         optionsPanel.add(createCheckBoxPanel());
         
         add(createTitle());
@@ -68,9 +68,9 @@ public class SettingsWindow extends JFrame{
      * @param colorMap Map to reference colors
      * @return Panel with color options
      */
-    private JPanel createColorPanel(Map<Integer,Color> colorMap) {
-        myBackgroundColor = new JComboBox(colorMap.values().toArray());
-        myPenColor = new JComboBox(colorMap.values().toArray());
+    private JPanel createColorPanel(ColorManager manager) {
+        myBackgroundColor = new JComboBox(manager.getColorMap().values().toArray());
+        myPenColor = new JComboBox(manager.getColorMap().values().toArray());
         
         JPanel colorPanel = new JPanel();
         colorPanel.setLayout(new GridLayout(4,1));
