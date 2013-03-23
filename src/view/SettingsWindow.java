@@ -91,6 +91,7 @@ public class SettingsWindow extends JFrame{
         JPanel checkBoxPanel = new JPanel();
         checkBoxPanel.setLayout(new GridLayout(3,1));
         checkBoxPanel.add(myHighlightOption = new JCheckBox("Highlight Active Turtles"));
+        myHighlightOption.setSelected(myWorkspace.getHighlighted());
         checkBoxPanel.add(myHideOption = new JCheckBox("Hide All Turtles"));
         checkBoxPanel.add(myPenUpOption = new JCheckBox("Raise Pen of All Turtles"));
 
@@ -142,12 +143,12 @@ public class SettingsWindow extends JFrame{
      */
     private JButton createButton(final SettingsWindow s) {
         JButton button = new JButton("Ok");
+        button.setSelected(true);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed (ActionEvent e) {
-                TurtleManager manager = s.myWorkspace.getTurtleManager();
                 s.myWorkspace.getCanvas().setBackgroundColor((Color) s.myBackgroundColor.getSelectedItem());
-                manager.setHighlighted(s.myHighlightOption.isSelected());
+                s.myWorkspace.setHighlighted(s.myHighlightOption.isSelected());
                 s.dispose();       
             }   
         });

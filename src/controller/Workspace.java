@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Observer;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import model.Paintable;
@@ -73,10 +74,17 @@ public class Workspace  implements Paintable, IParserProvider {
     }
     
     /**
-     * @return the Turtle Manager associated with this workspace
+     * Updates the state of this workspace for the user
      */
-    public TurtleManager getTurtleManager () {
-        return myTurtleManager;
+    public void update(){
+        myTurtleManager.update();
+    }
+    
+    /**
+     * @return the active Turtles associated with this workspace
+     */
+    public Map<Integer, Turtle> getTurtles () {
+        return myTurtleManager.getTurtles();
     }
     
     /**
@@ -137,9 +145,21 @@ public class Workspace  implements Paintable, IParserProvider {
         return colorIndex;
     }
     
+    public void setHighlighted(boolean active){
+        myTurtleManager.setHighlighted(active);
+    }
+    
+    public boolean getHighlighted(){
+        return myTurtleManager.getHighlighted();
+    }
+    
     public Canvas getCanvas()
     {
         return myCanvas;
+    }
+    
+    public void addObserver(Observer o){
+        myTurtleManager.addObserver(o);
     }
 
     @Override

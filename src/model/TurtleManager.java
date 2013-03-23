@@ -156,6 +156,14 @@ public class TurtleManager extends Observable implements Paintable{
         update();
     }
     
+    /**
+     * @return active boolean representing whether currently active turtles
+     * should be highlighted or not
+     */
+    public boolean getHighlighted(){
+        return highlightEnabled;
+    }
+    
     public Map<Integer, Turtle> getTurtles(){
         return myActiveTurtles;
     }
