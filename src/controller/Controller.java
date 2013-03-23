@@ -21,6 +21,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 import parser.Parser;
 import parser.SemanticsTable;
 import parser.nodes.SyntaxNode;
@@ -143,29 +144,35 @@ public class Controller {
      * @return
      */
     private JMenu createSettingMenu() {
-        JMenu menu = new JMenu(myResource.getString("SettingMenu"));
+        JMenu menu = new JMenu(myResource.getString("SettingMenu"));     
         menu.add(new AbstractAction(myResource.getString("SetPenColor")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Object[] options = DEFAULT_PEN_COLOR_OPTION;
-                int response = JOptionPane.showOptionDialog(null, 
-                                                            myResource.getString("SetPenDialog"), 
-                                                            "", 
-                                                            JOptionPane.YES_OPTION, 
-                                                            JOptionPane.INFORMATION_MESSAGE, 
-                                                            null, 
-                                                            options, 
-                                                            null);
-
-                Color color;
-                try {
-                    Field field = Color.class.getField(options[response].toString());
-                    color = (Color)field.get(null);
-                } catch (Exception e1) {
-                    color = null;
+                JTextField id = new JTextField();
+                JTextField R = new JTextField();
+                JTextField G = new JTextField();
+                JTextField B = new JTextField();
+                Object[] message = {
+                                    "ColorIndex:", id,
+                                    "Rvalue:", R,
+                                    "Gvalue:", G,
+                                    "Bvalue:", B
+                };
+                int option = JOptionPane.showConfirmDialog(null, message, "Enter Your Color", JOptionPane.OK_CANCEL_OPTION);
+                if (option == JOptionPane.OK_OPTION){
+                    try {
+                        int colorIndex = Integer.parseInt(id.getText());
+                        int Rvalue = Integer.parseInt(R.getText());
+                        int Gvalue = Integer.parseInt(G.getText());
+                        int Bvalue = Integer.parseInt(B.getText());
+                        Color c = new Color(Rvalue, Gvalue, Bvalue);
+                        getWorkspace().getColors().setColor(colorIndex, c);
+                        getWorkspace().getTurtle().setColor(c);
+                    } catch (Exception e1)
+                    {
+                        getWorkspace().showError("Invalid input for color !");
+                    }
                 }
-                getWorkspace().getTurtle().setColor(color);
-
             }
         });
         
