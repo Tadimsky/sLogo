@@ -124,6 +124,21 @@ public class TurtleManager extends Observable implements Paintable{
     public void activateEven(){
         addActive(ADD_EVEN);
     }
+    
+    /**
+     * Activates the turtle specified by the index
+     */
+    public void activateTurtle(int index) {
+        if (!myActiveTurtles.containsKey(index))
+            myActiveTurtles.put(index, myTurtles.get(index));
+    }
+    
+    /**
+     * Activates the turtle specified by the index
+     */
+    public void deactivateTurtle(int index) {
+            myActiveTurtles.remove(index);
+    }
 
     /**
      * Paints each turtle and stamp from the workspace 
@@ -164,7 +179,17 @@ public class TurtleManager extends Observable implements Paintable{
         return highlightEnabled;
     }
     
+    /**
+     * @return Currently active turtles associated with this manager
+     */
     public Map<Integer, Turtle> getTurtles(){
         return myActiveTurtles;
+    }
+    
+    /**
+     * @return All the turtles associated with this manager
+     */
+    public Map<Integer, Turtle> getAllTurtles(){
+        return myTurtles;
     }
 }

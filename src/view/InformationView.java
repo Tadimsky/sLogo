@@ -76,7 +76,10 @@ public class InformationView extends JPanel implements Observer {
         IState turtle = (IState) manager.getTurtles().get(0);
          for (int i = 0; i< myLabelList.size(); i++){
              LogoLabel j = myLabelList.get(i);
-             j.setText(turtle);
+             if (turtle != null)
+                 j.setText(turtle);
+             else 
+                 j.setText("-");
          }
     }
 

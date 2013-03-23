@@ -88,6 +88,27 @@ public class Workspace  implements Paintable, IParserProvider {
     }
     
     /**
+     * @return All the Turtles associated with this workspace
+     */
+    public Map<Integer, Turtle> getAllTurtles () {
+        return myTurtleManager.getAllTurtles();
+    }
+    
+    /**
+     * Activates the turtle specified by the index
+     */
+    public void activateTurtle(int index) {
+        myTurtleManager.activateTurtle(index);
+    }
+    
+    /**
+     * Activates the turtle specified by the index
+     */
+    public void deactivateTurtle(int index) {
+        myTurtleManager.deactivateTurtle(index);
+    }
+    
+    /**
      * @return Name of this workspace
      */
     public String getName () {
@@ -120,6 +141,15 @@ public class Workspace  implements Paintable, IParserProvider {
         JOptionPane.showMessageDialog(null, message,
                                       myErrorResource.getString("ErrorTitle"),
                                       JOptionPane.ERROR_MESSAGE);
+    }
+    
+    /**
+     * Adds a new turtle with the specified index to the workspace
+     * @param index
+     */
+    public void addTurtle(int index) {
+        myTurtleManager.addNew(index);
+        update();
     }
 
     @Override

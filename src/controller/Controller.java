@@ -2,6 +2,12 @@ package controller;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -16,13 +22,17 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import controller.support.StayOpenCheckBoxMenuItem;
 import parser.Parser;
 import parser.SemanticsTable;
 import parser.nodes.SyntaxNode;
@@ -338,7 +348,36 @@ public class Controller {
      * @return
      */
     private JMenu createSettingMenu() {
-        JMenu menu = new JMenu(myResource.getString("SettingMenu"));     
+        JMenu menu = new JMenu(myResource.getString("SettingMenu"));
+        
+        menu.add(new AbstractAction("New Turtle") {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                JTextField turtle = new JTextField();
+                Object[] message = {"Choose an index: ", turtle };
+                int option = JOptionPane.showConfirmDialog(null, message, 
+                                          "New Turtle", JOptionPane.OK_CANCEL_OPTION);
+                
+                if (option == JOptionPane.OK_OPTION) {
+                    try {
+                        int index = Integer.parseInt(turtle.getText());
+                        if (!getWorkspace().getTurtles().containsKey(index)) {
+                            getWorkspace().addTurtle(index);
+                        }
+                        else 
+                            getWorkspace().showError("This Turtle already exists!");                
+                    } 
+                    catch (Exception e1){
+                        getWorkspace().showError("Not an index!");
+                    }
+                }
+            }
+        });
+        
+        JMenu tellMenu = new JMenu("Tell");
+        tellMenu.addMouseListener(createTellMenuListener(tellMenu));
+        menu.add(tellMenu);
+
         menu.add(new AbstractAction(myResource.getString("SetPenColor")) {
             @Override
             public void actionPerformed (ActionEvent e) {
@@ -352,7 +391,8 @@ public class Controller {
                                     "Gvalue:", G,
                                     "Bvalue:", B
                 };
-                int option = JOptionPane.showConfirmDialog(null, message, "Enter Your Color", JOptionPane.OK_CANCEL_OPTION);
+                int option = JOptionPane.showConfirmDialog(null, message, 
+                             "Enter Your Color", JOptionPane.OK_CANCEL_OPTION);
                 if (option == JOptionPane.OK_OPTION){
                     try {
                         int colorIndex = Integer.parseInt(id.getText());
@@ -386,8 +426,9 @@ public class Controller {
                     getWorkspace().showError(exception.toString());
                 }
             }
-        });
+        });        
         
+        menu.add(new JSeparator());        
         menu.add(new AbstractAction("Workspace") {
             @Override
             public void actionPerformed (ActionEvent e) {
@@ -396,6 +437,44 @@ public class Controller {
         });
         
         return menu;
+    }
+    
+    /**
+     * @param menu menu to take checkbox items
+     * @return mouse listener for this menu item
+     */
+    private MouseListener createTellMenuListener(final JMenu menu) {
+        return new MouseAdapter() {
+            @Override 
+            public void mouseEntered (MouseEvent e) {
+                Map<Integer, Turtle> map = getWorkspace().getAllTurtles();
+                Map<Integer, Turtle> activeMap = getWorkspace().getTurtles();
+                menu.removeAll();
+                for (Integer i : map.keySet()) {
+                    final StayOpenCheckBoxMenuItem item = new StayOpenCheckBoxMenuItem("Turtle "+i);
+                    
+                    item.addItemListener(createCheckBoxItemListener(item));
+                    if (activeMap.containsKey(i))
+                        item.setSelected(true);
+                    menu.add(item);
+                }
+            }
+        };
+    }
+    
+    private ItemListener createCheckBoxItemListener(final StayOpenCheckBoxMenuItem item) {
+        return new ItemListener() {
+            @Override
+            public void itemStateChanged (ItemEvent e) {     
+                Scanner s = new Scanner(item.getText());
+                s.skip("Turtle ");
+                int index = s.nextInt();
+                if (e.getStateChange() == ItemEvent.SELECTED) 
+                    getWorkspace().activateTurtle(index);
+                else
+                    getWorkspace().deactivateTurtle(index);          
+            }
+        };
     }
     
     /**
