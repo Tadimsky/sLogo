@@ -11,6 +11,7 @@ import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import javax.swing.AbstractAction;
@@ -26,7 +27,9 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import view.Canvas;
 import view.HelpWindow;
+import view.SettingsWindow;
 import view.Window;
+import model.Turtle;
 
 
 /**
@@ -59,7 +62,7 @@ public class Controller {
      */
     public Controller () {
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
-        myResource = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "Portugues");
+        myResource = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
         myWindow = new Window(this);
         myParser = new Parser();
     }
@@ -128,68 +131,9 @@ public class Controller {
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(createFileMenu());
         menuBar.add(createCommandMenu());
-        menuBar.add(createHelpMenu());
         menuBar.add(createSettingMenu());
+        menuBar.add(createHelpMenu());  
         return menuBar;
-    }
-    
-    
-    /**
-     * creates the setting options on the menu bar,
-     * enabling user to set certain properties of the workspace,
-     * such as background image, turtle image, pen color, etc
-     * 
-     * @return
-     */
-    private JMenu createSettingMenu() {
-        JMenu menu = new JMenu(myResource.getString("SettingMenu"));
-        menu.add(new AbstractAction(myResource.getString("SetPenColor")) {
-            @Override
-            public void actionPerformed (ActionEvent e) {
-                Object[] options = DEFAULT_PEN_COLOR_OPTION;
-                int response = JOptionPane.showOptionDialog(null, 
-                                                            myResource.getString("SetPenDialog"), 
-                                                            "", 
-                                                            JOptionPane.YES_OPTION, 
-                                                            JOptionPane.INFORMATION_MESSAGE, 
-                                                            null, 
-                                                            options, 
-                                                            null);
-
-                Color color;
-                try {
-                    Field field = Color.class.getField(options[response].toString());
-                    color = (Color)field.get(null);
-                } catch (Exception e1) {
-                    color = null;
-                }
-                getWorkspace().getTurtle().setColor(color);
-
-            }
-        });
-        return menu;
-    }
-
-    /**
-     * creates the help page option on the menu bar
-     * 
-     * @return help Menu option
-     */
-    private JMenu createHelpMenu() {
-        JMenu menu = new JMenu(myResource.getString("HelpMenu"));
-        menu.add(new AbstractAction(myResource.getString("CommandDescription")) {
-            @Override
-            public void actionPerformed (ActionEvent e) {
-                URL helpPage = null;
-                try {
-                    helpPage = new URL(DEFAULT_URL);
-                } catch (MalformedURLException exception) {
-                    getWorkspace().showError(exception.toString());
-                }
-                new HelpWindow(HELP_TITLE,helpPage);
-            }
-        });
-        return menu;
     }
 
     /**
@@ -288,28 +232,44 @@ public class Controller {
         menu.add(new AbstractAction(myResource.getString("ForwardCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                getWorkspace().getTurtle().move(DEFAULT_MOVE_VALUE);
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
+                for (Turtle t : turtles.values()) {
+                    t.move(DEFAULT_MOVE_VALUE);
+                }
+                getWorkspace().getTurtleManager().update();
                 getWorkspace().addHistory("forward " + DEFAULT_MOVE_VALUE);
             }
         });
         menu.add(new AbstractAction(myResource.getString("BackwardCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                getWorkspace().getTurtle().move(-DEFAULT_MOVE_VALUE);
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
+                for (Turtle t : turtles.values()) {
+                    t.move(-DEFAULT_MOVE_VALUE);
+                }
+                getWorkspace().getTurtleManager().update();
                 getWorkspace().addHistory("back " + DEFAULT_MOVE_VALUE);
             }
         });
         menu.add(new AbstractAction(myResource.getString("TurnRightCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                getWorkspace().getTurtle().turn(DEFAULT_TURN_VALUE);
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
+                for (Turtle t : turtles.values()) {
+                    t.turn(DEFAULT_TURN_VALUE);
+                }
+                getWorkspace().getTurtleManager().update();
                 getWorkspace().addHistory("right " + DEFAULT_TURN_VALUE);
             }
         });
         menu.add(new AbstractAction(myResource.getString("TurnLeftCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                getWorkspace().getTurtle().turn(-DEFAULT_TURN_VALUE);
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
+                for (Turtle t : turtles.values()) {
+                    t.turn(-DEFAULT_TURN_VALUE);
+                }
+                getWorkspace().getTurtleManager().update();
                 getWorkspace().addHistory("left " + DEFAULT_TURN_VALUE);
             }
         });
@@ -325,31 +285,112 @@ public class Controller {
         menu.add(new AbstractAction(myResource.getString("ShowCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                getWorkspace().getTurtle().setHiding(false);
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
+                for (Turtle t : turtles.values()) {
+                    t.setHiding(false);
+                }
+                getWorkspace().getTurtleManager().update();
                 getWorkspace().addHistory("showturtle");
             }
         });
         menu.add(new AbstractAction(myResource.getString("HideCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                getWorkspace().getTurtle().setHiding(true);
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
+                for (Turtle t : turtles.values()) {
+                    t.setHiding(true);
+                }
+                getWorkspace().getTurtleManager().update();
                 getWorkspace().addHistory("hideturtle");
             }
         });
         menu.add(new AbstractAction(myResource.getString("PenUpCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                getWorkspace().getTurtle().setPenWriting(false);
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
+                for (Turtle t : turtles.values()) {
+                    t.setPenWriting(false);
+                }
+                getWorkspace().getTurtleManager().update();
                 getWorkspace().addHistory("penup");
             }
         });
         menu.add(new AbstractAction(myResource.getString("PenDownCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                getWorkspace().getTurtle().setPenWriting(true);
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
+                for (Turtle t : turtles.values()) {
+                    t.setPenWriting(true);
+                }
+                getWorkspace().getTurtleManager().update();
                 getWorkspace().addHistory("pendown");
             }
         });
+    }
+    
+    /**
+     * creates the setting options on the menu bar,
+     * enabling user to set certain properties of the workspace,
+     * such as background image, turtle image, pen color, etc
+     * 
+     * @return
+     */
+    private JMenu createSettingMenu() {
+        JMenu menu = new JMenu(myResource.getString("SettingMenu"));
+        menu.add(new AbstractAction(myResource.getString("SetPenColor")) {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                Object[] options = DEFAULT_PEN_COLOR_OPTION;
+                int response = JOptionPane.showOptionDialog(null, 
+                                                            myResource.getString("SetPenDialog"), 
+                                                            "", 
+                                                            JOptionPane.YES_OPTION, 
+                                                            JOptionPane.INFORMATION_MESSAGE, 
+                                                            null, 
+                                                            options, 
+                                                            null);
+
+                Color color;
+                try {
+                    Field field = Color.class.getField(options[response].toString());
+                    color = (Color)field.get(null);
+                } catch (Exception e1) {
+                    color = null;
+                }
+                getWorkspace().getTurtleManager().getTurtles().get(0).setColor(color);
+
+            }
+        });
+
+        menu.add(new AbstractAction("Workspace") {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                new SettingsWindow(getWorkspace());
+            }
+        });
+        return menu;
+    }
+    
+    /**
+     * creates the help page option on the menu bar
+     * 
+     * @return help Menu option
+     */
+    private JMenu createHelpMenu() {
+        JMenu menu = new JMenu(myResource.getString("HelpMenu"));
+        menu.add(new AbstractAction(myResource.getString("CommandDescription")) {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                URL helpPage = null;
+                try {
+                    helpPage = new URL(DEFAULT_URL);
+                } catch (MalformedURLException exception) {
+                    getWorkspace().showError(exception.toString());
+                }
+                new HelpWindow(HELP_TITLE,helpPage);
+            }
+        });
+        return menu;
     }
 
     /**

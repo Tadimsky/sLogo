@@ -3,6 +3,7 @@ package parser;
 import java.awt.Color;
 import java.util.Map;
 import model.Turtle;
+import model.TurtleManager;
 
 /**
  * 
@@ -19,7 +20,7 @@ public interface IParserProvider {
     
     public VariableManager getVariables();
     
-    public Turtle getTurtle ();
+    public TurtleManager getTurtleManager ();
 
     public void addColor(int colorIndex, Color color);
 

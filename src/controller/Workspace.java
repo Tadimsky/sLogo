@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import model.Paintable;
 import model.Turtle;
+import model.TurtleManager;
 import parser.CustomCommand;
 import parser.IParserProvider;
 import parser.VariableManager;
@@ -35,11 +36,11 @@ public class Workspace  implements Paintable, IParserProvider {
     private UndoManager myUndoManager;
     private Map<Integer,Color> myPalette;
     private Canvas myCanvas;
+    private TurtleManager myTurtleManager;
 
     public Workspace (String name) {
         this();
-        myName = name;   
-        
+        myName = name;         
     }
     
     /**
@@ -47,34 +48,41 @@ public class Workspace  implements Paintable, IParserProvider {
      */
     public Workspace () {
         myCommandMap = new HashMap<String, CustomCommand>();
-        myTurtle = new Turtle();
+        myTurtleManager = new TurtleManager();
         myErrorResource = ResourceBundle.getBundle(Controller.DEFAULT_RESOURCE_PACKAGE + "error."+ "ErrorEnglish");
         myName = UNTITLED;
         myHistory = new ArrayList<String>();
         myVariables = new VariableManager();
         myUndoManager = new UndoManager();
         myPalette = new HashMap<Integer,Color>();
+        setInitialColors();
         myCanvas = new Canvas(this);
+        
+    }
+    
+    private void setInitialColors(){
+        myPalette.put(0, Color.white);
+        myPalette.put(1, Color.black);
+        myPalette.put(2, Color.blue);
+        myPalette.put(3, Color.red);
     }
 
     public Map<String,CustomCommand> getCommandMap () {
         return myCommandMap;
     }
-
-       
-    
+ 
     /**
      * Painting method that gets called by the Canvas
      */
     public void paint(Graphics2D pen){
-        myTurtle.paint(pen);
+        myTurtleManager.paint(pen);
     }
     
     /**
-     * @return the Turtle associated with this workspace
+     * @return the Turtle Manager associated with this workspace
      */
-    public Turtle getTurtle () {
-        return myTurtle;
+    public TurtleManager getTurtleManager () {
+        return myTurtleManager;
     }
     
     /**

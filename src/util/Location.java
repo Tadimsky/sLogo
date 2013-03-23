@@ -5,9 +5,9 @@ import java.awt.geom.Point2D;
 import view.Canvas;
 
 public class Location extends Point2D.Double {
-    private static final Dimension myCanvasDimension = Canvas.CANVAS_DIMENSION;
-    private static final double X_OFFSET = Canvas.CANVAS_DIMENSION.getWidth()/2;
-    private static final double Y_OFFSET = Canvas.CANVAS_DIMENSION.getHeight()/2;
+    private static final Dimension myCanvasDimension = Canvas.DEFAULT_CANVAS_DIMENSION;
+    private static final double X_OFFSET = Canvas.DEFAULT_CANVAS_DIMENSION.getWidth()/2;
+    private static final double Y_OFFSET = Canvas.DEFAULT_CANVAS_DIMENSION.getHeight()/2;
 
     /**
      * Create a location at the origin.

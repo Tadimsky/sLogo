@@ -12,6 +12,7 @@ import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import model.IState;
+import model.TurtleManager;
 import parser.commands.turtle.queries.Heading;
 import parser.commands.turtle.queries.ILabelInformation;
 import parser.commands.turtle.queries.IsPenDown;
@@ -71,7 +72,8 @@ public class InformationView extends JPanel implements Observer {
 
     @Override
     public void update (Observable object, Object arg) {
-         IState turtle = (IState) object;
+        TurtleManager manager = (TurtleManager) object;
+        IState turtle = (IState) manager.getTurtles().get(0);
          for (int i = 0; i< myLabelList.size(); i++){
              LogoLabel j = myLabelList.get(i);
              j.setText(turtle);

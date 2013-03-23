@@ -34,7 +34,6 @@ public class HelpWindow extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
         setVisible(true);
-
     }
 
 }

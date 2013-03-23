@@ -19,7 +19,9 @@ import model.Paintable;
  */
 public class Canvas extends JComponent implements Observer {
     private final static Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
-    public final static Dimension CANVAS_DIMENSION = new Dimension(830, 575);
+    public final static Dimension DEFAULT_CANVAS_DIMENSION = new Dimension(830, 575);
+    public static final Color DEFAULT_BACKGROUND = Color.white;
+    
     private Paintable myPaintingResource;
     private Color myBackgroundColor;
 
@@ -28,7 +30,8 @@ public class Canvas extends JComponent implements Observer {
      * and a turtle
      */
     public Canvas (Paintable workspace) {
-        setPreferredSize(CANVAS_DIMENSION);
+        setPreferredSize(DEFAULT_CANVAS_DIMENSION);
+        myBackgroundColor = DEFAULT_BACKGROUND;
         myPaintingResource = workspace;
         setBackground(DEFAULT_BACKGROUND_COLOR);
     }
@@ -39,8 +42,7 @@ public class Canvas extends JComponent implements Observer {
     @Override
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
-        g.setColor(getBackground());
-        System.out.println(getBackground().toString());
+        g.setColor(myBackgroundColor);
         g.fillRect(0, 0, getWidth(), getHeight());
         myPaintingResource.paint((Graphics2D) g);
     }
@@ -61,9 +63,11 @@ public class Canvas extends JComponent implements Observer {
         return myPaintingResource;
     }
 
+    /**
+     * @param c Background color to be set on this canvas
+     */
     public void setBackgroundColor(Color c) {
-        setBackground(c);
-        System.out.println(getBackground().toString() + "ha");
+        myBackgroundColor = c;
         repaint();
     }
 }

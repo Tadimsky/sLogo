@@ -69,9 +69,9 @@ public class Window extends JFrame {
      * Sets the necessary observers for the turtle of this Workspace
      * @param turtle Observed turtle
      */
-    private void setObservers(Observable turtle){
-        turtle.addObserver(myCurrentCanvas);
-        turtle.addObserver(myInfoView);
+    private void setObservers(Observable turtleManager){
+        turtleManager.addObserver(myCurrentCanvas);
+        turtleManager.addObserver(myInfoView);
         updateObservers();
     }
     
@@ -85,7 +85,7 @@ public class Window extends JFrame {
         myCurrentCanvas = workspace.getCanvas();
         myTabbedPane.addTab(workspace.getName(), myCurrentCanvas);
         myTabbedPane.setSelectedComponent(myCurrentCanvas);
-        setObservers(workspace.getTurtle());
+        setObservers(workspace.getTurtleManager());
     }
     
     /**
@@ -93,7 +93,7 @@ public class Window extends JFrame {
      */
     private void updateObservers(){
         Workspace workspace = (Workspace) myCurrentCanvas.getPaintableResource();
-        workspace.getTurtle().update();
+        workspace.getTurtleManager().update();
     }
 
     /**
