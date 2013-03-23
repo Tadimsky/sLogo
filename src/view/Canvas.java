@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JComponent;
@@ -22,6 +24,7 @@ public class Canvas extends JComponent implements Observer {
     public final static Dimension CANVAS_DIMENSION = new Dimension(830, 575);
     private Paintable myPaintingResource;
     private Color myBackgroundColor;
+    private Image myBackgroundImage;
 
     /**
      * Constructor for this class, automatically creates a workspace
@@ -31,6 +34,7 @@ public class Canvas extends JComponent implements Observer {
         setPreferredSize(CANVAS_DIMENSION);
         myPaintingResource = workspace;
         setBackground(DEFAULT_BACKGROUND_COLOR);
+        myBackgroundImage = null;
     }
 
     /**
@@ -40,8 +44,10 @@ public class Canvas extends JComponent implements Observer {
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
         g.setColor(getBackground());
-        System.out.println(getBackground().toString());
         g.fillRect(0, 0, getWidth(), getHeight());
+        if(myBackgroundImage != null){
+            g.drawImage(myBackgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
         myPaintingResource.paint((Graphics2D) g);
     }
 
@@ -63,7 +69,12 @@ public class Canvas extends JComponent implements Observer {
 
     public void setBackgroundColor(Color c) {
         setBackground(c);
-        System.out.println(getBackground().toString() + "ha");
+        myBackgroundImage = null;
+        repaint();
+    }
+
+    public void setBackgroundImage(BufferedImage read) {
+        myBackgroundImage = read;
         repaint();
     }
 }

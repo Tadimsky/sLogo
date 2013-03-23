@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
@@ -165,6 +166,21 @@ public class Controller {
                 }
                 getWorkspace().getTurtle().setColor(color);
 
+            }
+        });
+        
+        menu.add(new AbstractAction(myResource.getString("SetBackgroundImage")) {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                try {
+                    int response = myChooser.showOpenDialog(null);
+                    if (response == JFileChooser.APPROVE_OPTION) {
+                        getWorkspace().getCanvas().setBackgroundImage(ImageIO.read(myChooser.getSelectedFile()));
+                    }
+                }
+                catch (Exception exception) {
+                    getWorkspace().showError(exception.toString());
+                }
             }
         });
         return menu;
