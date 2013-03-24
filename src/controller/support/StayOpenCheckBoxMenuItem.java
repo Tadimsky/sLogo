@@ -12,7 +12,7 @@ import javax.swing.event.ChangeListener;
 /**
  * An extension of JCheckBoxMenuItem that doesn't close the menu when selected.
  *
- * @author Darryl
+ * @author Darryl (Source from internet), Henrique Moraes
  */
 public class StayOpenCheckBoxMenuItem extends JCheckBoxMenuItem {
 
@@ -35,21 +35,7 @@ public class StayOpenCheckBoxMenuItem extends JCheckBoxMenuItem {
    */
   public StayOpenCheckBoxMenuItem() {
     super();
-  }
-
-  /**
-   * @see JCheckBoxMenuItem#JCheckBoxMenuItem(Action)
-   */
-  public StayOpenCheckBoxMenuItem(Action a) {
-    super(a);
-  }
-
-  /**
-   * @see JCheckBoxMenuItem#JCheckBoxMenuItem(Icon)
-   */
-  public StayOpenCheckBoxMenuItem(Icon icon) {
-    super(icon);
-  }
+  } 
 
   /**
    * @see JCheckBoxMenuItem#JCheckBoxMenuItem(String)
@@ -63,20 +49,6 @@ public class StayOpenCheckBoxMenuItem extends JCheckBoxMenuItem {
    */
   public StayOpenCheckBoxMenuItem(String text, boolean selected) {
     super(text, selected);
-  }
-
-  /**
-   * @see JCheckBoxMenuItem#JCheckBoxMenuItem(String, Icon)
-   */
-  public StayOpenCheckBoxMenuItem(String text, Icon icon) {
-    super(text, icon);
-  }
-
-  /**
-   * @see JCheckBoxMenuItem#JCheckBoxMenuItem(String, Icon, boolean)
-   */
-  public StayOpenCheckBoxMenuItem(String text, Icon icon, boolean selected) {
-    super(text, icon, selected);
   }
 
   /**

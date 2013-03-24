@@ -1,7 +1,9 @@
 package model;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.util.ArrayList;
 import java.util.List;
 import util.Location;
@@ -13,20 +15,21 @@ import util.PenLine;
  *
  */
 public class Pen {
+    public static final Stroke DEFAULT_STROKE = new BasicStroke(1);
+    
     List<PenLine> myLines;
     private boolean penWriting = true;
     private Color myCurrentColor = Color.BLACK;
+    private Stroke myStroke;
     
     public void addLine(Location initialLocation, Location finalLocation){
-        // for now, when the pen is up, lines simply get eliminated
-        // if it is necessary to store them, then we need to devise a 
-        // new approach
         if (!penWriting) return;
-        myLines.add(new PenLine(initialLocation, finalLocation, myCurrentColor));
+        myLines.add(new PenLine(initialLocation, finalLocation, myCurrentColor, myStroke));
     }
     
     public Pen(){
         myLines = new ArrayList<PenLine>();
+        myStroke = DEFAULT_STROKE;
     }
     
     public void setPenColor(Color color){
@@ -45,6 +48,13 @@ public class Pen {
     
     public void setPenWriting(boolean write){
         penWriting = write;
+    }
+    
+    /**
+     * Sets the stroke for the pen of this turtle
+     */
+    public void setStroke (Stroke stroke) {
+        myStroke = stroke;
     }
     
     public boolean isPenWriting(){

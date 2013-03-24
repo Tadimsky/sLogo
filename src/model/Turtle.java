@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -24,7 +25,6 @@ import view.components.ErrorBox;
  */
 
 public class Turtle extends Observable implements Paintable, IState{
-    //public static final String IMAGE_PATH = "/images/turtleSideways.png";
     
     private Location myCenter;
     private Vector myHeading;
@@ -37,13 +37,7 @@ public class Turtle extends Observable implements Paintable, IState{
     public Turtle () {
         myPen = new Pen();
         myCenter = new Location(0,0);
-        myHeading = new Vector(270,0);
-//        try {
-//            myImage = ImageIO.read(this.getClass().getResource(IMAGE_PATH));
-//        }
-//        catch (Exception e) { ErrorBox.showError(Error.INVALID_IMAGE); };
-//        myWidth = myImage.getWidth();
-//        myHeight = myImage.getHeight(); 
+        myHeading = new Vector(270,0); 
     }
 
     /**
@@ -59,7 +53,6 @@ public class Turtle extends Observable implements Paintable, IState{
       	if (wrapOnBoundary(initialPosition, pixels)){
       		this.move((int) myHeading.getMagnitude());
       	}
-        //update();
         return pixels;
     }
    
@@ -108,7 +101,6 @@ public class Turtle extends Observable implements Paintable, IState{
      */
     public int turn(int degrees){
         myHeading.turn(degrees);
-        //update();
         return degrees;
     }
     
@@ -129,7 +121,6 @@ public class Turtle extends Observable implements Paintable, IState{
         Vector absolute = new Vector(viewerDegreeConversion(degrees), 0);
         int  angle = (int) myHeading.getAngleBetween(absolute);
         myHeading.turn(angle);
-        //update();
         return angle;
     }
     
@@ -143,7 +134,6 @@ public class Turtle extends Observable implements Paintable, IState{
         Vector toTurn = new Vector(myCenter, toFace);
         int angle = (int) myHeading.getAngleBetween(toTurn);
         myHeading.turn(angle);
-        //update();
         return angle;
     }
     
@@ -245,7 +235,6 @@ public class Turtle extends Observable implements Paintable, IState{
     
     public void setHiding(boolean hide){
         amHiding = hide;
-        //update();
     }
     
     @Override
@@ -255,6 +244,13 @@ public class Turtle extends Observable implements Paintable, IState{
     
     public void setColor(Color color){
         myPen.setPenColor(color);
+    }
+    
+    /**
+     * Sets the stroke for the pen of this turtle
+     */
+    public void setStroke (Stroke stroke) {
+        myPen.setStroke(stroke);
     }
 
     /**

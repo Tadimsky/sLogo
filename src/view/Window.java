@@ -15,6 +15,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import view.components.ErrorBox;
 import view.components.InputField;
+import view.windows.InformationView;
 import controller.Controller;
 import controller.Workspace;
 

@@ -35,10 +35,12 @@ public class TurtleManager extends Observable implements Paintable{
     private BufferedImage myImage;
     private int lastIndex = 0;
     private boolean highlightEnabled = false;
+    private Stroke myStroke;
 
     public TurtleManager(){
         myTurtles = new TreeMap<Integer, Turtle>();
         myActiveTurtles = new TreeMap<Integer, Turtle>();
+        myStroke = Pen.DEFAULT_STROKE;
         setImage(DEFAULT_IMAGE_PATH);
         addNew(lastIndex);
     }
@@ -82,8 +84,10 @@ public class TurtleManager extends Observable implements Paintable{
      */
     public void addNew(int index) {
         Turtle turtle = createTurtle(index);
+        turtle.setStroke(myStroke);
         myTurtles.put(index, turtle);
         myActiveTurtles.put(index, turtle);
+        //TODO not rely on last index
         lastIndex = myTurtles.size();
     }
     
@@ -169,6 +173,17 @@ public class TurtleManager extends Observable implements Paintable{
     public void setHighlighted(boolean active){
         highlightEnabled = active;
         update();
+    }
+    
+    /**
+     * @param stroke Stroke to be set on each active turtle
+     */
+    public void setStroke(Stroke stroke) {
+        myStroke = stroke;
+        if (myActiveTurtles.isEmpty()) return;
+        for (Turtle t : myActiveTurtles.values()) {
+            t.setStroke(stroke);
+        }
     }
     
     /**

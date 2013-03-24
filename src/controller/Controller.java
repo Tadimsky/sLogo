@@ -38,9 +38,10 @@ import parser.SemanticsTable;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import view.Canvas;
-import view.HelpWindow;
-import view.SettingsWindow;
 import view.Window;
+import view.windows.GraphicsSettingsWindow;
+import view.windows.HelpWindow;
+import view.windows.WorkspaceSettingsWindow;
 import model.Turtle;
 
 
@@ -428,11 +429,18 @@ public class Controller {
             }
         });        
         
-        menu.add(new JSeparator());        
+        menu.add(new JSeparator());   
+        menu.add(new AbstractAction("Graphics") {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                new GraphicsSettingsWindow(getWorkspace());
+            }
+        });
+        
         menu.add(new AbstractAction("Workspace") {
             @Override
             public void actionPerformed (ActionEvent e) {
-                new SettingsWindow(getWorkspace());
+                new WorkspaceSettingsWindow(getWorkspace());
             }
         });
         
@@ -462,6 +470,10 @@ public class Controller {
         };
     }
     
+    /**
+     * @param item menu item to add the listener
+     * @return item listener for this menu item
+     */
     private ItemListener createCheckBoxItemListener(final StayOpenCheckBoxMenuItem item) {
         return new ItemListener() {
             @Override
@@ -472,7 +484,7 @@ public class Controller {
                 if (e.getStateChange() == ItemEvent.SELECTED) 
                     getWorkspace().activateTurtle(index);
                 else
-                    getWorkspace().deactivateTurtle(index);          
+                    getWorkspace().deactivateTurtle(index);
             }
         };
     }

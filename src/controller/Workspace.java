@@ -1,7 +1,9 @@
 package controller;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import java.io.PrintWriter;
 import java.io.Writer;
@@ -20,11 +22,12 @@ import parser.IParserProvider;
 import parser.VariableManager;
 import view.Canvas;
 import view.ColorManager;
+import view.components.Strokes;
 
 /**
  * Contains command information (history) for the particular workspace, holds turtle, allows saving of workspace
  * 
- * @author XuRui, Ziqiang Huang
+ * @author XuRui, Ziqiang Huang, Henrique Moraes
  *
  */
 public class Workspace  implements Paintable, IParserProvider {
@@ -58,8 +61,7 @@ public class Workspace  implements Paintable, IParserProvider {
         myVariables = new VariableManager();
         myUndoManager = new UndoManager();
         myPalette = new ColorManager();
-        myCanvas = new Canvas(this);
-        
+        myCanvas = new Canvas(this);      
     }
 
     public Map<String,CustomCommand> getCommandMap () {
@@ -99,6 +101,7 @@ public class Workspace  implements Paintable, IParserProvider {
      */
     public void activateTurtle(int index) {
         myTurtleManager.activateTurtle(index);
+        update();
     }
     
     /**
@@ -106,6 +109,7 @@ public class Workspace  implements Paintable, IParserProvider {
      */
     public void deactivateTurtle(int index) {
         myTurtleManager.deactivateTurtle(index);
+        update();
     }
     
     /**
@@ -183,13 +187,34 @@ public class Workspace  implements Paintable, IParserProvider {
         return myTurtleManager.getHighlighted();
     }
     
+    /**
+     * @return Canvas associated with this workspace
+     */
     public Canvas getCanvas()
     {
         return myCanvas;
     }
     
+    /**
+     * @param o observer to be added to the turtle manager
+     */
     public void addObserver(Observer o){
         myTurtleManager.addObserver(o);
+    }
+    
+    /**
+     * @param stroke stroke to be set on active turtles of this workspace
+     */
+    public void setStroke(Stroke stroke) {
+        myTurtleManager.setStroke(stroke);
+    }
+    
+    /**
+     * @param type type of stroke to be set on active turtles of this workspace
+     * @param thickness thickness of the stroke
+     */
+    public void setStroke(Strokes type, float thickness) {
+        myTurtleManager.setStroke(myCanvas.createStroke(type, thickness));
     }
 
     @Override
