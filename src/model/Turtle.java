@@ -272,9 +272,6 @@ public class Turtle extends Observable implements Paintable, IState{
         myPen.setPenColor(color);
     }
     
-    public void setImage(BufferedImage image){
-    	myImage = image;
-    }
 
     /**
      * Erases turtle's trails and sends it to the home position
