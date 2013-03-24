@@ -16,11 +16,7 @@ import util.Location;
 import view.components.Error;
 import view.components.ErrorBox;
 
-public class TurtleManager {
-	
-	public TurtleManager(){
-		
-	}
+
 /**
  * Manages all the properties and state of the turtles from a specific workspace
  * @author Henrique Moraes

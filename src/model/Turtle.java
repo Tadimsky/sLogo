@@ -3,6 +3,7 @@ package model;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -266,6 +267,9 @@ public class Turtle extends Observable implements Paintable, IState{
         return amHiding;
     }
     
+    public void setStroke(Stroke stroke){
+    	myPen.setStroke(stroke);
+    }
     public void setColor(Color color){
         myPen.setPenColor(color);
     }
