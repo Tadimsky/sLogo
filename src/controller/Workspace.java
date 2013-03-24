@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
+import controller.support.IError;
 import model.Paintable;
 import model.Turtle;
 import model.TurtleManager;
@@ -30,10 +32,9 @@ import view.components.Strokes;
  * @author XuRui, Ziqiang Huang, Henrique Moraes
  *
  */
-public class Workspace  implements Paintable, IParserProvider {
+public class Workspace  extends Observable implements Paintable, IParserProvider, IError {
     public static final String UNTITLED = "Untitled";    
     private Map<String, CustomCommand> myCommandMap;
-    private Turtle myTurtle;
     private ResourceBundle myErrorResource;
     private String myName;
     
@@ -55,15 +56,28 @@ public class Workspace  implements Paintable, IParserProvider {
     public Workspace () {
         myCommandMap = new HashMap<String, CustomCommand>();
         myTurtleManager = new TurtleManager();
-        myErrorResource = ResourceBundle.getBundle(Controller.DEFAULT_RESOURCE_PACKAGE + "error."+ "ErrorEnglish");
+        myErrorResource = Controller.RESOURCE_ERROR;
         myName = UNTITLED;
         myHistory = new ArrayList<String>();
         myVariables = new VariableManager();
         myUndoManager = new UndoManager();
         myPalette = new ColorManager();
-        myCanvas = new Canvas(this);      
+        myCanvas = new Canvas(this); 
+        
+        testVariables();
+    }
+    
+    private void testVariables(){
+      //myVariables.createVariableScope("local");
+        for (int i = 0; i<10; i++){
+            myVariables.setVariable("var"+i, i);
+        }
+        updateInformation();
     }
 
+    /**
+     * @return Map with commands for this workspace
+     */
     public Map<String,CustomCommand> getCommandMap () {
         return myCommandMap;
     }
@@ -80,6 +94,15 @@ public class Workspace  implements Paintable, IParserProvider {
      */
     public void update(){
         myTurtleManager.update();
+    }
+    
+    /**
+     * Notifies objects that manage visual representation of variables, commands,
+     * and expression related to this workspace
+     */
+    public void updateInformation() {
+        setChanged();
+        notifyObservers();
     }
     
     /**
@@ -141,6 +164,7 @@ public class Workspace  implements Paintable, IParserProvider {
     /**
      * Display any string message in a popup error dialog.
      */
+    @Override
     public void showError (String message) {
         JOptionPane.showMessageDialog(null, message,
                                       myErrorResource.getString("ErrorTitle"),
@@ -198,7 +222,7 @@ public class Workspace  implements Paintable, IParserProvider {
     /**
      * @param o observer to be added to the turtle manager
      */
-    public void addObserver(Observer o){
+    public void addTurtleObserver(Observer o){
         myTurtleManager.addObserver(o);
     }
     

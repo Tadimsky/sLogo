@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -16,6 +17,7 @@ import javax.swing.event.ChangeListener;
 import view.components.ErrorBox;
 import view.components.InputField;
 import view.windows.InformationView;
+import view.windows.VariablesWindow;
 import controller.Controller;
 import controller.Workspace;
 
@@ -29,6 +31,9 @@ import controller.Workspace;
 public class Window extends JFrame {
     private static final int INPUT_FIELD_SIZE = 70;
     private static final String WORKSPACE_NAME = "Workspace ";
+    public static final Dimension TABBED_INFO_WINDOW_DIMENSION = new Dimension(220, 600);
+    private static final String INFO_TAB_NAME = "Information";
+    private static final String VARIABLE_TAB_NAME = "Variables";
     
     private int workspaceIndex = 1;
     private ResourceBundle myResource;
@@ -39,7 +44,9 @@ public class Window extends JFrame {
     
     private Canvas myCurrentCanvas;
     private InformationView myInfoView;
+    private VariablesWindow myVariablesWindow;
     private JTabbedPane myTabbedPane;
+    private JTabbedPane myTabbedInfoWindow;
     private InputField myInputField;
 
     public Window(Controller control) {
@@ -48,15 +55,22 @@ public class Window extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
 
-        myResource = myController.getResource();
+        myResource = Controller.RESOURCE;
+        
+        
         myInfoView = new InformationView();
+        myVariablesWindow = new VariablesWindow();
+        myTabbedInfoWindow = new JTabbedPane();
+        myTabbedInfoWindow.add(INFO_TAB_NAME, makeInformationView());
+        myTabbedInfoWindow.add(VARIABLE_TAB_NAME, myVariablesWindow);
+        
         myTabbedPane = new JTabbedPane();
         myInputField = new InputField(INPUT_FIELD_SIZE);
         ErrorBox.setWindow(this);
         makeListeners();
         
         getContentPane().add(myTabbedPane, BorderLayout.CENTER);
-        getContentPane().add(makeInformationView(), BorderLayout.EAST);
+        getContentPane().add(myTabbedInfoWindow, BorderLayout.EAST);
         getContentPane().add(createInputField(), BorderLayout.SOUTH);
 
         setJMenuBar(myController.createJMenuBar());
@@ -71,8 +85,10 @@ public class Window extends JFrame {
      * @param turtle Observed turtle
      */
     private void setObservers(Workspace workspace){
-        workspace.addObserver(myCurrentCanvas);
-        workspace.addObserver(myInfoView);
+        workspace.addTurtleObserver(myCurrentCanvas);
+        workspace.addTurtleObserver(myInfoView);
+        workspace.addObserver(myVariablesWindow);
+        workspace.updateInformation();
         updateObservers();
     }
     
@@ -183,6 +199,20 @@ public class Window extends JFrame {
                 myInputField.setText("");
               }
             });
+    }
+    
+    /**
+     * Set the Listener to update the information panel whenever 
+     * tabs are changed
+     */
+    public void setInfoTabListener(){
+        myTabbedInfoWindow.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent changeEvent) {
+                if(myTabbedInfoWindow.getSelectedComponent().
+                        getName().equals(VARIABLE_TAB_NAME))
+                    myVariablesWindow.update();
+            }
+        });
     }
 }
 

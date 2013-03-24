@@ -48,6 +48,16 @@ public class VariableScope {
         if (myVariables.containsKey(var)) { 
             return myVariables.get(var);
         }
+        
         throw new InvalidArgumentsException("This variable does not exist: {0}", var);
+    }
+    
+    public Integer removeVariable (String var)
+    { 
+        return myVariables.remove(var);
+    }
+    
+    public Map<String, Integer> getVariables() {
+        return myVariables;
     }
 }

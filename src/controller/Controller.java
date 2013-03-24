@@ -62,10 +62,11 @@ public class Controller {
     protected static final String DEFAULT_URL = "http://www.cs.duke.edu/courses/spring13/compsci308/assign/03_slogo/commands.php";
     protected static final String HELP_TITLE = "Command Description for SLogo";
     protected static final Object[] DEFAULT_PEN_COLOR_OPTION = {"red","blue","black"};
+    public static final ResourceBundle RESOURCE = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
+    public static final ResourceBundle RESOURCE_ERROR = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "error." + "ErrorEnglish");
 
     private Parser myParser;
     private Window myWindow;
-    private ResourceBundle myResource;
     private JFileChooser myChooser;
     private HelpWindow myHelpWindow;
    
@@ -75,7 +76,6 @@ public class Controller {
      */
     public Controller () {
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
-        myResource = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
         myWindow = new Window(this);
         myParser = new Parser();
     }
@@ -126,13 +126,6 @@ public class Controller {
     }
 
     /**
-     * @return resource bundle associated with the language of the interface
-     */
-    public ResourceBundle getResource () {
-        return myResource;
-    }
-
-    /**
      * Responsible for creating the menu bar, it needs to be called from
      * window because once window calls pack(), the menu cannot be added
      * The bar is created in controller so the view does not get access
@@ -155,7 +148,7 @@ public class Controller {
      * @return File Menu option
      */
     private JMenu createFileMenu () {
-        JMenu menu = new JMenu(myResource.getString("FileMenu"));
+        JMenu menu = new JMenu(RESOURCE.getString("FileMenu"));
         createFileCommands(menu);
         menu.add(new JSeparator());
         createQuitCommand(menu);
@@ -169,13 +162,13 @@ public class Controller {
      * @return File menu for the view
      */
     private void createFileCommands (JMenu menu) {
-        menu.add(new AbstractAction(myResource.getString("NewWorkspace")) {
+        menu.add(new AbstractAction(RESOURCE.getString("NewWorkspace")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 myWindow.createWorkspace();
             }
         });
-        menu.add(new AbstractAction(myResource.getString("OpenFile")) {
+        menu.add(new AbstractAction(RESOURCE.getString("OpenFile")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 try {
@@ -189,7 +182,7 @@ public class Controller {
                 }
             }
         });
-        menu.add(new AbstractAction(myResource.getString("SaveFile")) {
+        menu.add(new AbstractAction(RESOURCE.getString("SaveFile")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 try {
@@ -211,7 +204,7 @@ public class Controller {
      * @return File menu for the view
      */
     private void createQuitCommand (JMenu menu) {
-        menu.add(new AbstractAction(myResource.getString("QuitProgram")) {
+        menu.add(new AbstractAction(RESOURCE.getString("QuitProgram")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 System.exit(0);
@@ -227,7 +220,7 @@ public class Controller {
      * @return Command menu for the view
      */
     private JMenu createCommandMenu () {
-        JMenu menu = new JMenu(myResource.getString("CommandMenu"));
+        JMenu menu = new JMenu(RESOURCE.getString("CommandMenu"));
         createPhysicalCommands(menu);
         menu.add(new JSeparator());
         createVisualCommands(menu);
@@ -242,7 +235,7 @@ public class Controller {
      * @param menu menu to have the items added
      */
     private void createPhysicalCommands (JMenu menu) {
-        menu.add(new AbstractAction(myResource.getString("ForwardCommand")) {
+        menu.add(new AbstractAction(RESOURCE.getString("ForwardCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
@@ -253,7 +246,7 @@ public class Controller {
                 getWorkspace().addHistory("forward " + DEFAULT_MOVE_VALUE);
             }
         });
-        menu.add(new AbstractAction(myResource.getString("BackwardCommand")) {
+        menu.add(new AbstractAction(RESOURCE.getString("BackwardCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
@@ -264,7 +257,7 @@ public class Controller {
                 getWorkspace().addHistory("back " + DEFAULT_MOVE_VALUE);
             }
         });
-        menu.add(new AbstractAction(myResource.getString("TurnRightCommand")) {
+        menu.add(new AbstractAction(RESOURCE.getString("TurnRightCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
@@ -275,7 +268,7 @@ public class Controller {
                 getWorkspace().addHistory("right " + DEFAULT_TURN_VALUE);
             }
         });
-        menu.add(new AbstractAction(myResource.getString("TurnLeftCommand")) {
+        menu.add(new AbstractAction(RESOURCE.getString("TurnLeftCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
@@ -295,7 +288,7 @@ public class Controller {
      * @param menu menu to have the items added
      */
     private void createVisualCommands (JMenu menu) {
-        menu.add(new AbstractAction(myResource.getString("ShowCommand")) {
+        menu.add(new AbstractAction(RESOURCE.getString("ShowCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
@@ -306,7 +299,7 @@ public class Controller {
                 getWorkspace().addHistory("showturtle");
             }
         });
-        menu.add(new AbstractAction(myResource.getString("HideCommand")) {
+        menu.add(new AbstractAction(RESOURCE.getString("HideCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
@@ -317,7 +310,7 @@ public class Controller {
                 getWorkspace().addHistory("hideturtle");
             }
         });
-        menu.add(new AbstractAction(myResource.getString("PenUpCommand")) {
+        menu.add(new AbstractAction(RESOURCE.getString("PenUpCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
@@ -328,7 +321,7 @@ public class Controller {
                 getWorkspace().addHistory("penup");
             }
         });
-        menu.add(new AbstractAction(myResource.getString("PenDownCommand")) {
+        menu.add(new AbstractAction(RESOURCE.getString("PenDownCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
@@ -349,7 +342,7 @@ public class Controller {
      * @return
      */
     private JMenu createSettingMenu() {
-        JMenu menu = new JMenu(myResource.getString("SettingMenu"));
+        JMenu menu = new JMenu(RESOURCE.getString("SettingMenu"));
         
         menu.add(new AbstractAction("New Turtle") {
             @Override
@@ -379,7 +372,7 @@ public class Controller {
         tellMenu.addMouseListener(createTellMenuListener(tellMenu));
         menu.add(tellMenu);
 
-        menu.add(new AbstractAction(myResource.getString("SetPenColor")) {
+        menu.add(new AbstractAction(RESOURCE.getString("SetPenColor")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 JTextField id = new JTextField();
@@ -414,7 +407,7 @@ public class Controller {
             }
         });
         
-        menu.add(new AbstractAction(myResource.getString("SetBackgroundImage")) {
+        menu.add(new AbstractAction(RESOURCE.getString("SetBackgroundImage")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 try {
@@ -495,8 +488,8 @@ public class Controller {
      * @return help Menu option
      */
     private JMenu createHelpMenu() {
-        JMenu menu = new JMenu(myResource.getString("HelpMenu"));
-        menu.add(new AbstractAction(myResource.getString("CommandDescription")) {
+        JMenu menu = new JMenu(RESOURCE.getString("HelpMenu"));
+        menu.add(new AbstractAction(RESOURCE.getString("CommandDescription")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 URL helpPage = null;

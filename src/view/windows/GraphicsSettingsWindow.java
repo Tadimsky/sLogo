@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -55,7 +56,7 @@ public class GraphicsSettingsWindow extends SettingsWindow {
     private JPanel createPenPanel() {
         
         JPanel penPanel = new JPanel();
-        penPanel.setLayout(new GridLayout(6,1));
+        penPanel.setLayout(new GridLayout(7,1));
         ButtonGroup group = new ButtonGroup();
         group.add(myPenUpButton = new JRadioButton("Set Active Pens Up"));
         group.add(myPenDownButton = new JRadioButton("Set Active Pens Down"));

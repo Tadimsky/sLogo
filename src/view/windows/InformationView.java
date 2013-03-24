@@ -21,14 +21,14 @@ import parser.commands.turtle.queries.IsPenDown;
 import parser.commands.turtle.queries.IsShowing;
 import parser.commands.turtle.queries.XCor;
 import parser.commands.turtle.queries.YCor;
+import view.Window;
 import view.labels.InformationLabel;
 import view.labels.LogoLabel;
 import view.labels.TitleLabel;
 
 public class InformationView extends JPanel implements Observer {
     private final static int GRAY_TONE = 230;
-    private final static Color BACKGROUND_COLOR = new Color(GRAY_TONE,GRAY_TONE,GRAY_TONE);
-    private final static Dimension VIEW_DIMENSION = new Dimension(200, 600);
+    public final static Color BACKGROUND_COLOR = new Color(GRAY_TONE,GRAY_TONE,GRAY_TONE);
     private static final String TITLE = "Turtle Information";
     
     private static final String[] LABEL_DESCRIPTIONS = 
@@ -41,8 +41,7 @@ public class InformationView extends JPanel implements Observer {
     private List<LogoLabel> myLabelList;
     
     public InformationView(){
-        setSize(VIEW_DIMENSION);
-        setPreferredSize(VIEW_DIMENSION);
+        setPreferredSize(Window.TABBED_INFO_WINDOW_DIMENSION);
         
         myLabelList = new ArrayList<LogoLabel>();
         setLayout(new GridBagLayout());

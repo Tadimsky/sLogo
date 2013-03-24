@@ -4,6 +4,8 @@ package parser;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
+import controller.Controller;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
 /**
@@ -51,6 +53,7 @@ public class VariableManager {
         // create new variable in active scope
         myScopes.getFirst().setVariable(variable, value);
     }
+    
     /**
      * Returns the value of the variable specified.
      * The variable is returned from the most local scope.
@@ -74,7 +77,34 @@ public class VariableManager {
                 continue;
             }
         }
-        throw new InvalidArgumentsException("Argument does not exist", var);
+        
+        throw new InvalidArgumentsException("Argument does not exist {0}", var);
+    }
+    
+    /**
+     * Returns the value of the variable specified.
+     * The variable is returned from the most local scope.
+     * 
+     * @param var
+     */
+    public void removeVariable (String  var) 
+    {
+        // Get from current scope first, if it is local.
+        Iterator<VariableScope> i = myScopes.iterator();
+        while (i.hasNext())
+        {            
+            if(i.next().removeVariable(var) != null) return;
+        }
+        JOptionPane.showMessageDialog(null, "Nothing to Remove",
+                                      Controller.RESOURCE_ERROR.getString("ErrorTitle"),
+                                      JOptionPane.ERROR_MESSAGE);
+    }
+
+    /**
+     * @return Deque with variable scopes of this manager
+     */
+    public Deque<VariableScope> getScopes() {
+        return myScopes;
     }
 
     /**
