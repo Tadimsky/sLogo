@@ -1,5 +1,6 @@
 package model;
 
+<<<<<<< HEAD
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -15,6 +16,14 @@ import javax.imageio.ImageIO;
 import util.Location;
 import view.components.Error;
 import view.components.ErrorBox;
+=======
+
+public class TurtleManager {
+	
+	public TurtleManager(){
+		
+	}
+>>>>>>> wraparound function to be fixed
 
 /**
  * Manages all the properties and state of the turtles from a specific workspace

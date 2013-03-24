@@ -50,17 +50,47 @@ public class Turtle extends Observable implements Paintable, IState{
         Location initialPosition = new Location(myCenter);
       	myCenter.translate(myHeading);
       	myPen.addLine(initialPosition, myCenter);  	
-      	if (wrapOnBoundary(initialPosition, pixels)){
+      	if (wrapOnBoundary(initialPosition, pixels)){	
       		this.move((int) myHeading.getMagnitude());
+      		System.out.println("moved");
+          	//myPen.addLine(initialPosition, myCenter);  	
       	}
+<<<<<<< HEAD
+=======
+      	//wrapOnBoundary();
+        update();
+>>>>>>> wraparound function to be fixed
         return pixels;
     }
    
     /**
      * Checks for top and bottom bounds
      */
+<<<<<<< HEAD
    public boolean wrapOnBoundary(Location initialPosition, int pixels){   
 	   if (boundsExceeded(myCenter)){
+=======
+   public boolean wrapOnBoundary(Location initialPosition, int pixels){//Location initialPosition, int pixels){   
+	   if(boundsExceeded()){
+	   int centerX = myCenter.getIntX();
+	   int centerY = myCenter.getIntY();	
+	   
+	   while (centerX<0){
+		 centerX += Canvas.CANVAS_DIMENSION.width;
+	   }
+	   
+	   while (centerY<0){
+		  centerY+= Canvas.CANVAS_DIMENSION.height;
+	   }
+	   
+	   centerX = centerX % Canvas.CANVAS_DIMENSION.width;
+	   centerY = centerY % Canvas.CANVAS_DIMENSION.height;
+	    
+	   myCenter.setX(centerX);
+	   myCenter.setY(centerY);
+	   
+	   /*if (boundsExceeded()){
+>>>>>>> wraparound function to be fixed
 		   int remainingDistance = 0;
 		   if (myCenter.getIntY() > Canvas.DEFAULT_CANVAS_DIMENSION.height){ //exceeded bottom bound
 			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(myCenter.getIntX(),Canvas.DEFAULT_CANVAS_DIMENSION.height)).getVisualLocation()); 
@@ -68,22 +98,52 @@ public class Turtle extends Observable implements Paintable, IState{
 		   }
 		   if (myCenter.getIntY() < 0){ //exceeded top bound
 			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(myCenter.getIntX(),0)).getVisualLocation()); 
+<<<<<<< HEAD
 			   myCenter.setY(Canvas.DEFAULT_CANVAS_DIMENSION.height);//move turtle to bottom bound
 		   }
 		   if (myCenter.getIntX() > Canvas.DEFAULT_CANVAS_DIMENSION.width ){ //exceeded right bound
 			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(Canvas.DEFAULT_CANVAS_DIMENSION.width, myCenter.getIntY())).getVisualLocation()); 
 			   myCenter.setX(0 + myWidth/2);
+=======
+			   myCenter.setY(Canvas.CANVAS_DIMENSION.height);//move turtle to bottom bound
+			   /*System.out.println(myCenter.getIntX());
+			   System.out.println((Canvas.CANVAS_DIMENSION.width-myCenter.getIntX()));
+			   System.out.println((Canvas.CANVAS_DIMENSION.width-myCenter.getIntX())*Math.tan(Math.PI/4));
+			   double num = Canvas.CANVAS_DIMENSION.width - 
+					   ((Canvas.CANVAS_DIMENSION.width-myCenter.getIntX())*Math.tan(Math.PI/4)+Canvas.CANVAS_DIMENSION.height)
+					   /Math.tan(Math.PI/4);
+
+			   myCenter.setX(62);
+			   System.out.println(num);
+			   //myCenter.setX(300);
+			   myCenter.setLocation(getComplementPoint(myCenter, myHeading));
+			   
+			   System.out.println(myCenter.getIntX());
+			   System.out.println(myCenter);
+		   }
+		   if (myCenter.getIntX() > Canvas.CANVAS_DIMENSION.width ){ //exceeded right bound
+			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(Canvas.CANVAS_DIMENSION.width, myCenter.getIntY())).getVisualLocation()); 
+			   myCenter.setX(myWidth/2);
+>>>>>>> wraparound function to be fixed
 		   }
 		   if (myCenter.getIntX() < myWidth/2){ //exceeded left bound
 			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(myWidth/2, myCenter.getIntY())).getVisualLocation()); 
 			   myCenter.setX(Canvas.DEFAULT_CANVAS_DIMENSION.width);
 		   }
 		   myHeading.setMagnitude(remainingDistance);
-		   return true;
+		   return boundsExceeded();
+	   }*/
+	   return true;
 	   }
 	   return false;
    }
    
+   public Location getComplementPoint(Location loc, Vector heading){
+	   Vector oppHeading = new Vector(heading.getDirection() + 180, heading.getMagnitude());
+	   Location tempLoc = new Location(loc);
+	   tempLoc.translate(oppHeading);
+	   return tempLoc;
+   }
    /**
     * Checks if turtle exceeds bounds.
     * @return
