@@ -78,6 +78,8 @@ public class Workspace  implements Paintable, IParserProvider {
     /**
      * Updates the state of this workspace for the user
      */
+    
+    @Override
     public void update(){
         myTurtleManager.update();
     }
@@ -168,6 +170,7 @@ public class Workspace  implements Paintable, IParserProvider {
         return myCommandMap.get(command.toLowerCase());
     }  
     
+    @Override
     public void addHistory(String s)
     {
         myHistory.add(s);

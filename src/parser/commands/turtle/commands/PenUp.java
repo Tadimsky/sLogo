@@ -1,6 +1,8 @@
 package parser.commands.turtle.commands;
 
 import java.util.Deque;
+import java.util.Map;
+import model.Turtle;
 import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
@@ -13,7 +15,11 @@ public class PenUp extends BasicControl {
     
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        w.getTurtle().setPenWriting(false);
+        Map<Integer, Turtle> turtles = w.getTurtles();
+        for (Turtle t : turtles.values()) {
+            t.setPenWriting(false);
+        }
+        w.update();
         return 0;
     }
 

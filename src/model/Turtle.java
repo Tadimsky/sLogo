@@ -301,4 +301,8 @@ public class Turtle extends Observable implements Paintable, IState{
     public void setStroke(Stroke stroke) {
         myPen.setStroke(stroke);  
     }
+
+    public Color getPenColor() {
+        return myPen.getPenColor();
+    }
 }
