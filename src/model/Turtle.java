@@ -67,8 +67,8 @@ public class Turtle extends Observable implements Paintable, IState{
    public boolean wrapOnBoundary(Location initialPosition, int pixels){   
 	   if (boundsExceeded()){
 		   int remainingDistance = 0;
-		   if (myCenter.getIntY() > Canvas.CANVAS_DIMENSION.height){ //exceeded bottom bound
-			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(myCenter.getIntX(),Canvas.CANVAS_DIMENSION.height)).getVisualLocation()); 
+		   if (myCenter.getIntY() > Canvas.DEFAULT_CANVAS_DIMENSION.height){ //exceeded bottom bound
+			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(myCenter.getIntX(),Canvas.DEFAULT_CANVAS_DIMENSION.height)).getVisualLocation()); 
 			   myCenter.setY(0);
 		   }
 		   if (myCenter.getIntY() < 0){ //exceeded top bound
@@ -88,13 +88,13 @@ public class Turtle extends Observable implements Paintable, IState{
 			   
 			   System.out.println(myCenter.getIntX());
 		   }
-		   if (myCenter.getIntX() > Canvas.CANVAS_DIMENSION.width ){ //exceeded right bound
-			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(Canvas.CANVAS_DIMENSION.width, myCenter.getIntY())).getVisualLocation()); 
+		   if (myCenter.getIntX() > Canvas.DEFAULT_CANVAS_DIMENSION.width ){ //exceeded right bound
+			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(Canvas.DEFAULT_CANVAS_DIMENSION.width, myCenter.getIntY())).getVisualLocation()); 
 			   myCenter.setX(0 + myWidth/2);
 		   }
 		   if (myCenter.getIntX() < myWidth/2){ //exceeded left bound
 			   remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition, (new Location(myWidth/2, myCenter.getIntY())).getVisualLocation()); 
-			   myCenter.setX(Canvas.CANVAS_DIMENSION.width);
+			   myCenter.setX(Canvas.DEFAULT_CANVAS_DIMENSION.width);
 		   }
 		   myHeading.setMagnitude(remainingDistance);
 		   return true;
@@ -113,9 +113,9 @@ public class Turtle extends Observable implements Paintable, IState{
     * @return
     */
     public boolean boundsExceeded(){
-    	return (myCenter.getIntY() > Canvas.CANVAS_DIMENSION.height || 
+    	return (myCenter.getIntY() > Canvas.DEFAULT_CANVAS_DIMENSION.height || 
     			myCenter.getIntY() < 0 ||
-    			myCenter.getIntX() > Canvas.CANVAS_DIMENSION.width ||
+    			myCenter.getIntX() > Canvas.DEFAULT_CANVAS_DIMENSION.width ||
     			myCenter.getIntX() < myWidth/2);	
     }
     
@@ -199,7 +199,7 @@ public class Turtle extends Observable implements Paintable, IState{
     /**
      * @return the location reference of the upper left corner of this image
      */
-    private Location getPaintingPoint(){
+    Location getPaintingPoint(){
         Location point = new Location(myCenter);
         point.translate(-myWidth/2,myHeight/2);
         return point;
@@ -284,5 +284,18 @@ public class Turtle extends Observable implements Paintable, IState{
         myPen.myLines.clear();
         System.out.println(distanceMoved);
         return distanceMoved;
+    }
+
+    public int getWidth() {
+        return myWidth;
+    }
+
+    public int getHeight() {
+        return myHeight;
+    }
+
+    public void setImage(BufferedImage myImage2) {
+        myImage = myImage2;      
+
     }
 }
