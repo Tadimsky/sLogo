@@ -297,4 +297,8 @@ public class Turtle extends Observable implements Paintable, IState{
         myImage = myImage2;      
 
     }
+
+    public void setStroke(Stroke stroke) {
+        myPen.setStroke(stroke);  
+    }
 }
