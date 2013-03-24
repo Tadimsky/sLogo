@@ -1,6 +1,8 @@
 package parser.commands.turtle.commands;
 
 import java.util.Deque;
+import java.util.Map;
+import model.Turtle;
 import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
@@ -15,7 +17,12 @@ public class Left extends UnaryNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int deg = getArgument().evaluate(w);
-        return w.getTurtle().turn(-deg);
+        Map<Integer, Turtle> turtles = w.getTurtles();
+        for (Turtle t : turtles.values()) {
+            t.turn(-deg);
+        }
+        w.update();
+        return deg;
     }
 
 }

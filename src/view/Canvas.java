@@ -100,9 +100,7 @@ public class Canvas extends JComponent implements Observer {
             pen.drawLine(0, getHeight()/2-i, getWidth(), getHeight()/2-i);
             pen.drawString(Integer.toString(-i), GRIDLINE_OFFSET, getHeight()/2-i+MARGIN_OFFSET);
         }
-    }
-
-      
+    }      
 
     /**
      * Repaints all the components associated to this view

@@ -40,7 +40,7 @@ public class Workspace  extends Observable implements Paintable, IParserProvider
     
     private List<String> myHistory;
     private VariableManager myVariables;
-    private UndoManager myUndoManager;
+    private WSUndoManager myUndoManager;
     private ColorManager myPalette;
     private Canvas myCanvas;
     private TurtleManager myTurtleManager;
@@ -60,7 +60,7 @@ public class Workspace  extends Observable implements Paintable, IParserProvider
         myName = UNTITLED;
         myHistory = new ArrayList<String>();
         myVariables = new VariableManager();
-        myUndoManager = new UndoManager();
+        myUndoManager = new WSUndoManager();
         myPalette = new ColorManager();
         myCanvas = new Canvas(this); 
         
@@ -92,6 +92,8 @@ public class Workspace  extends Observable implements Paintable, IParserProvider
     /**
      * Updates the state of this workspace for the user
      */
+    
+    @Override
     public void update(){
         myTurtleManager.update();
     }
@@ -192,6 +194,7 @@ public class Workspace  extends Observable implements Paintable, IParserProvider
         return myCommandMap.get(command.toLowerCase());
     }  
     
+    @Override
     public void addHistory(String s)
     {
         myHistory.add(s);

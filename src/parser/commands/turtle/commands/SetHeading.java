@@ -1,6 +1,8 @@
 package parser.commands.turtle.commands;
 
 import java.util.Deque;
+import java.util.Map;
+import model.Turtle;
 import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
@@ -14,8 +16,14 @@ public class SetHeading extends UnaryNode {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
+        int result = 0;
         int deg = getArgument().evaluate(w);
-        return w.getTurtle().setHeading(deg);
+        Map<Integer, Turtle> turtles = w.getTurtles();
+        for (Turtle t : turtles.values()) {
+            result = t.setHeading(deg);
+        }
+        w.update();
+        return result;
     }
 
 }

@@ -3,6 +3,8 @@ package controller;
 import java.util.List;
 import java.util.Stack;
 
+import javax.swing.undo.UndoManager;
+
 import parser.CustomCommand;
 
 /**
@@ -13,11 +15,12 @@ import parser.CustomCommand;
  */
 //Might use string instead of CustomCommand
 
-public class UndoManager {
+public class WSUndoManager extends UndoManager {
     private Stack<CustomCommand> undoneCommands; //stores all undone commands
     private Stack<CustomCommand> myActiveCommands; //stores list of commands
     
-    public UndoManager(){
+    public WSUndoManager(){
+    	super();
     	myActiveCommands = new Stack<CustomCommand>();
     	undoneCommands = new Stack<CustomCommand>();
     }
