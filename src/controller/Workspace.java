@@ -39,7 +39,7 @@ public class Workspace  implements Paintable, IParserProvider {
     
     private List<String> myHistory;
     private VariableManager myVariables;
-    private UndoManager myUndoManager;
+    private WSUndoManager myUndoManager;
     private ColorManager myPalette;
     private Canvas myCanvas;
     private TurtleManager myTurtleManager;
@@ -59,7 +59,7 @@ public class Workspace  implements Paintable, IParserProvider {
         myName = UNTITLED;
         myHistory = new ArrayList<String>();
         myVariables = new VariableManager();
-        myUndoManager = new UndoManager();
+        myUndoManager = new WSUndoManager();
         myPalette = new ColorManager();
         myCanvas = new Canvas(this);      
     }

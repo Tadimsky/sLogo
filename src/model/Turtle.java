@@ -267,11 +267,13 @@ public class Turtle extends Observable implements Paintable, IState{
         return amHiding;
     }
     
-    public void setStroke(Stroke stroke){
-    	myPen.setStroke(stroke);
-    }
+
     public void setColor(Color color){
         myPen.setPenColor(color);
+    }
+    
+    public void setImage(BufferedImage image){
+    	myImage = image;
     }
 
     /**
