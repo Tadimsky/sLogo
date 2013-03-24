@@ -7,6 +7,8 @@ import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import javax.imageio.ImageIO;
 import util.Location;
@@ -31,6 +33,7 @@ public class Turtle extends Observable implements Paintable, IState{
     private int myWidth;
     private int myHeight;
     private boolean amHiding = false;
+    private List<Location> myStamp;
     
     public Turtle () {
         myPen = new Pen();
@@ -41,7 +44,8 @@ public class Turtle extends Observable implements Paintable, IState{
         }
         catch (Exception e) { ErrorBox.showError(Error.INVALID_IMAGE); };
         myWidth = myImage.getWidth();
-        myHeight = myImage.getHeight();  
+        myHeight = myImage.getHeight();
+        myStamp = new ArrayList<Location>();
     }
 
     /**
@@ -210,13 +214,30 @@ public class Turtle extends Observable implements Paintable, IState{
         myPen.paint(pen);
         if (amHiding) return;
         Location point = getPaintingPoint();
+        AffineTransformOp op = transform();
+        paintTurtle(pen, point, op);
+        paintStamp(pen);
+    }
+
+    public void paintTurtle(Graphics2D pen, Location point, AffineTransformOp op) {
+        pen.drawImage(op.filter(myImage,null),point.getIntX(), 
+                       point.getIntY(), null);
+    }
+
+    private void paintStamp(Graphics2D pen) {
+        AffineTransformOp op = transform();
+        for(Location point : myStamp) {
+            paintTurtle(pen, point, op);
+        }
+        
+    }
+
+    public AffineTransformOp transform() {
         AffineTransform tx = 
                 AffineTransform.getRotateInstance(Math.toRadians(myHeading.getDirection()),
                                                   myWidth/2, myHeight/2);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-
-        pen.drawImage(op.filter(myImage,null),point.getIntX(), 
-                       point.getIntY(), null);
+        return op;
     }
 
     @Override
@@ -304,5 +325,14 @@ public class Turtle extends Observable implements Paintable, IState{
 
     public Color getPenColor() {
         return myPen.getPenColor();
+    }
+
+    public void stamp() {
+        myStamp.add(getPaintingPoint());      
+    }
+
+    public void clearStamp() {
+        myStamp.clear(); 
+        
     }
 }
