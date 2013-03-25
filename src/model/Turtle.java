@@ -26,7 +26,7 @@ import view.components.ErrorBox;
  * 
  */
 
-public class Turtle extends Observable implements Paintable, IState {
+public class Turtle implements Paintable, IState {
     private Location myCenter;
     private Vector myHeading;
     private Pen myPen;
@@ -234,13 +234,13 @@ public class Turtle extends Observable implements Paintable, IState {
         return distanceMoved;
     }
 
-    /**
-     * Updates this object by notifying its observers
-     */
-    public void update () {
-        setChanged();
-        notifyObservers();
-    }
+//    /**
+//     * Updates this object by notifying its observers
+//     */
+//    public void update () {
+//        setChanged();
+//        notifyObservers();
+//    }
 
     /**
      * @return the location reference of the upper left corner of this image

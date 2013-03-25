@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -129,10 +130,10 @@ public class GraphicsSettingsWindow extends SettingsWindow {
              */
             private void checkGridPanel () {
                 if (myEnableGridBox.isSelected()) {
-                    myWorkspace.getCanvas().setGrid(true);
                     try {
-                        myWorkspace.getCanvas().setGridSpacing(Integer.parseInt(mySpacingField
-                                                                       .getText()));
+                        Integer space = Integer.parseInt(mySpacingField.getText());
+                        myWorkspace.getCanvas().setGrid(true);
+                        myWorkspace.getCanvas().setGridSpacing(space);
                     }
                     catch (Exception ex) {
                         myWorkspace.showError("Invalid Spacing Argument");

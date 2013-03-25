@@ -21,7 +21,7 @@ import controller.Workspace;
  * 
  */
 public abstract class SettingsWindow extends JFrame {
-    private static final Dimension DEFAULT_DIMENSION = new Dimension(420, 300);
+    private static final Dimension DEFAULT_DIMENSION = new Dimension(420, 330);
 
     protected Workspace myWorkspace;
     protected JPanel myOptionsPanel;
