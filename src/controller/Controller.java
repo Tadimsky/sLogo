@@ -82,19 +82,8 @@ public class Controller {
         SemanticsTable.getInstance().setContext(getWorkspace());
         List<SyntaxNode> commandList = myParser.parseCommand(command);
         SemanticsTable.getInstance().setContext(null);
-        try {
-            for (SyntaxNode node : commandList) {
-                int returnValue = node.evaluate(getWorkspace());
-                System.out.printf("my return value is %d", returnValue);
-                getWorkspace().addHistory(command);
-            }
-        }
-        catch (NullPointerException ne) {
-            getWorkspace().showError("You entered an invalid command.");
-        }
-        catch (InvalidArgumentsException e) {            
-            getWorkspace().showError("Invalid Input: " + e.getMessage());
-        }
+        getWorkspace().execute(commandList);
+        getWorkspace().addHistory(command);
     }
     
     /**
