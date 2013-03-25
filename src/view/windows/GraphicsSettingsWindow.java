@@ -29,7 +29,7 @@ import controller.Workspace;
  * Allows user to edit graphic related settings such as pen stroke and
  * canvas grid
  * 
- * @author Henrique Moraes
+ * @author Henrique Moraes, Ziqiang Huang
  * 
  */
 public class GraphicsSettingsWindow extends SettingsWindow {
@@ -42,6 +42,7 @@ public class GraphicsSettingsWindow extends SettingsWindow {
     private JRadioButton myPenDownButton;
     private JCheckBox myEnableGridBox;
     private JTextField mySpacingField;
+    private JTextField myImageIndex;
     private JComboBox myThicknessOption;
     private JComboBox myStrokeTypeOption;
     private JTextField myImagePath;
@@ -131,6 +132,10 @@ public class GraphicsSettingsWindow extends SettingsWindow {
         JPanel imagePanel = new JPanel();
         imagePanel.setLayout(new BoxLayout(imagePanel, BoxLayout.X_AXIS));
         imagePanel.add(myImagePath = new JTextField());
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new GridLayout(3, 1));
+        inputPanel.add(new JLabel("Image Index"));
+        inputPanel.add(myImageIndex = new JTextField());
         JButton browseButton = new JButton(myResource.getString("Browse"));
         browseButton.addActionListener(new ActionListener() {
             @Override
@@ -146,7 +151,8 @@ public class GraphicsSettingsWindow extends SettingsWindow {
                 }
             }  
         });
-        imagePanel.add(browseButton);
+        inputPanel.add(browseButton);
+        imagePanel.add(inputPanel);
         
         imagePanel.setBorder(BorderFactory.
                              createTitledBorder(BorderFactory.createEtchedBorder(), 
@@ -188,7 +194,15 @@ public class GraphicsSettingsWindow extends SettingsWindow {
             
             private void checkImagePanel() {
                 if (myImagePath.getText().isEmpty()) return;
-                myWorkspace.setImage(myImagePath.getText());
+                try {
+                    String path = myImagePath.getText();
+                    Integer index = Integer.parseInt(myImageIndex.getText());
+                    myWorkspace.addTurtleImage(index,path);
+                    myWorkspace.setImage(path);
+                }
+                catch (Exception ex) {
+                    myWorkspace.showError("Invalid Image Argument");
+                }
             }
         });
     }

@@ -2,7 +2,8 @@ package controller;
 
 import java.util.List;
 import java.util.Stack;
-import javax.swing.undo.UndoManager;
+import javax.swing.undo.*;
+
 import parser.CustomCommand;
 
 
@@ -16,6 +17,7 @@ import parser.CustomCommand;
 // Might use string instead of CustomCommand
 
 public class WSUndoManager extends UndoManager {
+	
     private Stack<CustomCommand> undoneCommands; // stores all undone commands
     private Stack<CustomCommand> myActiveCommands; // stores list of commands
 
@@ -35,6 +37,11 @@ public class WSUndoManager extends UndoManager {
         undoneCommands.add(myActiveCommands.pop());
         return myActiveCommands;
     }
+    
+    /*@Override
+    protected UndoableEdit editToBeUndone(){
+    	return
+    }*/
 
     /**
      * Returns last undone command to be redone in workspace.

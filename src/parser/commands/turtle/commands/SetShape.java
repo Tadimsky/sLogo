@@ -16,7 +16,8 @@ public class SetShape extends UnaryNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int shapeid = getArgument().evaluate(w);
-        // set the shape of the turtle
+        w.getTurtleManager().execute("setImage", w.getTurtleManager().getTurtleImage(shapeid));
+        return shapeid;
     }
 
 }

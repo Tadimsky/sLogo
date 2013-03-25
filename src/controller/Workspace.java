@@ -290,4 +290,9 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         
     }
 
+    public void addTurtleImage(int index, String imageDir) {
+        myTurtleManager.addTurtleImage(index, imageDir);
+        
+    }
+
 }

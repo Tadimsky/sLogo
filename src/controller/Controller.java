@@ -68,7 +68,8 @@ public class Controller {
     private Window myWindow;
     private JFileChooser myChooser;
     private HelpWindow myHelpWindow;
-
+   // private MenuCreator myMenuCreator;
+    
     /**
      * Constructor for controller responsible for initializing the view
      * and the parser
@@ -102,16 +103,6 @@ public class Controller {
         getWorkspace().addHistory(command);
     }
 
-    /**
-     * Executes list of commands (for undo option)
-     * 
-     * @param commandList
-     */
-    public void processCommands (List<String> commandList) {
-        for (String command : commandList) {
-            processCommand(command);
-        }
-    }
 
     /**
      * This method is set private so the Window does not have access to it
@@ -134,9 +125,10 @@ public class Controller {
     public JMenuBar createJMenuBar () {
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(createFileMenu());
+        menuBar.add(createEditMenu());
         menuBar.add(createCommandMenu());
         menuBar.add(createSettingMenu());
-        menuBar.add(createHelpMenu());
+        menuBar.add(createHelpMenu());      
         return menuBar;
     }
 
@@ -512,6 +504,45 @@ public class Controller {
         return menu;
     }
 
+    /**
+     * creates the help page option on the menu bar
+     * 
+     * @return help Menu option
+     */
+    private JMenu createEditMenu () {
+        JMenu menu = new JMenu(RESOURCE.getString("EditMenu"));
+        menu.add(new AbstractAction(RESOURCE.getString("RedoCommand")) {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                URL helpPage = null;
+                try {
+                    helpPage = new URL(DEFAULT_URL);
+                }
+                catch (MalformedURLException exception) {
+                    getWorkspace().showError(exception.toString());
+                }
+                new HelpWindow(HELP_TITLE, helpPage);
+            }
+        });
+        
+        menu.add(new AbstractAction(RESOURCE.getString("UndoCommand")) {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                URL helpPage = null;
+                try {
+                    helpPage = new URL(DEFAULT_URL);
+                }
+                catch (MalformedURLException exception) {
+                    getWorkspace().showError(exception.toString());
+                }
+                new HelpWindow(HELP_TITLE, helpPage);
+            }
+        });
+        return menu;
+    }
+    
+    
+    
     /**
      * Loads a file of variable and command to a current workspace.
      */
