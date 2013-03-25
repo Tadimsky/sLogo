@@ -1,9 +1,7 @@
 package parser.commands.turtle.queries;
 
 import java.util.Deque;
-import java.util.Map;
 import model.IState;
-import model.Turtle;
 import parser.IParserProvider;
 import parser.commands.turtle.commands.BasicControl;
 import parser.nodes.SyntaxNode;
@@ -17,13 +15,7 @@ public class Heading extends BasicControl implements ILabelInformation {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        int result = 0;
-        Map<Integer, Turtle> turtles = w.getTurtles();
-        for (Turtle t : turtles.values()) {
-            result = t.getHeading();
-        }
-        w.update();
-        return result;       
+        return w.getTurtle().getHeading();        
     }
     
     @Override

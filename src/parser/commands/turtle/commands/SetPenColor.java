@@ -1,8 +1,6 @@
 package parser.commands.turtle.commands;
 
 import java.util.Deque;
-import java.util.Map;
-import model.Turtle;
 import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
@@ -17,11 +15,7 @@ public class SetPenColor extends UnaryNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int color = getArgument().evaluate(w);
-        Map<Integer, Turtle> turtles = w.getTurtles();
-        for (Turtle t : turtles.values()) {
-            t.setColor(w.getColors().getColor(color));
-        }
-        w.update();    
+        w.getTurtle().setColor(w.getColors().getColor(color));      
         return color;
     }
 

@@ -1,8 +1,6 @@
 package parser.commands.turtle.commands;
 
 import java.util.Deque;
-import java.util.Map;
-import model.Turtle;
 import parser.IParserProvider;
 import parser.nodes.BinaryNode;
 import parser.nodes.SyntaxNode;
@@ -18,13 +16,7 @@ public class SetPosition extends BinaryNode {
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int x = getLeft().evaluate(w);
         int y = getRight().evaluate(w);
-        int result = 0;
-        Map<Integer, Turtle> turtles = w.getTurtles();
-        for (Turtle t : turtles.values()) {
-            result = t.setPosition(x, y);
-        }
-        w.update();
-        return result;
+        return w.getTurtle().setPosition(x,y);
     }
 
 }

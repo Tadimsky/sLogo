@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -261,22 +262,27 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
 
     @Override
     public void addColor (int colorIndex, Color color) {
-        // TODO Auto-generated method stub
+        
     }
 
     public void execute (List<SyntaxNode> commands)
-    {
-        try {
-            for (SyntaxNode node : commands) {
-                int returnValue = node.evaluate(this);
-                System.out.printf("my return value is %d", returnValue);
+    {        
+        // Point directly to the iterator so that when things change it will update.
+        while (myTurtleManager.iterator().hasNext())
+        {
+            myTurtleManager.setCurrent(myTurtleManager.iterator().next());
+            try {
+                for (SyntaxNode node : commands) {
+                    int returnValue = node.evaluate(this);
+                    System.out.printf("my return value is %d", returnValue);
+                }
             }
-        }
-        catch (NullPointerException ne) {
-            showError("You entered an invalid command.");
-        }
-        catch (InvalidArgumentsException e) {
-            showError("Invalid Input: " + e.getMessage());
+            catch (NullPointerException ne) {
+                showError("You entered an invalid command.");
+            }
+            catch (InvalidArgumentsException e) {
+                showError("Invalid Input: " + e.getMessage());
+            }
         }
     }
 
