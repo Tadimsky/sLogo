@@ -66,7 +66,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         myPalette = new ColorManager();
         myCanvas = new Canvas(this);
 
-        testVariables();
+        //testVariables();
     }
 
     private void testVariables () {

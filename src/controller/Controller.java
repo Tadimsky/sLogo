@@ -26,6 +26,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import model.Turtle;
 import parser.Parser;
 import parser.SemanticsTable;
@@ -71,6 +73,7 @@ public class Controller {
      */
     public Controller () {
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
+        
         myWindow = new Window(this);
         myParser = new Parser();
     }
