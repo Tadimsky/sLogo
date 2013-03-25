@@ -122,6 +122,7 @@ public class Window extends JFrame {
     private void updateObservers () {
         Workspace workspace = (Workspace) myCurrentCanvas.getPaintableResource();
         workspace.update();
+        workspace.updateInformation();
     }
 
     /**
@@ -222,7 +223,7 @@ public class Window extends JFrame {
         myTabbedInfoWindow.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged (ChangeEvent changeEvent) {
-                myVariablesWindow.update();
+                updateObservers();
             }
         });
     }

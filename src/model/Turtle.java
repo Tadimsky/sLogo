@@ -9,7 +9,6 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 import javax.imageio.ImageIO;
 import util.Location;
 import util.Vector;
