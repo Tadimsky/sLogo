@@ -14,6 +14,7 @@ public class Stamp extends BasicControl {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        return w.getTurtle().stamp();
+        w.getTurtle().stamp();
+        return 0;
     }
 }
