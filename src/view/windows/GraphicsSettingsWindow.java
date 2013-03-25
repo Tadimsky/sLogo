@@ -22,7 +22,7 @@ import controller.Workspace;
  * Allows user to edit graphic related settings such as pen stroke and
  * canvas grid
  * 
- * @author Henrique
+ * @author Henrique Moraes
  * 
  */
 public class GraphicsSettingsWindow extends SettingsWindow {

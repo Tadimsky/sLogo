@@ -67,7 +67,6 @@ public class Turtle implements Paintable, IState {
         if (wrapOnBoundary(initialPosition, pixels)) {
             move((int) myHeading.getMagnitude());
         }
-        update();
         return pixels;
     }
 
@@ -166,7 +165,6 @@ public class Turtle implements Paintable, IState {
      */
     public int turn (int degrees) {
         myHeading.turn(degrees);
-        update();
         return degrees;
     }
 
@@ -189,7 +187,6 @@ public class Turtle implements Paintable, IState {
         Vector absolute = new Vector(viewerDegreeConversion(degrees), 0);
         int angle = (int) myHeading.getAngleBetween(absolute);
         myHeading.turn(angle);
-        update();
         return angle;
     }
 
@@ -205,7 +202,6 @@ public class Turtle implements Paintable, IState {
         Vector toTurn = new Vector(myCenter, toFace);
         int angle = (int) myHeading.getAngleBetween(toTurn);
         myHeading.turn(angle);
-        update();
         return angle;
     }
 
@@ -233,14 +229,6 @@ public class Turtle implements Paintable, IState {
         setHeading(90);
         return distanceMoved;
     }
-
-//    /**
-//     * Updates this object by notifying its observers
-//     */
-//    public void update () {
-//        setChanged();
-//        notifyObservers();
-//    }
 
     /**
      * @return the location reference of the upper left corner of this image
@@ -320,7 +308,6 @@ public class Turtle implements Paintable, IState {
 
     public void setHiding (boolean hide) {
         amHiding = hide;
-        update();
     }
 
     @Override
