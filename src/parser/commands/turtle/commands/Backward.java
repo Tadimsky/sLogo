@@ -16,7 +16,7 @@ public class Backward extends UnaryNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int amnt = getArgument().evaluate(w);
-        return w.getTurtle().move(-amnt);
+        return w.getTurtleManager().execute("move", -amnt);
     }
 
 }

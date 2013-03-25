@@ -9,8 +9,8 @@ import parser.nodes.exceptions.InvalidArgumentsException;
 
 
 /**
- * Implements the Random function.
- * Returns a random value with a maximum value provided by the parameter.
+ * Implements the Tell function.
+ * Sets the turtles provided in the list as active.
  * 
  * @author Jonathan Schmidt
  * 

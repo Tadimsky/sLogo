@@ -260,22 +260,18 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
 
     public void execute (List<SyntaxNode> commands)
     {
-        // Point directly to the iterator so that when things change it will update.
-        while (myTurtleManager.iterator().hasNext())
-        {
-            myTurtleManager.setCurrent(myTurtleManager.iterator().next());
-            try {
-                for (SyntaxNode node : commands) {
-                    int returnValue = node.evaluate(this);
-                    System.out.printf("my return value is %d", returnValue);
-                }
+        try {
+            for (SyntaxNode node : commands) {
+                int returnValue = node.evaluate(this);
+                System.out.printf("my return value is %d", returnValue);
+
             }
-            catch (NullPointerException ne) {
-                showError("You entered an invalid command.");
-            }
-            catch (InvalidArgumentsException e) {
-                showError("Invalid Input: " + e.getMessage());
-            }
+        }
+        catch (NullPointerException ne) {
+            showError("You entered an invalid command.");
+        }
+        catch (InvalidArgumentsException e) {
+            showError("Invalid Input: " + e.getMessage());
         }
     }
 
