@@ -155,6 +155,7 @@ public class GraphicsSettingsWindow extends SettingsWindow {
         myOkButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed (ActionEvent e) {
+                myWorkspace.setStrokeType((Strokes) myStrokeTypeOption.getSelectedItem());
                 myWorkspace.setStroke(
                                       (Strokes) myStrokeTypeOption.getSelectedItem(),
                                       (Integer) myThicknessOption.getSelectedItem());

@@ -286,4 +286,9 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         return myTurtleManager;
     }
 
+    public void setStrokeType(Strokes s) {
+        myTurtleManager.setStrokeType(s);
+        
+    }
+
 }

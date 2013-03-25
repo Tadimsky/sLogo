@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import util.Location;
 import util.PenLine;
+import view.components.Strokes;
 
 
 /**
@@ -23,6 +24,7 @@ public class Pen {
     private boolean penWriting = true;
     private Color myCurrentColor = Color.BLACK;
     private Stroke myStroke;
+    private Strokes myStrokeType;
 
     public void addLine (Location initialLocation, Location finalLocation) {
         if (!penWriting) return;
@@ -58,8 +60,20 @@ public class Pen {
     public void setStroke (Stroke stroke) {
         myStroke = stroke;
     }
+    
+    public Stroke getStroke() {
+        return myStroke;
+    }
 
     public boolean isPenWriting () {
         return penWriting;
+    }
+
+    public void setStrokeType(Strokes s) {
+        myStrokeType = s;        
+    }
+    
+    public Strokes getStrokeType() {
+        return myStrokeType;
     }
 }
