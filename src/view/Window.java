@@ -18,6 +18,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import view.components.ErrorBox;
 import view.components.InputField;
+import view.windows.CustomCommandWindow;
 import view.windows.InformationView;
 import view.windows.PreviousCommandWindow;
 import view.windows.VariablesWindow;
@@ -59,7 +60,7 @@ public class Window extends JFrame {
     private JTabbedPane myTabbedPane;
     private JTabbedPane myTabbedInfoWindow;
     private InputField myInputField;
-    private PreviousCommandWindow myCusCommandsWindow;
+    private CustomCommandWindow myCusCommandsWindow;
 
     public Window (Controller control) {
         myController = control;
@@ -77,7 +78,7 @@ public class Window extends JFrame {
         myInfoView = new InformationView();
         myVariablesWindow = new VariablesWindow();
         myPreCommandsWindow = new PreviousCommandWindow(myController);
-        myCusCommandsWindow = new PreviousCommandWindow(myController);
+        myCusCommandsWindow = new CustomCommandWindow(myController);
         myTabbedInfoWindow = new JTabbedPane();
         myTabbedInfoWindow.add(INFO_TAB_NAME, makeInformationView());
         myTabbedInfoWindow.add(VARIABLE_TAB_NAME, myVariablesWindow);
@@ -111,7 +112,7 @@ public class Window extends JFrame {
         workspace.addTurtleObserver(myInfoView);
         workspace.addObserver(myVariablesWindow);
         workspace.addObserver(myPreCommandsWindow);
-        workspace.updateInformation();
+        workspace.addObserver(myCusCommandsWindow);
         updateObservers();
     }
 
@@ -126,6 +127,7 @@ public class Window extends JFrame {
         myTabbedPane.addTab(workspace.getName(), myCurrentCanvas);
         myTabbedPane.setSelectedComponent(myCurrentCanvas);
         setObservers(workspace);
+        updateObservers ();
     }
 
     /**
