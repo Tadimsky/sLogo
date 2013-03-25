@@ -67,7 +67,8 @@ public class Controller {
     private Window myWindow;
     private JFileChooser myChooser;
     private HelpWindow myHelpWindow;
-
+   // private MenuCreator myMenuCreator;
+    
     /**
      * Constructor for controller responsible for initializing the view
      * and the parser
@@ -101,16 +102,6 @@ public class Controller {
         getWorkspace().addHistory(command);
     }
 
-    /**
-     * Executes list of commands (for undo option)
-     * 
-     * @param commandList
-     */
-    public void processCommands (List<String> commandList) {
-        for (String command : commandList) {
-            processCommand(command);
-        }
-    }
 
     /**
      * This method is set private so the Window does not have access to it

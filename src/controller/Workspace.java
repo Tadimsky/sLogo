@@ -3,7 +3,6 @@ package controller;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
-import java.awt.image.BufferedImage;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
