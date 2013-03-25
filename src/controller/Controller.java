@@ -136,6 +136,7 @@ public class Controller {
         menuBar.add(createCommandMenu());
         menuBar.add(createSettingMenu());
         menuBar.add(createHelpMenu());
+        menuBar.add(createEditMenu());
         return menuBar;
     }
 
@@ -511,6 +512,45 @@ public class Controller {
         return menu;
     }
 
+    /**
+     * creates the help page option on the menu bar
+     * 
+     * @return help Menu option
+     */
+    private JMenu createEditMenu () {
+        JMenu menu = new JMenu(RESOURCE.getString("EditMenu"));
+        menu.add(new AbstractAction(RESOURCE.getString("RedoCommand")) {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                URL helpPage = null;
+                try {
+                    helpPage = new URL(DEFAULT_URL);
+                }
+                catch (MalformedURLException exception) {
+                    getWorkspace().showError(exception.toString());
+                }
+                new HelpWindow(HELP_TITLE, helpPage);
+            }
+        });
+        
+        menu.add(new AbstractAction(RESOURCE.getString("UndoCommand")) {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                URL helpPage = null;
+                try {
+                    helpPage = new URL(DEFAULT_URL);
+                }
+                catch (MalformedURLException exception) {
+                    getWorkspace().showError(exception.toString());
+                }
+                new HelpWindow(HELP_TITLE, helpPage);
+            }
+        });
+        return menu;
+    }
+    
+    
+    
     /**
      * Loads a file of variable and command to a current workspace.
      */
