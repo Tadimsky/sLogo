@@ -69,7 +69,9 @@ public class TurtleManager extends Observable implements Paintable {
             clearActive();
             int modulo = addMethod % 2;
             for (int i : myTurtles.keySet()) {
-                if (i % 2 == modulo) activateTurtle(i);
+                if (i % 2 == modulo) {
+                    activateTurtle(i);
+                }
             }
         }
     }
@@ -141,8 +143,9 @@ public class TurtleManager extends Observable implements Paintable {
      * Activates the turtle specified by the index
      */
     private void activateTurtle (int index) {
-        if (!myActiveTurtles.containsKey(index))
+        if (!myActiveTurtles.containsKey(index)) {
             myActiveTurtles.put(index, myTurtles.get(index));
+        }
         myIterator = myActiveTurtles.values().iterator();
     }
 
@@ -218,7 +221,6 @@ public class TurtleManager extends Observable implements Paintable {
         return myTurtles;
     }
 
-    
     // TODO: Combine the Iterator and Current turtle together.
     /**
      * @return the current Turtle

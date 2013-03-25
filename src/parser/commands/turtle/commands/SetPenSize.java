@@ -6,16 +6,17 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 public class SetPenSize extends UnaryNode {
-   
+
     public SetPenSize (Deque<SyntaxNode> queue) {
-        super(queue);        
+        super(queue);
     }
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int size = getArgument().evaluate(w);
-        // set the size of the pen        
+        // set the size of the pen
     }
 
 }

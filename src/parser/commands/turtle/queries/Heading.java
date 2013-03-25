@@ -7,19 +7,20 @@ import parser.commands.turtle.commands.BasicControl;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 public class Heading extends BasicControl implements ILabelInformation {
 
     public Heading (Deque<SyntaxNode> stack) {
-        super(stack);        
+        super(stack);
     }
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        return w.getTurtle().getHeading();        
+        return w.getTurtle().getHeading();
     }
-    
+
     @Override
     public String evaluateFromTurtle (IState t) throws InvalidArgumentsException {
-        return ""+t.getHeading();        
+        return "" + t.getHeading();
     }
 }

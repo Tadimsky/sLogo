@@ -1,22 +1,18 @@
 package controller;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
-import java.awt.image.BufferedImage;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
-import controller.support.IError;
 import model.Paintable;
 import model.Turtle;
 import model.TurtleManager;
@@ -28,6 +24,7 @@ import parser.nodes.exceptions.InvalidArgumentsException;
 import view.Canvas;
 import view.ColorManager;
 import view.components.Strokes;
+import controller.support.IError;
 
 
 /**
@@ -89,6 +86,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     /**
      * Painting method that gets called by the Canvas
      */
+    @Override
     public void paint (Graphics2D pen) {
         myTurtleManager.paint(pen);
     }
@@ -102,6 +100,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         myTurtleManager.update();
     }
 
+    @Override
     public Turtle getTurtle ()
     {
         return myTurtleManager.getCurrent();
@@ -114,7 +113,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     public void updateInformation () {
         setChanged();
         notifyObservers();
-    }    
+    }
 
     /**
      * @return All the Turtles associated with this workspace
@@ -146,6 +145,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         return myName;
     }
 
+    @Override
     public VariableManager getVariables ()
     {
         return myVariables;
@@ -254,12 +254,12 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
 
     @Override
     public void addColor (int colorIndex, Color color) {
-        //TODO
+        // TODO
         return;
     }
 
     public void execute (List<SyntaxNode> commands)
-    {        
+    {
         // Point directly to the iterator so that when things change it will update.
         while (myTurtleManager.iterator().hasNext())
         {
@@ -280,7 +280,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     }
 
     @Override
-    public TurtleManager getTurtleManager () {        
+    public TurtleManager getTurtleManager () {
         return myTurtleManager;
     }
 

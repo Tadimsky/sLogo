@@ -7,10 +7,11 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.VariableNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 /**
  * 
  * @author Jonathan Schmidt
- *
+ * 
  */
 public class CustomCommand {
 
@@ -18,16 +19,15 @@ public class CustomCommand {
 
     private int myArgCount;
     private List<VariableNode> myArgs;
-    private ListNode myCommands;   
+    private ListNode myCommands;
 
-    
-    public CustomCommand(String name, int argcount)
-    {        
+    public CustomCommand (String name, int argcount)
+    {
         myName = name;
         myArgCount = argcount;
     }
-    
-    public void addParserInfo(ListNode params, ListNode commands)
+
+    public void addParserInfo (ListNode params, ListNode commands)
     {
         myArgs = new ArrayList<VariableNode>();
         myCommands = commands;
@@ -35,13 +35,13 @@ public class CustomCommand {
         {
             // check syntax here
             if (!(s instanceof VariableNode))
-            {
-                throw new InvalidArgumentsException("The list of arguments does not exclusively contain variables.", "");
-            }
-            myArgs.add((VariableNode)s);
+                throw new InvalidArgumentsException(
+                                                    "The list of arguments does not exclusively contain variables.",
+                                                    "");
+            myArgs.add((VariableNode) s);
         }
     }
-    
+
     /**
      * @return the name
      */
@@ -55,8 +55,8 @@ public class CustomCommand {
     public ListNode getCommands () {
         return myCommands;
     }
-    
-    public int getNumArgs()
+
+    public int getNumArgs ()
     {
         return myArgCount;
     }
@@ -67,14 +67,14 @@ public class CustomCommand {
     public List<VariableNode> getArgs () {
         return myArgs;
     }
-    
+
     /**
      * Returns true if this command has actually been created.
      * As in all the properties have been added to it.
      * 
      * @return
      */
-    public boolean isCreated()
+    public boolean isCreated ()
     {
         return myArgs != null;
     }

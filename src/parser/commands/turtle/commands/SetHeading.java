@@ -6,10 +6,11 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 public class SetHeading extends UnaryNode {
-   
+
     public SetHeading (Deque<SyntaxNode> queue) {
-        super(queue);        
+        super(queue);
     }
 
     @Override

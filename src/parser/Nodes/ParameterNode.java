@@ -2,7 +2,6 @@ package parser.nodes;
 
 import java.util.ArrayList;
 import java.util.List;
-import parser.nodes.exceptions.InvalidArgumentsException;
 
 
 /**
@@ -14,18 +13,18 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public abstract class ParameterNode extends SyntaxNode {
     private List<SyntaxNode> myNodes = new ArrayList<SyntaxNode>();
-    
-    protected void addParameter(int index, SyntaxNode node)
+
+    protected void addParameter (int index, SyntaxNode node)
     {
         myNodes.add(index, node);
     }
-    
-    protected SyntaxNode getParameter(int index)
+
+    protected SyntaxNode getParameter (int index)
     {
         return myNodes.get(index);
     }
-    
-    public int getParameterCount()
+
+    public int getParameterCount ()
     {
         return myNodes.size();
     }

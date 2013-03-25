@@ -4,38 +4,39 @@ import java.util.Deque;
 import parser.IParserProvider;
 import parser.nodes.exceptions.InvalidSemanticsException;
 
+
 /**
  * Represents a node that stores a constant integer value.
  * 
  * @author Jonathan Schmidt
- *
+ * 
  */
 public class ConstantNode extends SimpleNode {
 
     private int myValue;
-    
+
     public ConstantNode (int val) {
-        this.myValue = val;
+        myValue = val;
     }
-    
+
     public ConstantNode (String val) {
-        try 
+        try
         {
             myValue = Integer.parseInt(val);
         }
         catch (NumberFormatException e)
-        {            
+        {
             throw new InvalidSemanticsException(INVALID_FORMAT, val);
         }
     }
-    
+
     public ConstantNode (Deque<SyntaxNode> stack)
-    {        
-        this(((TokenNode)stack.pop()).getToken());
-    }   
+    {
+        this(((TokenNode) stack.pop()).getToken());
+    }
 
     @Override
-    public int evaluate (IParserProvider w) {        
-        return this.myValue;
-    }   
+    public int evaluate (IParserProvider w) {
+        return myValue;
+    }
 }

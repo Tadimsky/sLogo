@@ -1,31 +1,31 @@
 package parser.nodes;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import parser.IParserProvider;
-import parser.nodes.exceptions.ClassDefinitionException;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import parser.reflection.ReflectionHelper;
 
+
 /**
- * This represents the start of a list of parameters in the tree. It contains a command and multiple parameters 
+ * This represents the start of a list of parameters in the tree. It contains a command and multiple
+ * parameters
  * that the command will use.
  * 
  * @author Jonathan Schmidt
- *
+ * 
  */
 public class ParamListNode extends SyntaxNode {
 
     private List<SyntaxNode> myContents;
-    
-    public ParamListNode (Deque<SyntaxNode> queue) {        
+
+    public ParamListNode (Deque<SyntaxNode> queue) {
         myContents = new ArrayList<SyntaxNode>();
-        // The command that operates on the list  
+        // The command that operates on the list
         SyntaxNode command = queue.pop();
-        int params = ((ParameterNode)command).getParameterCount();
+        int params = ((ParameterNode) command).getParameterCount();
         if (params > 1)
         {
             queue.push(command);
@@ -34,8 +34,8 @@ public class ParamListNode extends SyntaxNode {
         {
             myContents.add(command);
         }
-        
-        Deque<SyntaxNode> temp = new LinkedList<SyntaxNode>();        
+
+        Deque<SyntaxNode> temp = new LinkedList<SyntaxNode>();
         // Move all elements in the list to a new queue
         while (!(queue.isEmpty()))
         {
@@ -46,7 +46,7 @@ public class ParamListNode extends SyntaxNode {
             }
             temp.add(sn);
         }
-        
+
         if (params > 1)
         {
             // Last item means it's empty
@@ -74,13 +74,13 @@ public class ParamListNode extends SyntaxNode {
                 }
             }
         }
-        
+
         while (!(temp.isEmpty()))
-        {   
+        {
             myContents.add(temp.pop());
         }
     }
-    
+
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int val = 0;

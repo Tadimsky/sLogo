@@ -4,12 +4,13 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import parser.nodes.exceptions.NodeDefinitionException;
 
+
 /**
  * This class represents the information that is stored in the properties file.
  * This is all the information that is required to generate a new node.
  * 
  * @author Jonathan Schmidt
- *
+ * 
  */
 public class NodeInformation implements Cloneable {
 
@@ -24,10 +25,15 @@ public class NodeInformation implements Cloneable {
     private String myDesc;
     private String myName;
     private String myToken;
-    
+
     private boolean myshouldCreate = true;
-    
-    private NodeInformation(String name, String[] patterns, Class<?> clazz, int args, String desc, String token)
+
+    private NodeInformation (String name,
+                             String[] patterns,
+                             Class<?> clazz,
+                             int args,
+                             String desc,
+                             String token)
     {
         myName = name;
         myPatterns = patterns;
@@ -72,48 +78,41 @@ public class NodeInformation implements Cloneable {
     {
         return myName + "." + field;
     }
-    
-    public String getName()
+
+    public String getName ()
     {
         return myName;
     }
-    
-    public String getDesc()
+
+    public String getDesc ()
     {
         return myDesc;
     }
-    
-    public Class<?> getType()
+
+    public Class<?> getType ()
     {
         return myClass;
     }
-    
-    public int getArgs()
+
+    public int getArgs ()
     {
         return myArgs;
     }
-    
-    public boolean match(String token)
+
+    public boolean match (String token)
     {
-        for (int i = 0; i < myPatterns.length; i++)
-        {
-            if (token.matches(myPatterns[i]))
-            {
-                return true;
-            }
+        for (String myPattern : myPatterns) {
+            if (token.matches(myPattern)) return true;
         }
         return false;
     }
-    
+
     @Override
-    public boolean equals(Object o)
+    public boolean equals (Object o)
     {
         if (o != null)
         {
-            if (o instanceof String)
-            {
-                return match((String)o);
-            }
+            if (o instanceof String) return match((String) o);
         }
         return false;
     }
@@ -131,13 +130,13 @@ public class NodeInformation implements Cloneable {
     public void setToken (String token) {
         myToken = token;
     }
-    
+
     /**
-     * This is used to clone the particular Node Information. 
+     * This is used to clone the particular Node Information.
      */
     @Override
-    public Object clone()
-    {        
+    public Object clone ()
+    {
         return new NodeInformation(myName, myPatterns, myClass, myArgs, myDesc, myToken);
     }
 
@@ -147,8 +146,8 @@ public class NodeInformation implements Cloneable {
     public void setShouldCreate (boolean create) {
         myshouldCreate = create;
     }
-    
-    public boolean shouldCreate() {
+
+    public boolean shouldCreate () {
         return myshouldCreate;
     }
 }

@@ -9,55 +9,57 @@ import java.util.List;
 import util.Location;
 import util.PenLine;
 
+
 /**
  * Pen object that hold the lines that has to be drawn on the canvas
+ * 
  * @author Henrique Moraes
- *
+ * 
  */
 public class Pen {
     public static final Stroke DEFAULT_STROKE = new BasicStroke(1);
-    
+
     List<PenLine> myLines;
     private boolean penWriting = true;
     private Color myCurrentColor = Color.BLACK;
     private Stroke myStroke;
-    
-    public void addLine(Location initialLocation, Location finalLocation){
+
+    public void addLine (Location initialLocation, Location finalLocation) {
         if (!penWriting) return;
         myLines.add(new PenLine(initialLocation, finalLocation, myCurrentColor, myStroke));
     }
-    
-    public Pen(){
+
+    public Pen () {
         myLines = new ArrayList<PenLine>();
         myStroke = DEFAULT_STROKE;
     }
-    
-    public void setPenColor(Color color){
+
+    public void setPenColor (Color color) {
         myCurrentColor = color;
     }
-    
-    public Color getPenColor(){
+
+    public Color getPenColor () {
         return myCurrentColor;
     }
-    
-    public void paint(Graphics2D pen){
-        for(PenLine line : myLines){
+
+    public void paint (Graphics2D pen) {
+        for (PenLine line : myLines) {
             line.paint(pen);
         }
     }
-    
-    public void setPenWriting(boolean write){
+
+    public void setPenWriting (boolean write) {
         penWriting = write;
     }
-    
+
     /**
      * Sets the stroke for the pen of this turtle
      */
     public void setStroke (Stroke stroke) {
         myStroke = stroke;
     }
-    
-    public boolean isPenWriting(){
+
+    public boolean isPenWriting () {
         return penWriting;
     }
 }

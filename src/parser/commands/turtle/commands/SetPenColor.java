@@ -6,16 +6,17 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 public class SetPenColor extends UnaryNode {
-   
+
     public SetPenColor (Deque<SyntaxNode> queue) {
-        super(queue);        
+        super(queue);
     }
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int color = getArgument().evaluate(w);
-        w.getTurtle().setColor(w.getColors().getColor(color));      
+        w.getTurtle().setColor(w.getColors().getColor(color));
         return color;
     }
 
