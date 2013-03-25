@@ -6,7 +6,10 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.TreeMap;
@@ -39,8 +42,7 @@ public class TurtleManager extends Observable implements Paintable {
     private boolean highlightEnabled = false;
     private Stroke myStroke;
 
-    private Turtle myCurrent;
-    private Iterator<Turtle> myIterator;
+    private Turtle myCurrent;    
 
     public TurtleManager () {
         myTurtles = new TreeMap<Integer, Turtle>();
@@ -63,15 +65,29 @@ public class TurtleManager extends Observable implements Paintable {
         }
         activateTurtle(index);
     }
+    
+    public void activate(Collection<Integer> turtles)
+    {
+        for (Integer i : turtles)
+        {
+            activate(i);
+        }
+    }
 
-    private void addActive (int addMethod) {
+    private int addActive (int addMethod) {
+        int id = 0;
         if (addMethod < 0) {
             clearActive();
             int modulo = addMethod % 2;
             for (int i : myTurtles.keySet()) {
-                if (i % 2 == modulo) activateTurtle(i);
+                if (i % 2 == modulo)
+                {
+                    activateTurtle(i);
+                    id = i;
+                }
             }
         }
+        return id;
     }
 
     /**
@@ -126,15 +142,15 @@ public class TurtleManager extends Observable implements Paintable {
     /**
      * Activates Odd indexed turtles
      */
-    public void activateOdd () {
-        addActive(ADD_ODD);
+    public int activateOdd () {
+        return addActive(ADD_ODD);
     }
 
     /**
      * Activates Even indexed turtles
      */
-    public void activateEven () {
-        addActive(ADD_EVEN);
+    public int activateEven () {
+        return addActive(ADD_EVEN);
     }
 
     /**
@@ -143,15 +159,13 @@ public class TurtleManager extends Observable implements Paintable {
     private void activateTurtle (int index) {
         if (!myActiveTurtles.containsKey(index))
             myActiveTurtles.put(index, myTurtles.get(index));
-        myIterator = myActiveTurtles.values().iterator();
     }
 
     /**
      * Activates the turtle specified by the index
      */
     public void deactivateTurtle (int index) {
-        myActiveTurtles.remove(index);
-        myIterator = myActiveTurtles.values().iterator();
+        myActiveTurtles.remove(index);        
     }
 
     /**
@@ -218,7 +232,6 @@ public class TurtleManager extends Observable implements Paintable {
         return myTurtles;
     }
 
-    
     // TODO: Combine the Iterator and Current turtle together.
     /**
      * @return the current Turtle
@@ -234,8 +247,15 @@ public class TurtleManager extends Observable implements Paintable {
         myCurrent = current;
     }
 
-    public Iterator<Turtle> iterator ()
+    /**
+     * Returns a copy of the active turtles
+     * 
+     * @return
+     */
+    public List<Integer> copyActive()
     {
-        return myIterator;
+        Integer[] oldTurtles = new Integer[getTurtles().size()];        
+        oldTurtles = getTurtles().keySet().toArray(oldTurtles);
+        return Arrays.asList(oldTurtles);
     }
 }

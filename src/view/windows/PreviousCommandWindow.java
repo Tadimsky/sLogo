@@ -40,7 +40,7 @@ public class PreviousCommandWindow extends JPanel {
         myPreviousCommands = new JList(myCommandsVector);
         myPreviousCommands.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        addListSelectionListener(myPreviousCommands);
+        //addListSelectionListener(myPreviousCommands);
         add(createCommandsWindow());
         add(createClearButton());
     }
