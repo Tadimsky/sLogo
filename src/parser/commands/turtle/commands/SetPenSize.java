@@ -16,6 +16,7 @@ public class SetPenSize extends UnaryNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int size = getArgument().evaluate(w);
+        
         // set the size of the pen
     }
 

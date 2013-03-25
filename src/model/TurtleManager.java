@@ -6,6 +6,8 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -14,6 +16,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.TreeMap;
 import javax.imageio.ImageIO;
+import parser.reflection.ReflectionHelper;
 import util.Location;
 import view.components.Error;
 import view.components.ErrorBox;
@@ -258,5 +261,25 @@ public class TurtleManager extends Observable implements Paintable {
         Integer[] oldTurtles = new Integer[getTurtles().size()];        
         oldTurtles = getTurtles().keySet().toArray(oldTurtles);
         return Arrays.asList(oldTurtles);
+    }
+    
+    public int execute(String commandName, int... args ) {
+        Method m;
+        try {
+            m = ReflectionHelper.findMethod(Turtle.class, commandName, args);
+        }
+        catch (NoSuchMethodException e) {            
+            return 0;
+        }
+        int value = 0;
+        for (Turtle t : myActiveTurtles.values()) {
+            try {
+                m.invoke(t, args);
+            }
+            catch (Exception e) {
+                return 0;
+            }
+        }
+        return value;
     }
 }
