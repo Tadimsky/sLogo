@@ -6,6 +6,7 @@ import parser.IParserProvider;
 import parser.commands.turtle.commands.BasicControl;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
+import util.Location;
 
 
 public class XCor extends BasicControl implements ILabelInformation {
@@ -16,7 +17,8 @@ public class XCor extends BasicControl implements ILabelInformation {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        return w.getTurtle().getCenter().getIntX();
+        Location loc = w.getTurtleManager().execute("getCenter");
+        return loc.getIntX();
     }
 
     @Override

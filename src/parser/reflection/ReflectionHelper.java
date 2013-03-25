@@ -37,11 +37,15 @@ public class ReflectionHelper {
         throw new ClassDefinitionException(c.getCanonicalName());
     }
     
-    public static Method findMethod(Class<?> c, String methodName, Object... params) throws NoSuchMethodException 
-    {
-        Class<?>[] types = toClassArray(params);
-        Method res = c.getMethod(methodName, types);        
+    public static Method findMethod(Class<?> c, String methodName, Class<?>[] params) throws NoSuchMethodException {
+        Method res = c.getMethod(methodName, params);        
         return res;
+    }
+    
+    public static Method findMethod(Class<?> c, String methodName, Object[] params) throws NoSuchMethodException 
+    {
+        Class<?>[] types = toClassArray(params);        
+        return findMethod(c, methodName, types);
     }
 
     private static boolean paramsEqual (Class<?>[] c1, Class<?>[] c2)
@@ -61,6 +65,11 @@ public class ReflectionHelper {
         for (int i = 0; i < params.length; i++)
         {
             types[i] = params[i].getClass();
+            // Override Primitive Types
+            if (types[i] == Integer.class)
+                types[i] = int.class;
+            if (types[i] == Boolean.class)
+                types[i] = boolean.class;
         }
         return types;
     }

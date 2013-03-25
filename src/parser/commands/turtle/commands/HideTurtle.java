@@ -14,7 +14,7 @@ public class HideTurtle extends BasicControl {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        w.getTurtle().setHiding(true);
+        w.getTurtleManager().execute("setHiding", true);
         return 0;
     }
 }

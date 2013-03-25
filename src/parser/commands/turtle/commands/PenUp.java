@@ -14,7 +14,7 @@ public class PenUp extends BasicControl {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        w.getTurtle().setPenWriting(false);
+        w.getTurtleManager().execute("setPenWriting", false);
         return 0;
     }
 

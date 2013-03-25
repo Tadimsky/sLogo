@@ -322,6 +322,17 @@ public class Turtle extends Observable implements Paintable, IState {
         amHiding = hide;
         update();
     }
+    
+    public void setHiding (int hide) {
+        if (hide == 1)
+        {
+            setHiding(true);
+        }
+        else
+        {
+            setHiding(false);
+        }
+    }
 
     @Override
     public boolean isHiding () {

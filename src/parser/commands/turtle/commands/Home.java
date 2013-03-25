@@ -13,7 +13,7 @@ public class Home extends BasicControl {
     }
 
     @Override
-    public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        return w.getTurtle().goHome();
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {        
+        return w.getTurtleManager().execute("goHome");
     }
 }

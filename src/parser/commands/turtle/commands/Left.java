@@ -16,7 +16,7 @@ public class Left extends UnaryNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int deg = getArgument().evaluate(w);
-        return w.getTurtle().turn(-deg);
+        return w.getTurtleManager().execute("turn", -deg);
     }
 
 }

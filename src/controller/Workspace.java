@@ -13,6 +13,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
+import model.ColorManager;
 import model.Paintable;
 import model.Turtle;
 import model.TurtleManager;
@@ -22,7 +23,6 @@ import parser.VariableManager;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import view.Canvas;
-import view.ColorManager;
 import view.components.Strokes;
 import controller.support.IError;
 

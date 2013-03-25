@@ -16,7 +16,7 @@ public class IsShowing extends BasicControl implements ILabelInformation {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        if (!w.getTurtle().isHiding()) return 1;
+        if (w.getTurtleManager().<Boolean>execute("isHiding")) return 1;
         return 0;
     }
 

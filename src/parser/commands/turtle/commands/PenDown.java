@@ -14,7 +14,7 @@ public class PenDown extends BasicControl {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        w.getTurtle().setPenWriting(true);
+        w.getTurtleManager().execute("setPenWriting", true);        
         return 1;
     }
 }
