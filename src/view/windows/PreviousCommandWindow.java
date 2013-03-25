@@ -7,7 +7,8 @@ import controller.Workspace;
 
 
 /**
- * Window that show commands previously run in the workspace
+ * Window that show commands previously run in the workspace, 
+ * directly clickable to execute
  * 
  * @author Ziqiang Huang
  * 

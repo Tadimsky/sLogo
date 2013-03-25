@@ -5,6 +5,13 @@ import java.util.Observer;
 import controller.Controller;
 import controller.Workspace;
 
+/**
+ * Window shows user-defined procedures currently available in a workspace,
+ * directly clickable to execute
+ * 
+ * @author Ziqiang Huang
+ *
+ */
 @SuppressWarnings("serial")
 public class CustomCommandWindow extends JListCommandWindow implements Observer {
 

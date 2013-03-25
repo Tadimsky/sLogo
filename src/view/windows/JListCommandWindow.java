@@ -16,9 +16,16 @@ import javax.swing.ScrollPaneConstants;
 import view.Window;
 import controller.Controller;
 
+/**
+ * SuperClass for PreviousCommandWindow and CustomCommandWindow,
+ * Commands directly clickable to execute, implemented using JList
+ * 
+ * @author Ziqiang Huang
+ *
+ */
 @SuppressWarnings("serial")
 public class JListCommandWindow extends JPanel {
-    
+
     public static final Dimension DEFAULT_DIMENSION =
             new Dimension(Window.TABBED_INFO_WINDOW_DIMENSION.width,
                           Window.TABBED_INFO_WINDOW_DIMENSION.height - 30);
@@ -97,7 +104,7 @@ public class JListCommandWindow extends JPanel {
         myCommandsVector.add(text);
         myCommands.setListData(myCommandsVector);
     }
-    
+
 
 
 
