@@ -10,13 +10,10 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
 import util.CompositeStroke;
 import util.Location;
 import util.Vector;
 import view.Canvas;
-import view.components.Error;
-import view.components.ErrorBox;
 import view.components.Strokes;
 
 

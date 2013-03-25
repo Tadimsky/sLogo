@@ -14,6 +14,7 @@ import javax.swing.JTextField;
  * @author Henrique Moraes
  * 
  */
+@SuppressWarnings("serial")
 public class InputField extends JTextField implements FocusListener {
 
     private static final String HINT = "Command";

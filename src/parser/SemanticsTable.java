@@ -17,6 +17,7 @@ import parser.nodes.exceptions.NodeDefinitionException;
  * 
  */
 public class SemanticsTable {
+    @SuppressWarnings("unused")
     private static final String INVALID_CUSTOM_COMMAND = "The custom command %s does not exist.";
     public static final String PARSER_RESOURCES = "parser.resources.";
     public static final String SEMANTICS_FILE = "tokens";

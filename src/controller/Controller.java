@@ -26,8 +26,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import model.Turtle;
 import parser.Parser;
 import parser.SemanticsTable;
@@ -50,7 +48,7 @@ import controller.support.StayOpenCheckBoxMenuItem;
  */
 
 public class Controller {
-    private static final String LANGUAGE = "Portugues";
+    private static final String LANGUAGE = "English";
     private int DEFAULT_MOVE_VALUE = 100;
     private int DEFAULT_TURN_VALUE = 90;
     public static final String USER_DIR = "user.dir";
@@ -67,9 +65,6 @@ public class Controller {
     private Parser myParser;
     private Window myWindow;
     private JFileChooser myChooser;
-    private HelpWindow myHelpWindow;
-   // private MenuCreator myMenuCreator;
-    
     /**
      * Constructor for controller responsible for initializing the view
      * and the parser
@@ -151,6 +146,8 @@ public class Controller {
      * 
      * @return File menu for the view
      */
+    
+    @SuppressWarnings("serial")
     private void createFileCommands (JMenu menu) {
         menu.add(new AbstractAction(RESOURCE.getString("New")) {
             @Override
@@ -193,6 +190,8 @@ public class Controller {
      * 
      * @return File menu for the view
      */
+    
+    @SuppressWarnings("serial")
     private void createQuitCommand (JMenu menu) {
         menu.add(new AbstractAction(RESOURCE.getString("QuitProgram")) {
             @Override
@@ -224,6 +223,7 @@ public class Controller {
      * 
      * @param menu menu to have the items added
      */
+    @SuppressWarnings("serial")
     private void createPhysicalCommands (JMenu menu) {
         menu.add(new AbstractAction(RESOURCE.getString("ForwardCommand")) {
             @Override
@@ -277,6 +277,7 @@ public class Controller {
      * 
      * @param menu menu to have the items added
      */
+    @SuppressWarnings("serial")
     private void createVisualCommands (JMenu menu) {
         menu.add(new AbstractAction(RESOURCE.getString("ShowCommand")) {
             @Override
@@ -331,6 +332,7 @@ public class Controller {
      * 
      * @return
      */
+    @SuppressWarnings("serial")
     private JMenu createSettingMenu () {
         JMenu menu = new JMenu(RESOURCE.getString("SettingMenu"));
 
@@ -383,7 +385,7 @@ public class Controller {
                                                       JOptionPane.OK_CANCEL_OPTION);
                 if (option == JOptionPane.OK_OPTION) {
                     try {
-                        int colorIndex = Integer.parseInt(id.getText());
+                        Integer.parseInt(id.getText());
                         int Rvalue = Integer.parseInt(R.getText());
                         int Gvalue = Integer.parseInt(G.getText());
                         int Bvalue = Integer.parseInt(B.getText());
@@ -468,6 +470,7 @@ public class Controller {
         return new ItemListener() {
             @Override
             public void itemStateChanged (ItemEvent e) {
+                @SuppressWarnings("resource")
                 Scanner s = new Scanner(item.getText());
                 s.skip(RESOURCE.getString("Turtle"));
                 int index = s.nextInt();
@@ -486,6 +489,7 @@ public class Controller {
      * 
      * @return help Menu option
      */
+    @SuppressWarnings("serial")
     private JMenu createHelpMenu () {
         JMenu menu = new JMenu(RESOURCE.getString("HelpMenu"));
         menu.add(new AbstractAction(RESOURCE.getString("CommandDescription")) {
@@ -509,6 +513,7 @@ public class Controller {
      * 
      * @return help Menu option
      */
+    @SuppressWarnings("serial")
     private JMenu createEditMenu () {
         JMenu menu = new JMenu(RESOURCE.getString("EditMenu"));
         menu.add(new AbstractAction(RESOURCE.getString("RedoCommand")) {

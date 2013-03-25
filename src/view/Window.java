@@ -32,6 +32,7 @@ import controller.Workspace;
  * @author Henrique Moraes, Ziqiang
  * 
  */
+@SuppressWarnings("serial")
 public class Window extends JFrame {
     private final static int GRAY_TONE = 230;
     public final static Color INFO_BACKGROUND_COLOR = new Color(GRAY_TONE, GRAY_TONE, GRAY_TONE);

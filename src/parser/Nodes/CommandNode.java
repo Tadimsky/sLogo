@@ -8,7 +8,6 @@ import parser.IParserProvider;
 import parser.SemanticsTable;
 import parser.VariableManager;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import parser.nodes.exceptions.InvalidSemanticsException;
 
 
 /**

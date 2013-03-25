@@ -3,11 +3,8 @@ package view.windows;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.ResourceBundle;
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -32,6 +29,7 @@ import controller.Workspace;
  * @author Henrique Moraes, Ziqiang Huang
  * 
  */
+@SuppressWarnings("serial")
 public class GraphicsSettingsWindow extends SettingsWindow {
     private static final Strokes[] STROKES_OPTIONS =
             new Strokes[] { Strokes.SOLID, Strokes.DASHED,
@@ -43,7 +41,9 @@ public class GraphicsSettingsWindow extends SettingsWindow {
     private JCheckBox myEnableGridBox;
     private JTextField mySpacingField;
     private JTextField myImageIndex;
+    @SuppressWarnings("rawtypes")
     private JComboBox myThicknessOption;
+    @SuppressWarnings("rawtypes")
     private JComboBox myStrokeTypeOption;
     private JTextField myImagePath;
     private JFileChooser myChooser;
@@ -71,6 +71,7 @@ public class GraphicsSettingsWindow extends SettingsWindow {
     /**
      * @return Panel with Stroke options
      */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     private JPanel createPenPanel () {
 
         JPanel penPanel = new JPanel();

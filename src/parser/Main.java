@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 import parser.nodes.SyntaxNode;
+import parser.nodes.exceptions.InvalidSemanticsException;
 
 
 public class Main {
@@ -25,8 +26,10 @@ public class Main {
 
     }
 
-    private static void checkLine (Parser p)
+    @SuppressWarnings("unused")
+    private static void checkLine (Parser p) throws InvalidSemanticsException
     {
+        @SuppressWarnings("resource")
         Scanner in = new Scanner(System.in);
         while (true)
         {

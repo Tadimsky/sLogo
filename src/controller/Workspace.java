@@ -3,7 +3,6 @@ package controller;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
-import java.awt.image.BufferedImage;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -23,7 +22,6 @@ import parser.IParserProvider;
 import parser.VariableManager;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import parser.nodes.exceptions.InvalidSemanticsException;
 import view.Canvas;
 import view.components.Strokes;
 import controller.support.IError;
@@ -44,7 +42,6 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
 
     private List<String> myHistory;
     private VariableManager myVariables;
-    private WSUndoManager myUndoManager;
     private ColorManager myPalette;
     private Canvas myCanvas;
     private TurtleManager myTurtleManager;
@@ -64,18 +61,10 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         myName = UNTITLED;
         myHistory = new ArrayList<String>();
         myVariables = new VariableManager();
-        myUndoManager = new WSUndoManager();
+        new WSUndoManager();
         myPalette = new ColorManager();
         myCanvas = new Canvas(this);
 
-        //testVariables();
-    }
-
-    private void testVariables () {
-        // myVariables.createVariableScope("local");
-        for (int i = 0; i < 10; i++) {
-            myVariables.setVariable("var" + i, i);
-        }
     }
 
     /**

@@ -25,6 +25,7 @@ import view.labels.LogoLabel;
 import view.labels.TitleLabel;
 
 
+@SuppressWarnings("serial")
 public class InformationView extends JPanel implements Observer {
     private static final String TITLE = "Turtle Information";
 

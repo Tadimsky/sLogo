@@ -24,16 +24,19 @@ import controller.Controller;
  * 
  */
 
+@SuppressWarnings("serial")
 public class PreviousCommandWindow extends JPanel {
 
     public static final Dimension DEFAULT_DIMENSION =
             new Dimension(Window.TABBED_INFO_WINDOW_DIMENSION.width,
                           Window.TABBED_INFO_WINDOW_DIMENSION.height - 30);
 
+    @SuppressWarnings("rawtypes")
     private JList myPreviousCommands;
     private Vector<String> myCommandsVector;
     private Controller myController;
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public PreviousCommandWindow (Controller c) {
         myController = c;
         myCommandsVector = new Vector<String>();
@@ -54,6 +57,7 @@ public class PreviousCommandWindow extends JPanel {
         JPanel clearPanel = new JPanel();
         JButton clearButton = new JButton(Controller.RESOURCE.getString("Clear"));
         clearButton.addActionListener(new ActionListener() {
+            @SuppressWarnings("unchecked")
             @Override
             public void actionPerformed (ActionEvent arg0) {
                 myCommandsVector.clear();
@@ -81,6 +85,7 @@ public class PreviousCommandWindow extends JPanel {
      * 
      * @param list
      */
+    @SuppressWarnings("rawtypes")
     private void addListSelectionListener (final JList list) {
         list.addMouseListener(new MouseAdapter() {
             @Override
@@ -95,6 +100,7 @@ public class PreviousCommandWindow extends JPanel {
      * 
      * @param text
      */
+    @SuppressWarnings("unchecked")
     public void addCommand (String text) {
         myCommandsVector.add(text);
         myPreviousCommands.setListData(myCommandsVector);

@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
  * 
  */
 
+@SuppressWarnings("serial")
 public class HelpWindow extends JFrame {
     private static final Dimension DEFAULT_DIMENSION = new Dimension(1200, 800);
     private JEditorPane editorpane;

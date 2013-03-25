@@ -8,6 +8,7 @@ import model.IState;
 import parser.commands.turtle.queries.ILabelInformation;
 
 
+@SuppressWarnings("serial")
 public abstract class LogoLabel extends JLabel {
     private String myDescription;
     private ILabelInformation myTurtleQuery;

@@ -14,6 +14,7 @@ import parser.nodes.exceptions.InvalidSemanticsException;
  */
 public class VariableNode extends SimpleNode {
 
+    @SuppressWarnings("unused")
     private static final String INVALID_VARIABLE =
             "The variable %s does not exist in the current workspace.";
 
@@ -28,7 +29,7 @@ public class VariableNode extends SimpleNode {
         else throw new InvalidSemanticsException(INVALID_FORMAT, name);
     }
 
-    public VariableNode (Deque<SyntaxNode> stack)
+    public VariableNode (Deque<SyntaxNode> stack) throws InvalidSemanticsException
     {
         this(((TokenNode) stack.pop()).getToken());
     }
@@ -37,7 +38,7 @@ public class VariableNode extends SimpleNode {
     public int evaluate (IParserProvider w) {
 
         Integer val = w.getVariables().getVariable(myName);
-        if (val == null) return 0; // throw new InvalidArgumentsException(INVALID_VARIABLE, myName);
+        if (val == null) return 0; 
         return val;
     }
 
