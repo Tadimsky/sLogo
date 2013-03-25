@@ -3,11 +3,16 @@ package view.windows;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -15,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import view.components.Strokes;
+import controller.Controller;
 import controller.Workspace;
 
 
@@ -37,12 +43,21 @@ public class GraphicsSettingsWindow extends SettingsWindow {
     private JTextField mySpacingField;
     private JComboBox myThicknessOption;
     private JComboBox myStrokeTypeOption;
+    private JTextField myImagePath;
+    private JFileChooser myChooser;
+    
 
     public GraphicsSettingsWindow (Workspace w) {
         super(w);
 
+        myChooser = new JFileChooser(System.getProperties().getProperty(Controller.USER_DIR));
         myOptionsPanel.add(createPenPanel());
-        myOptionsPanel.add(createGridPanel());
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new BoxLayout(rightPanel,BoxLayout.Y_AXIS));
+        rightPanel.add(createGridPanel());
+        rightPanel.add(createImagePanel());
+        
+        myOptionsPanel.add(rightPanel);
         addOkButtonListener();
 
         setTitle("Graphics Settings");
@@ -108,6 +123,32 @@ public class GraphicsSettingsWindow extends SettingsWindow {
                                                              "Grid Settings"));
         return gridPanel;
     }
+    
+    private JPanel createImagePanel() {
+        JPanel imagePanel = new JPanel();
+        imagePanel.setLayout(new BoxLayout(imagePanel, BoxLayout.X_AXIS));
+        imagePanel.add(myImagePath = new JTextField());
+        JButton browseButton = new JButton("Browse");
+        browseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed (ActionEvent arg0) {
+                try {
+                    int response = myChooser.showOpenDialog(null);
+                    if (response == JFileChooser.APPROVE_OPTION) {
+                        myImagePath.setText(myChooser.getSelectedFile().getCanonicalPath());
+                    }
+                }
+                catch (Exception ex) {
+                    myWorkspace.showError(ex.toString());
+                }
+            }  
+        });
+        imagePanel.add(browseButton);
+        
+        imagePanel.setBorder(BorderFactory.
+                             createTitledBorder(BorderFactory.createEtchedBorder(), "Turtle Image"));
+        return imagePanel;
+    }
 
     @Override
     protected void addOkButtonListener () {
@@ -118,10 +159,9 @@ public class GraphicsSettingsWindow extends SettingsWindow {
                                       (Strokes) myStrokeTypeOption.getSelectedItem(),
                                       (Integer) myThicknessOption.getSelectedItem());
                 checkGridPanel();
-
+                checkImagePanel();
                 // TODO implement in the most effective way raising and lowering the pen from active
                 // turtles. Waiting until model finds a solution
-
                 dispose();
             }
 
@@ -139,6 +179,11 @@ public class GraphicsSettingsWindow extends SettingsWindow {
                         myWorkspace.showError("Invalid Spacing Argument");
                     }
                 }
+            }
+            
+            private void checkImagePanel() {
+                if (myImagePath.getText().isEmpty()) return;
+                myWorkspace.setImage(myImagePath.getText());
             }
         });
     }

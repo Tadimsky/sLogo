@@ -40,15 +40,6 @@ public class Turtle implements Paintable, IState {
         myPen = new Pen();
         myCenter = new Location(0, 0);
         myHeading = new Vector(270, 0);
-        try {
-            myImage = ImageIO.read(this.getClass().getResource(IMAGE_PATH));
-        }
-        catch (Exception e) {
-            ErrorBox.showError(Error.INVALID_IMAGE);
-        }
-        ;
-        myWidth = myImage.getWidth();
-        myHeight = myImage.getHeight();
         myStamp = new ArrayList<Location>();
     }
 
@@ -340,7 +331,8 @@ public class Turtle implements Paintable, IState {
 
     public void setImage (BufferedImage myImage2) {
         myImage = myImage2;
-
+        myWidth = myImage.getWidth();
+        myHeight = myImage.getHeight();
     }
 
     public void setStroke (Stroke stroke) {

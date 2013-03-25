@@ -49,7 +49,7 @@ import controller.support.StayOpenCheckBoxMenuItem;
 public class Controller {
     private int DEFAULT_MOVE_VALUE = 100;
     private int DEFAULT_TURN_VALUE = 90;
-    private static final String USER_DIR = "user.dir";
+    public static final String USER_DIR = "user.dir";
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
     protected static final String DEFAULT_URL =
             "http://www.cs.duke.edu/courses/spring13/compsci308/assign/03_slogo/commands.php";

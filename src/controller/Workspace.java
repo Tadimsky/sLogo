@@ -3,6 +3,7 @@ package controller;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
+import java.awt.image.BufferedImage;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -211,6 +212,10 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
 
     public void setHighlighted (boolean active) {
         myTurtleManager.setHighlighted(active);
+    }
+    
+    public void setImage (String path) {
+        myTurtleManager.setImage(path);
     }
 
     public boolean getHighlighted () {
