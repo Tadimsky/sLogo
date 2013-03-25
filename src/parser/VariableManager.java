@@ -70,7 +70,7 @@ public class VariableManager {
             }
         }
 
-        throw new InvalidArgumentsException("Argument does not exist {0}", var);
+        throw new InvalidArgumentsException("Argument does not exist %s", var);
     }
 
     /**
@@ -84,7 +84,7 @@ public class VariableManager {
         // Get from current scope first, if it is local.
         Iterator<VariableScope> i = myScopes.iterator();
         while (i.hasNext())
-        {
+        {            
             if (i.next().removeVariable(var) != null) return;
         }
         JOptionPane.showMessageDialog(null, "Nothing to Remove",

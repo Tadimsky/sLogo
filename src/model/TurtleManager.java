@@ -22,6 +22,7 @@ import sun.awt.image.OffScreenImage;
 import util.Location;
 import view.components.Error;
 import view.components.ErrorBox;
+import view.components.Strokes;
 
 
 /**
@@ -309,5 +310,12 @@ public class TurtleManager extends Observable implements Paintable {
         }
         update();  
         return result;
+    }
+
+    public void setStrokeType(Strokes s) {
+        if (myActiveTurtles.isEmpty()) return;
+        for (Turtle t : myActiveTurtles.values()) {
+            t.setStrokeType(s);
+        }
     }
 }

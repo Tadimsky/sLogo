@@ -23,6 +23,7 @@ import parser.IParserProvider;
 import parser.VariableManager;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
+import parser.nodes.exceptions.InvalidSemanticsException;
 import view.Canvas;
 import view.components.Strokes;
 import controller.support.IError;
@@ -67,7 +68,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         myPalette = new ColorManager();
         myCanvas = new Canvas(this);
 
-        testVariables();
+        //testVariables();
     }
 
     private void testVariables () {
@@ -283,6 +284,11 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     @Override
     public TurtleManager getTurtleManager () {
         return myTurtleManager;
+    }
+
+    public void setStrokeType(Strokes s) {
+        myTurtleManager.setStrokeType(s);
+        
     }
 
 }

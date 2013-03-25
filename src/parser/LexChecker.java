@@ -34,7 +34,7 @@ public class LexChecker {
         if (m.matches())
         {
             String problem = s.substring(m.start(), m.end());
-            throw new InvalidLexiconException("You have entered invalid characters: {0}", problem);
+            throw new InvalidLexiconException("You have entered invalid characters: %s", problem);
         }
 
         StringTokenizer split = new StringTokenizer(s, " ");

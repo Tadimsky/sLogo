@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import view.components.ErrorBox;
@@ -62,6 +63,11 @@ public class Window extends JFrame {
         setTitle("SLogo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }
+        catch (Exception e) { }
+
 
         myResource = Controller.RESOURCE;
 
