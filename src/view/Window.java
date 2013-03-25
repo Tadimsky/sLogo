@@ -43,6 +43,7 @@ public class Window extends JFrame {
     private static final String INFO_TAB_NAME = "Information";
     private static final String VARIABLE_TAB_NAME = "Variables";
     private static final String PRECOMMAND_TAB_NAME = "Previous Commands";
+    private static final String CUSTOMCOMMAND_TAB_NAME = "Custom Commands";
 
     private int workspaceIndex = 1;
     private ResourceBundle myResource;
@@ -58,6 +59,7 @@ public class Window extends JFrame {
     private JTabbedPane myTabbedPane;
     private JTabbedPane myTabbedInfoWindow;
     private InputField myInputField;
+    private PreviousCommandWindow myCusCommandsWindow;
 
     public Window (Controller control) {
         myController = control;
@@ -75,10 +77,12 @@ public class Window extends JFrame {
         myInfoView = new InformationView();
         myVariablesWindow = new VariablesWindow();
         myPreCommandsWindow = new PreviousCommandWindow(myController);
+        myCusCommandsWindow = new PreviousCommandWindow(myController);
         myTabbedInfoWindow = new JTabbedPane();
         myTabbedInfoWindow.add(INFO_TAB_NAME, makeInformationView());
         myTabbedInfoWindow.add(VARIABLE_TAB_NAME, myVariablesWindow);
         myTabbedInfoWindow.add(PRECOMMAND_TAB_NAME, myPreCommandsWindow);
+        myTabbedInfoWindow.add(CUSTOMCOMMAND_TAB_NAME, myCusCommandsWindow);
 
         myTabbedPane = new JTabbedPane();
         myInputField = new InputField(INPUT_FIELD_SIZE);
@@ -106,6 +110,7 @@ public class Window extends JFrame {
         workspace.addTurtleObserver(myCurrentCanvas);
         workspace.addTurtleObserver(myInfoView);
         workspace.addObserver(myVariablesWindow);
+        workspace.addObserver(myPreCommandsWindow);
         workspace.updateInformation();
         updateObservers();
     }
@@ -201,7 +206,6 @@ public class Window extends JFrame {
             @Override
             public void actionPerformed (ActionEvent e) {
                 myController.processCommand(myInputField.getText());
-                myPreCommandsWindow.addCommand(myInputField.getText());
                 myInputField.setText("");
             }
         };

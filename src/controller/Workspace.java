@@ -193,6 +193,11 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     {
         myHistory.add(s);
     }
+    
+    public List<String> getHistory () 
+    {
+        return myHistory;
+    }
 
     @Override
     public int setBackground (int colorIndex) {

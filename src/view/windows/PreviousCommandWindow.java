@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -15,6 +17,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import view.Window;
 import controller.Controller;
+import controller.Workspace;
 
 
 /**
@@ -25,7 +28,7 @@ import controller.Controller;
  */
 
 @SuppressWarnings("serial")
-public class PreviousCommandWindow extends JPanel {
+public class PreviousCommandWindow extends JPanel implements Observer{
 
     public static final Dimension DEFAULT_DIMENSION =
             new Dimension(Window.TABBED_INFO_WINDOW_DIMENSION.width,
@@ -104,6 +107,16 @@ public class PreviousCommandWindow extends JPanel {
     public void addCommand (String text) {
         myCommandsVector.add(text);
         myPreviousCommands.setListData(myCommandsVector);
+    }
+
+    @Override
+    public void update(Observable object, Object arg) {
+        Workspace w = (Workspace) object;
+        myCommandsVector.clear();
+        for(String commands : w.getHistory()) {
+            addCommand(commands);
+        }
+        
     }
 
 }

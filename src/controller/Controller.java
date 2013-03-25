@@ -96,6 +96,7 @@ public class Controller {
         SemanticsTable.getInstance().setContext(null);
         getWorkspace().execute(commandList);
         getWorkspace().addHistory(command);
+        getWorkspace().updateInformation();
     }
 
 
