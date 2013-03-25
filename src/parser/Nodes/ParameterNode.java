@@ -1,7 +1,9 @@
 package parser.nodes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -12,11 +14,11 @@ import java.util.List;
  * 
  */
 public abstract class ParameterNode extends SyntaxNode {
-    private List<SyntaxNode> myNodes = new ArrayList<SyntaxNode>();
+    private Map<Integer, SyntaxNode> myNodes = new HashMap<Integer, SyntaxNode>();
 
     protected void addParameter (int index, SyntaxNode node)
     {
-        myNodes.add(index, node);
+        myNodes.put(index, node);
     }
 
     protected SyntaxNode getParameter (int index)

@@ -15,7 +15,7 @@ import parser.nodes.exceptions.InvalidSemanticsException;
 public class VariableNode extends SimpleNode {
 
     private static final String INVALID_VARIABLE =
-            "The variable {0} does not exist in the current workspace.";
+            "The variable %s does not exist in the current workspace.";
 
     private String myName;
 

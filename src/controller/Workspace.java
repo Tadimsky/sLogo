@@ -23,6 +23,7 @@ import parser.IParserProvider;
 import parser.VariableManager;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
+import parser.nodes.exceptions.InvalidSemanticsException;
 import view.Canvas;
 import view.components.Strokes;
 import controller.support.IError;

@@ -70,7 +70,7 @@ public class VariableManager {
             }
         }
 
-        throw new InvalidArgumentsException("Argument does not exist {0}", var);
+        throw new InvalidArgumentsException("Argument does not exist %s", var);
     }
 
     /**

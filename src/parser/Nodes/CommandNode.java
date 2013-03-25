@@ -8,6 +8,7 @@ import parser.IParserProvider;
 import parser.SemanticsTable;
 import parser.VariableManager;
 import parser.nodes.exceptions.InvalidArgumentsException;
+import parser.nodes.exceptions.InvalidSemanticsException;
 
 
 /**
@@ -57,7 +58,7 @@ public class CommandNode extends SimpleNode {
     }
 
     @Override
-    public int evaluate (IParserProvider w) {
+    public int evaluate (IParserProvider w) {        
         VariableManager vm = w.getVariables();
 
         // Evaluate variables with current context.

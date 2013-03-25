@@ -32,6 +32,7 @@ import model.Turtle;
 import parser.Parser;
 import parser.SemanticsTable;
 import parser.nodes.SyntaxNode;
+import parser.nodes.exceptions.InvalidSemanticsException;
 import view.Window;
 import view.windows.GraphicsSettingsWindow;
 import view.windows.HelpWindow;
@@ -85,7 +86,16 @@ public class Controller {
      */
     public void processCommand (String command) {
         SemanticsTable.getInstance().setContext(getWorkspace());
-        List<SyntaxNode> commandList = myParser.parseCommand(command);
+        List<SyntaxNode> commandList = null;
+        try {
+            commandList = myParser.parseCommand(command);
+        }
+        catch (InvalidSemanticsException e) {            
+            getWorkspace().showError(e.getMessage());
+            SemanticsTable.getInstance().setContext(null);
+            return;
+        }
+        
         SemanticsTable.getInstance().setContext(null);
         getWorkspace().execute(commandList);
         getWorkspace().addHistory(command);
@@ -517,7 +527,13 @@ public class Controller {
      */
     public void processFile (Scanner inputFile) {
         SemanticsTable.getInstance().setContext(getWorkspace());
-        List<SyntaxNode> commandList = myParser.parseCommand(inputFile);
+        List<SyntaxNode> commandList = null;
+        try {
+            commandList = myParser.parseCommand(inputFile);
+        }
+        catch (InvalidSemanticsException e) {            
+            getWorkspace().showError(e.getMessage());
+        }        
         SemanticsTable.getInstance().setContext(null);
         for (SyntaxNode node : commandList) {
             node.evaluate(getWorkspace());

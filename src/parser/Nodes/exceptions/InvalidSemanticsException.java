@@ -1,6 +1,6 @@
 package parser.nodes.exceptions;
 
-public class InvalidSemanticsException extends RuntimeException {
+public class InvalidSemanticsException extends Exception {
 
     private static final long serialVersionUID = 1L;
 

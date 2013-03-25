@@ -3,6 +3,7 @@ package parser;
 import java.util.List;
 import java.util.Scanner;
 import parser.nodes.SyntaxNode;
+import parser.nodes.exceptions.InvalidSemanticsException;
 
 
 /**
@@ -29,17 +30,17 @@ public class Parser {
      * 
      * @param command The string input that the parser parses.
      * @return a list of roots of each tree.
+     * @throws InvalidSemanticsException 
      */
-    public List<SyntaxNode> parseCommand (String command)
+    public List<SyntaxNode> parseCommand (String command) throws InvalidSemanticsException
     {
         if (command.isEmpty()) return null;
-
         List<String> tokens = LexChecker.splitTokens(command);
         List<SyntaxNode> nodes = mySemantics.evaluateExpression(tokens);
         return nodes;
     }
 
-    public List<SyntaxNode> parseCommand (Scanner s)
+    public List<SyntaxNode> parseCommand (Scanner s) throws InvalidSemanticsException
     {
         StringBuilder fullCommand = new StringBuilder();
         while (s.hasNext())

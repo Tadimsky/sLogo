@@ -19,7 +19,7 @@ public class ConstantNode extends SimpleNode {
         myValue = val;
     }
 
-    public ConstantNode (String val) {
+    public ConstantNode (String val) throws InvalidSemanticsException {
         try
         {
             myValue = Integer.parseInt(val);
@@ -30,7 +30,7 @@ public class ConstantNode extends SimpleNode {
         }
     }
 
-    public ConstantNode (Deque<SyntaxNode> stack)
+    public ConstantNode (Deque<SyntaxNode> stack) throws InvalidSemanticsException
     {
         this(((TokenNode) stack.pop()).getToken());
     }
