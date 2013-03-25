@@ -50,6 +50,7 @@ import controller.support.StayOpenCheckBoxMenuItem;
  */
 
 public class Controller {
+    private static final String LANGUAGE = "Portugues";
     private int DEFAULT_MOVE_VALUE = 100;
     private int DEFAULT_TURN_VALUE = 90;
     public static final String USER_DIR = "user.dir";
@@ -59,9 +60,9 @@ public class Controller {
     protected static final String HELP_TITLE = "Command Description for SLogo";
     protected static final Object[] DEFAULT_PEN_COLOR_OPTION = { "red", "blue", "black" };
     public static final ResourceBundle RESOURCE = ResourceBundle
-            .getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
+            .getBundle(DEFAULT_RESOURCE_PACKAGE + LANGUAGE);
     public static final ResourceBundle RESOURCE_ERROR = ResourceBundle
-            .getBundle(DEFAULT_RESOURCE_PACKAGE + "error." + "ErrorEnglish");
+            .getBundle(DEFAULT_RESOURCE_PACKAGE + "error.Error"+LANGUAGE);
 
     private Parser myParser;
     private Window myWindow;
@@ -159,7 +160,7 @@ public class Controller {
      * @return File menu for the view
      */
     private void createFileCommands (JMenu menu) {
-        menu.add(new AbstractAction(RESOURCE.getString("NewWorkspace")) {
+        menu.add(new AbstractAction(RESOURCE.getString("New")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 myWindow.createWorkspace();

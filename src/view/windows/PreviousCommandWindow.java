@@ -52,7 +52,7 @@ public class PreviousCommandWindow extends JPanel {
 
     private JPanel createClearPanel () {
         JPanel clearPanel = new JPanel();
-        JButton clearButton = new JButton("Clear");
+        JButton clearButton = new JButton(Controller.RESOURCE.getString("Clear"));
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed (ActionEvent arg0) {

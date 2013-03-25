@@ -260,8 +260,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
 
     @Override
     public void addColor (int colorIndex, Color color) {
-        // TODO
-        return;
+        myPalette.setColor(colorIndex, color);
     }
 
     public void execute (List<SyntaxNode> commands)

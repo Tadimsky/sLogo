@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import view.labels.TitleLabel;
+import controller.Controller;
 import controller.Workspace;
 
 
@@ -52,7 +53,7 @@ public abstract class SettingsWindow extends JFrame {
     private JPanel createTitlePanel () {
         JPanel titlePanel = new JPanel();
         titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.LINE_AXIS));
-        JLabel title = new JLabel("Choose Your Options");
+        JLabel title = new JLabel(Controller.RESOURCE.getString("ChooseOptions"));
         title.setFont(TitleLabel.TITLE_FONT);
         titlePanel.add(title);
         titlePanel.add(Box.createRigidArea(new Dimension(0, 50)));
@@ -78,7 +79,7 @@ public abstract class SettingsWindow extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
         buttonPanel.add(Box.createHorizontalGlue());
-        buttonPanel.add(myOkButton = new JButton("Ok"));
+        buttonPanel.add(myOkButton = new JButton(Controller.RESOURCE.getString("Ok")));
         myOkButton.setSelected(true);
         return buttonPanel;
     }
