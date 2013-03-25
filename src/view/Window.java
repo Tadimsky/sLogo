@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observable;
 import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -18,6 +17,7 @@ import javax.swing.event.ChangeListener;
 import view.components.ErrorBox;
 import view.components.InputField;
 import view.windows.InformationView;
+import view.windows.PreviousCommandWindow;
 import view.windows.VariablesWindow;
 import controller.Controller;
 import controller.Workspace;
@@ -35,8 +35,10 @@ public class Window extends JFrame {
     private static final int INPUT_FIELD_SIZE = 70;
     private static final String WORKSPACE_NAME = "Workspace ";
     public static final Dimension TABBED_INFO_WINDOW_DIMENSION = new Dimension(220, 600);
+    public static final Dimension WINDOW_DIMENSION =new Dimension(1030, 735);
     private static final String INFO_TAB_NAME = "Information";
     private static final String VARIABLE_TAB_NAME = "Variables";
+    private static final String PRECOMMAND_TAB_NAME = "Previous Commands";
     
     private int workspaceIndex = 1;
     private ResourceBundle myResource;
@@ -48,6 +50,7 @@ public class Window extends JFrame {
     private Canvas myCurrentCanvas;
     private InformationView myInfoView;
     private VariablesWindow myVariablesWindow;
+    private PreviousCommandWindow myPreCommandsWindow;
     private JTabbedPane myTabbedPane;
     private JTabbedPane myTabbedInfoWindow;
     private InputField myInputField;
@@ -63,9 +66,11 @@ public class Window extends JFrame {
         
         myInfoView = new InformationView();
         myVariablesWindow = new VariablesWindow();
+        myPreCommandsWindow = new PreviousCommandWindow(myController);
         myTabbedInfoWindow = new JTabbedPane();
         myTabbedInfoWindow.add(INFO_TAB_NAME, makeInformationView());
         myTabbedInfoWindow.add(VARIABLE_TAB_NAME, myVariablesWindow);
+        myTabbedInfoWindow.add(PRECOMMAND_TAB_NAME, myPreCommandsWindow);
         
         myTabbedPane = new JTabbedPane();
         myInputField = new InputField(INPUT_FIELD_SIZE);
@@ -78,8 +83,9 @@ public class Window extends JFrame {
 
         setJMenuBar(myController.createJMenuBar());
         createWorkspace();
+        
+        setPreferredSize(WINDOW_DIMENSION);
         pack();
-
         setVisible(true);
     }
     
@@ -128,11 +134,9 @@ public class Window extends JFrame {
      * @return Information View of this program
      */
     private JComponent makeInformationView() {
-        JPanel infoPanel = new JPanel();
         JScrollPane InfoScrollPane = new JScrollPane(myInfoView);
         InfoScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        infoPanel.add(InfoScrollPane);
-        return infoPanel;
+        return InfoScrollPane;
     }
 
     /**
@@ -186,6 +190,7 @@ public class Window extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 myController.processCommand(myInputField.getText());
+                myPreCommandsWindow.addCommand(myInputField.getText());
                 myInputField.setText("");
             }
         };

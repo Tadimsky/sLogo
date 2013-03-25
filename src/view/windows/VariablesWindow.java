@@ -47,9 +47,6 @@ public class VariablesWindow extends JPanel implements Observer{
     private DefaultTableModel myModel;
     private IError myErrorNotifier;
     private VariableManager myVariableManager;
-    private JButton myNewButton;
-    private JButton myRemoveButton;
-    private JButton myOkButton;
     private boolean isCellAdding = false;
     private JPanel myButtonsPanel;
     private JPanel myCardsPanel;
@@ -109,13 +106,15 @@ public class VariablesWindow extends JPanel implements Observer{
         myButtonsPanel = new JPanel();
         myButtonsPanel.setLayout(new GridLayout(1,3));
         myButtonsPanel.add(Box.createHorizontalGlue());
-        myButtonsPanel.add(myRemoveButton = new JButton("Remove"));
-        myRemoveButton.addActionListener(createRemoveListener());
+        JButton removeButton = new JButton("Remove");
+        myButtonsPanel.add(removeButton);
+        removeButton.addActionListener(createRemoveListener());
              
         myCardsPanel = new JPanel(new CardLayout());
-        myCardsPanel.add(myNewButton = new JButton(NEW_BUTTON), NEW_BUTTON);
-        myCardsPanel.add(myOkButton = (createOkButton()), OK_BUTTON);
-        myNewButton.addActionListener(createNewListener());
+        JButton newButton = new JButton(NEW_BUTTON);
+        myCardsPanel.add(newButton, NEW_BUTTON);
+        myCardsPanel.add(createOkButton(), OK_BUTTON);
+        newButton.addActionListener(createNewListener());
         myButtonsPanel.add(myCardsPanel);
                  
         return myButtonsPanel;       

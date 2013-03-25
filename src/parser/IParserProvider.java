@@ -19,9 +19,9 @@ public interface IParserProvider {
     
     public VariableManager getVariables();
     
-    public Map<Integer, Turtle> getTurtles ();
-
-    public void addColor(int colorIndex, Color color);
+    public TurtleManager getTurtleManager();
+    
+    public Turtle getTurtle ();
 
     public ColorManager getColors();
 
@@ -29,5 +29,7 @@ public interface IParserProvider {
 
     public void update();
 
-    public void addHistory(String string);
+    void addColor (int colorIndex, Color color);
+
+    void addHistory (String s);    
 }

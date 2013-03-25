@@ -2,7 +2,6 @@ package controller;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -13,7 +12,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
-import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -22,22 +20,17 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import controller.support.StayOpenCheckBoxMenuItem;
 import parser.Parser;
 import parser.SemanticsTable;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import view.Canvas;
 import view.Window;
 import view.windows.GraphicsSettingsWindow;
 import view.windows.HelpWindow;
@@ -89,19 +82,8 @@ public class Controller {
         SemanticsTable.getInstance().setContext(getWorkspace());
         List<SyntaxNode> commandList = myParser.parseCommand(command);
         SemanticsTable.getInstance().setContext(null);
-        try {
-            for (SyntaxNode node : commandList) {
-                int returnValue = node.evaluate(getWorkspace());
-                System.out.printf("my return value is %d", returnValue);
-                getWorkspace().addHistory(command);
-            }
-        }
-        catch (NullPointerException ne) {
-            getWorkspace().showError("You entered an invalid command.");
-        }
-        catch (InvalidArgumentsException e) {            
-            getWorkspace().showError("Invalid Input: " + e.getMessage());
-        }
+        getWorkspace().execute(commandList);
+        getWorkspace().addHistory(command);
     }
     
     /**
@@ -238,7 +220,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("ForwardCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.move(DEFAULT_MOVE_VALUE);
                 }
@@ -249,7 +231,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("BackwardCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.move(-DEFAULT_MOVE_VALUE);
                 }
@@ -260,7 +242,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("TurnRightCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.turn(DEFAULT_TURN_VALUE);
                 }
@@ -271,7 +253,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("TurnLeftCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.turn(-DEFAULT_TURN_VALUE);
                 }
@@ -291,7 +273,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("ShowCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.setHiding(false);
                 }
@@ -302,7 +284,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("HideCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.setHiding(true);
                 }
@@ -313,7 +295,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("PenUpCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.setPenWriting(false);
                 }
@@ -324,7 +306,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("PenDownCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.setPenWriting(true);
                 }
@@ -355,7 +337,7 @@ public class Controller {
                 if (option == JOptionPane.OK_OPTION) {
                     try {
                         int index = Integer.parseInt(turtle.getText());
-                        if (!getWorkspace().getTurtles().containsKey(index)) {
+                        if (!getWorkspace().getTurtleManager().getTurtles().containsKey(index)) {
                             getWorkspace().addTurtle(index);
                         }
                         else 
@@ -394,9 +376,8 @@ public class Controller {
                         int Gvalue = Integer.parseInt(G.getText());
                         int Bvalue = Integer.parseInt(B.getText());
                         Color c = new Color(Rvalue, Gvalue, Bvalue);
-                        getWorkspace().getColors().setColor(colorIndex, c);
-                        getWorkspace().getTurtles();
-                        for(Turtle t : getWorkspace().getTurtles().values()){
+                        getWorkspace().getColors().setColor(colorIndex, c);                        
+                        for(Turtle t : getWorkspace().getTurtleManager().getTurtles().values()){
                             t.setColor(c);
                         }
                     } catch (Exception e1)
@@ -449,7 +430,7 @@ public class Controller {
             @Override 
             public void mouseEntered (MouseEvent e) {
                 Map<Integer, Turtle> map = getWorkspace().getAllTurtles();
-                Map<Integer, Turtle> activeMap = getWorkspace().getTurtles();
+                Map<Integer, Turtle> activeMap = getWorkspace().getTurtleManager().getTurtles();
                 menu.removeAll();
                 for (Integer i : map.keySet()) {
                     final StayOpenCheckBoxMenuItem item = new StayOpenCheckBoxMenuItem("Turtle "+i);
