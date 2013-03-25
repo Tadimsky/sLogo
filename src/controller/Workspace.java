@@ -3,6 +3,7 @@ package controller;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
+import java.awt.image.BufferedImage;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -287,6 +288,11 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
 
     public void setStrokeType(Strokes s) {
         myTurtleManager.setStrokeType(s);
+        
+    }
+
+    public void addTurtleImage(int index, String imageDir) {
+        myTurtleManager.addTurtleImage(index, imageDir);
         
     }
 

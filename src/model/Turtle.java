@@ -349,6 +349,10 @@ public class Turtle implements Paintable, IState {
         myWidth = myImage.getWidth();
         myHeight = myImage.getHeight();
     }
+    
+    public BufferedImage getShape() {
+        return myImage;
+    }
 
     public void setStroke (Stroke stroke) {
         myPen.setStroke(stroke);

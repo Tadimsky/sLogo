@@ -1,5 +1,6 @@
 package parser.commands.turtle.queries;
 
+import java.awt.image.BufferedImage;
 import java.util.Deque;
 import parser.IParserProvider;
 import parser.commands.turtle.commands.BasicControl;
@@ -15,6 +16,7 @@ public class Shape extends BasicControl {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        return w.getTurtleManager().execute("getShape");        
+        BufferedImage i = w.getTurtleManager().<BufferedImage>execute("getShape");
+        return w.getTurtleManager().getShape(i);        
     }
 }

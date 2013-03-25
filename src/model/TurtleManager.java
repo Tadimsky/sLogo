@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.TreeMap;
+import java.util.Map.Entry;
 import javax.imageio.ImageIO;
 import parser.reflection.ReflectionHelper;
 import sun.awt.image.OffScreenImage;
@@ -28,7 +30,7 @@ import view.components.Strokes;
 /**
  * Manages all the properties and state of the turtles from a specific workspace
  * 
- * @author Henrique Moraes
+ * @author Henrique Moraes,Ziqiang Huang
  * 
  */
 public class TurtleManager extends Observable implements Paintable {
@@ -43,6 +45,7 @@ public class TurtleManager extends Observable implements Paintable {
 
     private Map<Integer, Turtle> myActiveTurtles;
     private Map<Integer, Turtle> myTurtles;
+    private Map<Integer, BufferedImage> myTurtleImages;
     private BufferedImage myImage;
     private int lastIndex = 0;
     private boolean highlightEnabled = false;
@@ -52,7 +55,8 @@ public class TurtleManager extends Observable implements Paintable {
 
     public TurtleManager () {
         myTurtles = new TreeMap<Integer, Turtle>();
-        myActiveTurtles = new TreeMap<Integer, Turtle>();        
+        myActiveTurtles = new TreeMap<Integer, Turtle>();   
+        myTurtleImages = new TreeMap<Integer, BufferedImage>();
         myStroke = Pen.DEFAULT_STROKE;
         setImageRelative(DEFAULT_IMAGE_PATH);
 
@@ -316,6 +320,39 @@ public class TurtleManager extends Observable implements Paintable {
         if (myActiveTurtles.isEmpty()) return;
         for (Turtle t : myActiveTurtles.values()) {
             t.setStrokeType(s);
+        }
+    }
+
+    public void addTurtleImage(int index, String imageDir) {
+       
+       try {
+           File f = new File(imageDir);
+           BufferedImage result = ImageIO.read(f);
+           myTurtleImages.put(index, result);
+       } catch (IOException e) {
+           
+           ErrorBox.showError(Error.INVALID_IMAGE);
+           
+       }      
+    }
+
+
+    public Object getTurtleImage(int shapeid) {      
+        return myTurtleImages.get(shapeid);
+        
+    }
+
+    public int getShape(BufferedImage image) {
+        {        
+            if (myTurtleImages.containsValue(image)) {
+                for (Entry<Integer,BufferedImage> in : myTurtleImages.entrySet())
+                {
+                    if (in.getValue().equals(image)){
+                        return in.getKey();
+                    }
+                }
+            }
+            return -1;
         }
     }
 }
