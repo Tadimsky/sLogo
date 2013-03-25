@@ -5,6 +5,7 @@ import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
+import view.components.Strokes;
 
 
 public class SetPenSize extends UnaryNode {
@@ -16,7 +17,7 @@ public class SetPenSize extends UnaryNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int size = getArgument().evaluate(w);
-        
+        // TODO: Set Stroke Size
         // set the size of the pen
     }
 

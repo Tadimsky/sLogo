@@ -21,6 +21,7 @@ public class TellOdd extends BasicControl {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
+        w.getTurtleManager().clearActive();
         return w.getTurtleManager().activateOdd();        
     }
 }

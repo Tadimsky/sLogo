@@ -25,6 +25,7 @@ public class Tell extends UnaryNode {
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         checkSyntax();
         int val = 0;
+        w.getTurtleManager().clearActive();
         for (SyntaxNode sn : ((ListNode) getArgument()).getContents()) {
             val = sn.evaluate(w);
             w.getTurtleManager().activate(val);

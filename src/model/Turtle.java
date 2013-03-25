@@ -299,6 +299,17 @@ public class Turtle implements Paintable, IState {
     public void setHiding (boolean hide) {
         amHiding = hide;
     }
+    
+    public void setHiding (int hide) {
+        if (hide == 1)
+        {
+            setHiding(true);
+        }
+        else
+        {
+            setHiding(false);
+        }
+    }
 
     @Override
     public boolean isHiding () {

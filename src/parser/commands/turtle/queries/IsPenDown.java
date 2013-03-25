@@ -16,7 +16,7 @@ public class IsPenDown extends BasicControl implements ILabelInformation {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        if (w.getTurtle().isPenWriting()) return 1;
+        if (w.getTurtleManager().<Boolean>execute("isPenWriting")) return 1;
         return 0;
     }
 

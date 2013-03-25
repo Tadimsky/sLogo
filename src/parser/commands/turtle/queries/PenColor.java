@@ -1,5 +1,6 @@
 package parser.commands.turtle.queries;
 
+import java.awt.Color;
 import java.util.Deque;
 import parser.IParserProvider;
 import parser.commands.turtle.commands.BasicControl;
@@ -15,7 +16,7 @@ public class PenColor extends BasicControl {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        return w.getTurtle().getPenColor();
-
+        Color c = w.getTurtleManager().<Color>execute("getPenColor");
+        return w.getColors().getColorID(c);
     }
 }

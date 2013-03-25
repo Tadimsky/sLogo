@@ -10,7 +10,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import view.ColorManager;
+import model.ColorManager;
 import controller.Workspace;
 
 

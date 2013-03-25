@@ -18,6 +18,7 @@ import java.util.Observable;
 import java.util.TreeMap;
 import javax.imageio.ImageIO;
 import parser.reflection.ReflectionHelper;
+import sun.awt.image.OffScreenImage;
 import util.Location;
 import view.components.Error;
 import view.components.ErrorBox;
@@ -50,10 +51,12 @@ public class TurtleManager extends Observable implements Paintable {
 
     public TurtleManager () {
         myTurtles = new TreeMap<Integer, Turtle>();
-        myActiveTurtles = new TreeMap<Integer, Turtle>();
+        myActiveTurtles = new TreeMap<Integer, Turtle>();        
         myStroke = Pen.DEFAULT_STROKE;
         setImageRelative(DEFAULT_IMAGE_PATH);
-        addNew(lastIndex);
+
+        setImage(DEFAULT_IMAGE_PATH);
+        activate(lastIndex);
     }
 
     /**
@@ -111,7 +114,6 @@ public class TurtleManager extends Observable implements Paintable {
         Turtle turtle = createTurtle(index);
         turtle.setStroke(myStroke);
         myTurtles.put(index, turtle);
-        myActiveTurtles.put(index, turtle);
         // TODO not rely on last index
         lastIndex = myTurtles.size();
     }
@@ -286,23 +288,26 @@ public class TurtleManager extends Observable implements Paintable {
         return Arrays.asList(oldTurtles);
     }
     
-    public int execute(String commandName, int... args ) {
-        Method m;
-        try {
+    @SuppressWarnings("unchecked")
+    public <T>  T execute(String commandName, Object... args ) {
+        Method m;        
+        try {            
             m = ReflectionHelper.findMethod(Turtle.class, commandName, args);
         }
         catch (NoSuchMethodException e) {            
-            return 0;
+            return null;
         }
-        int value = 0;
+        T result = null;
         for (Turtle t : myActiveTurtles.values()) {
-            try {
-                m.invoke(t, args);
+            try {            
+                Object r = m.invoke(t, args);
+                result = (T)r; 
             }
             catch (Exception e) {
-                return 0;
+                return null;
             }
         }
-        return value;
+        update();  
+        return result;
     }
 }

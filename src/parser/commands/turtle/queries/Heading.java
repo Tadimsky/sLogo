@@ -16,7 +16,7 @@ public class Heading extends BasicControl implements ILabelInformation {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        return w.getTurtle().getHeading();
+        return w.getTurtleManager().execute("getHeading");
     }
 
     @Override
