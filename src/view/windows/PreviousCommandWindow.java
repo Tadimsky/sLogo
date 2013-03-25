@@ -1,8 +1,6 @@
 package view.windows;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -31,7 +29,7 @@ public class PreviousCommandWindow extends JPanel {
                           Window.TABBED_INFO_WINDOW_DIMENSION.height-30);
     
     
-    private List<String> myPreviousCommands;
+    private JList myPreviousCommands;
     private Vector<String> myCommandsVector;
     private Controller myController;
 
@@ -39,7 +37,7 @@ public class PreviousCommandWindow extends JPanel {
     public PreviousCommandWindow(Controller c) {
         myController = c;
         myCommandsVector = new Vector<String>();
-        myPreviousCommands = new ArrayList<String>(myCommandsVector);
+        myPreviousCommands = new JList(myCommandsVector);
         myPreviousCommands.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         addListSelectionListener(myPreviousCommands);
