@@ -7,7 +7,9 @@ import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Observable;
 import java.util.TreeMap;
@@ -22,7 +24,7 @@ import view.components.ErrorBox;
  * @author Henrique Moraes
  *
  */
-public class TurtleManager extends Observable implements Paintable{
+public class TurtleManager extends Observable implements Paintable {
     public static final String DEFAULT_IMAGE_PATH = "/images/turtleSideways.png";
     public static final Color INITIAL_GRAD_COLOR = new Color(255,170,0);
     public static final Color FINAL_GRAD_COLOR = new Color(255,255,0);
@@ -37,6 +39,9 @@ public class TurtleManager extends Observable implements Paintable{
     private int lastIndex = 0;
     private boolean highlightEnabled = false;
     private Stroke myStroke;
+    
+    private Turtle myCurrent;
+    private Iterator<Turtle> myIterator;
 
     public TurtleManager(){
         myTurtles = new TreeMap<Integer, Turtle>();
@@ -52,13 +57,11 @@ public class TurtleManager extends Observable implements Paintable{
      * @param index index to specify the turtle
      */
     public void activate(int index){
-        for (Integer i : myTurtles.keySet()) {
-            if (i == index && !myActiveTurtles.containsKey(i)) {
-                myActiveTurtles.put(i, myTurtles.get(i));
-                return;
-            }
+        if (!myTurtles.containsKey(index))
+        {
+            addNew(index);
         }
-        addNew(index);
+        activateTurtle(index);
     }
 
     private void addActive(int addMethod){
@@ -66,8 +69,9 @@ public class TurtleManager extends Observable implements Paintable{
             clearActive();
             int modulo = addMethod % 2;
             for (int i : myTurtles.keySet()) {
-                if (i % 2 == modulo) myActiveTurtles.put(i, myTurtles.get(i));
+                if (i % 2 == modulo) activateTurtle(i);
             }
+                        
         }
     }
     
@@ -87,7 +91,6 @@ public class TurtleManager extends Observable implements Paintable{
         Turtle turtle = createTurtle(index);
         turtle.setStroke(myStroke);
         myTurtles.put(index, turtle);
-        myActiveTurtles.put(index, turtle);
         //TODO not rely on last index
         lastIndex = myTurtles.size();
     }
@@ -133,9 +136,10 @@ public class TurtleManager extends Observable implements Paintable{
     /**
      * Activates the turtle specified by the index
      */
-    public void activateTurtle(int index) {
+    private void activateTurtle(int index) {
         if (!myActiveTurtles.containsKey(index))
             myActiveTurtles.put(index, myTurtles.get(index));
+        myIterator = myActiveTurtles.values().iterator();
     }
     
     /**
@@ -153,7 +157,6 @@ public class TurtleManager extends Observable implements Paintable{
     public void paint (Graphics2D pen) {
         for (Integer i : myTurtles.keySet()){
             Turtle t = myTurtles.get(i);
-            t.paint(pen);
             if (myActiveTurtles.containsKey(i) && highlightEnabled) {     
                 Location point = t.getPaintingPoint();
                 GradientPaint p = new 
@@ -164,6 +167,7 @@ public class TurtleManager extends Observable implements Paintable{
                 pen.setStroke(ACTIVE_STROKE);
                 pen.drawRect(point.getIntX(), point.getIntY(), t.getWidth(),t.getHeight());
             }
+            t.paint(pen);           
         }
     }
     
@@ -208,4 +212,23 @@ public class TurtleManager extends Observable implements Paintable{
     public Map<Integer, Turtle> getAllTurtles(){
         return myTurtles;
     }
+
+    /**
+     * @return the current
+     */
+    public Turtle getCurrent () {
+        return myCurrent;
+    }
+
+    /**
+     * @param current the current to set
+     */
+    public void setCurrent (Turtle current) {
+        myCurrent = current;
+    }
+    
+    public Iterator<Turtle> iterator()
+    {
+        return myIterator;
+    }    
 }

@@ -98,6 +98,11 @@ public class Workspace  extends Observable implements Paintable, IParserProvider
         myTurtleManager.update();
     }
     
+    public Turtle getTurtle()
+    {
+        return myTurtleManager.getCurrent();
+    }
+    
     /**
      * Notifies objects that manage visual representation of variables, commands,
      * and expression related to this workspace
