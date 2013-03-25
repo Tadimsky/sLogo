@@ -136,7 +136,7 @@ public class TurtleManager extends Observable implements Paintable {
     /**
      * Activates the turtle specified by the index
      */
-    private void activateTurtle(int index) {
+    public void activateTurtle(int index) {
         if (!myActiveTurtles.containsKey(index))
             myActiveTurtles.put(index, myTurtles.get(index));
         myIterator = myActiveTurtles.values().iterator();
