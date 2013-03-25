@@ -69,10 +69,9 @@ public class Workspace  extends Observable implements Paintable, IParserProvider
     
     private void testVariables(){
       //myVariables.createVariableScope("local");
-        for (int i = 0; i<10; i++){
+        for (int i = 0; i<3; i++){
             myVariables.setVariable("var"+i, i);
         }
-        updateInformation();
     }
 
     /**

@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +30,8 @@ import controller.Workspace;
  *
  */
 public class Window extends JFrame {
+    private final static int GRAY_TONE = 230;
+    public final static Color INFO_BACKGROUND_COLOR = new Color(GRAY_TONE,GRAY_TONE,GRAY_TONE);
     private static final int INPUT_FIELD_SIZE = 70;
     private static final String WORKSPACE_NAME = "Workspace ";
     public static final Dimension TABBED_INFO_WINDOW_DIMENSION = new Dimension(220, 600);
@@ -171,6 +174,7 @@ public class Window extends JFrame {
     public void makeListeners(){
         setRunCommandListener();
         setTabListener();
+        setInfoTabListener();
     }
     
     /**
@@ -207,10 +211,9 @@ public class Window extends JFrame {
      */
     public void setInfoTabListener(){
         myTabbedInfoWindow.addChangeListener(new ChangeListener() {
+            @Override
             public void stateChanged(ChangeEvent changeEvent) {
-                if(myTabbedInfoWindow.getSelectedComponent().
-                        getName().equals(VARIABLE_TAB_NAME))
-                    myVariablesWindow.update();
+                myVariablesWindow.update();
             }
         });
     }

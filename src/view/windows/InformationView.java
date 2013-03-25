@@ -27,8 +27,6 @@ import view.labels.LogoLabel;
 import view.labels.TitleLabel;
 
 public class InformationView extends JPanel implements Observer {
-    private final static int GRAY_TONE = 230;
-    public final static Color BACKGROUND_COLOR = new Color(GRAY_TONE,GRAY_TONE,GRAY_TONE);
     private static final String TITLE = "Turtle Information";
     
     private static final String[] LABEL_DESCRIPTIONS = 
@@ -66,7 +64,7 @@ public class InformationView extends JPanel implements Observer {
     
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.setColor(BACKGROUND_COLOR);
+        g.setColor(Window.INFO_BACKGROUND_COLOR);
         g.fillRect(0,0,getWidth(),getHeight());
 
     }

@@ -4,6 +4,7 @@ package parser;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import controller.Controller;
 import parser.nodes.exceptions.InvalidArgumentsException;
@@ -37,20 +38,11 @@ public class VariableManager {
         while (i.hasNext())
         {         
             VariableScope cur = i.next();
-            try 
-            {          
-                cur.getVariable(variable);
+            if(cur.containsVariable(variable)) {
+                cur.setVariable(variable, value);
+                return;
             }
-            catch (InvalidArgumentsException ie)
-            {   
-                // not in this scope
-                continue;
-            }
-            // set the variable
-            cur.setVariable(variable, value);
-            return;
         }
-        // create new variable in active scope
         myScopes.getFirst().setVariable(variable, value);
     }
     
@@ -133,6 +125,38 @@ public class VariableManager {
     public void revertVariableScope()
     {
         myScopes.removeFirst();
+    }
+    
+    /**
+     * @return list with name of scopes of this manager
+     */
+    public List<String> getScopeNames() {
+        List<String> list = new LinkedList<String>();
+        for (VariableScope v : myScopes) {
+            list.add(v.getName());
+        }
+        return list;
+    }
+    
+    /**
+     * Adds a variable to a specific scope
+     * @param scope
+     * @param variable
+     * @param value
+     */
+    public void addToScope(String scope, String variable, int value) {
+        Iterator<VariableScope> i = myScopes.iterator();
+        while (i.hasNext())
+        {            
+            VariableScope cur = i.next();
+            if (cur.getName().equals(scope)) {
+                cur.setVariable(variable, value);
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "No such scope",
+                                      Controller.RESOURCE_ERROR.getString("ErrorTitle"),
+                                      JOptionPane.ERROR_MESSAGE);
     }
 
 }

@@ -14,8 +14,7 @@ public class VariableScope {
      * @return the name
      */
     public String getName () {
-        return myName;
-        
+        return myName;    
     }
 
     public VariableScope (String name)
@@ -59,5 +58,9 @@ public class VariableScope {
     
     public Map<String, Integer> getVariables() {
         return myVariables;
+    }
+    
+    public boolean containsVariable(String name) {
+        return myVariables.containsKey(name);
     }
 }
