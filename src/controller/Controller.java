@@ -328,14 +328,14 @@ public class Controller {
     private JMenu createSettingMenu () {
         JMenu menu = new JMenu(RESOURCE.getString("SettingMenu"));
 
-        menu.add(new AbstractAction("New Turtle") {
+        menu.add(new AbstractAction(RESOURCE.getString("NewTurtle")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 JTextField turtle = new JTextField();
-                Object[] message = { "Choose an index: ", turtle };
+                Object[] message = { RESOURCE.getString("ChooseIndex"), turtle };
                 int option =
                         JOptionPane.showConfirmDialog(null, message,
-                                                      "New Turtle", JOptionPane.OK_CANCEL_OPTION);
+                                                      RESOURCE.getString("NewTurtle"), JOptionPane.OK_CANCEL_OPTION);
 
                 if (option == JOptionPane.OK_OPTION) {
                     try {
@@ -344,17 +344,17 @@ public class Controller {
                             getWorkspace().addTurtle(index);
                         }
                         else {
-                            getWorkspace().showError("This Turtle already exists!");
+                            getWorkspace().showError(RESOURCE_ERROR.getString("TurtleExists"));
                         }
                     }
                     catch (Exception e1) {
-                        getWorkspace().showError("Not an index!");
+                        getWorkspace().showError(RESOURCE_ERROR.getString("NotIndex"));
                     }
                 }
             }
         });
 
-        JMenu tellMenu = new JMenu("Tell");
+        JMenu tellMenu = new JMenu(RESOURCE.getString("Tell"));
         tellMenu.addMouseListener(createTellMenuListener(tellMenu));
         menu.add(tellMenu);
 
@@ -366,14 +366,14 @@ public class Controller {
                 JTextField G = new JTextField();
                 JTextField B = new JTextField();
                 Object[] message = {
-                                    "ColorIndex:", id,
-                                    "Rvalue:", R,
-                                    "Gvalue:", G,
-                                    "Bvalue:", B
+                                    RESOURCE.getString("ColorIndex"), id,
+                                    RESOURCE.getString("Rval"), R,
+                                    RESOURCE.getString("Gval"), G,
+                                    RESOURCE.getString("Bval"), B
                 };
                 int option =
                         JOptionPane.showConfirmDialog(null, message,
-                                                      "Enter Your Color",
+                                                      RESOURCE.getString("EnterColor"),
                                                       JOptionPane.OK_CANCEL_OPTION);
                 if (option == JOptionPane.OK_OPTION) {
                     try {
@@ -382,14 +382,14 @@ public class Controller {
                         int Gvalue = Integer.parseInt(G.getText());
                         int Bvalue = Integer.parseInt(B.getText());
                         Color c = new Color(Rvalue, Gvalue, Bvalue);
-                        getWorkspace().getColors().setColor(colorIndex, c);
+                        //getWorkspace().getColors().setColor(colorIndex, c);
                         for (Turtle t : getWorkspace().getTurtleManager().getTurtles().values()) {
                             t.setColor(c);
                         }
                     }
                     catch (Exception e1)
                     {
-                        getWorkspace().showError("Invalid input for color !");
+                        getWorkspace().showError(RESOURCE_ERROR.getString("InvalidColor"));
                     }
                 }
             }
@@ -412,14 +412,14 @@ public class Controller {
         });
 
         menu.add(new JSeparator());
-        menu.add(new AbstractAction("Graphics") {
+        menu.add(new AbstractAction(RESOURCE.getString("Graphics")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 new GraphicsSettingsWindow(getWorkspace());
             }
         });
 
-        menu.add(new AbstractAction("Workspace") {
+        menu.add(new AbstractAction(RESOURCE.getString("Workspace")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 new WorkspaceSettingsWindow(getWorkspace());
@@ -442,7 +442,7 @@ public class Controller {
                 menu.removeAll();
                 for (Integer i : map.keySet()) {
                     final StayOpenCheckBoxMenuItem item =
-                            new StayOpenCheckBoxMenuItem("Turtle " + i);
+                            new StayOpenCheckBoxMenuItem(RESOURCE.getString("Turtle")+i);
 
                     item.addItemListener(createCheckBoxItemListener(item));
                     if (activeMap.containsKey(i)) {
@@ -463,7 +463,7 @@ public class Controller {
             @Override
             public void itemStateChanged (ItemEvent e) {
                 Scanner s = new Scanner(item.getText());
-                s.skip("Turtle ");
+                s.skip(RESOURCE.getString("Turtle"));
                 int index = s.nextInt();
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     getWorkspace().activateTurtle(index);
