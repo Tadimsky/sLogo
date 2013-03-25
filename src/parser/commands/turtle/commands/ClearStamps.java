@@ -14,7 +14,8 @@ public class ClearStamps extends BasicControl {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        return w.getTurtle().clearStamps();
+        w.getTurtle().clearStamp();
+        return 0;
 
     }
 }

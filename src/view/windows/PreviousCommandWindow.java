@@ -5,9 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -43,7 +40,7 @@ public class PreviousCommandWindow extends JPanel {
         myPreviousCommands = new JList(myCommandsVector);
         myPreviousCommands.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        //addListSelectionListener(myPreviousCommands);
+        addListSelectionListener(myPreviousCommands);
         add(createCommandsWindow());
         add(createClearPanel());
     }
