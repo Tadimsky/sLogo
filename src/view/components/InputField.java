@@ -26,6 +26,7 @@ public class InputField extends JTextField implements FocusListener {
         super.addFocusListener(this);
         // Get the command after press enter
         addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed (ActionEvent e) {
                 String command = getText();
                 // test
@@ -54,7 +55,7 @@ public class InputField extends JTextField implements FocusListener {
     public void setText (String text) {
         super.setText(text);
         if (text.isEmpty()) {
-            if (!this.hasFocus()) {
+            if (!hasFocus()) {
                 super.setFont(HINT_FONT);
                 super.setText(HINT);
             }

@@ -6,31 +6,29 @@ import java.util.List;
 import parser.IParserProvider;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 /**
  * This represents a list in the tree. It contains all the nodes
  * that are in the list.
  * 
  * @author Jonathan Schmidt
- *
+ * 
  */
 public class ListNode extends SyntaxNode {
 
     private List<SyntaxNode> myContents;
-    
-    public ListNode (Deque<SyntaxNode> queue) {        
+
+    public ListNode (Deque<SyntaxNode> queue) {
         myContents = new ArrayList<SyntaxNode>();
-        
+
         // pop off all the nodes until we get to a ListEndNode
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             SyntaxNode s = queue.pop();
-            if (s instanceof ListEndNode)
-            {
-                return;
-            }
-            myContents.add(s);            
+            if (s instanceof ListEndNode) return;
+            myContents.add(s);
         }
     }
-    
+
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int val = 0;
@@ -47,6 +45,5 @@ public class ListNode extends SyntaxNode {
     public List<SyntaxNode> getContents () {
         return myContents;
     }
-   
 
 }

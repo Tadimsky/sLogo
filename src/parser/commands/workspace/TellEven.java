@@ -24,4 +24,5 @@ public class TellEven extends BasicControl {
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         return w.getTurtleManager().activateEven();
     }
+
 }

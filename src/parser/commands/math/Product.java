@@ -6,17 +6,18 @@ import parser.nodes.BinaryNode;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 /**
  * Implements the Product function.
  * Returns the left parameter's value * right parameter's value
  * 
  * @author Jonathan Schmidt
- *
+ * 
  */
 public class Product extends BinaryNode {
-   
+
     public Product (Deque<SyntaxNode> queue) {
-        super(queue);        
+        super(queue);
     }
 
     @Override

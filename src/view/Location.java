@@ -3,10 +3,11 @@ package view;
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
 
+
 public class Location extends Point2D.Double {
     private static final Dimension myCanvasDimension = Canvas.DEFAULT_CANVAS_DIMENSION;
-    private static final double X_OFFSET = Canvas.DEFAULT_CANVAS_DIMENSION.getWidth()/2;
-    private static final double Y_OFFSET = Canvas.DEFAULT_CANVAS_DIMENSION.getHeight()/2;
+    private static final double X_OFFSET = Canvas.DEFAULT_CANVAS_DIMENSION.getWidth() / 2;
+    private static final double Y_OFFSET = Canvas.DEFAULT_CANVAS_DIMENSION.getHeight() / 2;
 
     /**
      * Create a location at the origin.
@@ -35,16 +36,16 @@ public class Location extends Point2D.Double {
     public void reset () {
         setLocation(X_OFFSET, Y_OFFSET);
     }
-    
-//    @Override
-//    public double getX(){
-//        return super.getX() - X_OFFSET;
-//    }
-    
-//    @Override
-//    public double getY(){
-//        return super.getY() - Y_OFFSET;
-//    }
+
+    // @Override
+    // public double getX(){
+    // return super.getX() - X_OFFSET;
+    // }
+
+    // @Override
+    // public double getY(){
+    // return super.getY() - Y_OFFSET;
+    // }
 
     /**
      * Move this location by given vector.
@@ -61,5 +62,5 @@ public class Location extends Point2D.Double {
      */
     public Vector difference (Point2D other) {
         return new Vector(this, other);
-    }  
+    }
 }

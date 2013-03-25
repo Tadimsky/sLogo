@@ -6,10 +6,11 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 public class Forward extends UnaryNode {
-   
+
     public Forward (Deque<SyntaxNode> queue) {
-        super(queue);        
+        super(queue);
     }
 
     @Override

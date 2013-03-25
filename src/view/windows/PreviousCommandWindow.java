@@ -3,8 +3,11 @@ package view.windows;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,8 +15,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import controller.Controller;
 import view.Window;
+import controller.Controller;
 
 /**
  * Window that show commands previously run in the workspace
@@ -42,14 +45,15 @@ public class PreviousCommandWindow extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         //addListSelectionListener(myPreviousCommands);
         add(createCommandsWindow());
-        add(createClearButton());
+        add(createClearPanel());
     }
     /**
      * 
      * @return JButton which clear commands in this window
      */
 
-    private JButton createClearButton() {
+    private JPanel createClearPanel() {
+        JPanel clearPanel = new JPanel();
         JButton clearButton = new JButton("Clear");
         clearButton.addActionListener(new ActionListener() {
             @Override
@@ -58,7 +62,8 @@ public class PreviousCommandWindow extends JPanel {
                 myPreviousCommands.setListData(myCommandsVector); 
             }
         });
-        return clearButton;
+        clearPanel.add(clearButton);
+        return clearPanel;
     }
     
     /**
@@ -78,32 +83,12 @@ public class PreviousCommandWindow extends JPanel {
      * 
      * @param list
      */
-    private void addListSelectionListener(final JList<String> list) {
-        list.addMouseListener(new MouseListener() {
+    private void addListSelectionListener(final JList list) {
+        list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                myController.processCommand(list.getSelectedValue());
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-   
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
- 
-            }
+                myController.processCommand((String) list.getSelectedValue());
+            } 
         });
             
         

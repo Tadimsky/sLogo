@@ -5,6 +5,7 @@ import java.util.Scanner;
 import javax.swing.JFileChooser;
 import parser.nodes.SyntaxNode;
 
+
 public class Main {
 
     private static JFileChooser myChooser;
@@ -19,12 +20,12 @@ public class Main {
     public static void main (String[] args) {
         Parser p = new Parser();
         myChooser = new JFileChooser();
-        //checkLine(p);
+        // checkLine(p);
         checkFile(p);
-        
+
     }
-    
-    private static void checkLine(Parser p)
+
+    private static void checkLine (Parser p)
     {
         Scanner in = new Scanner(System.in);
         while (true)
@@ -37,8 +38,8 @@ public class Main {
             }
         }
     }
-    
-    private static void checkFile(Parser p)
+
+    private static void checkFile (Parser p)
     {
         try {
             int response = myChooser.showOpenDialog(null);
@@ -52,7 +53,7 @@ public class Main {
             }
         }
         catch (Exception exception) {
-            //showError(exception.toString());
+            // showError(exception.toString());
         }
     }
 

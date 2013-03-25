@@ -5,10 +5,11 @@ import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 public class PenDown extends BasicControl {
 
     public PenDown (Deque<SyntaxNode> stack) {
-        super(stack);        
+        super(stack);
     }
 
     @Override

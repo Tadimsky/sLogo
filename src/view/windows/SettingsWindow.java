@@ -12,66 +12,69 @@ import javax.swing.JPanel;
 import view.labels.TitleLabel;
 import controller.Workspace;
 
+
 /**
  * Super class for other settings windows that allow the user to change the
  * settings of the current workspace
+ * 
  * @author Henrique Moraes
- *
+ * 
  */
 public abstract class SettingsWindow extends JFrame {
-    private static final Dimension DEFAULT_DIMENSION = new Dimension(420,300);
-    
+    private static final Dimension DEFAULT_DIMENSION = new Dimension(420, 300);
+
     protected Workspace myWorkspace;
     protected JPanel myOptionsPanel;
     protected JButton myOkButton;
-    
+
     protected SettingsWindow (Workspace w) {
         setPreferredSize(DEFAULT_DIMENSION);
         myWorkspace = w;
-        
-        getContentPane().setLayout(new BoxLayout(getContentPane(),BoxLayout.Y_AXIS));
-        
+
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
         myOptionsPanel = new JPanel();
-        myOptionsPanel.setLayout(new GridLayout(1,2));
-        
+        myOptionsPanel.setLayout(new GridLayout(1, 2));
+
         add(createTitlePanel());
         add(myOptionsPanel);
-        add(createButtonPanel());    
-  
+        add(createButtonPanel());
+
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         centralize();
         setResizable(false);
         setVisible(true);
     }
+
     /**
      * @return Panel containing title for this frame
      */
-    private JPanel createTitlePanel() {
+    private JPanel createTitlePanel () {
         JPanel titlePanel = new JPanel();
         titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.LINE_AXIS));
         JLabel title = new JLabel("Choose Your Options");
         title.setFont(TitleLabel.TITLE_FONT);
         titlePanel.add(title);
-        titlePanel.add(Box.createRigidArea(new Dimension(0,50)));
+        titlePanel.add(Box.createRigidArea(new Dimension(0, 50)));
         return titlePanel;
     }
-    
+
     /**
      * Sets the opening location of this window
      */
-    private void centralize() {
+    private void centralize () {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
-        int x = (dim.width-DEFAULT_DIMENSION.width)/2;
-        int y = (dim.height-DEFAULT_DIMENSION.height)/2;
+        int x = (dim.width - DEFAULT_DIMENSION.width) / 2;
+        int y = (dim.height - DEFAULT_DIMENSION.height) / 2;
 
         setLocation(x, y);
     }
-    
+
     /**
      * @return Panel with ok button
      */
-    private JPanel createButtonPanel() {
+    private JPanel createButtonPanel () {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
         buttonPanel.add(Box.createHorizontalGlue());
@@ -79,14 +82,14 @@ public abstract class SettingsWindow extends JFrame {
         myOkButton.setSelected(true);
         return buttonPanel;
     }
-    
+
     /**
      * Creates a adds an action listener to the Ok Button
      */
-    protected abstract void addOkButtonListener();
-    
+    protected abstract void addOkButtonListener ();
+
     /**
      * Sets the title for this Window
      */
-    protected abstract void setTitle();
+    protected abstract void setTitle ();
 }

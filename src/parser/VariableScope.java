@@ -15,7 +15,6 @@ public class VariableScope {
      */
     public String getName () {
         return myName;
-        
     }
 
     public VariableScope (String name)
@@ -32,10 +31,7 @@ public class VariableScope {
             VariableScope ot = (VariableScope) o;
             return myName.equals(ot.getName());
         }
-        if (o instanceof String)
-        {
-            return myName.equals((String)o);
-        }
+        if (o instanceof String) return myName.equals(o);
         return false;
     }
 
@@ -45,19 +41,21 @@ public class VariableScope {
 
     public Integer getVariable (String var) throws InvalidArgumentsException
     {
-        if (myVariables.containsKey(var)) { 
-            return myVariables.get(var);
-        }
-        
+        if (myVariables.containsKey(var)) return myVariables.get(var);
+
         throw new InvalidArgumentsException("This variable does not exist: {0}", var);
     }
-    
+
     public Integer removeVariable (String var)
-    { 
+    {
         return myVariables.remove(var);
     }
-    
-    public Map<String, Integer> getVariables() {
+
+    public Map<String, Integer> getVariables () {
         return myVariables;
+    }
+
+    public boolean containsVariable (String name) {
+        return myVariables.containsKey(name);
     }
 }

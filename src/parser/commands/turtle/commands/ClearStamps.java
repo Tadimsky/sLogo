@@ -5,15 +5,16 @@ import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 public class ClearStamps extends BasicControl {
 
     public ClearStamps (Deque<SyntaxNode> stack) {
-        super(stack);        
+        super(stack);
     }
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         return w.getTurtle().clearStamps();
-        
+
     }
 }

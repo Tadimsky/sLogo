@@ -1,22 +1,18 @@
 package controller;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
-import java.awt.image.BufferedImage;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
-import controller.support.IError;
 import model.Paintable;
 import model.Turtle;
 import model.TurtleManager;
@@ -28,6 +24,7 @@ import parser.nodes.exceptions.InvalidArgumentsException;
 import view.Canvas;
 import view.ColorManager;
 import view.components.Strokes;
+import controller.support.IError;
 
 
 /**
@@ -77,7 +74,6 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         for (int i = 0; i < 10; i++) {
             myVariables.setVariable("var" + i, i);
         }
-        updateInformation();
     }
 
     /**
@@ -90,6 +86,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     /**
      * Painting method that gets called by the Canvas
      */
+    @Override
     public void paint (Graphics2D pen) {
         myTurtleManager.paint(pen);
     }
@@ -103,6 +100,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         myTurtleManager.update();
     }
 
+    @Override
     public Turtle getTurtle ()
     {
         return myTurtleManager.getCurrent();
@@ -147,6 +145,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         return myName;
     }
 
+    @Override
     public VariableManager getVariables ()
     {
         return myVariables;
@@ -255,16 +254,17 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
 
     @Override
     public void addColor (int colorIndex, Color color) {
-
+        // TODO
+        return;
     }
 
     public void execute (List<SyntaxNode> commands)
     {
-
         try {
             for (SyntaxNode node : commands) {
                 int returnValue = node.evaluate(this);
                 System.out.printf("my return value is %d", returnValue);
+
             }
         }
         catch (NullPointerException ne) {

@@ -2,6 +2,7 @@ package view;
 
 import java.awt.geom.Point2D;
 
+
 /**
  * This class represents a mathematical vector as a direction and magnitude.
  * 
@@ -14,7 +15,6 @@ public class Vector {
     private double myAngle;
     // "speed" in pixels per second
     private double myMagnitude;
-
 
     /**
      * Create a zero vector, i.e., with no magnitude.
@@ -30,7 +30,6 @@ public class Vector {
         setDirection(angle);
         setMagnitude(magnitude);
     }
-    
 
     /**
      * Create a vector whose direction and magnitude are determined by
@@ -194,8 +193,8 @@ public class Vector {
     public boolean equals (Object vector) {
         try {
             Vector other = (Vector) vector;
-            return (fuzzyEquals(getMagnitude(), other.getMagnitude()) && 
-                    fuzzyEquals(getDirection(), other.getDirection()));
+            return (fuzzyEquals(getMagnitude(), other.getMagnitude()) && fuzzyEquals(getDirection(),
+                                                                                     other.getDirection()));
         }
         catch (ClassCastException e) {
             return false;
@@ -251,11 +250,8 @@ public class Vector {
         // value based on this table:
         // http://en.wikipedia.org/wiki/Machine_epsilon#Values_for_standard_hardware_floating_point_arithmetics
         final double EPSILON = 5.96e-08;
-        if (Double.isNaN(a) && Double.isNaN(b) || Double.isInfinite(a) && Double.isInfinite(b)) {
+        if (Double.isNaN(a) && Double.isNaN(b) || Double.isInfinite(a) && Double.isInfinite(b))
             return true;
-        }
-        else {
-            return Math.abs(a / b - 1) < EPSILON;
-        }
+        else return Math.abs(a / b - 1) < EPSILON;
     }
 }

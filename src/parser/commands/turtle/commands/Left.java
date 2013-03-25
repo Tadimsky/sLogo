@@ -6,10 +6,11 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 public class Left extends UnaryNode {
-   
+
     public Left (Deque<SyntaxNode> queue) {
-        super(queue);        
+        super(queue);
     }
 
     @Override

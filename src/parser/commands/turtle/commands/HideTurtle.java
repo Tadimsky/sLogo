@@ -5,10 +5,11 @@ import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 public class HideTurtle extends BasicControl {
 
     public HideTurtle (Deque<SyntaxNode> stack) {
-        super(stack);        
+        super(stack);
     }
 
     @Override

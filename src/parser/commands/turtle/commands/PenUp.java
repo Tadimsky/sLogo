@@ -5,12 +5,13 @@ import parser.IParserProvider;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 public class PenUp extends BasicControl {
 
     public PenUp (Deque<SyntaxNode> stack) {
-        super(stack);        
+        super(stack);
     }
-    
+
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         w.getTurtle().setPenWriting(false);

@@ -26,16 +26,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import controller.support.StayOpenCheckBoxMenuItem;
+import model.Turtle;
 import parser.Parser;
 import parser.SemanticsTable;
 import parser.nodes.SyntaxNode;
-import parser.nodes.exceptions.InvalidArgumentsException;
 import view.Window;
 import view.windows.GraphicsSettingsWindow;
 import view.windows.HelpWindow;
 import view.windows.WorkspaceSettingsWindow;
-import model.Turtle;
+import controller.support.StayOpenCheckBoxMenuItem;
 
 
 /**
@@ -52,17 +51,20 @@ public class Controller {
     private int DEFAULT_TURN_VALUE = 90;
     private static final String USER_DIR = "user.dir";
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
-    protected static final String DEFAULT_URL = "http://www.cs.duke.edu/courses/spring13/compsci308/assign/03_slogo/commands.php";
+    protected static final String DEFAULT_URL =
+            "http://www.cs.duke.edu/courses/spring13/compsci308/assign/03_slogo/commands.php";
     protected static final String HELP_TITLE = "Command Description for SLogo";
-    protected static final Object[] DEFAULT_PEN_COLOR_OPTION = {"red","blue","black"};
-    public static final ResourceBundle RESOURCE = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
-    public static final ResourceBundle RESOURCE_ERROR = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "error." + "ErrorEnglish");
+    protected static final Object[] DEFAULT_PEN_COLOR_OPTION = { "red", "blue", "black" };
+    public static final ResourceBundle RESOURCE = ResourceBundle
+            .getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
+    public static final ResourceBundle RESOURCE_ERROR = ResourceBundle
+            .getBundle(DEFAULT_RESOURCE_PACKAGE + "error." + "ErrorEnglish");
 
     private Parser myParser;
     private Window myWindow;
     private JFileChooser myChooser;
     private HelpWindow myHelpWindow;
-   
+
     /**
      * Constructor for controller responsible for initializing the view
      * and the parser
@@ -85,18 +87,18 @@ public class Controller {
         getWorkspace().execute(commandList);
         getWorkspace().addHistory(command);
     }
-    
+
     /**
      * Executes list of commands (for undo option)
      * 
      * @param commandList
      */
-    public void processCommands(List<String> commandList){
-        for (String command: commandList){
-        	processCommand(command);
+    public void processCommands (List<String> commandList) {
+        for (String command : commandList) {
+            processCommand(command);
         }
     }
-    
+
     /**
      * This method is set private so the Window does not have access to it
      * 
@@ -120,7 +122,7 @@ public class Controller {
         menuBar.add(createFileMenu());
         menuBar.add(createCommandMenu());
         menuBar.add(createSettingMenu());
-        menuBar.add(createHelpMenu());  
+        menuBar.add(createHelpMenu());
         return menuBar;
     }
 
@@ -315,7 +317,7 @@ public class Controller {
             }
         });
     }
-    
+
     /**
      * creates the setting options on the menu bar,
      * enabling user to set certain properties of the workspace,
@@ -323,33 +325,35 @@ public class Controller {
      * 
      * @return
      */
-    private JMenu createSettingMenu() {
+    private JMenu createSettingMenu () {
         JMenu menu = new JMenu(RESOURCE.getString("SettingMenu"));
-        
+
         menu.add(new AbstractAction("New Turtle") {
             @Override
             public void actionPerformed (ActionEvent e) {
                 JTextField turtle = new JTextField();
-                Object[] message = {"Choose an index: ", turtle };
-                int option = JOptionPane.showConfirmDialog(null, message, 
-                                          "New Turtle", JOptionPane.OK_CANCEL_OPTION);
-                
+                Object[] message = { "Choose an index: ", turtle };
+                int option =
+                        JOptionPane.showConfirmDialog(null, message,
+                                                      "New Turtle", JOptionPane.OK_CANCEL_OPTION);
+
                 if (option == JOptionPane.OK_OPTION) {
                     try {
                         int index = Integer.parseInt(turtle.getText());
                         if (!getWorkspace().getTurtleManager().getTurtles().containsKey(index)) {
                             getWorkspace().addTurtle(index);
                         }
-                        else 
-                            getWorkspace().showError("This Turtle already exists!");                
-                    } 
-                    catch (Exception e1){
+                        else {
+                            getWorkspace().showError("This Turtle already exists!");
+                        }
+                    }
+                    catch (Exception e1) {
                         getWorkspace().showError("Not an index!");
                     }
                 }
             }
         });
-        
+
         JMenu tellMenu = new JMenu("Tell");
         tellMenu.addMouseListener(createTellMenuListener(tellMenu));
         menu.add(tellMenu);
@@ -367,108 +371,116 @@ public class Controller {
                                     "Gvalue:", G,
                                     "Bvalue:", B
                 };
-                int option = JOptionPane.showConfirmDialog(null, message, 
-                             "Enter Your Color", JOptionPane.OK_CANCEL_OPTION);
-                if (option == JOptionPane.OK_OPTION){
+                int option =
+                        JOptionPane.showConfirmDialog(null, message,
+                                                      "Enter Your Color",
+                                                      JOptionPane.OK_CANCEL_OPTION);
+                if (option == JOptionPane.OK_OPTION) {
                     try {
                         int colorIndex = Integer.parseInt(id.getText());
                         int Rvalue = Integer.parseInt(R.getText());
                         int Gvalue = Integer.parseInt(G.getText());
                         int Bvalue = Integer.parseInt(B.getText());
                         Color c = new Color(Rvalue, Gvalue, Bvalue);
-                        getWorkspace().getColors().setColor(colorIndex, c);                        
-                        for(Turtle t : getWorkspace().getTurtleManager().getTurtles().values()){
+                        getWorkspace().getColors().setColor(colorIndex, c);
+                        for (Turtle t : getWorkspace().getTurtleManager().getTurtles().values()) {
                             t.setColor(c);
                         }
-                    } catch (Exception e1)
+                    }
+                    catch (Exception e1)
                     {
                         getWorkspace().showError("Invalid input for color !");
                     }
                 }
             }
         });
-        
+
         menu.add(new AbstractAction(RESOURCE.getString("SetBackgroundImage")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 try {
                     int response = myChooser.showOpenDialog(null);
                     if (response == JFileChooser.APPROVE_OPTION) {
-                        getWorkspace().getCanvas().setBackgroundImage(ImageIO.read(myChooser.getSelectedFile()));
+                        getWorkspace().getCanvas().setBackgroundImage(ImageIO.read(myChooser
+                                                                              .getSelectedFile()));
                     }
                 }
                 catch (Exception exception) {
                     getWorkspace().showError(exception.toString());
                 }
             }
-        });        
-        
-        menu.add(new JSeparator());   
+        });
+
+        menu.add(new JSeparator());
         menu.add(new AbstractAction("Graphics") {
             @Override
             public void actionPerformed (ActionEvent e) {
                 new GraphicsSettingsWindow(getWorkspace());
             }
         });
-        
+
         menu.add(new AbstractAction("Workspace") {
             @Override
             public void actionPerformed (ActionEvent e) {
                 new WorkspaceSettingsWindow(getWorkspace());
             }
         });
-        
+
         return menu;
     }
-    
+
     /**
      * @param menu menu to take checkbox items
      * @return mouse listener for this menu item
      */
-    private MouseListener createTellMenuListener(final JMenu menu) {
+    private MouseListener createTellMenuListener (final JMenu menu) {
         return new MouseAdapter() {
-            @Override 
+            @Override
             public void mouseEntered (MouseEvent e) {
                 Map<Integer, Turtle> map = getWorkspace().getAllTurtles();
                 Map<Integer, Turtle> activeMap = getWorkspace().getTurtleManager().getTurtles();
                 menu.removeAll();
                 for (Integer i : map.keySet()) {
-                    final StayOpenCheckBoxMenuItem item = new StayOpenCheckBoxMenuItem("Turtle "+i);
-                    
+                    final StayOpenCheckBoxMenuItem item =
+                            new StayOpenCheckBoxMenuItem("Turtle " + i);
+
                     item.addItemListener(createCheckBoxItemListener(item));
-                    if (activeMap.containsKey(i))
+                    if (activeMap.containsKey(i)) {
                         item.setSelected(true);
+                    }
                     menu.add(item);
                 }
             }
         };
     }
-    
+
     /**
      * @param item menu item to add the listener
      * @return item listener for this menu item
      */
-    private ItemListener createCheckBoxItemListener(final StayOpenCheckBoxMenuItem item) {
+    private ItemListener createCheckBoxItemListener (final StayOpenCheckBoxMenuItem item) {
         return new ItemListener() {
             @Override
-            public void itemStateChanged (ItemEvent e) {     
+            public void itemStateChanged (ItemEvent e) {
                 Scanner s = new Scanner(item.getText());
                 s.skip("Turtle ");
                 int index = s.nextInt();
-                if (e.getStateChange() == ItemEvent.SELECTED) 
+                if (e.getStateChange() == ItemEvent.SELECTED) {
                     getWorkspace().activateTurtle(index);
-                else
+                }
+                else {
                     getWorkspace().deactivateTurtle(index);
+                }
             }
         };
     }
-    
+
     /**
      * creates the help page option on the menu bar
      * 
      * @return help Menu option
      */
-    private JMenu createHelpMenu() {
+    private JMenu createHelpMenu () {
         JMenu menu = new JMenu(RESOURCE.getString("HelpMenu"));
         menu.add(new AbstractAction(RESOURCE.getString("CommandDescription")) {
             @Override
@@ -476,10 +488,11 @@ public class Controller {
                 URL helpPage = null;
                 try {
                     helpPage = new URL(DEFAULT_URL);
-                } catch (MalformedURLException exception) {
+                }
+                catch (MalformedURLException exception) {
                     getWorkspace().showError(exception.toString());
                 }
-                new HelpWindow(HELP_TITLE,helpPage);
+                new HelpWindow(HELP_TITLE, helpPage);
             }
         });
         return menu;
