@@ -6,6 +6,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -52,6 +53,8 @@ public class TurtleManager extends Observable implements Paintable {
         myTurtles = new TreeMap<Integer, Turtle>();
         myActiveTurtles = new TreeMap<Integer, Turtle>();        
         myStroke = Pen.DEFAULT_STROKE;
+        setImageRelative(DEFAULT_IMAGE_PATH);
+
         setImage(DEFAULT_IMAGE_PATH);
         activate(lastIndex);
     }
@@ -111,7 +114,6 @@ public class TurtleManager extends Observable implements Paintable {
         Turtle turtle = createTurtle(index);
         turtle.setStroke(myStroke);
         myTurtles.put(index, turtle);
-        myActiveTurtles.put(index, turtle);
         // TODO not rely on last index
         lastIndex = myTurtles.size();
     }
@@ -134,14 +136,35 @@ public class TurtleManager extends Observable implements Paintable {
         return t;
     }
 
-    public void setImage (String path) {
+    /**
+     * sets image Based on a relative path
+     * @param path 
+     */
+    private void setImageRelative (String path) {
         try {
             myImage = ImageIO.read(this.getClass().getResource(path));
         }
         catch (Exception e) {
             ErrorBox.showError(Error.INVALID_IMAGE);
         }
-        ;
+    }
+    
+    /**
+     * Sets image based on an absolute path
+     * @param path
+     */
+    public void setImage (String path) {
+        try {
+            File f = new File(path);
+            myImage = ImageIO.read(f);         
+            for (Turtle t : myActiveTurtles.values()){
+                t.setImage(myImage);
+            }
+            update();
+        }
+        catch (Exception e) {
+            ErrorBox.showError(Error.INVALID_IMAGE);
+        }
     }
 
     /**
