@@ -115,14 +115,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     public void updateInformation () {
         setChanged();
         notifyObservers();
-    }
-
-    /**
-     * @return the active Turtles associated with this workspace
-     */
-    public Map<Integer, Turtle> getTurtles () {
-        return myTurtleManager.getTurtles();
-    }
+    }    
 
     /**
      * @return All the Turtles associated with this workspace
@@ -135,7 +128,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
      * Activates the turtle specified by the index
      */
     public void activateTurtle (int index) {
-        myTurtleManager.activateTurtle(index);
+        myTurtleManager.activate(index);
         update();
     }
 
@@ -284,6 +277,11 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
                 showError("Invalid Input: " + e.getMessage());
             }
         }
+    }
+
+    @Override
+    public TurtleManager getTurtleManager () {        
+        return myTurtleManager;
     }
 
 }

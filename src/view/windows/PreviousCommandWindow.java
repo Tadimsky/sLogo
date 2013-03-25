@@ -30,7 +30,8 @@ public class PreviousCommandWindow extends JPanel {
             new Dimension(Window.TABBED_INFO_WINDOW_DIMENSION.width,
                           Window.TABBED_INFO_WINDOW_DIMENSION.height-30);
     
-    private JList<String> myPreviousCommands;
+    
+    private List<String> myPreviousCommands;
     private Vector<String> myCommandsVector;
     private Controller myController;
 
@@ -38,7 +39,7 @@ public class PreviousCommandWindow extends JPanel {
     public PreviousCommandWindow(Controller c) {
         myController = c;
         myCommandsVector = new Vector<String>();
-        myPreviousCommands = new JList<String>(myCommandsVector);
+        myPreviousCommands = new ArrayList<String>(myCommandsVector);
         myPreviousCommands.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         addListSelectionListener(myPreviousCommands);

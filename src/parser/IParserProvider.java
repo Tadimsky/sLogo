@@ -19,11 +19,9 @@ public interface IParserProvider {
     
     public VariableManager getVariables();
     
-    public Map<Integer, Turtle> getTurtles ();
-    
     public Turtle getTurtle();
-
-    public void addColor(int colorIndex, Color color);
+    
+    public TurtleManager getTurtleManager();    
 
     public ColorManager getColors();
 

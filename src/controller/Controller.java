@@ -220,7 +220,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("ForwardCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.move(DEFAULT_MOVE_VALUE);
                 }
@@ -231,7 +231,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("BackwardCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.move(-DEFAULT_MOVE_VALUE);
                 }
@@ -242,7 +242,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("TurnRightCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.turn(DEFAULT_TURN_VALUE);
                 }
@@ -253,7 +253,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("TurnLeftCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.turn(-DEFAULT_TURN_VALUE);
                 }
@@ -273,7 +273,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("ShowCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.setHiding(false);
                 }
@@ -284,7 +284,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("HideCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.setHiding(true);
                 }
@@ -295,7 +295,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("PenUpCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.setPenWriting(false);
                 }
@@ -306,7 +306,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("PenDownCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                Map<Integer, Turtle> turtles = getWorkspace().getTurtles();
+                Map<Integer, Turtle> turtles = getWorkspace().getTurtleManager().getTurtles();
                 for (Turtle t : turtles.values()) {
                     t.setPenWriting(true);
                 }
@@ -337,7 +337,7 @@ public class Controller {
                 if (option == JOptionPane.OK_OPTION) {
                     try {
                         int index = Integer.parseInt(turtle.getText());
-                        if (!getWorkspace().getTurtles().containsKey(index)) {
+                        if (!getWorkspace().getTurtleManager().getTurtles().containsKey(index)) {
                             getWorkspace().addTurtle(index);
                         }
                         else 
@@ -376,9 +376,8 @@ public class Controller {
                         int Gvalue = Integer.parseInt(G.getText());
                         int Bvalue = Integer.parseInt(B.getText());
                         Color c = new Color(Rvalue, Gvalue, Bvalue);
-                        getWorkspace().getColors().setColor(colorIndex, c);
-                        getWorkspace().getTurtles();
-                        for(Turtle t : getWorkspace().getTurtles().values()){
+                        getWorkspace().getColors().setColor(colorIndex, c);                        
+                        for(Turtle t : getWorkspace().getTurtleManager().getTurtles().values()){
                             t.setColor(c);
                         }
                     } catch (Exception e1)
@@ -431,7 +430,7 @@ public class Controller {
             @Override 
             public void mouseEntered (MouseEvent e) {
                 Map<Integer, Turtle> map = getWorkspace().getAllTurtles();
-                Map<Integer, Turtle> activeMap = getWorkspace().getTurtles();
+                Map<Integer, Turtle> activeMap = getWorkspace().getTurtleManager().getTurtles();
                 menu.removeAll();
                 for (Integer i : map.keySet()) {
                     final StayOpenCheckBoxMenuItem item = new StayOpenCheckBoxMenuItem("Turtle "+i);
