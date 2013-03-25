@@ -9,7 +9,6 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 import javax.imageio.ImageIO;
 import util.Location;
 import util.Vector;
@@ -26,7 +25,7 @@ import view.components.ErrorBox;
  * 
  */
 
-public class Turtle extends Observable implements Paintable, IState {
+public class Turtle implements Paintable, IState {
     private Location myCenter;
     private Vector myHeading;
     private Pen myPen;
@@ -67,7 +66,6 @@ public class Turtle extends Observable implements Paintable, IState {
         if (wrapOnBoundary(initialPosition, pixels)) {
             move((int) myHeading.getMagnitude());
         }
-        update();
         return pixels;
     }
 
@@ -166,7 +164,6 @@ public class Turtle extends Observable implements Paintable, IState {
      */
     public int turn (int degrees) {
         myHeading.turn(degrees);
-        update();
         return degrees;
     }
 
@@ -189,7 +186,6 @@ public class Turtle extends Observable implements Paintable, IState {
         Vector absolute = new Vector(viewerDegreeConversion(degrees), 0);
         int angle = (int) myHeading.getAngleBetween(absolute);
         myHeading.turn(angle);
-        update();
         return angle;
     }
 
@@ -205,7 +201,6 @@ public class Turtle extends Observable implements Paintable, IState {
         Vector toTurn = new Vector(myCenter, toFace);
         int angle = (int) myHeading.getAngleBetween(toTurn);
         myHeading.turn(angle);
-        update();
         return angle;
     }
 
@@ -232,14 +227,6 @@ public class Turtle extends Observable implements Paintable, IState {
         int distanceMoved = setPosition(0, 0);
         setHeading(90);
         return distanceMoved;
-    }
-
-    /**
-     * Updates this object by notifying its observers
-     */
-    public void update () {
-        setChanged();
-        notifyObservers();
     }
 
     /**
@@ -320,7 +307,6 @@ public class Turtle extends Observable implements Paintable, IState {
 
     public void setHiding (boolean hide) {
         amHiding = hide;
-        update();
     }
     
     public void setHiding (int hide) {
