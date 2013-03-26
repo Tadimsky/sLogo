@@ -86,7 +86,6 @@ public class Controller {
         myInputField.addActionListener(createRunCommandListener ());
         myWorkHandler = new Window(myInputField, createJMenuBar());
         myParser = new Parser();
-        // myUndoManager = new WSUndoManager();
     }
 
     /**
@@ -105,10 +104,14 @@ public class Controller {
             SemanticsTable.getInstance().setContext(null);
             return;
         }
-
-        SemanticsTable.getInstance().setContext(null);
         getWorkspace().execute(commandList);
         getWorkspace().addHistory(command);
+        getWorkspace().addHistory(commandList);
+        SemanticsTable.getInstance().setContext(null);
+
+        System.out.println(getWorkspace().getHistory());
+        System.out.println(getWorkspace().getExecutableHistory());
+
     }
     
     /**
@@ -533,15 +536,12 @@ public class Controller {
             @Override
             public void actionPerformed (ActionEvent e) {
                 try {
-
-                    if (getWorkspace().getUndoManager().canUndo()) {
-                        getWorkspace().getUndoManager().undo();
-                    }
-                    System.out.println("user tries to undo");
+                System.out.println("user tries to undo");
+                getWorkspace().getUndoManager().undo();
 
                 }
                 catch (Exception exception) {
-                    getWorkspace().showError("Undo is not allowed.");
+                	getWorkspace().showError("Undo is not allowed.");
                 }
             }
         });
@@ -550,9 +550,8 @@ public class Controller {
             @Override
             public void actionPerformed (ActionEvent e) {
                 try {
-                    if (getWorkspace().getUndoManager().canRedo()) {
-                        getWorkspace().getUndoManager().redo();
-                    }
+                	getWorkspace().getUndoManager().redo();
+                    
                     System.out.println("under tries to redo");
                 }
                 catch (Exception exception) {

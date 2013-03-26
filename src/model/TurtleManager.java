@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -256,6 +257,13 @@ public class TurtleManager extends Observable implements Paintable {
         return myActiveTurtles;
     }
 
+    public ArrayList<Turtle> getActiveTurtles(){
+    	ArrayList<Turtle> turtleList = new ArrayList<Turtle>();
+    	for (Turtle turtle: myActiveTurtles.values()){
+    		turtleList.add(turtle);
+    	}
+    	return turtleList;
+    }
     /**
      * @return All the turtles associated with this manager
      */

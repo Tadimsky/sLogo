@@ -57,7 +57,9 @@ public class Turtle implements Paintable, IState {
         while (wrapOnBoundary(initialPosition, pixels)) {
             this.move((int) myHeading.getMagnitude());
         }
+        System.out.println("moved");
         return pixels;
+        
     }
 
     /**

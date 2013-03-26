@@ -1,9 +1,13 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import javax.swing.undo.UndoManager;
+
+import model.Turtle;
 import parser.CustomCommand;
+import parser.nodes.SyntaxNode;
 
 
 /**
@@ -18,41 +22,52 @@ import parser.CustomCommand;
 @SuppressWarnings("serial")
 public class WSUndoManager extends UndoManager {
 
-    private Stack<CustomCommand> undoneCommands; // stores all undone commands
-    private Stack<CustomCommand> myActiveCommands; // stores list of commands
+    private Stack<List<SyntaxNode>> undoneCommands; 
+    private Stack<List<SyntaxNode>> myActiveCommands; 
+    private Workspace myWorkspace;
 
-    public WSUndoManager () {
+    public WSUndoManager (Workspace workspace) {
         super();
-        myActiveCommands = new Stack<CustomCommand>();
-        undoneCommands = new Stack<CustomCommand>();
+        myActiveCommands = new Stack<List<SyntaxNode>>();
+        undoneCommands = new Stack<List<SyntaxNode>>();
+        myWorkspace = workspace;
     }
-
-    /**
-     * Returns list of all active commands to be reloaded in undo.
-     * 
-     * @return
-     */
-    public List<CustomCommand> getActiveCommands () {
-        // undo command i.e. reload all commands in commandHistory
-        undoneCommands.add(myActiveCommands.pop());
-        return myActiveCommands;
-    }
-
-    /*
-     * @Override
-     * protected UndoableEdit editToBeUndone(){
-     * return
-     * }
-     */
 
     /**
      * Returns last undone command to be redone in workspace.
      * 
      * @return
      */
-    public CustomCommand getLastUndoneCommand () {
-        CustomCommand lastUndo = undoneCommands.pop();
-        return lastUndo;
+    public List<SyntaxNode> getLastUndoneCommand () {
+        return undoneCommands.pop();
 
+    }
+    public void addEditToHistory(List<SyntaxNode> command){
+    	myActiveCommands.add(command);
+    }
+    
+    @Override
+    public void undo(){
+    	undoneCommands.push(myActiveCommands.pop());
+    	for (Turtle turtle: myWorkspace.getTurtleManager().getActiveTurtles()){	
+    		turtle.clear();
+    		executeHistory();
+    	}
+		myWorkspace.getTurtleManager().update();
+
+    }
+    
+    public void executeHistory(){
+    	for (List<SyntaxNode> command: myActiveCommands){
+			myWorkspace.execute(command);
+		}
+    }
+
+    @Override
+    public void redo(){
+    	List<SyntaxNode> redoCommand = getLastUndoneCommand();
+    	myActiveCommands.add(redoCommand);
+    	myWorkspace.execute((redoCommand));
+		myWorkspace.getTurtleManager().update();
     }
 }
