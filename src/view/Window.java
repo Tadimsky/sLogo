@@ -33,7 +33,7 @@ import controller.Workspace;
  * @author Henrique Moraes, Ziqiang
  * 
  */
-public class Window extends JFrame {
+public class Window extends JFrame implements WorkspaceHandler{
     private final static int GRAY_TONE = 230;
     public final static Color INFO_BACKGROUND_COLOR = new Color(GRAY_TONE, GRAY_TONE, GRAY_TONE);
     private static final String WORKSPACE_NAME = "Workspace ";
@@ -106,6 +106,7 @@ public class Window extends JFrame {
      * Creates a new workspace and sets the associated canvas to it
      * on the tabbed pane
      */
+    @Override
     public void createWorkspace () {
         Workspace workspace = new Workspace(WORKSPACE_NAME + workspaceIndex);
         workspaceIndex++;
@@ -125,10 +126,11 @@ public class Window extends JFrame {
     }
 
     /**
-     * @return Currently selected Canvas
+     * @return Currently selected Workspace
      */
-    public Canvas getCanvas () {
-        return myCurrentCanvas;
+    @Override
+    public Workspace getWorkspace () {
+        return (Workspace) myCurrentCanvas.getPaintableResource();
     }
 
     /**
