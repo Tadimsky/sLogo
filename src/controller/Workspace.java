@@ -49,6 +49,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     private ColorManager myPalette;
     private Canvas myCanvas;
     private TurtleManager myTurtleManager;
+    private WSUndoManager myUndoManager;
 
     public Workspace (String name) {
         this();
@@ -287,13 +288,11 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         
     }
 
-<<<<<<< HEAD
     public void addTurtleImage(int index, String imageDir) {
         myTurtleManager.addTurtleImage(index, imageDir);
         
     }
 
-=======
     public WSUndoManager getUndoManager(){
     	return myUndoManager;
     }
@@ -319,5 +318,4 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         //perform the default serialization for all non-transient, non-static fields
         aOutputStream.defaultWriteObject();
       }
->>>>>>> serializing workspace
 }
