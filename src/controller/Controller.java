@@ -530,6 +530,7 @@ public class Controller {
             public void actionPerformed (ActionEvent e) {
                 try {
                 getWorkspace().getUndoManager().undo();
+                getWorkspace().addHistory("Undo");
 
                 }
                 catch (Exception exception) {
@@ -542,7 +543,8 @@ public class Controller {
             @Override
             public void actionPerformed (ActionEvent e) {
                 try {
-                	getWorkspace().getUndoManager().redo();                    
+                	getWorkspace().getUndoManager().redo();
+                    getWorkspace().addHistory("Redo");
                 }
                 catch (Exception exception) {
                     getWorkspace().showError("Redo is not allowed.");
