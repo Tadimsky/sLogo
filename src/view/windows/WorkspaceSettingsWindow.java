@@ -1,7 +1,6 @@
 package view.windows;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,13 +20,13 @@ import controller.Workspace;
  * @author Henrique Moraes
  * 
  */
+@SuppressWarnings("serial")
 public class WorkspaceSettingsWindow extends SettingsWindow {
-    private static final Dimension DEFAULT_DIMENSION = new Dimension(450, 300);
-
+    @SuppressWarnings("rawtypes")
     private JComboBox myBackgroundColor;
+    @SuppressWarnings("rawtypes")
     private JComboBox myPenColor;
-    private JCheckBox myHideOption;
-    private JCheckBox myPenUpOption;
+
     private JCheckBox myHighlightOption;
 
     public WorkspaceSettingsWindow (Workspace w) {
@@ -46,6 +45,7 @@ public class WorkspaceSettingsWindow extends SettingsWindow {
      * @param colorMap Map to reference colors
      * @return Panel with color options
      */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     private JPanel createColorPanel (ColorManager manager) {
         myBackgroundColor = new JComboBox(manager.getColorMap().values().toArray());
         myPenColor = new JComboBox(manager.getColorMap().values().toArray());
@@ -71,8 +71,8 @@ public class WorkspaceSettingsWindow extends SettingsWindow {
         checkBoxPanel.setLayout(new GridLayout(3, 1));
         checkBoxPanel.add(myHighlightOption = new JCheckBox("Highlight Active Turtles"));
         myHighlightOption.setSelected(myWorkspace.getHighlighted());
-        checkBoxPanel.add(myHideOption = new JCheckBox("Hide All Turtles"));
-        checkBoxPanel.add(myPenUpOption = new JCheckBox("Raise Pen of All Turtles"));
+        checkBoxPanel.add(new JCheckBox("Hide All Turtles"));
+        checkBoxPanel.add(new JCheckBox("Raise Pen of All Turtles"));
 
         checkBoxPanel
                 .setBorder(BorderFactory.createTitledBorder(
@@ -87,7 +87,7 @@ public class WorkspaceSettingsWindow extends SettingsWindow {
             @Override
             public void actionPerformed (ActionEvent e) {
                 myWorkspace.getCanvas().setBackgroundColor((Color) myBackgroundColor
-                                                                   .getSelectedItem());
+                        .getSelectedItem());
                 myWorkspace.setHighlighted(myHighlightOption.isSelected());
                 dispose();
             }

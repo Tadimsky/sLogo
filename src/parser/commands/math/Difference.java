@@ -16,6 +16,11 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public class Difference extends BinaryNode {
 
+    /**
+     * Creates Difference Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public Difference (Deque<SyntaxNode> queue) {
         super(queue);
     }

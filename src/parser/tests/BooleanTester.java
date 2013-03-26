@@ -1,11 +1,11 @@
 package parser.tests;
 
-import static org.junit.Assert.*;
 import java.util.List;
 import java.util.Random;
-import org.junit.*;
 import parser.Parser;
 import parser.nodes.SyntaxNode;
+import parser.nodes.exceptions.InvalidArgumentsException;
+import parser.nodes.exceptions.InvalidSemanticsException;
 
 
 public class BooleanTester {
@@ -20,7 +20,7 @@ public class BooleanTester {
     }
 
     @Test
-    public void testAnd () {
+    public void testAnd () throws InvalidSemanticsException, InvalidArgumentsException {
         for (int i = 1; i < 10; i++)
         {
             int x = myRandom.nextInt(1);
@@ -33,7 +33,7 @@ public class BooleanTester {
     }
 
     @Test
-    public void testEqual () {
+    public void testEqual () throws InvalidSemanticsException, InvalidArgumentsException {
         for (int i = 1; i < 10; i++)
         {
             int x = myRandom.nextInt(i * 100);
@@ -49,7 +49,7 @@ public class BooleanTester {
     }
 
     @Test
-    public void testGreaterThan () {
+    public void testGreaterThan () throws InvalidSemanticsException, InvalidArgumentsException {
         for (int i = 1; i < 10; i++)
         {
             int x = myRandom.nextInt(i * 100);
@@ -66,7 +66,7 @@ public class BooleanTester {
     }
 
     @Test
-    public void testLessThan () {
+    public void testLessThan () throws InvalidSemanticsException, InvalidArgumentsException {
         for (int i = 1; i < 10; i++)
         {
             int x = myRandom.nextInt(i * 100);
@@ -83,7 +83,7 @@ public class BooleanTester {
     }
 
     @Test
-    public void testNot () {
+    public void testNot () throws InvalidSemanticsException, InvalidArgumentsException {
         for (int i = 1; i < 10; i++)
         {
             int x = myRandom.nextInt(1);
@@ -97,7 +97,7 @@ public class BooleanTester {
     }
 
     @Test
-    public void testNotEqual () {
+    public void testNotEqual () throws InvalidSemanticsException, InvalidArgumentsException {
         for (int i = 1; i < 10; i++)
         {
             int x = myRandom.nextInt(i * 100);
@@ -114,7 +114,7 @@ public class BooleanTester {
     }
 
     @Test
-    public void testOr () {
+    public void testOr () throws InvalidSemanticsException, InvalidArgumentsException {
         for (int i = 1; i < 10; i++)
         {
             int x = myRandom.nextInt(i * 100);

@@ -3,14 +3,25 @@ package parser.commands.turtle.queries;
 import java.util.Deque;
 import model.IState;
 import parser.IParserProvider;
-import parser.commands.turtle.commands.BasicControl;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import util.Location;
 
 
+/**
+ * Implements the X Cor function.
+ * Returns the X coordinate of the turtle
+ * 
+ * @author Jonathan Schmidt
+ * 
+ */
 public class XCor extends BasicControl implements ILabelInformation {
 
+    /**
+     * Creates X Cor Command Node
+     * 
+     * @param stack The list of nodes that come before this command
+     */
     public XCor (Deque<SyntaxNode> stack) {
         super(stack);
     }

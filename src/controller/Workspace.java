@@ -1,10 +1,9 @@
 package controller;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
-import java.awt.image.BufferedImage;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +22,6 @@ import parser.IParserProvider;
 import parser.VariableManager;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import parser.nodes.exceptions.InvalidSemanticsException;
 import view.Canvas;
 import view.components.Strokes;
 import controller.support.IError;
@@ -36,7 +34,7 @@ import controller.support.IError;
  * @author XuRui, Ziqiang Huang, Henrique Moraes
  * 
  */
-public class Workspace extends Observable implements Paintable, IParserProvider, IError {
+public class Workspace extends Observable implements Paintable, IParserProvider, IError, Serializable {
     public static final String UNTITLED = "Untitled";
     private Map<String, CustomCommand> myCommandMap;
     private ResourceBundle myErrorResource;
@@ -44,10 +42,10 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
 
     private List<String> myHistory;
     private VariableManager myVariables;
-    private WSUndoManager myUndoManager;
     private ColorManager myPalette;
     private Canvas myCanvas;
     private TurtleManager myTurtleManager;
+    private WSUndoManager myUndoManager;
 
     public Workspace (String name) {
         this();
@@ -64,18 +62,9 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         myName = UNTITLED;
         myHistory = new ArrayList<String>();
         myVariables = new VariableManager();
-        myUndoManager = new WSUndoManager();
+        new WSUndoManager();
         myPalette = new ColorManager();
         myCanvas = new Canvas(this);
-
-        //testVariables();
-    }
-
-    private void testVariables () {
-        // myVariables.createVariableScope("local");
-        for (int i = 0; i < 10; i++) {
-            myVariables.setVariable("var" + i, i);
-        }
     }
 
     /**
@@ -97,14 +86,12 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
      * Updates the state of this workspace for the user
      */
 
-    @Override
     public void update () {
         myTurtleManager.update();
     }
 
     @Override
-    public Turtle getTurtle ()
-    {
+    public Turtle getTurtle () {
         return myTurtleManager.getCurrent();
     }
 
@@ -148,8 +135,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     }
 
     @Override
-    public VariableManager getVariables ()
-    {
+    public VariableManager getVariables () {
         return myVariables;
     }
 
@@ -172,8 +158,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
      */
     @Override
     public void showError (String message) {
-        JOptionPane.showMessageDialog(null, message,
-                                      myErrorResource.getString("ErrorTitle"),
+        JOptionPane.showMessageDialog(null, message, myErrorResource.getString("ErrorTitle"),
                                       JOptionPane.ERROR_MESSAGE);
     }
 
@@ -189,6 +174,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
 
     @Override
     public void addCommand (CustomCommand com) {
+    	//myUndoManager.addEdit(new UndoableEdit());
         myCommandMap.put(com.getName(), com);
 
     }
@@ -199,10 +185,13 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         return myCommandMap.get(command.toLowerCase());
     }
 
-    @Override
-    public void addHistory (String s)
-    {
+    public void addHistory (String s) {
         myHistory.add(s);
+    }
+    
+    public List<String> getHistory () 
+    {
+        return myHistory;
     }
 
     @Override
@@ -214,7 +203,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     public void setHighlighted (boolean active) {
         myTurtleManager.setHighlighted(active);
     }
-    
+
     public void setImage (String path) {
         myTurtleManager.setImage(path);
     }
@@ -226,8 +215,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     /**
      * @return Canvas associated with this workspace
      */
-    public Canvas getCanvas ()
-    {
+    public Canvas getCanvas () {
         return myCanvas;
     }
 
@@ -258,18 +246,11 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         return myPalette;
     }
 
-    @Override
-    public void addColor (int colorIndex, Color color) {
-        myPalette.setColor(colorIndex, color);
-    }
-
-    public void execute (List<SyntaxNode> commands)
-    {
+    public void execute (List<SyntaxNode> commands) {
         try {
             for (SyntaxNode node : commands) {
                 int returnValue = node.evaluate(this);
                 System.out.printf("my return value is %d", returnValue);
-
             }
         }
         catch (NullPointerException ne) {
@@ -285,14 +266,19 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         return myTurtleManager;
     }
 
-    public void setStrokeType(Strokes s) {
+    public void setStrokeType (Strokes s) {
         myTurtleManager.setStrokeType(s);
-        
+
     }
 
-    public void addTurtleImage(int index, String imageDir) {
+    public void addTurtleImage (int index, String imageDir) {
         myTurtleManager.addTurtleImage(index, imageDir);
-        
+
     }
+
+    public WSUndoManager getUndoManager(){
+    	return myUndoManager;
+    }
+    
 
 }

@@ -27,8 +27,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import model.Turtle;
 import parser.Parser;
 import parser.SemanticsTable;
@@ -52,7 +50,7 @@ import controller.support.StayOpenCheckBoxMenuItem;
  */
 
 public class Controller {
-    private static final String LANGUAGE = "Portugues";
+    private static final String LANGUAGE = "English";
     private int DEFAULT_MOVE_VALUE = 100;
     private int DEFAULT_TURN_VALUE = 90;
     public static final String USER_DIR = "user.dir";
@@ -74,6 +72,9 @@ public class Controller {
     private InputField myInputField;
    // private MenuCreator myMenuCreator;
     
+    // private WSUndoManager myUndoManager;
+    // private MenuCreator myMenuCreator;
+    
     /**
      * Constructor for controller responsible for initializing the view
      * and the parser
@@ -84,6 +85,7 @@ public class Controller {
         myInputField.addActionListener(createRunCommandListener ());
         myWindow = new Window(myInputField, createJMenuBar());
         myParser = new Parser();
+        // myUndoManager = new WSUndoManager();
     }
 
     /**
@@ -97,12 +99,12 @@ public class Controller {
         try {
             commandList = myParser.parseCommand(command);
         }
-        catch (InvalidSemanticsException e) {            
+        catch (InvalidSemanticsException e) {
             getWorkspace().showError(e.getMessage());
             SemanticsTable.getInstance().setContext(null);
             return;
         }
-        
+
         SemanticsTable.getInstance().setContext(null);
         getWorkspace().execute(commandList);
         getWorkspace().addHistory(command);
@@ -121,7 +123,6 @@ public class Controller {
             }
         };
     }
-
 
     /**
      * This method is set private so the Window does not have access to it
@@ -144,10 +145,10 @@ public class Controller {
     public JMenuBar createJMenuBar () {
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(createFileMenu());
-        menuBar.add(createEditMenu());
         menuBar.add(createCommandMenu());
         menuBar.add(createSettingMenu());
-        menuBar.add(createHelpMenu());      
+        menuBar.add(createHelpMenu());
+        menuBar.add(createEditMenu());
         return menuBar;
     }
 
@@ -360,7 +361,8 @@ public class Controller {
                 Object[] message = { RESOURCE.getString("ChooseIndex"), turtle };
                 int option =
                         JOptionPane.showConfirmDialog(null, message,
-                                                      RESOURCE.getString("NewTurtle"), JOptionPane.OK_CANCEL_OPTION);
+                                                      RESOURCE.getString("NewTurtle"),
+                                                      JOptionPane.OK_CANCEL_OPTION);
 
                 if (option == JOptionPane.OK_OPTION) {
                     try {
@@ -390,12 +392,9 @@ public class Controller {
                 JTextField R = new JTextField();
                 JTextField G = new JTextField();
                 JTextField B = new JTextField();
-                Object[] message = {
-                                    RESOURCE.getString("ColorIndex"), id,
-                                    RESOURCE.getString("Rval"), R,
-                                    RESOURCE.getString("Gval"), G,
-                                    RESOURCE.getString("Bval"), B
-                };
+                Object[] message =
+                        { RESOURCE.getString("ColorIndex"), id, RESOURCE.getString("Rval"), R,
+                         RESOURCE.getString("Gval"), G, RESOURCE.getString("Bval"), B };
                 int option =
                         JOptionPane.showConfirmDialog(null, message,
                                                       RESOURCE.getString("EnterColor"),
@@ -412,8 +411,7 @@ public class Controller {
                             t.setColor(c);
                         }
                     }
-                    catch (Exception e1)
-                    {
+                    catch (Exception e1) {
                         getWorkspace().showError(RESOURCE_ERROR.getString("InvalidColor"));
                     }
                 }
@@ -467,7 +465,7 @@ public class Controller {
                 menu.removeAll();
                 for (Integer i : map.keySet()) {
                     final StayOpenCheckBoxMenuItem item =
-                            new StayOpenCheckBoxMenuItem(RESOURCE.getString("Turtle")+i);
+                            new StayOpenCheckBoxMenuItem(RESOURCE.getString("Turtle") + i);
 
                     item.addItemListener(createCheckBoxItemListener(item));
                     if (activeMap.containsKey(i)) {
@@ -530,38 +528,40 @@ public class Controller {
      */
     private JMenu createEditMenu () {
         JMenu menu = new JMenu(RESOURCE.getString("EditMenu"));
-        menu.add(new AbstractAction(RESOURCE.getString("RedoCommand")) {
-            @Override
-            public void actionPerformed (ActionEvent e) {
-                URL helpPage = null;
-                try {
-                    helpPage = new URL(DEFAULT_URL);
-                }
-                catch (MalformedURLException exception) {
-                    getWorkspace().showError(exception.toString());
-                }
-                new HelpWindow(HELP_TITLE, helpPage);
-            }
-        });
-        
         menu.add(new AbstractAction(RESOURCE.getString("UndoCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                URL helpPage = null;
                 try {
-                    helpPage = new URL(DEFAULT_URL);
+
+                    if (getWorkspace().getUndoManager().canUndo()) {
+                        getWorkspace().getUndoManager().undo();
+                    }
+                    System.out.println("user tries to undo");
+
                 }
-                catch (MalformedURLException exception) {
-                    getWorkspace().showError(exception.toString());
+                catch (Exception exception) {
+                    getWorkspace().showError("Undo is not allowed.");
                 }
-                new HelpWindow(HELP_TITLE, helpPage);
+            }
+        });
+
+        menu.add(new AbstractAction(RESOURCE.getString("RedoCommand")) {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                try {
+                    if (getWorkspace().getUndoManager().canRedo()) {
+                        getWorkspace().getUndoManager().redo();
+                    }
+                    System.out.println("under tries to redo");
+                }
+                catch (Exception exception) {
+                    getWorkspace().showError("Redo is not allowed.");
+                }
             }
         });
         return menu;
     }
-    
-    
-    
+
     /**
      * Loads a file of variable and command to a current workspace.
      */
@@ -582,12 +582,10 @@ public class Controller {
         try {
             commandList = myParser.parseCommand(inputFile);
         }
-        catch (InvalidSemanticsException e) {            
+        catch (InvalidSemanticsException e) {
             getWorkspace().showError(e.getMessage());
-        }        
-        SemanticsTable.getInstance().setContext(null);
-        for (SyntaxNode node : commandList) {
-            node.evaluate(getWorkspace());
         }
+        SemanticsTable.getInstance().setContext(null);
+        getWorkspace().execute(commandList);
     }
 }

@@ -10,13 +10,14 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  * @author Jonathan Schmidt
  * 
  */
-public abstract class SyntaxNode {
+public abstract class SyntaxNode extends UndoableEdit{
 
     /**
      * Evaluates the current node of the expression.
      * 
      * @param w The active workspace.
      * @return The integer value of this expression.
+     * @throws InvalidArgumentsException 
      */
     public abstract int evaluate (IParserProvider w) throws InvalidArgumentsException;
 

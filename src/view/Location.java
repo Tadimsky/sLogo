@@ -4,7 +4,9 @@ import java.awt.Dimension;
 import java.awt.geom.Point2D;
 
 
+@SuppressWarnings("serial")
 public class Location extends Point2D.Double {
+    @SuppressWarnings("unused")
     private static final Dimension myCanvasDimension = Canvas.DEFAULT_CANVAS_DIMENSION;
     private static final double X_OFFSET = Canvas.DEFAULT_CANVAS_DIMENSION.getWidth() / 2;
     private static final double Y_OFFSET = Canvas.DEFAULT_CANVAS_DIMENSION.getHeight() / 2;
@@ -37,15 +39,6 @@ public class Location extends Point2D.Double {
         setLocation(X_OFFSET, Y_OFFSET);
     }
 
-    // @Override
-    // public double getX(){
-    // return super.getX() - X_OFFSET;
-    // }
-
-    // @Override
-    // public double getY(){
-    // return super.getY() - Y_OFFSET;
-    // }
 
     /**
      * Move this location by given vector.

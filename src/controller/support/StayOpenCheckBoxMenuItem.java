@@ -12,6 +12,8 @@ import javax.swing.event.ChangeListener;
  * 
  * @author Darryl (Source from internet), Henrique Moraes
  */
+
+@SuppressWarnings("serial")
 public class StayOpenCheckBoxMenuItem extends JCheckBoxMenuItem {
 
     private static MenuElement[] path;

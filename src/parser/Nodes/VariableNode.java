@@ -2,6 +2,7 @@ package parser.nodes;
 
 import java.util.Deque;
 import parser.IParserProvider;
+import parser.nodes.exceptions.InvalidArgumentsException;
 import parser.nodes.exceptions.InvalidSemanticsException;
 
 
@@ -14,30 +15,27 @@ import parser.nodes.exceptions.InvalidSemanticsException;
  */
 public class VariableNode extends SimpleNode {
 
-    private static final String INVALID_VARIABLE =
-            "The variable %s does not exist in the current workspace.";
-
     private String myName;
 
-    public VariableNode (String name) throws InvalidSemanticsException
+    public VariableNode (String name)
     {
         if (name.indexOf(':') == 0)
         {
             myName = name;
         }
-        else throw new InvalidSemanticsException(INVALID_FORMAT, name);
+        // else throw new InvalidSemanticsException(INVALID_FORMAT, name);
     }
 
-    public VariableNode (Deque<SyntaxNode> stack)
+    public VariableNode (Deque<SyntaxNode> stack) throws InvalidSemanticsException
     {
         this(((TokenNode) stack.pop()).getToken());
     }
 
     @Override
-    public int evaluate (IParserProvider w) {
+    public int evaluate (IParserProvider w) throws InvalidArgumentsException {
 
         Integer val = w.getVariables().getVariable(myName);
-        if (val == null) return 0; // throw new InvalidArgumentsException(INVALID_VARIABLE, myName);
+        if (val == null) return 0; 
         return val;
     }
 

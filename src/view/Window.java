@@ -46,10 +46,6 @@ public class Window extends JFrame {
     private int workspaceIndex = 1;
     private ResourceBundle myResource;
 
-    private ActionListener myRunCommandListener;
-
-    //private Controller myController;
-
     private Canvas myCurrentCanvas;
     private InformationView myInfoView;
     private VariablesWindow myVariablesWindow;
@@ -59,7 +55,6 @@ public class Window extends JFrame {
     private InputField myInputField;
 
     public Window (InputField field, JMenuBar bar) {
-        //myController = control;
         myInputField = field;
         setTitle("SLogo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -80,7 +75,6 @@ public class Window extends JFrame {
         myTabbedInfoWindow.add(PRECOMMAND_TAB_NAME, myPreCommandsWindow);
 
         myTabbedPane = new JTabbedPane();
-        //myInputField = new InputField(INPUT_FIELD_SIZE);
         ErrorBox.setWindow(this);
         makeListeners();
 
@@ -88,7 +82,6 @@ public class Window extends JFrame {
         getContentPane().add(myTabbedInfoWindow, BorderLayout.EAST);
         getContentPane().add(createInputField(), BorderLayout.SOUTH);
 
-        //setJMenuBar(myController.createJMenuBar());
         setJMenuBar(bar);
         createWorkspace();
 
@@ -157,7 +150,6 @@ public class Window extends JFrame {
      */
     private JComponent createInputField () {
         JPanel inputPanel = new JPanel();
-        //myInputField.addActionListener(myRunCommandListener);
         inputPanel.add(myInputField);
         inputPanel.add(createCommandButton());
         inputPanel.add(createExpandTextButton());
@@ -199,9 +191,7 @@ public class Window extends JFrame {
         myInputField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed (ActionEvent e) {
-               // myController.processCommand(myInputField.getText());
                 myPreCommandsWindow.addCommand(myInputField.getText());
-                //myInputField.setText("");
             }
         });
     }

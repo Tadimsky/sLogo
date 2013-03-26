@@ -8,19 +8,16 @@ import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.TreeMap;
-import java.util.Map.Entry;
 import javax.imageio.ImageIO;
 import parser.reflection.ReflectionHelper;
-import sun.awt.image.OffScreenImage;
 import util.Location;
 import view.components.Error;
 import view.components.ErrorBox;
@@ -30,7 +27,7 @@ import view.components.Strokes;
 /**
  * Manages all the properties and state of the turtles from a specific workspace
  * 
- * @author Henrique Moraes,Ziqiang Huang
+ * @author Henrique Moraes,Ziqiang Huang, Jonathan Schmidt
  * 
  */
 public class TurtleManager extends Observable implements Paintable {
@@ -51,15 +48,19 @@ public class TurtleManager extends Observable implements Paintable {
     private boolean highlightEnabled = false;
     private Stroke myStroke;
 
-    private Turtle myCurrent;    
+    private Turtle myCurrent;
 
     public TurtleManager () {
         myTurtles = new TreeMap<Integer, Turtle>();
-        myActiveTurtles = new TreeMap<Integer, Turtle>();   
+        myActiveTurtles = new TreeMap<Integer, Turtle>();
         myTurtleImages = new TreeMap<Integer, BufferedImage>();
         myStroke = Pen.DEFAULT_STROKE;
         setImageRelative(DEFAULT_IMAGE_PATH);
 
+<<<<<<< HEAD
+=======
+        //setImage(DEFAULT_IMAGE_PATH);
+>>>>>>> 86ccabe8a6a92e6237d018c6b31dce9f69ce6348
         activate(lastIndex);
     }
 
@@ -76,8 +77,8 @@ public class TurtleManager extends Observable implements Paintable {
         }
         activateTurtle(index);
     }
-    
-    public void activate(Collection<Integer> turtles)
+
+    public void activate (Collection<Integer> turtles)
     {
         for (Integer i : turtles)
         {
@@ -96,7 +97,7 @@ public class TurtleManager extends Observable implements Paintable {
                     activateTurtle(i);
                     id = i;
                 }
-            }        
+            }
         }
         return id;
     }
@@ -142,7 +143,8 @@ public class TurtleManager extends Observable implements Paintable {
 
     /**
      * sets image Based on a relative path
-     * @param path 
+     * 
+     * @param path
      */
     private void setImageRelative (String path) {
         try {
@@ -152,16 +154,17 @@ public class TurtleManager extends Observable implements Paintable {
             ErrorBox.showError(Error.INVALID_IMAGE);
         }
     }
-    
+
     /**
      * Sets image based on an absolute path
+     * 
      * @param path
      */
     public void setImage (String path) {
         try {
             File f = new File(path);
-            myImage = ImageIO.read(f);         
-            for (Turtle t : myActiveTurtles.values()){
+            myImage = ImageIO.read(f);
+            for (Turtle t : myActiveTurtles.values()) {
                 t.setImage(myImage);
             }
             update();
@@ -198,7 +201,7 @@ public class TurtleManager extends Observable implements Paintable {
      * Activates the turtle specified by the index
      */
     public void deactivateTurtle (int index) {
-        myActiveTurtles.remove(index);        
+        myActiveTurtles.remove(index);
     }
 
     /**
@@ -285,70 +288,68 @@ public class TurtleManager extends Observable implements Paintable {
      * 
      * @return
      */
-    public List<Integer> copyActive()
+    public List<Integer> copyActive ()
     {
-        Integer[] oldTurtles = new Integer[getTurtles().size()];        
+        Integer[] oldTurtles = new Integer[getTurtles().size()];
         oldTurtles = getTurtles().keySet().toArray(oldTurtles);
         return Arrays.asList(oldTurtles);
     }
-    
+
     @SuppressWarnings("unchecked")
-    public <T>  T execute(String commandName, Object... args ) {
-        Method m;        
-        try {            
+    public <T> T execute (String commandName, Object ... args) {
+        Method m;
+        try {
             m = ReflectionHelper.findMethod(Turtle.class, commandName, args);
         }
-        catch (NoSuchMethodException e) {            
+        catch (NoSuchMethodException e) {
             return null;
         }
         T result = null;
         for (Turtle t : myActiveTurtles.values()) {
-            try {            
+            try {
                 Object r = m.invoke(t, args);
-                result = (T)r; 
+                result = (T) r;
             }
             catch (Exception e) {
                 return null;
             }
         }
-        update();  
+        update();
         return result;
     }
 
-    public void setStrokeType(Strokes s) {
+    public void setStrokeType (Strokes s) {
         if (myActiveTurtles.isEmpty()) return;
         for (Turtle t : myActiveTurtles.values()) {
             t.setStrokeType(s);
         }
     }
 
-    public void addTurtleImage(int index, String imageDir) {
-       
-       try {
-           File f = new File(imageDir);
-           BufferedImage result = ImageIO.read(f);
-           myTurtleImages.put(index, result);
-       } catch (IOException e) {
-           
-           ErrorBox.showError(Error.INVALID_IMAGE);
-           
-       }      
+    public void addTurtleImage (int index, String imageDir) {
+
+        try {
+            File f = new File(imageDir);
+            BufferedImage result = ImageIO.read(f);
+            myTurtleImages.put(index, result);
+        }
+        catch (IOException e) {
+
+            ErrorBox.showError(Error.INVALID_IMAGE);
+
+        }
     }
 
-
-    public Object getTurtleImage(int shapeid) {      
+    public Object getTurtleImage (int shapeid) {
         return myTurtleImages.get(shapeid);
-        
+
     }
 
-    public int getShape(BufferedImage image) {
-        {        
+    public int getShape (BufferedImage image) {
+        {
             if (myTurtleImages.containsValue(image)) {
-                for (Entry<Integer,BufferedImage> in : myTurtleImages.entrySet())
+                for (Entry<Integer, BufferedImage> in : myTurtleImages.entrySet())
                 {
-                    if (in.getValue().equals(image)){
-                        return in.getKey();
-                    }
+                    if (in.getValue().equals(image)) return in.getKey();
                 }
             }
             return -1;

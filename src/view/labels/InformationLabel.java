@@ -2,9 +2,9 @@ package view.labels;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-import parser.commands.turtle.queries.ILabelInformation;
 
 
+@SuppressWarnings("serial")
 public class InformationLabel extends LogoLabel {
     public static final int ANCHOR = GridBagConstraints.LINE_START;
     public static final double X_WEIGHT = 0;

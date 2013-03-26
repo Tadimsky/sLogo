@@ -1,9 +1,15 @@
-package parser.commands.turtle.queries;
+package view;
 
 import model.IState;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
-
+/**
+ * Implements the Towards function.
+ * Makes the turtle face towards the specified position.
+ * 
+ * @author Jonathan Schmidt
+ * 
+ */
 public interface ILabelInformation {
 
     /**

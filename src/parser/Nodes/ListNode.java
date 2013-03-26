@@ -18,13 +18,21 @@ public class ListNode extends SyntaxNode {
 
     private List<SyntaxNode> myContents;
 
+    /**
+     * Creates a List node from a queue of parameters.
+     * Reads in all the parameters until a list end node is found.
+     * 
+     * @param queue The list of parameters.
+     */
     public ListNode (Deque<SyntaxNode> queue) {
         myContents = new ArrayList<SyntaxNode>();
 
         // pop off all the nodes until we get to a ListEndNode
         while (!queue.isEmpty()) {
             SyntaxNode s = queue.pop();
-            if (s instanceof ListEndNode) return;
+            if (s instanceof ListEndNode) {
+                return;
+            }
             myContents.add(s);
         }
     }
@@ -32,8 +40,7 @@ public class ListNode extends SyntaxNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int val = 0;
-        for (SyntaxNode sn : myContents)
-        {
+        for (SyntaxNode sn : myContents) {
             val = sn.evaluate(w);
         }
         return val;

@@ -2,7 +2,6 @@ package parser.commands.workspace;
 
 import java.util.Deque;
 import parser.IParserProvider;
-import parser.commands.turtle.commands.BasicControl;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
@@ -15,9 +14,14 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  * 
  */
 public class TellEven extends BasicControl {
+    /**
+     * Creates Tell Even Command Node
+     * 
+     * @param queue
+     *        The list of nodes that come before this command
+     */
     public TellEven (Deque<SyntaxNode> queue) {
         super(queue);
-
     }
 
     @Override

@@ -1,11 +1,11 @@
 package parser.tests;
 
-import static org.junit.Assert.*;
 import java.util.List;
 import java.util.Random;
-import org.junit.*;
 import parser.Parser;
 import parser.nodes.SyntaxNode;
+import parser.nodes.exceptions.InvalidArgumentsException;
+import parser.nodes.exceptions.InvalidSemanticsException;
 
 
 public class MathTester {
@@ -20,7 +20,7 @@ public class MathTester {
     }
 
     @Test
-    public void testSum () {
+    public void testSum () throws InvalidSemanticsException, InvalidArgumentsException {
         for (int i = 1; i < 10; i++)
         {
             int x = myRandom.nextInt(i * 100);
@@ -34,7 +34,7 @@ public class MathTester {
     }
 
     @Test
-    public void testDifference () {
+    public void testDifference () throws InvalidSemanticsException, InvalidArgumentsException {
         for (int i = 1; i < 10; i++)
         {
             int x = myRandom.nextInt(i * 100);
@@ -48,7 +48,7 @@ public class MathTester {
     }
 
     @Test
-    public void testProduct () {
+    public void testProduct () throws InvalidSemanticsException, InvalidArgumentsException {
         for (int i = 1; i < 10; i++)
         {
             int x = myRandom.nextInt(i * 100);
@@ -62,7 +62,7 @@ public class MathTester {
     }
 
     @Test
-    public void testQuotient () {
+    public void testQuotient () throws InvalidSemanticsException, InvalidArgumentsException {
         for (int i = 1; i < 10; i++)
         {
             int x = myRandom.nextInt(i * 100);
@@ -76,7 +76,7 @@ public class MathTester {
     }
 
     @Test
-    public void testMinus () {
+    public void testMinus () throws InvalidSemanticsException, InvalidArgumentsException {
         for (int i = 1; i < 10; i++)
         {
             int x = myRandom.nextInt(i * 100);
@@ -89,7 +89,7 @@ public class MathTester {
     }
 
     @Test
-    public void testRemainder () {
+    public void testRemainder () throws InvalidSemanticsException, InvalidArgumentsException {
         for (int i = 1; i < 10; i++)
         {
             int x = myRandom.nextInt(i * 100);
@@ -103,7 +103,7 @@ public class MathTester {
     }
 
     @Test
-    public void testRandom () {
+    public void testRandom () throws InvalidSemanticsException, InvalidArgumentsException {
         for (int i = 1; i < 10; i++)
         {
             int x = myRandom.nextInt(i * 100);

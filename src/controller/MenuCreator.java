@@ -1,15 +1,13 @@
 package controller;
 
-
 public class MenuCreator {
-   
 
-	public MenuCreator(){
+    public MenuCreator () {
 
-	}
-	
-	public void createMenu(){
-		
-	}
+    }
+
+    public void createMenu () {
+
+    }
 
 }

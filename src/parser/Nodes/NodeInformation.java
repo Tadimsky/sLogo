@@ -33,8 +33,7 @@ public class NodeInformation implements Cloneable {
                              Class<?> clazz,
                              int args,
                              String desc,
-                             String token)
-    {
+                             String token) {
         myName = name;
         myPatterns = patterns;
         myClass = clazz;
@@ -43,7 +42,14 @@ public class NodeInformation implements Cloneable {
         myToken = token;
     }
 
-    public NodeInformation (String name, ResourceBundle info) throws NodeDefinitionException {
+    /**
+     * Creates the Node Information for a specified entry in the resource bundle.
+     * Searches the Resource Bundle and assigns all the parameters. *
+     * 
+     * @param name The name of the node.
+     * @param info The resource bundle containing all the information.
+     */
+    public NodeInformation (String name, ResourceBundle info) {
 
         myName = name;
 
@@ -53,66 +59,77 @@ public class NodeInformation implements Cloneable {
             myArgs = Integer.parseInt(info.getString(getKey(PROP_ARGS)));
         }
         catch (ClassNotFoundException e1) {
-            throw new NodeDefinitionException(
-                                              NodeDefinitionException.MISSING_CLASS,
+            throw new NodeDefinitionException(NodeDefinitionException.MISSING_CLASS,
                                               e1.getMessage());
         }
-        catch (MissingResourceException e2)
-        {
-            throw new NodeDefinitionException(
-                                              NodeDefinitionException.REQUIRED_PROPERTY,
+        catch (MissingResourceException e2) {
+            throw new NodeDefinitionException(NodeDefinitionException.REQUIRED_PROPERTY,
                                               e2.getKey());
         }
 
-        try
-        {
+        try {
             myDesc = info.getString(getKey(PROP_DESC));
         }
-        catch (MissingResourceException e)
-        {
+        catch (MissingResourceException e) {
             myDesc = "";
         }
     }
 
-    private String getKey (String field)
-    {
+    private String getKey (String field) {
         return myName + "." + field;
     }
 
-    public String getName ()
-    {
+    /**
+     * 
+     * @return The name of the node entry.
+     */
+    public String getName () {
         return myName;
     }
 
-    public String getDesc ()
-    {
+    /**
+     * 
+     * @return The description of the node entry.
+     */
+    public String getDesc () {
         return myDesc;
     }
 
-    public Class<?> getType ()
-    {
+    /**
+     * 
+     * @return The Class of the node entry.
+     */
+    public Class<?> getType () {
         return myClass;
     }
 
-    public int getArgs ()
-    {
+    /**
+     * 
+     * @return The number of arguments the node takes.
+     */
+    public int getArgs () {
         return myArgs;
     }
 
-    public boolean match (String token)
-    {
+    /**
+     * Returns whether a provided token matches the current Node. 
+     * 
+     * @param token The token to match it to.
+     * @return
+     */
+    public boolean match (String token) {
         for (String myPattern : myPatterns) {
-            if (token.matches(myPattern)) return true;
+            if (token.matches(myPattern))
+                return true;
         }
         return false;
     }
 
     @Override
-    public boolean equals (Object o)
-    {
-        if (o != null)
-        {
-            if (o instanceof String) return match((String) o);
+    public boolean equals (Object o) {
+        if (o != null) {
+            if (o instanceof String)
+                return match((String) o);
         }
         return false;
     }
@@ -135,8 +152,7 @@ public class NodeInformation implements Cloneable {
      * This is used to clone the particular Node Information.
      */
     @Override
-    public Object clone ()
-    {
+    public Object clone () {
         return new NodeInformation(myName, myPatterns, myClass, myArgs, myDesc, myToken);
     }
 

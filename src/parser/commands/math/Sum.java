@@ -16,6 +16,11 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public class Sum extends BinaryNode {
 
+    /**
+     * Creates Random Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public Sum (Deque<SyntaxNode> queue) {
         super(queue);
     }

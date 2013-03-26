@@ -3,14 +3,25 @@ package parser.commands.turtle.queries;
 import java.util.Deque;
 import model.IState;
 import parser.IParserProvider;
-import parser.commands.turtle.commands.BasicControl;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import util.Location;
 
 
+/**
+ * Implements the Y Cor function.
+ * Returns the Y coordinate of the turtle
+ * 
+ * @author Jonathan Schmidt
+ * 
+ */
 public class YCor extends BasicControl implements ILabelInformation {
 
+    /**
+     * Creates Y Cor Command Node
+     * 
+     * @param stack The list of nodes that come before this command
+     */
     public YCor (Deque<SyntaxNode> stack) {
         super(stack);
     }

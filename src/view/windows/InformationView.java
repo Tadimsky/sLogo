@@ -14,7 +14,6 @@ import model.IState;
 import model.Turtle;
 import model.TurtleManager;
 import parser.commands.turtle.queries.Heading;
-import parser.commands.turtle.queries.ILabelInformation;
 import parser.commands.turtle.queries.IsPenDown;
 import parser.commands.turtle.queries.IsShowing;
 import parser.commands.turtle.queries.XCor;
@@ -25,6 +24,7 @@ import view.labels.LogoLabel;
 import view.labels.TitleLabel;
 
 
+@SuppressWarnings("serial")
 public class InformationView extends JPanel implements Observer {
     private static final String TITLE = "Turtle Information";
 

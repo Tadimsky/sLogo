@@ -16,6 +16,14 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  * 
  */
 public class Tell extends UnaryNode {
+    private static final String TURTLE_LIST = "The parameter of Tell is not a list of turtles.";
+
+    /**
+     * Creates Tell Command Node
+     * 
+     * @param queue
+     *        The list of nodes that come before this command
+     */
     public Tell (Deque<SyntaxNode> queue) {
         super(queue);
 
@@ -34,9 +42,9 @@ public class Tell extends UnaryNode {
     }
 
     private void checkSyntax () throws InvalidArgumentsException {
-        if (!(getArgument() instanceof ListNode))
-            throw new InvalidArgumentsException("The parameter of Tell is not a list of turtles.",
-                                                "tell");
+        if (!(getArgument() instanceof ListNode)) {
+            throw new InvalidArgumentsException(TURTLE_LIST, "");
+        }
     }
 
 }

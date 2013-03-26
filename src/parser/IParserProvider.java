@@ -1,6 +1,5 @@
 package parser;
 
-import java.awt.Color;
 import model.ColorManager;
 import model.Turtle;
 import model.TurtleManager;
@@ -26,10 +25,4 @@ public interface IParserProvider {
     public ColorManager getColors ();
 
     public int setBackground (int colorIndex);
-
-    public void update ();
-
-    void addColor (int colorIndex, Color color);
-
-    void addHistory (String s);
 }

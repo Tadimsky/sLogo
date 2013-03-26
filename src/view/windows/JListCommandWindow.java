@@ -14,34 +14,35 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import view.Window;
-import view.components.InputField;
 import controller.Controller;
 
-
 /**
- * Window that show commands previously run in the workspace
+ * SuperClass for PreviousCommandWindow and CustomCommandWindow,
+ * Commands directly clickable to execute, implemented using JList
  * 
  * @author Ziqiang Huang
- * 
+ *
  */
-
-public class PreviousCommandWindow extends JPanel {
+@SuppressWarnings("serial")
+public class JListCommandWindow extends JPanel {
 
     public static final Dimension DEFAULT_DIMENSION =
             new Dimension(Window.TABBED_INFO_WINDOW_DIMENSION.width,
                           Window.TABBED_INFO_WINDOW_DIMENSION.height - 30);
 
-    private JList myPreviousCommands;
-    private Vector<String> myCommandsVector;
-    private InputField myInputField;
+    @SuppressWarnings("rawtypes")
+    private JList myCommands;
+    protected Vector<String> myCommandsVector;
+    private Controller myController;
 
-    public PreviousCommandWindow (InputField field) {
-        myInputField = field;
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public JListCommandWindow (Controller c) {
+        myController = c;
         myCommandsVector = new Vector<String>();
-        myPreviousCommands = new JList(myCommandsVector);
-        myPreviousCommands.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        myCommands = new JList(myCommandsVector);
+        myCommands.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        addListSelectionListener(myPreviousCommands);
+        addListSelectionListener(myCommands);
         add(createCommandsWindow());
         add(createClearPanel());
     }
@@ -51,14 +52,15 @@ public class PreviousCommandWindow extends JPanel {
      * @return JButton which clear commands in this window
      */
 
-    private JPanel createClearPanel () {
+    protected JPanel createClearPanel () {
         JPanel clearPanel = new JPanel();
         JButton clearButton = new JButton(Controller.RESOURCE.getString("Clear"));
         clearButton.addActionListener(new ActionListener() {
+            @SuppressWarnings("unchecked")
             @Override
             public void actionPerformed (ActionEvent arg0) {
                 myCommandsVector.clear();
-                myPreviousCommands.setListData(myCommandsVector);
+                myCommands.setListData(myCommandsVector);
             }
         });
         clearPanel.add(clearButton);
@@ -70,8 +72,8 @@ public class PreviousCommandWindow extends JPanel {
      * @return JScrollPane as the Display window
      */
 
-    private JScrollPane createCommandsWindow () {
-        JScrollPane InfoScrollPane = new JScrollPane(myPreviousCommands);
+    protected JScrollPane createCommandsWindow () {
+        JScrollPane InfoScrollPane = new JScrollPane(myCommands);
         InfoScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         InfoScrollPane.setPreferredSize(DEFAULT_DIMENSION);
         return InfoScrollPane;
@@ -82,12 +84,12 @@ public class PreviousCommandWindow extends JPanel {
      * 
      * @param list
      */
-    private void addListSelectionListener (final JList list) {
+    @SuppressWarnings("rawtypes")
+    protected void addListSelectionListener (final JList list) {
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked (MouseEvent e) {
-                myInputField.setText((String) list.getSelectedValue());
-                myInputField.getActionListeners()[1].actionPerformed(null);
+                myController.processCommand((String) list.getSelectedValue());
             }
         });
     }
@@ -97,9 +99,13 @@ public class PreviousCommandWindow extends JPanel {
      * 
      * @param text
      */
+    @SuppressWarnings("unchecked")
     public void addCommand (String text) {
         myCommandsVector.add(text);
-        myPreviousCommands.setListData(myCommandsVector);
+        myCommands.setListData(myCommandsVector);
     }
+
+
+
 
 }

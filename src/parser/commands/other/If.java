@@ -17,6 +17,11 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public class If extends BinaryNode {
 
+    /**
+     * Creates If Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public If (Deque<SyntaxNode> queue) {
         super(queue);
     }
@@ -24,7 +29,9 @@ public class If extends BinaryNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int times = getLeft().evaluate(w);
-        if (times != 0) return getRight().evaluate(w);
+        if (times != 0) {
+            return getRight().evaluate(w);
+        }
         return 0;
     }
 

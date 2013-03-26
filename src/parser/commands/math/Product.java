@@ -16,6 +16,11 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public class Product extends BinaryNode {
 
+    /**
+     * Creates Product Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public Product (Deque<SyntaxNode> queue) {
         super(queue);
     }
