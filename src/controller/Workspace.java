@@ -3,7 +3,6 @@ package controller;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.io.PrintWriter;
-import java.io.Serializable;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,8 +11,6 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
-import java.util.Stack;
-
 import javax.swing.JOptionPane;
 import model.ColorManager;
 import model.Paintable;
@@ -36,7 +33,7 @@ import controller.support.IError;
  * @author XuRui, Ziqiang Huang, Henrique Moraes
  * 
  */
-public class Workspace extends Observable implements Paintable, IParserProvider, IError, Serializable {
+public class Workspace extends Observable implements Paintable, IParserProvider, IError {
     public static final String UNTITLED = "Untitled";
     private Map<String, CustomCommand> myCommandMap;
     private ResourceBundle myErrorResource;
