@@ -33,6 +33,7 @@ import parser.SemanticsTable;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidSemanticsException;
 import view.Window;
+import view.WorkspaceHandler;
 import view.components.InputField;
 import view.windows.GraphicsSettingsWindow;
 import view.windows.HelpWindow;
@@ -66,7 +67,7 @@ public class Controller {
     private static final int INPUT_FIELD_SIZE = 70;
 
     private Parser myParser;
-    private Window myWindow;
+    private WorkspaceHandler myWorkHandler;
     private JFileChooser myChooser;
     private HelpWindow myHelpWindow;
     private InputField myInputField;
@@ -83,7 +84,7 @@ public class Controller {
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
         myInputField = new InputField(INPUT_FIELD_SIZE);
         myInputField.addActionListener(createRunCommandListener ());
-        myWindow = new Window(myInputField, createJMenuBar());
+        myWorkHandler = new Window(myInputField, createJMenuBar());
         myParser = new Parser();
         // myUndoManager = new WSUndoManager();
     }
@@ -129,7 +130,7 @@ public class Controller {
      *         so this class can handle its functions
      */
     private Workspace getWorkspace () {
-        return myWindow.getWorkspace();
+        return myWorkHandler.getWorkspace();
     }
 
     /**
@@ -173,7 +174,7 @@ public class Controller {
         menu.add(new AbstractAction(RESOURCE.getString("New")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                myWindow.createWorkspace();
+                myWorkHandler.createWorkspace();
             }
         });
         menu.add(new AbstractAction(RESOURCE.getString("OpenFile")) {
