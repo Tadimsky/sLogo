@@ -103,12 +103,8 @@ public class Controller {
         }
         getWorkspace().execute(commandList);
         getWorkspace().addHistory(command);
-        getWorkspace().addHistory(commandList);
+        getWorkspace().addExecutableHistory(commandList);
         SemanticsTable.getInstance().setContext(null);
-
-        System.out.println(getWorkspace().getHistory());
-        System.out.println(getWorkspace().getExecutableHistory());
-
     }
     
     /**
@@ -523,7 +519,7 @@ public class Controller {
     }
 
     /**
-     * creates the help page option on the menu bar
+     * Creates Edit menu with undo and redo options.
      * 
      * @return help Menu option
      */
@@ -533,7 +529,6 @@ public class Controller {
             @Override
             public void actionPerformed (ActionEvent e) {
                 try {
-                System.out.println("user tries to undo");
                 getWorkspace().getUndoManager().undo();
 
                 }
@@ -547,9 +542,7 @@ public class Controller {
             @Override
             public void actionPerformed (ActionEvent e) {
                 try {
-                	getWorkspace().getUndoManager().redo();
-                    
-                    System.out.println("under tries to redo");
+                	getWorkspace().getUndoManager().redo();                    
                 }
                 catch (Exception exception) {
                     getWorkspace().showError("Redo is not allowed.");
