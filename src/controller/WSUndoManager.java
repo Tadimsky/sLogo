@@ -1,12 +1,9 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import javax.swing.undo.UndoManager;
-
 import model.Turtle;
-import parser.CustomCommand;
 import parser.nodes.SyntaxNode;
 
 
@@ -17,12 +14,10 @@ import parser.nodes.SyntaxNode;
  * @author XuRui
  * 
  */
-// Might use string instead of CustomCommand
 
-@SuppressWarnings("serial")
 public class WSUndoManager extends UndoManager {
-
-    private Stack<List<SyntaxNode>> undoneCommands; 
+	private static final long serialVersionUID = 1L;
+	private Stack<List<SyntaxNode>> undoneCommands; 
     private Stack<List<SyntaxNode>> myActiveCommands; 
     private Workspace myWorkspace;
 
@@ -38,23 +33,34 @@ public class WSUndoManager extends UndoManager {
      * 
      * @return
      */
-    public List<SyntaxNode> getLastUndoneCommand () {
+    private List<SyntaxNode> getLastUndoneCommand () {
         return undoneCommands.pop();
-
     }
+    
+    private List<SyntaxNode> getLastCommand(){
+    	return myActiveCommands.pop();
+    }
+    
+    /**
+     * Called by workspace to add commands to myActiveCommands
+     * 
+     * @param command
+     */
     public void addEditToHistory(List<SyntaxNode> command){
     	myActiveCommands.add(command);
     }
     
+    /**
+     * Undo the latest command on every single applicable turtle
+     */
     @Override
     public void undo(){
-    	undoneCommands.push(myActiveCommands.pop());
+    	undoneCommands.push(getLastCommand());
     	for (Turtle turtle: myWorkspace.getTurtleManager().getActiveTurtles()){	
     		turtle.clear();
     		executeHistory();
     	}
 		myWorkspace.getTurtleManager().update();
-
     }
     
     public void executeHistory(){
@@ -62,7 +68,10 @@ public class WSUndoManager extends UndoManager {
 			myWorkspace.execute(command);
 		}
     }
-
+    
+    /**
+     * Redo the last undone command
+     */
     @Override
     public void redo(){
     	List<SyntaxNode> redoCommand = getLastUndoneCommand();

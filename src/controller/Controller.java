@@ -73,9 +73,6 @@ public class Controller {
     private InputField myInputField;
    // private MenuCreator myMenuCreator;
     
-    // private WSUndoManager myUndoManager;
-    // private MenuCreator myMenuCreator;
-    
     /**
      * Constructor for controller responsible for initializing the view
      * and the parser
