@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -35,7 +36,6 @@ import controller.Workspace;
 public class Window extends JFrame {
     private final static int GRAY_TONE = 230;
     public final static Color INFO_BACKGROUND_COLOR = new Color(GRAY_TONE, GRAY_TONE, GRAY_TONE);
-    private static final int INPUT_FIELD_SIZE = 70;
     private static final String WORKSPACE_NAME = "Workspace ";
     public static final Dimension TABBED_INFO_WINDOW_DIMENSION = new Dimension(220, 600);
     public static final Dimension WINDOW_DIMENSION = new Dimension(1030, 735);
@@ -48,7 +48,7 @@ public class Window extends JFrame {
 
     private ActionListener myRunCommandListener;
 
-    private Controller myController;
+    //private Controller myController;
 
     private Canvas myCurrentCanvas;
     private InformationView myInfoView;
@@ -58,8 +58,9 @@ public class Window extends JFrame {
     private JTabbedPane myTabbedInfoWindow;
     private InputField myInputField;
 
-    public Window (Controller control) {
-        myController = control;
+    public Window (InputField field, JMenuBar bar) {
+        //myController = control;
+        myInputField = field;
         setTitle("SLogo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
@@ -68,19 +69,18 @@ public class Window extends JFrame {
         }
         catch (Exception e) { }
 
-
         myResource = Controller.RESOURCE;
 
         myInfoView = new InformationView();
         myVariablesWindow = new VariablesWindow();
-        myPreCommandsWindow = new PreviousCommandWindow(myController);
+        myPreCommandsWindow = new PreviousCommandWindow(myInputField);
         myTabbedInfoWindow = new JTabbedPane();
         myTabbedInfoWindow.add(INFO_TAB_NAME, makeInformationView());
         myTabbedInfoWindow.add(VARIABLE_TAB_NAME, myVariablesWindow);
         myTabbedInfoWindow.add(PRECOMMAND_TAB_NAME, myPreCommandsWindow);
 
         myTabbedPane = new JTabbedPane();
-        myInputField = new InputField(INPUT_FIELD_SIZE);
+        //myInputField = new InputField(INPUT_FIELD_SIZE);
         ErrorBox.setWindow(this);
         makeListeners();
 
@@ -88,7 +88,8 @@ public class Window extends JFrame {
         getContentPane().add(myTabbedInfoWindow, BorderLayout.EAST);
         getContentPane().add(createInputField(), BorderLayout.SOUTH);
 
-        setJMenuBar(myController.createJMenuBar());
+        //setJMenuBar(myController.createJMenuBar());
+        setJMenuBar(bar);
         createWorkspace();
 
         setPreferredSize(WINDOW_DIMENSION);
@@ -105,7 +106,6 @@ public class Window extends JFrame {
         workspace.addTurtleObserver(myCurrentCanvas);
         workspace.addTurtleObserver(myInfoView);
         workspace.addObserver(myVariablesWindow);
-        workspace.updateInformation();
         updateObservers();
     }
 
@@ -157,7 +157,7 @@ public class Window extends JFrame {
      */
     private JComponent createInputField () {
         JPanel inputPanel = new JPanel();
-        myInputField.addActionListener(myRunCommandListener);
+        //myInputField.addActionListener(myRunCommandListener);
         inputPanel.add(myInputField);
         inputPanel.add(createCommandButton());
         inputPanel.add(createExpandTextButton());
@@ -170,7 +170,7 @@ public class Window extends JFrame {
      */
     protected JButton createCommandButton () {
         JButton button = new JButton(myResource.getString("RunButton"));
-        button.addActionListener(myRunCommandListener);
+        button.addActionListener(myInputField.getActionListeners()[0]);
         return button;
     }
 
@@ -186,24 +186,24 @@ public class Window extends JFrame {
      * creates listeners for this window
      */
     public void makeListeners () {
-        setRunCommandListener();
         setTabListener();
         setInfoTabListener();
+        setAddCommandListener();
     }
 
     /**
      * set Listener to send the input string to controller whenever the
      * run button or enter is pressed
      */
-    public void setRunCommandListener () {
-        myRunCommandListener = new ActionListener() {
+    public void setAddCommandListener () {
+        myInputField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed (ActionEvent e) {
-                myController.processCommand(myInputField.getText());
+               // myController.processCommand(myInputField.getText());
                 myPreCommandsWindow.addCommand(myInputField.getText());
-                myInputField.setText("");
+                //myInputField.setText("");
             }
-        };
+        });
     }
 
     /**

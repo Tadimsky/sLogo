@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import view.Window;
+import view.components.InputField;
 import controller.Controller;
 
 
@@ -32,10 +33,10 @@ public class PreviousCommandWindow extends JPanel {
 
     private JList myPreviousCommands;
     private Vector<String> myCommandsVector;
-    private Controller myController;
+    private InputField myInputField;
 
-    public PreviousCommandWindow (Controller c) {
-        myController = c;
+    public PreviousCommandWindow (InputField field) {
+        myInputField = field;
         myCommandsVector = new Vector<String>();
         myPreviousCommands = new JList(myCommandsVector);
         myPreviousCommands.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -85,7 +86,9 @@ public class PreviousCommandWindow extends JPanel {
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked (MouseEvent e) {
-                myController.processCommand((String) list.getSelectedValue());
+                myInputField.setText((String) list.getSelectedValue());
+                myInputField.getActionListeners()[1].actionPerformed(null);
+                //myController.processCommand((String) list.getSelectedValue());
             }
         });
     }

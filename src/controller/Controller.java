@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -34,6 +35,7 @@ import parser.SemanticsTable;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidSemanticsException;
 import view.Window;
+import view.components.InputField;
 import view.windows.GraphicsSettingsWindow;
 import view.windows.HelpWindow;
 import view.windows.WorkspaceSettingsWindow;
@@ -63,11 +65,13 @@ public class Controller {
             .getBundle(DEFAULT_RESOURCE_PACKAGE + LANGUAGE);
     public static final ResourceBundle RESOURCE_ERROR = ResourceBundle
             .getBundle(DEFAULT_RESOURCE_PACKAGE + "error.Error"+LANGUAGE);
+    private static final int INPUT_FIELD_SIZE = 70;
 
     private Parser myParser;
     private Window myWindow;
     private JFileChooser myChooser;
     private HelpWindow myHelpWindow;
+    private InputField myInputField;
    // private MenuCreator myMenuCreator;
     
     /**
@@ -76,8 +80,9 @@ public class Controller {
      */
     public Controller () {
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
-        
-        myWindow = new Window(this);
+        myInputField = new InputField(INPUT_FIELD_SIZE);
+        myInputField.addActionListener(createRunCommandListener ());
+        myWindow = new Window(myInputField, createJMenuBar());
         myParser = new Parser();
     }
 
@@ -101,6 +106,20 @@ public class Controller {
         SemanticsTable.getInstance().setContext(null);
         getWorkspace().execute(commandList);
         getWorkspace().addHistory(command);
+    }
+    
+    /**
+     * set Listener to send the input string to controller whenever the
+     * run button or enter is pressed
+     */
+    public ActionListener createRunCommandListener () {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                processCommand(myInputField.getText());
+                myInputField.setText("");
+            }
+        };
     }
 
 
@@ -388,7 +407,7 @@ public class Controller {
                         int Gvalue = Integer.parseInt(G.getText());
                         int Bvalue = Integer.parseInt(B.getText());
                         Color c = new Color(Rvalue, Gvalue, Bvalue);
-                        //getWorkspace().getColors().setColor(colorIndex, c);
+                        getWorkspace().getColors().setColor(colorIndex, c);
                         for (Turtle t : getWorkspace().getTurtleManager().getTurtles().values()) {
                             t.setColor(c);
                         }
