@@ -152,7 +152,7 @@ public class Controller {
      * @return File menu for the view
      */
     private void createFileCommands (JMenu menu) {
-        menu.add(new AbstractAction(RESOURCE.getString("NewWorkspace")) {
+        menu.add(new AbstractAction(RESOURCE.getString("New")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 myWindow.createWorkspace();
