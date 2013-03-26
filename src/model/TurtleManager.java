@@ -57,7 +57,7 @@ public class TurtleManager extends Observable implements Paintable {
         myStroke = Pen.DEFAULT_STROKE;
         setImageRelative(DEFAULT_IMAGE_PATH);
 
-        setImage(DEFAULT_IMAGE_PATH);
+        //setImage(DEFAULT_IMAGE_PATH);
         activate(lastIndex);
     }
 
