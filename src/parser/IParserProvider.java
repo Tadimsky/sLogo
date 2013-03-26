@@ -6,23 +6,65 @@ import model.TurtleManager;
 
 
 /**
+ * This is what is required for the parser to execute all its commands.
+ * It is the interface that provides access to the context below.
  * 
  * @author Jonathan Schmidt
  * 
  */
 public interface IParserProvider {
 
-    public void addCommand (CustomCommand com);
+    /**
+     * Add a custom command to the current context.
+     * 
+     * @param com The custom command to add
+     */
+    void addCommand (CustomCommand com);
 
-    public CustomCommand getCommand (String command);
+    /**
+     * Returns the Custom Command from the current context that
+     * has the name of the command specified.
+     * 
+     * @param command The command name to look up
+     * @return The custom command result.
+     */
+    CustomCommand getCommand (String command);
 
-    public VariableManager getVariables ();
+    /**
+     * Returns the Variable Manager of the context.
+     * 
+     * @return The Variable Manager
+     */
+    VariableManager getVariables ();
 
-    public TurtleManager getTurtleManager ();
+    /**
+     * Returns the Turtle Manager of the context.
+     * 
+     * @return The Turtle Manager
+     */
+    TurtleManager getTurtleManager ();
 
-    public Turtle getTurtle ();
+    /** 
+     * Returns the current turtle of the context.
+     * This is being phased out to deal with multiple turtles.
+     * 
+     * @return The current turtle
+     */
+    Turtle getTurtle ();
 
-    public ColorManager getColors ();
+    /**
+     * Returns the Color Manager of the context.
+     * 
+     * @return The Color Manager
+     */
+    ColorManager getColors ();
 
-    public int setBackground (int colorIndex);
+    /**
+     * Sets the background of the current context to the 
+     * color specified by the index.
+     * 
+     * @param colorIndex The index of the color
+     * @return
+     */
+    int setBackground (int colorIndex);
 }

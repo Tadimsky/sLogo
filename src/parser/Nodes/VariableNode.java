@@ -3,7 +3,6 @@ package parser.nodes;
 import java.util.Deque;
 import parser.IParserProvider;
 import parser.nodes.exceptions.InvalidArgumentsException;
-import parser.nodes.exceptions.InvalidSemanticsException;
 
 
 /**
@@ -17,17 +16,24 @@ public class VariableNode extends SimpleNode {
 
     private String myName;
 
-    public VariableNode (String name)
-    {
-        if (name.indexOf(':') == 0)
-        {
+    /**
+     * Creates a Variable Node from a String variable name
+     * 
+     * @param name The variable name
+     */
+    public VariableNode (String name) {
+        if (name.indexOf(':') == 0) {
             myName = name;
         }
         // else throw new InvalidSemanticsException(INVALID_FORMAT, name);
     }
 
-    public VariableNode (Deque<SyntaxNode> stack) throws InvalidSemanticsException
-    {
+    /**
+     * Creates the Variable Node from a stack of parameters
+     * 
+     * @param stack The stack of parameters
+     */
+    public VariableNode (Deque<SyntaxNode> stack) {
         this(((TokenNode) stack.pop()).getToken());
     }
 
@@ -35,7 +41,9 @@ public class VariableNode extends SimpleNode {
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
 
         Integer val = w.getVariables().getVariable(myName);
-        if (val == null) return 0; 
+        if (val == null) {
+            return 0;
+        }
         return val;
     }
 
@@ -44,8 +52,7 @@ public class VariableNode extends SimpleNode {
      * 
      * @return
      */
-    public String getName ()
-    {
+    public String getName () {
         return myName;
     }
 

@@ -2,6 +2,7 @@ package view.windows;
 
 import java.util.Observable;
 import java.util.Observer;
+import view.components.InputField;
 import controller.Controller;
 import controller.Workspace;
 
@@ -15,8 +16,8 @@ import controller.Workspace;
 @SuppressWarnings("serial")
 public class CustomCommandWindow extends JListCommandWindow implements Observer {
 
-    public CustomCommandWindow(Controller c) {
-        super(c);
+    public CustomCommandWindow(InputField inputField) {
+        super(inputField);
 
     }
 
