@@ -3,6 +3,7 @@ package parser.commands.turtle.queries;
 import java.awt.image.BufferedImage;
 import java.util.Deque;
 import parser.IParserProvider;
+import parser.nodes.BasicControl;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 

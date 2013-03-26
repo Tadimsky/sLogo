@@ -6,6 +6,7 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import model.IState;
 import parser.nodes.exceptions.InvalidArgumentsException;
+import view.ILabelInformation;
 
 
 @SuppressWarnings("serial")

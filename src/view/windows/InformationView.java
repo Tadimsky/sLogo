@@ -18,6 +18,7 @@ import parser.commands.turtle.queries.IsPenDown;
 import parser.commands.turtle.queries.IsShowing;
 import parser.commands.turtle.queries.XCor;
 import parser.commands.turtle.queries.YCor;
+import view.ILabelInformation;
 import view.Window;
 import view.labels.InformationLabel;
 import view.labels.LogoLabel;

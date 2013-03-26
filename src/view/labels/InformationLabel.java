@@ -2,6 +2,7 @@ package view.labels;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
+import view.ILabelInformation;
 
 
 @SuppressWarnings("serial")

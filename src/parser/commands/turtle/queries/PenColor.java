@@ -3,6 +3,7 @@ package parser.commands.turtle.queries;
 import java.awt.Color;
 import java.util.Deque;
 import parser.IParserProvider;
+import parser.nodes.BasicControl;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
@@ -13,7 +14,7 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  * 
  * @author Jonathan Schmidt
  * 
- */
+*/
 public class PenColor extends BasicControl {
 
     /**

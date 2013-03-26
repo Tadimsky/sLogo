@@ -249,8 +249,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     public void execute (List<SyntaxNode> commands) {
         try {
             for (SyntaxNode node : commands) {
-                int returnValue = node.evaluate(this);
-                System.out.printf("my return value is %d", returnValue);
+                node.evaluate(this);
             }
         }
         catch (NullPointerException ne) {

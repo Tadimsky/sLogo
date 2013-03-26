@@ -56,11 +56,6 @@ public class TurtleManager extends Observable implements Paintable {
         myTurtleImages = new TreeMap<Integer, BufferedImage>();
         myStroke = Pen.DEFAULT_STROKE;
         setImageRelative(DEFAULT_IMAGE_PATH);
-
-<<<<<<< HEAD
-=======
-        //setImage(DEFAULT_IMAGE_PATH);
->>>>>>> 86ccabe8a6a92e6237d018c6b31dce9f69ce6348
         activate(lastIndex);
     }
 
