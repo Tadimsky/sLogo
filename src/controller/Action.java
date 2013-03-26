@@ -1,10 +1,6 @@
 package controller;
 
-<<<<<<< HEAD
 import javax.swing.undo.AbstractUndoableEdit;
-
-public class Action extends AbstractUndoableEdit{
-=======
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoableEdit;
@@ -79,7 +75,6 @@ public class Action implements UndoableEdit{
 		// TODO Auto-generated method stub
 		
 	}
->>>>>>> implementing action class
 	
 
 }
