@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
+import java.util.Stack;
+
 import javax.swing.JOptionPane;
 import model.ColorManager;
 import model.Paintable;
@@ -41,11 +43,13 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     private String myName;
 
     private List<String> myHistory;
+    private Stack<List<SyntaxNode>> myExecutableHistory;
     private VariableManager myVariables;
     private ColorManager myPalette;
     private Canvas myCanvas;
     private TurtleManager myTurtleManager;
     private WSUndoManager myUndoManager;
+    
 
     public Workspace (String name) {
         this();
@@ -61,8 +65,9 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         myErrorResource = Controller.RESOURCE_ERROR;
         myName = UNTITLED;
         myHistory = new ArrayList<String>();
+        myExecutableHistory = new Stack<List<SyntaxNode>>();
         myVariables = new VariableManager();
-        new WSUndoManager();
+        myUndoManager = new WSUndoManager(this);
         myPalette = new ColorManager();
         myCanvas = new Canvas(this);
     }
@@ -189,9 +194,19 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         myHistory.add(s);
     }
     
+
+    public void addHistory (List<SyntaxNode> command) {
+        myExecutableHistory.add(command);
+        myUndoManager.addEditToHistory(command);
+    }
+    
     public List<String> getHistory () 
     {
         return myHistory;
+    }
+    
+    public Stack<List<SyntaxNode>> getExecutableHistory(){
+    	return myExecutableHistory;
     }
 
     @Override
@@ -258,6 +273,8 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         catch (InvalidArgumentsException e) {
             showError("Invalid Input: " + e.getMessage());
         }
+        
+        System.out.println(commands.size());
     }
 
     @Override
