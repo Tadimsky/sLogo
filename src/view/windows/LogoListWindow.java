@@ -5,12 +5,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import view.Window;
@@ -25,7 +28,7 @@ import controller.Controller;
  *
  */
 @SuppressWarnings("serial")
-public class LogoListWindow extends JPanel {
+public abstract class LogoListWindow extends JPanel implements Observer{
 
     public static final Dimension DEFAULT_DIMENSION =
             new Dimension(Window.TABBED_INFO_WINDOW_DIMENSION.width,
@@ -34,10 +37,10 @@ public class LogoListWindow extends JPanel {
     @SuppressWarnings("rawtypes")
     private JList myCommands;
     protected Vector<String> myCommandsVector;
-    private InputField myInputField;
+    private JTextField myInputField;
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    public LogoListWindow (InputField inputField) {
+    public LogoListWindow (JTextField inputField) {
         myInputField = inputField;
         myCommandsVector = new Vector<String>();
         myCommands = new JList(myCommandsVector);
@@ -91,7 +94,7 @@ public class LogoListWindow extends JPanel {
             @Override
             public void mouseClicked (MouseEvent e) {
                 myInputField.setText(((String) list.getSelectedValue()));
-                myInputField.getActionListeners()[1].actionPerformed(null);
+                myInputField.getActionListeners()[0].actionPerformed(null);
             }
         });
     }
@@ -107,7 +110,7 @@ public class LogoListWindow extends JPanel {
         myCommands.setListData(myCommandsVector);
     }
 
-
-
+    @Override
+    public abstract void update (Observable o, Object arg);
 
 }

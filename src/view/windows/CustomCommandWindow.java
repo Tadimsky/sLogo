@@ -2,6 +2,7 @@ package view.windows;
 
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JTextField;
 import view.components.InputField;
 import controller.Controller;
 import controller.Workspace;
@@ -14,9 +15,9 @@ import controller.Workspace;
  *
  */
 @SuppressWarnings("serial")
-public class CustomCommandWindow extends LogoListWindow implements Observer {
+public class CustomCommandWindow extends LogoListWindow {
 
-    public CustomCommandWindow(InputField inputField) {
+    public CustomCommandWindow(JTextField inputField) {
         super(inputField);
 
     }

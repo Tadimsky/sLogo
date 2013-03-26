@@ -13,6 +13,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
@@ -55,9 +56,9 @@ public class Window extends JFrame implements WorkspaceHandler {
     private CustomCommandWindow myCusCommandsWindow;
     private JTabbedPane myTabbedPane;
     private JTabbedPane myTabbedInfoWindow;
-    private InputField myInputField;
+    private JTextField myInputField;
 
-    public Window (InputField field, JMenuBar bar) {
+    public Window (JTextField field, JMenuBar bar) {
         myInputField = field;
         setTitle("SLogo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -188,20 +189,6 @@ public class Window extends JFrame implements WorkspaceHandler {
     public void makeListeners () {
         setTabListener();
         setInfoTabListener();
-        setAddCommandListener();
-    }
-
-    /**
-     * set Listener to send the input string to controller whenever the
-     * run button or enter is pressed
-     */
-    public void setAddCommandListener () {
-        myInputField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed (ActionEvent e) {
-                myPreCommandsWindow.addCommand(myInputField.getText());
-            }
-        });
     }
 
     /**
