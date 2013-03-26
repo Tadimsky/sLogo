@@ -2,11 +2,9 @@ package parser;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoableEdit;
-
 import parser.nodes.ListNode;
 import parser.nodes.SyntaxNode;
 import parser.nodes.VariableNode;

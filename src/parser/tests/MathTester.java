@@ -1,11 +1,7 @@
 package parser.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.Random;
-import org.junit.Before;
-import org.junit.Test;
 import parser.Parser;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;

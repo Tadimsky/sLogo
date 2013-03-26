@@ -32,7 +32,6 @@ public abstract class SettingsWindow extends JFrame {
     protected SettingsWindow (Workspace w) {
         setPreferredSize(DEFAULT_DIMENSION);
         myWorkspace = w;
-
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         myOptionsPanel = new JPanel();

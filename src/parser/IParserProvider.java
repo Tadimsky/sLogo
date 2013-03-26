@@ -1,6 +1,5 @@
 package parser;
 
-import java.awt.Color;
 import model.ColorManager;
 import model.Turtle;
 import model.TurtleManager;

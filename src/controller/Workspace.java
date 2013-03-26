@@ -1,12 +1,7 @@
 package controller;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.io.Writer;
@@ -254,8 +249,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     public void execute (List<SyntaxNode> commands) {
         try {
             for (SyntaxNode node : commands) {
-                int returnValue = node.evaluate(this);
-                System.out.printf("my return value is %d", returnValue);
+                node.evaluate(this);
             }
         }
         catch (NullPointerException ne) {
