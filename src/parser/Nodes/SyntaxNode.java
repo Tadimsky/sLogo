@@ -10,7 +10,7 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  * @author Jonathan Schmidt
  * 
  */
-public abstract class SyntaxNode {
+public abstract class SyntaxNode extends UndoableEdit{
 
     /**
      * Evaluates the current node of the expression.
