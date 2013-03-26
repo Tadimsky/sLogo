@@ -7,8 +7,20 @@ import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
 
+/**
+ * Implements the Set Heading function.
+ * Makes the turtle face the specified number of degrees.
+ * 
+ * @author Jonathan Schmidt
+ * 
+ */
 public class SetHeading extends UnaryNode {
 
+    /**
+     * Creates Set Heading Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public SetHeading (Deque<SyntaxNode> queue) {
         super(queue);
     }

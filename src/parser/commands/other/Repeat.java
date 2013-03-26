@@ -19,6 +19,11 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public class Repeat extends BinaryNode {
 
+    /**
+     * Creates Repeat Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public Repeat (Deque<SyntaxNode> queue) {
         super(queue);
     }
@@ -30,8 +35,7 @@ public class Repeat extends BinaryNode {
         int times = getLeft().evaluate(w);
 
         int val = 0;
-        for (int i = 0; i < times; i++)
-        {
+        for (int i = 0; i < times; i++) {
             vm.setVariable(":repcount", i + 1);
             val = getRight().evaluate(w);
         }

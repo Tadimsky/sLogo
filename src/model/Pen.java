@@ -60,8 +60,8 @@ public class Pen {
     public void setStroke (Stroke stroke) {
         myStroke = stroke;
     }
-    
-    public Stroke getStroke() {
+
+    public Stroke getStroke () {
         return myStroke;
     }
 
@@ -69,11 +69,11 @@ public class Pen {
         return penWriting;
     }
 
-    public void setStrokeType(Strokes s) {
-        myStrokeType = s;        
+    public void setStrokeType (Strokes s) {
+        myStrokeType = s;
     }
-    
-    public Strokes getStrokeType() {
+
+    public Strokes getStrokeType () {
         return myStrokeType;
     }
 }

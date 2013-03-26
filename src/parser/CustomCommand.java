@@ -27,7 +27,7 @@ public class CustomCommand {
         myArgCount = argcount;
     }
 
-    public void addParserInfo (ListNode params, ListNode commands)
+    public void addParserInfo (ListNode params, ListNode commands) throws InvalidArgumentsException
     {
         myArgs = new ArrayList<VariableNode>();
         myCommands = commands;

@@ -26,7 +26,7 @@ public class ReflectionHelper {
                                                                                 throws ClassDefinitionException
     {
         Class<?>[] types = toClassArray(params);
-        
+
         Constructor<?>[] constructors = c.getConstructors();
         for (Constructor<?> con : constructors)
         {
@@ -36,15 +36,17 @@ public class ReflectionHelper {
 
         throw new ClassDefinitionException(c.getCanonicalName());
     }
-    
-    public static Method findMethod(Class<?> c, String methodName, Class<?>[] params) throws NoSuchMethodException {
-        Method res = c.getMethod(methodName, params);        
+
+    public static Method findMethod (Class<?> c, String methodName, Class<?>[] params)
+                                                                                      throws NoSuchMethodException {
+        Method res = c.getMethod(methodName, params);
         return res;
     }
-    
-    public static Method findMethod(Class<?> c, String methodName, Object[] params) throws NoSuchMethodException 
+
+    public static Method findMethod (Class<?> c, String methodName, Object[] params)
+                                                                                    throws NoSuchMethodException
     {
-        Class<?>[] types = toClassArray(params);        
+        Class<?>[] types = toClassArray(params);
         return findMethod(c, methodName, types);
     }
 
@@ -59,17 +61,19 @@ public class ReflectionHelper {
 
         return true;
     }
-    
-    private static Class<?>[] toClassArray(Object... params) {
+
+    private static Class<?>[] toClassArray (Object ... params) {
         Class<?>[] types = new Class<?>[params.length];
         for (int i = 0; i < params.length; i++)
         {
             types[i] = params[i].getClass();
             // Override Primitive Types
-            if (types[i] == Integer.class)
+            if (types[i] == Integer.class) {
                 types[i] = int.class;
-            if (types[i] == Boolean.class)
+            }
+            if (types[i] == Boolean.class) {
                 types[i] = boolean.class;
+            }
         }
         return types;
     }

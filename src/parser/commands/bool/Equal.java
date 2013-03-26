@@ -17,13 +17,18 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public class Equal extends BinaryNode {
 
+    /**
+     * Creates Equal Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public Equal (Deque<SyntaxNode> queue) {
         super(queue);
     }
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        if (getLeft().evaluate(w) == getRight().evaluate(w)) return 1;
+        if (getLeft().evaluate(w) == getRight().evaluate(w)) { return 1; }
         return 0;
     }
 

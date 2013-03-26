@@ -5,7 +5,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JLabel;
 import model.IState;
-import parser.commands.turtle.queries.ILabelInformation;
+import parser.nodes.exceptions.InvalidArgumentsException;
+import view.ILabelInformation;
 
 
 public abstract class LogoLabel extends JLabel {
@@ -93,7 +94,12 @@ public abstract class LogoLabel extends JLabel {
      */
     public void setText (IState object) {
         if (myTurtleQuery != null) {
-            setText(myTurtleQuery.evaluateFromTurtle(object));
+            try {
+                setText(myTurtleQuery.evaluateFromTurtle(object));
+            }
+            catch (InvalidArgumentsException e) {
+                // swallow
+            }
         }
         else {
             setText();

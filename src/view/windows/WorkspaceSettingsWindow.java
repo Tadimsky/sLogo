@@ -87,7 +87,7 @@ public class WorkspaceSettingsWindow extends SettingsWindow {
             @Override
             public void actionPerformed (ActionEvent e) {
                 myWorkspace.getCanvas().setBackgroundColor((Color) myBackgroundColor
-                                                                   .getSelectedItem());
+                        .getSelectedItem());
                 myWorkspace.setHighlighted(myHighlightOption.isSelected());
                 dispose();
             }

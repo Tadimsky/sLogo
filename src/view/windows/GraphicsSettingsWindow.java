@@ -3,10 +3,7 @@ package view.windows;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -46,7 +43,6 @@ public class GraphicsSettingsWindow extends SettingsWindow {
     private JComboBox myStrokeTypeOption;
     private JTextField myImagePath;
     private JFileChooser myChooser;
-    
 
     public GraphicsSettingsWindow (Workspace w) {
         super(w);
@@ -54,10 +50,10 @@ public class GraphicsSettingsWindow extends SettingsWindow {
         myChooser = new JFileChooser(System.getProperties().getProperty(Controller.USER_DIR));
         myOptionsPanel.add(createPenPanel());
         JPanel rightPanel = new JPanel();
-        rightPanel.setLayout(new BoxLayout(rightPanel,BoxLayout.Y_AXIS));
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         rightPanel.add(createGridPanel());
         rightPanel.add(createImagePanel());
-        
+
         myOptionsPanel.add(rightPanel);
         addOkButtonListener();
 
@@ -124,8 +120,8 @@ public class GraphicsSettingsWindow extends SettingsWindow {
                                                              "Grid Settings"));
         return gridPanel;
     }
-    
-    private JPanel createImagePanel() {
+
+    private JPanel createImagePanel () {
         JPanel imagePanel = new JPanel();
         imagePanel.setLayout(new BoxLayout(imagePanel, BoxLayout.X_AXIS));
         imagePanel.add(myImagePath = new JTextField());
@@ -146,13 +142,13 @@ public class GraphicsSettingsWindow extends SettingsWindow {
                 catch (Exception ex) {
                     myWorkspace.showError(ex.toString());
                 }
-            }  
+            }
         });
         inputPanel.add(browseButton);
         imagePanel.add(inputPanel);
-        
+
         imagePanel.setBorder(BorderFactory.
-                             createTitledBorder(BorderFactory.createEtchedBorder(), "Turtle Image"));
+                createTitledBorder(BorderFactory.createEtchedBorder(), "Turtle Image"));
         return imagePanel;
     }
 
@@ -187,13 +183,13 @@ public class GraphicsSettingsWindow extends SettingsWindow {
                     }
                 }
             }
-            
-            private void checkImagePanel() {
+
+            private void checkImagePanel () {
                 if (myImagePath.getText().isEmpty()) return;
                 try {
                     String path = myImagePath.getText();
                     Integer index = Integer.parseInt(myImageIndex.getText());
-                    myWorkspace.addTurtleImage(index,path);
+                    myWorkspace.addTurtleImage(index, path);
                     myWorkspace.setImage(path);
                 }
                 catch (Exception ex) {

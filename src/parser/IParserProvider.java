@@ -26,10 +26,4 @@ public interface IParserProvider {
     public ColorManager getColors ();
 
     public int setBackground (int colorIndex);
-
-    public void update ();
-
-    void addColor (int colorIndex, Color color);
-
-    void addHistory (String s);
 }

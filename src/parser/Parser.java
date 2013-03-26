@@ -30,7 +30,7 @@ public class Parser {
      * 
      * @param command The string input that the parser parses.
      * @return a list of roots of each tree.
-     * @throws InvalidSemanticsException 
+     * @throws InvalidSemanticsException
      */
     public List<SyntaxNode> parseCommand (String command) throws InvalidSemanticsException
     {

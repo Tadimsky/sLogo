@@ -7,8 +7,20 @@ import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
 
+/**
+ * Implements the Right function.
+ * Turns the turtle right by the amount specified in the first argument.
+ * 
+ * @author Jonathan Schmidt
+ * 
+ */
 public class Right extends UnaryNode {
 
+    /**
+     * Creates Right Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public Right (Deque<SyntaxNode> queue) {
         super(queue);
     }

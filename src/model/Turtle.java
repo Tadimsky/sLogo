@@ -10,13 +10,10 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
 import util.CompositeStroke;
 import util.Location;
 import util.Vector;
 import view.Canvas;
-import view.components.Error;
-import view.components.ErrorBox;
 import view.components.Strokes;
 
 
@@ -38,7 +35,6 @@ public class Turtle implements Paintable, IState {
     private int myHeight;
     private boolean amHiding = false;
     private List<Location> myStamp;
-    
 
     public Turtle () {
         myPen = new Pen();
@@ -303,7 +299,7 @@ public class Turtle implements Paintable, IState {
     public void setHiding (boolean hide) {
         amHiding = hide;
     }
-    
+
     public void setHiding (int hide) {
         if (hide == 1)
         {
@@ -349,38 +345,40 @@ public class Turtle implements Paintable, IState {
         myWidth = myImage.getWidth();
         myHeight = myImage.getHeight();
     }
-    
-    public BufferedImage getShape() {
+
+    public BufferedImage getShape () {
         return myImage;
     }
 
     public void setStroke (Stroke stroke) {
         myPen.setStroke(stroke);
     }
-    
+
     public void setPenSize (int pixels) {
         Strokes current = myPen.getStrokeType();
         switch (current) {
             case SOLID:
-                myPen.setStroke( new BasicStroke(pixels));
+                myPen.setStroke(new BasicStroke(pixels));
                 return;
             case DASHED:
-                myPen.setStroke( new BasicStroke(pixels, BasicStroke.CAP_SQUARE,
-                                       BasicStroke.JOIN_BEVEL, 1, new float[] { 5f }, 0));
+                myPen.setStroke(new BasicStroke(pixels, BasicStroke.CAP_SQUARE,
+                                                BasicStroke.JOIN_BEVEL, 1, new float[] { 5f }, 0));
                 return;
             case DOTTED:
-                myPen.setStroke( new BasicStroke(pixels, BasicStroke.CAP_SQUARE,
-                                       BasicStroke.JOIN_BEVEL, 1, new float[] { .5f, 10f }, 0));
+                myPen.setStroke(new BasicStroke(pixels, BasicStroke.CAP_SQUARE,
+                                                BasicStroke.JOIN_BEVEL, 1,
+                                                new float[] { .5f, 10f }, 0));
                 return;
             case DASH_AND_DOT:
-                myPen.setStroke( new BasicStroke(pixels, BasicStroke.CAP_SQUARE,
-                                       BasicStroke.JOIN_BEVEL, 1, new float[] { .5f, 10, 7, 10 }, 0));
+                myPen.setStroke(new BasicStroke(pixels, BasicStroke.CAP_SQUARE,
+                                                BasicStroke.JOIN_BEVEL, 1, new float[] { .5f, 10,
+                                                                                        7, 10 }, 0));
                 return;
             case DOUBLE_LINE:
-                myPen.setStroke( new CompositeStroke(4, 1));
+                myPen.setStroke(new CompositeStroke(4, 1));
                 return;
         }
-        
+
     }
 
     public Color getPenColor () {
@@ -396,8 +394,8 @@ public class Turtle implements Paintable, IState {
 
     }
 
-    public void setStrokeType(Strokes s) {
+    public void setStrokeType (Strokes s) {
         myPen.setStrokeType(s);
-        
+
     }
 }

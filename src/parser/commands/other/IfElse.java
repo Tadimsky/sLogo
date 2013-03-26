@@ -17,6 +17,11 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public class IfElse extends TernaryNode {
 
+    /**
+     * Creates If Else Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public IfElse (Deque<SyntaxNode> queue) {
         super(queue);
     }
@@ -24,7 +29,9 @@ public class IfElse extends TernaryNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int times = getLeft().evaluate(w);
-        if (times != 0) return getMiddle().evaluate(w);
+        if (times != 0) {
+            return getMiddle().evaluate(w);
+        }
         return getRight().evaluate(w);
     }
 

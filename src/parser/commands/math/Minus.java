@@ -16,6 +16,11 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public class Minus extends UnaryNode {
 
+    /**
+     * Creates Minus Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public Minus (Deque<SyntaxNode> queue) {
         super(queue);
     }

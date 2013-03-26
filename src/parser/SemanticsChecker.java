@@ -42,7 +42,8 @@ public class SemanticsChecker {
      * @param tokens a list of tokens that have been processed.
      * @return List of SyntaxNodes representing the roots of trees.
      */
-    public List<SyntaxNode> evaluateExpression (List<String> tokens) throws InvalidSemanticsException
+    public List<SyntaxNode> evaluateExpression (List<String> tokens)
+                                                                    throws InvalidSemanticsException
     {
         // handle the end first
 
@@ -74,13 +75,10 @@ public class SemanticsChecker {
                     stack.push(sn);
                 }
                 catch (Exception e) {
-                    throw new InvalidSemanticsException(e.getMessage(), token);                    
+                    throw new InvalidSemanticsException(e.getMessage(), token);
                 }
             }
-            else
-            {
-                throw new InvalidSemanticsException("%s is not a valid command.", token);
-            }
+            else throw new InvalidSemanticsException("%s is not a valid command.", token);
         }
 
         List<SyntaxNode> result = new ArrayList<SyntaxNode>();
@@ -104,19 +102,20 @@ public class SemanticsChecker {
      * @throws IllegalArgumentException
      * @throws InvocationTargetException
      * @throws ClassDefinitionException
-     * @throws InvalidSemanticsException 
+     * @throws InvalidSemanticsException
+     * @throws InvalidArgumentsException 
      */
     private SyntaxNode createNode (String token, NodeInformation n, Deque<SyntaxNode> params)
                                                                                              throws InstantiationException,
                                                                                              IllegalAccessException,
                                                                                              IllegalArgumentException,
                                                                                              InvocationTargetException,
-                                                                                             ClassDefinitionException, InvalidSemanticsException
+                                                                                             ClassDefinitionException,
+                                                                                             InvalidSemanticsException, InvalidArgumentsException
     {
         if (n.getName().equals("custom")) {
-            if (myTable.getCommand(token) == null) {
+            if (myTable.getCommand(token) == null)
                 throw new InvalidSemanticsException("%s is not a valid command.", token);
-            }
         }
         // Stop custom functions from messing things up and gobbling arguments.
         if (!n.shouldCreate()) return new TokenNode(token);
@@ -132,7 +131,8 @@ public class SemanticsChecker {
                                                  n.getName());
     }
 
-    private CustomCommand createCustomCommand (List<NodeInformation> nodeI, int pos) throws InvalidSemanticsException
+    private CustomCommand createCustomCommand (List<NodeInformation> nodeI, int pos)
+                                                                                    throws InvalidSemanticsException
     {
         try
         {

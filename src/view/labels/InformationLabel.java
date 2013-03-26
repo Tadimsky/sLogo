@@ -2,7 +2,7 @@ package view.labels;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-import parser.commands.turtle.queries.ILabelInformation;
+import view.ILabelInformation;
 
 
 public class InformationLabel extends LogoLabel {

@@ -23,8 +23,6 @@ public abstract class UnaryNode extends ParameterNode {
         {
             addParameter(PARAM_INDEX, arg);
         }
-        else throw new InvalidArgumentsException(InvalidArgumentsException.INCORRECT_NUMBER_ARGS,
-                                                 "");
     }
 
     /**

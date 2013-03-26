@@ -17,13 +17,18 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public class And extends BinaryNode {
 
+    /**
+     * Creates And Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public And (Deque<SyntaxNode> queue) {
         super(queue);
     }
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        if ((getLeft().evaluate(w) == 1) && (getRight().evaluate(w) == 1)) return 1;
+        if ((getLeft().evaluate(w) == 1) && (getRight().evaluate(w) == 1)) { return 1; }
         return 0;
     }
 

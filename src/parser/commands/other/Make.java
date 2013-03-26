@@ -19,6 +19,11 @@ public class Make extends BinaryNode {
     private static final String PARAMETER_TYPE =
             "The first parameter must be in the format :<var_name>.";
 
+    /**
+     * Creates Make Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public Make (Deque<SyntaxNode> queue) {
         super(queue);
     }
@@ -26,8 +31,9 @@ public class Make extends BinaryNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         // This is required
-        if (!(getLeft() instanceof VariableNode))
+        if (!(getLeft() instanceof VariableNode)) {
             throw new InvalidArgumentsException(PARAMETER_TYPE, this.getClass().getCanonicalName());
+        }
         VariableNode vn = (VariableNode) getLeft();
 
         int val = getRight().evaluate(w);

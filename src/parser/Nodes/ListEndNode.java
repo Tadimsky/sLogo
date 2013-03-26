@@ -15,12 +15,21 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public class ListEndNode extends TokenNode {
 
+    /**
+     * Create the Node with a String value.
+     * 
+     * @param token The String token
+     */
     public ListEndNode (String token) {
         super(token);
     }
 
-    public ListEndNode (Deque<SyntaxNode> stack)
-    {
+    /**
+     * Creates a List End Node from a stack of parameters
+     * 
+     * @param stack The list of parameters
+     */
+    public ListEndNode (Deque<SyntaxNode> stack) {
         this(((TokenNode) stack.pop()).getToken());
     }
 

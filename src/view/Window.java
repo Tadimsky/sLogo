@@ -66,8 +66,8 @@ public class Window extends JFrame {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         }
-        catch (Exception e) { }
-
+        catch (Exception e) {
+        }
 
         myResource = Controller.RESOURCE;
 

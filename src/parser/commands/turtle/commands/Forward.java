@@ -6,9 +6,20 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
-
+/**
+ * Implements the Forward function.
+ * Moves the turtles forwards an amount specified by the first argument.
+ * 
+ * @author Jonathan Schmidt
+ * 
+ */
 public class Forward extends UnaryNode {
 
+    /**
+     * Creates Forward Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public Forward (Deque<SyntaxNode> queue) {
         super(queue);
     }

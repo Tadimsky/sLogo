@@ -17,6 +17,7 @@ public abstract class SyntaxNode {
      * 
      * @param w The active workspace.
      * @return The integer value of this expression.
+     * @throws InvalidArgumentsException 
      */
     public abstract int evaluate (IParserProvider w) throws InvalidArgumentsException;
 

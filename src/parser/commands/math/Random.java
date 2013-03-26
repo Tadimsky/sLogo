@@ -16,8 +16,12 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public class Random extends UnaryNode {
 
-    java.util.Random myRand;
-
+    private java.util.Random myRand;
+    /**
+     * Creates Random Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public Random (Deque<SyntaxNode> queue) {
         super(queue);
         myRand = new java.util.Random();

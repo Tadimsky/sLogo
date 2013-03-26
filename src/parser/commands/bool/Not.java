@@ -17,13 +17,18 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public class Not extends UnaryNode {
 
+    /**
+     * Creates Not Command Node
+     * 
+     * @param queue The list of nodes that come before this command
+     */
     public Not (Deque<SyntaxNode> queue) {
         super(queue);
     }
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        if (getArgument().evaluate(w) == 0) return 1;
+        if (getArgument().evaluate(w) == 0) { return 1; }
         return 0;
     }
 

@@ -45,15 +45,13 @@ public class ColorManager {
         Color c = myPalette.get(index);
         return (c == null) ? Color.WHITE : c;
     }
-    
+
     public int getColorID (Color c)
-    {        
+    {
         if (myPalette.containsValue(c)) {
-            for (Entry<Integer,Color> in : myPalette.entrySet())
+            for (Entry<Integer, Color> in : myPalette.entrySet())
             {
-                if (in.getValue().equals(c)){
-                    return in.getKey();
-                }
+                if (in.getValue().equals(c)) return in.getKey();
             }
         }
         return -1;

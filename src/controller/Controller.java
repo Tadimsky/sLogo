@@ -26,8 +26,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import model.Turtle;
 import parser.Parser;
 import parser.SemanticsTable;
@@ -67,15 +65,16 @@ public class Controller {
     private Window myWindow;
     private JFileChooser myChooser;
     private HelpWindow myHelpWindow;
-   // private MenuCreator myMenuCreator;
-    
+
+    // private MenuCreator myMenuCreator;
+
     /**
      * Constructor for controller responsible for initializing the view
      * and the parser
      */
     public Controller () {
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
-        
+
         myWindow = new Window(this);
         myParser = new Parser();
     }
@@ -91,17 +90,16 @@ public class Controller {
         try {
             commandList = myParser.parseCommand(command);
         }
-        catch (InvalidSemanticsException e) {            
+        catch (InvalidSemanticsException e) {
             getWorkspace().showError(e.getMessage());
             SemanticsTable.getInstance().setContext(null);
             return;
         }
-        
+
         SemanticsTable.getInstance().setContext(null);
         getWorkspace().execute(commandList);
         getWorkspace().addHistory(command);
     }
-
 
     /**
      * This method is set private so the Window does not have access to it
@@ -340,7 +338,8 @@ public class Controller {
                 Object[] message = { RESOURCE.getString("ChooseIndex"), turtle };
                 int option =
                         JOptionPane.showConfirmDialog(null, message,
-                                                      RESOURCE.getString("NewTurtle"), JOptionPane.OK_CANCEL_OPTION);
+                                                      RESOURCE.getString("NewTurtle"),
+                                                      JOptionPane.OK_CANCEL_OPTION);
 
                 if (option == JOptionPane.OK_OPTION) {
                     try {
@@ -387,7 +386,7 @@ public class Controller {
                         int Gvalue = Integer.parseInt(G.getText());
                         int Bvalue = Integer.parseInt(B.getText());
                         Color c = new Color(Rvalue, Gvalue, Bvalue);
-                        //getWorkspace().getColors().setColor(colorIndex, c);
+                        getWorkspace().getColors().setColor(colorIndex, c);
                         for (Turtle t : getWorkspace().getTurtleManager().getTurtles().values()) {
                             t.setColor(c);
                         }
@@ -407,7 +406,7 @@ public class Controller {
                     int response = myChooser.showOpenDialog(null);
                     if (response == JFileChooser.APPROVE_OPTION) {
                         getWorkspace().getCanvas().setBackgroundImage(ImageIO.read(myChooser
-                                                                              .getSelectedFile()));
+                                .getSelectedFile()));
                     }
                 }
                 catch (Exception exception) {
@@ -447,7 +446,7 @@ public class Controller {
                 menu.removeAll();
                 for (Integer i : map.keySet()) {
                     final StayOpenCheckBoxMenuItem item =
-                            new StayOpenCheckBoxMenuItem(RESOURCE.getString("Turtle")+i);
+                            new StayOpenCheckBoxMenuItem(RESOURCE.getString("Turtle") + i);
 
                     item.addItemListener(createCheckBoxItemListener(item));
                     if (activeMap.containsKey(i)) {
@@ -523,7 +522,7 @@ public class Controller {
                 new HelpWindow(HELP_TITLE, helpPage);
             }
         });
-        
+
         menu.add(new AbstractAction(RESOURCE.getString("UndoCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
@@ -539,9 +538,7 @@ public class Controller {
         });
         return menu;
     }
-    
-    
-    
+
     /**
      * Loads a file of variable and command to a current workspace.
      */
@@ -562,12 +559,10 @@ public class Controller {
         try {
             commandList = myParser.parseCommand(inputFile);
         }
-        catch (InvalidSemanticsException e) {            
+        catch (InvalidSemanticsException e) {
             getWorkspace().showError(e.getMessage());
-        }        
-        SemanticsTable.getInstance().setContext(null);
-        for (SyntaxNode node : commandList) {
-            node.evaluate(getWorkspace());
         }
+        SemanticsTable.getInstance().setContext(null);
+        getWorkspace().execute(commandList);
     }
 }
