@@ -30,6 +30,7 @@ import model.Turtle;
 import parser.Parser;
 import parser.SemanticsTable;
 import parser.nodes.SyntaxNode;
+import parser.nodes.exceptions.InvalidArgumentsException;
 import parser.nodes.exceptions.InvalidSemanticsException;
 import view.Window;
 import view.windows.GraphicsSettingsWindow;
@@ -48,6 +49,7 @@ import controller.support.StayOpenCheckBoxMenuItem;
  */
 
 public class Controller {
+
     private int DEFAULT_MOVE_VALUE = 100;
     private int DEFAULT_TURN_VALUE = 90;
     public static final String USER_DIR = "user.dir";
@@ -66,6 +68,7 @@ public class Controller {
     private JFileChooser myChooser;
     private HelpWindow myHelpWindow;
 
+    // private WSUndoManager myUndoManager;
     // private MenuCreator myMenuCreator;
 
     /**
@@ -74,9 +77,9 @@ public class Controller {
      */
     public Controller () {
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
-
         myWindow = new Window(this);
         myParser = new Parser();
+        // myUndoManager = new WSUndoManager();
     }
 
     /**
@@ -369,12 +372,9 @@ public class Controller {
                 JTextField R = new JTextField();
                 JTextField G = new JTextField();
                 JTextField B = new JTextField();
-                Object[] message = {
-                                    RESOURCE.getString("ColorIndex"), id,
-                                    RESOURCE.getString("Rval"), R,
-                                    RESOURCE.getString("Gval"), G,
-                                    RESOURCE.getString("Bval"), B
-                };
+                Object[] message =
+                        { RESOURCE.getString("ColorIndex"), id, RESOURCE.getString("Rval"), R,
+                         RESOURCE.getString("Gval"), G, RESOURCE.getString("Bval"), B };
                 int option =
                         JOptionPane.showConfirmDialog(null, message,
                                                       RESOURCE.getString("EnterColor"),
@@ -386,13 +386,12 @@ public class Controller {
                         int Gvalue = Integer.parseInt(G.getText());
                         int Bvalue = Integer.parseInt(B.getText());
                         Color c = new Color(Rvalue, Gvalue, Bvalue);
-                        getWorkspace().getColors().setColor(colorIndex, c);
+                        // getWorkspace().getColors().setColor(colorIndex, c);
                         for (Turtle t : getWorkspace().getTurtleManager().getTurtles().values()) {
                             t.setColor(c);
                         }
                     }
-                    catch (Exception e1)
-                    {
+                    catch (Exception e1) {
                         getWorkspace().showError(RESOURCE_ERROR.getString("InvalidColor"));
                     }
                 }
@@ -406,7 +405,7 @@ public class Controller {
                     int response = myChooser.showOpenDialog(null);
                     if (response == JFileChooser.APPROVE_OPTION) {
                         getWorkspace().getCanvas().setBackgroundImage(ImageIO.read(myChooser
-                                .getSelectedFile()));
+                                                                              .getSelectedFile()));
                     }
                 }
                 catch (Exception exception) {
@@ -509,31 +508,35 @@ public class Controller {
      */
     private JMenu createEditMenu () {
         JMenu menu = new JMenu(RESOURCE.getString("EditMenu"));
-        menu.add(new AbstractAction(RESOURCE.getString("RedoCommand")) {
-            @Override
-            public void actionPerformed (ActionEvent e) {
-                URL helpPage = null;
-                try {
-                    helpPage = new URL(DEFAULT_URL);
-                }
-                catch (MalformedURLException exception) {
-                    getWorkspace().showError(exception.toString());
-                }
-                new HelpWindow(HELP_TITLE, helpPage);
-            }
-        });
-
         menu.add(new AbstractAction(RESOURCE.getString("UndoCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
-                URL helpPage = null;
                 try {
-                    helpPage = new URL(DEFAULT_URL);
+
+                    if (getWorkspace().getUndoManager().canUndo()) {
+                        getWorkspace().getUndoManager().undo();
+                    }
+                    System.out.println("user tries to undo");
+
                 }
-                catch (MalformedURLException exception) {
-                    getWorkspace().showError(exception.toString());
+                catch (Exception exception) {
+                    getWorkspace().showError("Undo is not allowed.");
                 }
-                new HelpWindow(HELP_TITLE, helpPage);
+            }
+        });
+
+        menu.add(new AbstractAction(RESOURCE.getString("RedoCommand")) {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                try {
+                    if (getWorkspace().getUndoManager().canRedo()) {
+                        getWorkspace().getUndoManager().redo();
+                    }
+                    System.out.println("under tries to redo");
+                }
+                catch (Exception exception) {
+                    getWorkspace().showError("Redo is not allowed.");
+                }
             }
         });
         return menu;

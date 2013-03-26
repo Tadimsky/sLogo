@@ -23,6 +23,7 @@ import view.components.Strokes;
  * @author Henrique Moraes, Ziqiang Huang
  * 
  */
+@SuppressWarnings("serial")
 public class Canvas extends JComponent implements Observer {
     private final static Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
     public final static Dimension DEFAULT_CANVAS_DIMENSION = new Dimension(830, 575);

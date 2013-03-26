@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import view.ILabelInformation;
 
 
+@SuppressWarnings("serial")
 public class InformationLabel extends LogoLabel {
     public static final int ANCHOR = GridBagConstraints.LINE_START;
     public static final double X_WEIGHT = 0;

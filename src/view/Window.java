@@ -18,6 +18,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import view.components.ErrorBox;
 import view.components.InputField;
+import view.windows.CustomCommandWindow;
 import view.windows.InformationView;
 import view.windows.PreviousCommandWindow;
 import view.windows.VariablesWindow;
@@ -32,6 +33,7 @@ import controller.Workspace;
  * @author Henrique Moraes, Ziqiang
  * 
  */
+@SuppressWarnings("serial")
 public class Window extends JFrame {
     private final static int GRAY_TONE = 230;
     public final static Color INFO_BACKGROUND_COLOR = new Color(GRAY_TONE, GRAY_TONE, GRAY_TONE);
@@ -42,6 +44,7 @@ public class Window extends JFrame {
     private static final String INFO_TAB_NAME = "Information";
     private static final String VARIABLE_TAB_NAME = "Variables";
     private static final String PRECOMMAND_TAB_NAME = "Previous Commands";
+    private static final String CUSTOMCOMMAND_TAB_NAME = "Custom Commands";
 
     private int workspaceIndex = 1;
     private ResourceBundle myResource;
@@ -57,6 +60,7 @@ public class Window extends JFrame {
     private JTabbedPane myTabbedPane;
     private JTabbedPane myTabbedInfoWindow;
     private InputField myInputField;
+    private CustomCommandWindow myCusCommandsWindow;
 
     public Window (Controller control) {
         myController = control;
@@ -74,10 +78,12 @@ public class Window extends JFrame {
         myInfoView = new InformationView();
         myVariablesWindow = new VariablesWindow();
         myPreCommandsWindow = new PreviousCommandWindow(myController);
+        myCusCommandsWindow = new CustomCommandWindow(myController);
         myTabbedInfoWindow = new JTabbedPane();
         myTabbedInfoWindow.add(INFO_TAB_NAME, makeInformationView());
         myTabbedInfoWindow.add(VARIABLE_TAB_NAME, myVariablesWindow);
         myTabbedInfoWindow.add(PRECOMMAND_TAB_NAME, myPreCommandsWindow);
+        myTabbedInfoWindow.add(CUSTOMCOMMAND_TAB_NAME, myCusCommandsWindow);
 
         myTabbedPane = new JTabbedPane();
         myInputField = new InputField(INPUT_FIELD_SIZE);
@@ -105,7 +111,8 @@ public class Window extends JFrame {
         workspace.addTurtleObserver(myCurrentCanvas);
         workspace.addTurtleObserver(myInfoView);
         workspace.addObserver(myVariablesWindow);
-        workspace.updateInformation();
+        workspace.addObserver(myPreCommandsWindow);
+        workspace.addObserver(myCusCommandsWindow);
         updateObservers();
     }
 
@@ -120,6 +127,7 @@ public class Window extends JFrame {
         myTabbedPane.addTab(workspace.getName(), myCurrentCanvas);
         myTabbedPane.setSelectedComponent(myCurrentCanvas);
         setObservers(workspace);
+        updateObservers ();
     }
 
     /**
@@ -200,7 +208,6 @@ public class Window extends JFrame {
             @Override
             public void actionPerformed (ActionEvent e) {
                 myController.processCommand(myInputField.getText());
-                myPreCommandsWindow.addCommand(myInputField.getText());
                 myInputField.setText("");
             }
         };

@@ -21,15 +21,17 @@ public class Main {
         try {
             checkLine(p);
         }
-        catch (InvalidArgumentsException e) {
+        catch (InvalidSemanticsException e) {
             return;
         }
         checkFile(p);
 
     }
 
-    private static void checkLine (Parser p) throws InvalidArgumentsException
+    @SuppressWarnings("unused")
+    private static void checkLine (Parser p) throws InvalidSemanticsException
     {
+        @SuppressWarnings("resource")
         Scanner in = new Scanner(System.in);
         while (true)
         {
@@ -42,7 +44,12 @@ public class Main {
             }
             for (SyntaxNode f : l)
             {
-                System.out.println(f.evaluate(null));
+                try {
+                    System.out.println(f.evaluate(null));
+                }
+                catch (InvalidArgumentsException e) {
+                    continue;
+                }
             }
         }
     }

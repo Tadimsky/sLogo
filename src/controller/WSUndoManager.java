@@ -15,6 +15,7 @@ import parser.CustomCommand;
  */
 // Might use string instead of CustomCommand
 
+@SuppressWarnings("serial")
 public class WSUndoManager extends UndoManager {
 
     private Stack<CustomCommand> undoneCommands; // stores all undone commands

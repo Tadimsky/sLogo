@@ -3,6 +3,7 @@ package view.windows;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -28,6 +29,7 @@ import controller.Workspace;
  * @author Henrique Moraes, Ziqiang Huang
  * 
  */
+@SuppressWarnings("serial")
 public class GraphicsSettingsWindow extends SettingsWindow {
     private static final Strokes[] STROKES_OPTIONS =
             new Strokes[] { Strokes.SOLID, Strokes.DASHED,
@@ -39,14 +41,18 @@ public class GraphicsSettingsWindow extends SettingsWindow {
     private JCheckBox myEnableGridBox;
     private JTextField mySpacingField;
     private JTextField myImageIndex;
+    @SuppressWarnings("rawtypes")
     private JComboBox myThicknessOption;
+    @SuppressWarnings("rawtypes")
     private JComboBox myStrokeTypeOption;
     private JTextField myImagePath;
     private JFileChooser myChooser;
+    private ResourceBundle myResource;
 
     public GraphicsSettingsWindow (Workspace w) {
         super(w);
 
+        myResource = Controller.RESOURCE;
         myChooser = new JFileChooser(System.getProperties().getProperty(Controller.USER_DIR));
         myOptionsPanel.add(createPenPanel());
         JPanel rightPanel = new JPanel();
@@ -57,31 +63,32 @@ public class GraphicsSettingsWindow extends SettingsWindow {
         myOptionsPanel.add(rightPanel);
         addOkButtonListener();
 
-        setTitle("Graphics Settings");
+        setTitle(myResource.getString("GraphicsTitle"));
         pack();
     }
 
     /**
      * @return Panel with Stroke options
      */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     private JPanel createPenPanel () {
 
         JPanel penPanel = new JPanel();
         penPanel.setLayout(new GridLayout(7, 1));
         ButtonGroup group = new ButtonGroup();
-        group.add(myPenUpButton = new JRadioButton("Set Active Pens Up"));
-        group.add(myPenDownButton = new JRadioButton("Set Active Pens Down"));
+        group.add(myPenUpButton = new JRadioButton(myResource.getString("ActivePenUp")));
+        group.add(myPenDownButton = new JRadioButton(myResource.getString("ActivePenDown")));
         penPanel.add(myPenUpButton);
         penPanel.add(myPenDownButton);
 
-        penPanel.add(new JLabel("Stroke: "));
+        penPanel.add(new JLabel(myResource.getString("Stroke")));
         penPanel.add(myStrokeTypeOption = new JComboBox(STROKES_OPTIONS));
-        penPanel.add(new JLabel("Thickness: "));
+        penPanel.add(new JLabel(myResource.getString("Thickness")));
         penPanel.add(myThicknessOption = new JComboBox(THICKNESS_OPTIONS));
 
         penPanel.setBorder(BorderFactory.createTitledBorder(
                                                             BorderFactory.createEtchedBorder(),
-                                                            "Pen Properties"));
+                                                            myResource.getString("PenProperties")));
         return penPanel;
     }
 
@@ -91,8 +98,8 @@ public class GraphicsSettingsWindow extends SettingsWindow {
     private JPanel createGridPanel () {
         JPanel gridPanel = new JPanel();
         gridPanel.setLayout(new GridLayout(4, 1));
-        gridPanel.add(myEnableGridBox = new JCheckBox("Enable Grid"));
-        gridPanel.add(new JLabel("Grid Spacing"));
+        gridPanel.add(myEnableGridBox = new JCheckBox(myResource.getString("EnableGrid")));
+        gridPanel.add(new JLabel(myResource.getString("GridSpacing")));
         gridPanel.add(mySpacingField = new JTextField());
         if (myWorkspace.getCanvas().isGridEnabled()) {
             myEnableGridBox.setSelected(true);
@@ -117,7 +124,7 @@ public class GraphicsSettingsWindow extends SettingsWindow {
 
         gridPanel.setBorder(BorderFactory.createTitledBorder(
                                                              BorderFactory.createEtchedBorder(),
-                                                             "Grid Settings"));
+                                                             myResource.getString("GridSettings")));
         return gridPanel;
     }
 
@@ -129,7 +136,7 @@ public class GraphicsSettingsWindow extends SettingsWindow {
         inputPanel.setLayout(new GridLayout(3, 1));
         inputPanel.add(new JLabel("Image Index"));
         inputPanel.add(myImageIndex = new JTextField());
-        JButton browseButton = new JButton("Browse");
+        JButton browseButton = new JButton(myResource.getString("Browse"));
         browseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed (ActionEvent arg0) {
@@ -148,7 +155,8 @@ public class GraphicsSettingsWindow extends SettingsWindow {
         imagePanel.add(inputPanel);
 
         imagePanel.setBorder(BorderFactory.
-                createTitledBorder(BorderFactory.createEtchedBorder(), "Turtle Image"));
+                             createTitledBorder(BorderFactory.createEtchedBorder(), 
+                                                myResource.getString("TurtleImage")));
         return imagePanel;
     }
 
@@ -179,7 +187,7 @@ public class GraphicsSettingsWindow extends SettingsWindow {
                         myWorkspace.getCanvas().setGridSpacing(space);
                     }
                     catch (Exception ex) {
-                        myWorkspace.showError("Invalid Spacing Argument");
+                        myWorkspace.showError(Controller.RESOURCE_ERROR.getString("InvalidSpacing"));
                     }
                 }
             }
@@ -201,6 +209,6 @@ public class GraphicsSettingsWindow extends SettingsWindow {
 
     @Override
     protected void setTitle () {
-        setTitle("Graphics Settings");
+        setTitle(myResource.getString("GraphicsSettings"));
     }
 }

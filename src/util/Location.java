@@ -5,6 +5,7 @@ import java.awt.geom.Point2D;
 import view.Canvas;
 
 
+@SuppressWarnings("serial")
 public class Location extends Point2D.Double {
     private static final Dimension myCanvasDimension = Canvas.DEFAULT_CANVAS_DIMENSION;
     private static final double X_OFFSET = Canvas.DEFAULT_CANVAS_DIMENSION.getWidth() / 2;

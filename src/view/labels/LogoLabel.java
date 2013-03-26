@@ -9,6 +9,7 @@ import parser.nodes.exceptions.InvalidArgumentsException;
 import view.ILabelInformation;
 
 
+@SuppressWarnings("serial")
 public abstract class LogoLabel extends JLabel {
     private String myDescription;
     private ILabelInformation myTurtleQuery;

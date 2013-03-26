@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 
 
+@SuppressWarnings("serial")
 public class TitleLabel extends LogoLabel {
     public static final int ANCHOR = GridBagConstraints.CENTER;
     public static final int X_WEIGHT = 1;

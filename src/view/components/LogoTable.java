@@ -13,11 +13,14 @@ import view.windows.VariablesWindow;
  * @author Henrique Moraes
  * 
  */
+@SuppressWarnings("serial")
 public class LogoTable extends JTable {
     private boolean lastRowEditable = false;
+    @SuppressWarnings("rawtypes")
     private JComboBox myEditableComboBox;
     private TableCellEditor myComboEditor;
 
+    @SuppressWarnings("rawtypes")
     public LogoTable () {
         myEditableComboBox = new JComboBox();
         myComboEditor = new DefaultCellEditor(myEditableComboBox);
@@ -32,6 +35,7 @@ public class LogoTable extends JTable {
     /**
      * @return Combo Box associated with inclusion of new variable
      */
+    @SuppressWarnings("rawtypes")
     public JComboBox getComboBox () {
         return myEditableComboBox;
     }

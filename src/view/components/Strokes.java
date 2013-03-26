@@ -1,5 +1,7 @@
 package view.components;
 
+import controller.Controller;
+
 /**
  * Defines possible strokes for this program
  * 
@@ -7,11 +9,11 @@ package view.components;
  * 
  */
 public enum Strokes {
-    SOLID("Solid"),
-    DASHED("Dashed"),
-    DOTTED("Dotted"),
-    DASH_AND_DOT("Dash And Dot"),
-    DOUBLE_LINE("Double Line");
+    SOLID(Controller.RESOURCE.getString("Solid")),
+    DASHED(Controller.RESOURCE.getString("Dashed")),
+    DOTTED(Controller.RESOURCE.getString("Dotted")),
+    DASH_AND_DOT(Controller.RESOURCE.getString("DashDot")),
+    DOUBLE_LINE(Controller.RESOURCE.getString("DoubleLine"));
 
     private String myName;
 

@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.ResourceBundle;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -21,12 +22,17 @@ import parser.VariableManager;
 import parser.VariableScope;
 import view.Window;
 import view.components.LogoTable;
+import controller.Controller;
 import controller.Workspace;
 import controller.support.IError;
 
 
+@SuppressWarnings("serial")
 public class VariablesWindow extends JPanel implements Observer {
-    public static final String[] COLUMN_NAMES = new String[] { "Name", "Scope", "Value" };
+    public static final String[] COLUMN_NAMES = 
+            new String[] { Controller.RESOURCE.getString("Name"), 
+                           Controller.RESOURCE.getString("Scope"), 
+                           Controller.RESOURCE.getString("Value") };
     private static final String[] EMPTY_ROW = new String[] { "", "", "" };
     public static final Dimension TABLE_DIMENSION =
             new Dimension(Window.TABBED_INFO_WINDOW_DIMENSION.width,
@@ -35,8 +41,8 @@ public class VariablesWindow extends JPanel implements Observer {
     public static final int NAME_INDEX = 0;
     public static final int SCOPE_INDEX = 1;
     public static final int COL_NUM = 3;
-    private static final String NEW_BUTTON = "New";
-    private static final String OK_BUTTON = "Ok";
+    private static final String NEW_BUTTON = Controller.RESOURCE.getString("New");
+    private static final String OK_BUTTON = Controller.RESOURCE.getString("Ok");
 
     private LogoTable myTable;
     private DefaultTableModel myModel;
@@ -45,8 +51,10 @@ public class VariablesWindow extends JPanel implements Observer {
     private boolean isCellAdding = false;
     private JPanel myButtonsPanel;
     private JPanel myCardsPanel;
+    private ResourceBundle myResource;
 
     public VariablesWindow () {
+        myResource = Controller.RESOURCE;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(createTablePanel());
         add(createButtonsPanel());
@@ -86,7 +94,7 @@ public class VariablesWindow extends JPanel implements Observer {
                     newValue = Integer.parseInt((String) myTable.getValueAt(row, VALUE_INDEX));
                 }
                 catch (Exception ex) {
-                    myErrorNotifier.showError("Not a valid input!");
+                    myErrorNotifier.showError(Controller.RESOURCE_ERROR.getString("Invalidinput"));
                     return;
                 }
                 myVariableManager.setVariable(varName, newValue);
@@ -101,7 +109,7 @@ public class VariablesWindow extends JPanel implements Observer {
         myButtonsPanel = new JPanel();
         myButtonsPanel.setLayout(new GridLayout(1, 3));
         myButtonsPanel.add(Box.createHorizontalGlue());
-        JButton removeButton = new JButton("Remove");
+        JButton removeButton = new JButton(myResource.getString("Remove"));
         myButtonsPanel.add(removeButton);
         removeButton.addActionListener(createRemoveListener());
 
@@ -140,7 +148,7 @@ public class VariablesWindow extends JPanel implements Observer {
                     restorePreviousState();
                 }
                 catch (Exception ex) {
-                    myErrorNotifier.showError("Invalid Input!");
+                    myErrorNotifier.showError(Controller.RESOURCE_ERROR.getString("Invalidinput"));
                     restorePreviousState();
                 }
 
@@ -180,6 +188,7 @@ public class VariablesWindow extends JPanel implements Observer {
      */
     private ActionListener createNewListener () {
         return new ActionListener() {
+            @SuppressWarnings("unchecked")
             @Override
             public void actionPerformed (ActionEvent e) {
                 isCellAdding = true;
@@ -187,6 +196,7 @@ public class VariablesWindow extends JPanel implements Observer {
                 cards.show(myCardsPanel, OK_BUTTON);
                 myModel.addRow(EMPTY_ROW);
                 myTable.setLastRowEditable(true);
+                @SuppressWarnings("rawtypes")
                 JComboBox box = myTable.getComboBox();
                 for (String s : myVariableManager.getScopeNames()) {
                     box.addItem(s);

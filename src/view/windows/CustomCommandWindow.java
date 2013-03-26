@@ -5,29 +5,29 @@ import java.util.Observer;
 import controller.Controller;
 import controller.Workspace;
 
-
 /**
- * Window that show commands previously run in the workspace, 
+ * Window shows user-defined procedures currently available in a workspace,
  * directly clickable to execute
  * 
  * @author Ziqiang Huang
- * 
+ *
  */
-
 @SuppressWarnings("serial")
-public class PreviousCommandWindow extends JListCommandWindow implements Observer{
+public class CustomCommandWindow extends JListCommandWindow implements Observer {
 
-    public PreviousCommandWindow(Controller c) {
+    public CustomCommandWindow(Controller c) {
         super(c);
+
     }
 
     @Override
-    public void update(Observable object, Object arg) {
+    public void update(Observable object, Object arg1) {
         Workspace w = (Workspace) object;
         super.myCommandsVector.clear();
-        for(String commands : w.getHistory()) {
+        for(String commands : w.getCommandMap().keySet()) {
             addCommand(commands);
         }
+        
         
     }
 
