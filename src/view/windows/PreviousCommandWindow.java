@@ -15,7 +15,7 @@ import controller.Workspace;
  */
 
 @SuppressWarnings("serial")
-public class PreviousCommandWindow extends JListCommandWindow implements Observer{
+public class PreviousCommandWindow extends LogoListWindow implements Observer{
 
     public PreviousCommandWindow(InputField myInputField) {
         super(myInputField);

@@ -49,7 +49,7 @@ public class WSUndoManager extends UndoManager {
     @Override
     public void undo(){
     	undoneCommands.push(myActiveCommands.pop());
-    	for (Turtle turtle: myWorkspace.getTurtleManager().getActiveTurtles()){	
+    	for (Turtle turtle: myWorkspace.getTurtleManager().getTurtles().values()){	
     		turtle.clear();
     		executeHistory();
     	}

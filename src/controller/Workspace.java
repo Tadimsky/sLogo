@@ -190,6 +190,9 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         return myCommandMap.get(command.toLowerCase());
     }
 
+    /**
+     * @param s command to be added to command history
+     */
     public void addHistory (String s) {
         myHistory.add(s);
     }
@@ -215,14 +218,25 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         return colorIndex;
     }
 
+    /**
+     * @param active whether currently active turtles should be highlighted or 
+     * not
+     */
     public void setHighlighted (boolean active) {
         myTurtleManager.setHighlighted(active);
     }
 
+    /**
+     * Sets image according to a given image path
+     * @param path
+     */
     public void setImage (String path) {
         myTurtleManager.setImage(path);
     }
 
+    /**
+     * @return true if highlighting active turtles is enabled
+     */
     public boolean getHighlighted () {
         return myTurtleManager.getHighlighted();
     }
@@ -256,6 +270,9 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         myTurtleManager.setStroke(myCanvas.createStroke(type, thickness));
     }
 
+    /**
+     * Color Manager for this workspace
+     */
     @Override
     public ColorManager getColors () {
         return myPalette;
@@ -277,16 +294,26 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         System.out.println(commands.size());
     }
 
+    /**
+     * @return Turtle Manager for this workspace
+     */
     @Override
     public TurtleManager getTurtleManager () {
         return myTurtleManager;
     }
 
+    /**
+     * @param s Stroke type to be set on active turtles' pens
+     */
     public void setStrokeType (Strokes s) {
         myTurtleManager.setStrokeType(s);
 
     }
 
+    /**
+     * @param index of the image
+     * @param imageDir Directory of the image
+     */
     public void addTurtleImage (int index, String imageDir) {
         myTurtleManager.addTurtleImage(index, imageDir);
 
