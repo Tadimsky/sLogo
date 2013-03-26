@@ -5,15 +5,14 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import parser.nodes.exceptions.InvalidArgumentsException;
 import controller.Controller;
+import parser.nodes.exceptions.InvalidArgumentsException;
 
 
 /**
  * 
  * 
  * @author Jonathan Schmidt
- * 
  */
 public class VariableManager {
 
@@ -21,6 +20,9 @@ public class VariableManager {
 
     private Deque<VariableScope> myScopes;
 
+    /**
+     * Creates a Variable Manager
+     */
     public VariableManager () {
         myScopes = new LinkedList<VariableScope>();
         myScopes.add(myGlobal);
@@ -35,8 +37,7 @@ public class VariableManager {
     public void setVariable (String variable, int value) {
         Iterator<VariableScope> i = myScopes.iterator();
         // loop through till it finds variable
-        while (i.hasNext())
-        {
+        while (i.hasNext()) {
             VariableScope cur = i.next();
             if (cur.containsVariable(variable)) {
                 cur.setVariable(variable, value);
@@ -50,22 +51,18 @@ public class VariableManager {
      * Returns the value of the variable specified.
      * The variable is returned from the most local scope.
      * 
-     * @param var
+     * @param var The variable name
      * @return
      * @throws InvalidArgumentsException
      */
-    public Integer getVariable (String var) throws InvalidArgumentsException
-    {
+    public Integer getVariable (String var) throws InvalidArgumentsException {
         // Get from current scope first, if it is local.
         Iterator<VariableScope> i = myScopes.iterator();
-        while (i.hasNext())
-        {
-            try
-            {
+        while (i.hasNext()) {
+            try {
                 return i.next().getVariable(var);
             }
-            catch (InvalidArgumentsException ie)
-            {
+            catch (InvalidArgumentsException ie) {
                 continue;
             }
         }
@@ -77,15 +74,15 @@ public class VariableManager {
      * Returns the value of the variable specified.
      * The variable is returned from the most local scope.
      * 
-     * @param var
+     * @param var The name of the variable
      */
-    public void removeVariable (String var)
-    {
+    public void removeVariable (String var) {
         // Get from current scope first, if it is local.
         Iterator<VariableScope> i = myScopes.iterator();
-        while (i.hasNext())
-        {
-            if (i.next().removeVariable(var) != null) return;
+        while (i.hasNext()) {
+            if (i.next().removeVariable(var) != null) {
+                return;
+            }
         }
         JOptionPane.showMessageDialog(null, "Nothing to Remove",
                                       Controller.RESOURCE_ERROR.getString("ErrorTitle"),
@@ -103,13 +100,12 @@ public class VariableManager {
      * Creates a new scope for the Variable Manager.
      * Makes sure it has a unique value.
      * 
-     * @param vs
+     * @param vs The name of the variable scope
      */
     public void createVariableScope (String vs) {
         String curName = vs;
         int index = 0;
-        while (myScopes.contains(curName))
-        {
+        while (myScopes.contains(curName)) {
             index++;
             curName = vs + "_" + index;
         }
@@ -122,8 +118,7 @@ public class VariableManager {
      * 
      * @param prev
      */
-    public void revertVariableScope ()
-    {
+    public void revertVariableScope () {
         myScopes.removeFirst();
     }
 
@@ -141,14 +136,13 @@ public class VariableManager {
     /**
      * Adds a variable to a specific scope
      * 
-     * @param scope
-     * @param variable
-     * @param value
+     * @param scope The scope to add the variable to.
+     * @param variable The variable name to add.
+     * @param value The value of the variable to set.
      */
     public void addToScope (String scope, String variable, int value) {
         Iterator<VariableScope> i = myScopes.iterator();
-        while (i.hasNext())
-        {
+        while (i.hasNext()) {
             VariableScope cur = i.next();
             if (cur.getName().equals(scope)) {
                 cur.setVariable(variable, value);

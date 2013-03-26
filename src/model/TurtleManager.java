@@ -67,17 +67,14 @@ public class TurtleManager extends Observable implements Paintable {
      * @param index index to specify the turtle
      */
     public void activate (int index) {
-        if (!myTurtles.containsKey(index))
-        {
+        if (!myTurtles.containsKey(index)) {
             addNew(index);
         }
         activateTurtle(index);
     }
 
-    public void activate (Collection<Integer> turtles)
-    {
-        for (Integer i : turtles)
-        {
+    public void activate (Collection<Integer> turtles) {
+        for (Integer i : turtles) {
             activate(i);
         }
     }
@@ -88,8 +85,7 @@ public class TurtleManager extends Observable implements Paintable {
             clearActive();
             int modulo = addMethod % 2;
             for (int i : myTurtles.keySet()) {
-                if (i % 2 == modulo)
-                {
+                if (i % 2 == modulo) {
                     activateTurtle(i);
                     id = i;
                 }
@@ -209,10 +205,11 @@ public class TurtleManager extends Observable implements Paintable {
             Turtle t = myTurtles.get(i);
             if (myActiveTurtles.containsKey(i) && highlightEnabled) {
                 Location point = t.getPaintingPoint();
-                GradientPaint p = new
-                        GradientPaint(point.getIntX(), point.getIntY(), INITIAL_GRAD_COLOR,
-                                      point.getIntX() + t.getWidth(),
-                                      point.getIntY() + t.getHeight(), FINAL_GRAD_COLOR);
+                GradientPaint p =
+                        new GradientPaint(point.getIntX(), point.getIntY(), INITIAL_GRAD_COLOR,
+                                          point.getIntX() + t.getWidth(), point.getIntY() +
+                                                                          t.getHeight(),
+                                          FINAL_GRAD_COLOR);
                 pen.setPaint(p);
                 pen.setStroke(ACTIVE_STROKE);
                 pen.drawRect(point.getIntX(), point.getIntY(), t.getWidth(), t.getHeight());
@@ -235,7 +232,8 @@ public class TurtleManager extends Observable implements Paintable {
      */
     public void setStroke (Stroke stroke) {
         myStroke = stroke;
-        if (myActiveTurtles.isEmpty()) return;
+        if (myActiveTurtles.isEmpty())
+            return;
         for (Turtle t : myActiveTurtles.values()) {
             t.setStroke(stroke);
         }
@@ -282,13 +280,19 @@ public class TurtleManager extends Observable implements Paintable {
      * 
      * @return
      */
-    public List<Integer> copyActive ()
-    {
+    public List<Integer> copyActive () {
         Integer[] oldTurtles = new Integer[getTurtles().size()];
         oldTurtles = getTurtles().keySet().toArray(oldTurtles);
         return Arrays.asList(oldTurtles);
     }
 
+    /**
+     * Execute the provided method name on every active turtle
+     * 
+     * @param commandName The method to run on the turtle.
+     * @param args The arguments that the methods takes.
+     * @return T the type of result
+     */
     @SuppressWarnings("unchecked")
     public <T> T execute (String commandName, Object ... args) {
         Method m;
@@ -302,7 +306,7 @@ public class TurtleManager extends Observable implements Paintable {
         for (Turtle t : myActiveTurtles.values()) {
             try {
                 Object r = m.invoke(t, args);
-                result = (T) r;
+                result = (T)r;
             }
             catch (Exception e) {
                 return null;
@@ -316,7 +320,9 @@ public class TurtleManager extends Observable implements Paintable {
      * @param s stroke type to be set at the turtles
      */
     public void setStrokeType (Strokes s) {
-        if (myActiveTurtles.isEmpty()) return;
+        if (myActiveTurtles.isEmpty()) {
+            return;
+        }
         for (Turtle t : myActiveTurtles.values()) {
             t.setStrokeType(s);
         }
@@ -324,6 +330,7 @@ public class TurtleManager extends Observable implements Paintable {
 
     /**
      * Adds the specified image to the collection of turtle images
+     * 
      * @param index of the image
      * @param imageDir Image directory
      */
@@ -342,8 +349,8 @@ public class TurtleManager extends Observable implements Paintable {
     }
 
     /**
-     * @param shapeid
-     * @return Bufered image associated with the id
+     * @param shapeid The ID of the shape
+     * @return Buffered image associated with the id
      */
     public Object getTurtleImage (int shapeid) {
         return myTurtleImages.get(shapeid);
@@ -351,18 +358,17 @@ public class TurtleManager extends Observable implements Paintable {
     }
 
     /**
-     * @param image
+     * @param image The Image of that the ID is required for.
      * @return id of this image
      */
     public int getShape (BufferedImage image) {
-        {
-            if (myTurtleImages.containsValue(image)) {
-                for (Entry<Integer, BufferedImage> in : myTurtleImages.entrySet())
-                {
-                    if (in.getValue().equals(image)) return in.getKey();
+        if (myTurtleImages.containsValue(image)) {
+            for (Entry<Integer, BufferedImage> in : myTurtleImages.entrySet()) {
+                if (in.getValue().equals(image)) {
+                    return in.getKey();
                 }
             }
-            return -1;
         }
+        return -1;
     }
 }

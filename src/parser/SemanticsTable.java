@@ -17,9 +17,9 @@ import parser.nodes.exceptions.NodeDefinitionException;
  * 
  */
 public class SemanticsTable {
-    public static final String PARSER_RESOURCES = "parser.resources.";
-    public static final String SEMANTICS_FILE = "tokens";
-    public static final Locale DEFAULT_REGION = Locale.ENGLISH;
+    private static final String PARSER_RESOURCES = "parser.resources.";
+    private static final String SEMANTICS_FILE = "tokens";
+    private static final Locale DEFAULT_REGION = Locale.ENGLISH;
 
     private static final String TOKEN_LIST = "tokens";
     private static final String LIST_SEPERATOR = ",";
@@ -97,19 +97,37 @@ public class SemanticsTable {
         return null;
     }
 
+    /**
+     * Set the Current Context of the Semantics Table
+     * This allows each context to have it's own custom commands.
+     * 
+     * @param context The Context
+     */
     public void setContext (IParserProvider context) {
         myContext = context;
     }
 
+    /**
+     * Registers a custom command to the current context.
+     * 
+     * @param c The custom command to register
+     */
     public void registerCustomCommand (CustomCommand c) {
         if (myContext != null && c != null) {
             myContext.addCommand(c);
         }
     }
 
+    /**
+     * Returns a custom command from the current context
+     * 
+     * @param name The name of the custom command
+     * @return The custom command
+     */
     public CustomCommand getCommand (String name) {
-        if (myContext != null)
+        if (myContext != null) {
             return myContext.getCommand(name);
+        }
         return null;
         // throw new InvalidSemanticsException(INVALID_CUSTOM_COMMAND, name);
     }
