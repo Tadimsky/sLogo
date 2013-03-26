@@ -21,37 +21,36 @@ public class ParamListNode extends SyntaxNode {
 
     private List<SyntaxNode> myContents;
 
+    /**
+     * Creates the Param List Node
+     * 
+     * @param queue The stack of parameters.
+     */
     public ParamListNode (Deque<SyntaxNode> queue) {
         myContents = new ArrayList<SyntaxNode>();
         // The command that operates on the list
         SyntaxNode command = queue.pop();
         int params = ((ParameterNode) command).getParameterCount();
-        if (params > 1)
-        {
+        if (params > 1) {
             queue.push(command);
         }
-        else
-        {
+        else {
             myContents.add(command);
         }
 
         Deque<SyntaxNode> temp = new LinkedList<SyntaxNode>();
         // Move all elements in the list to a new queue
-        while (!(queue.isEmpty()))
-        {
+        while (!(queue.isEmpty())) {
             SyntaxNode sn = queue.pop();
-            if (sn instanceof ParamListEndNode)
-            {
+            if (sn instanceof ParamListEndNode) {
                 break;
             }
             temp.add(sn);
         }
 
-        if (params > 1)
-        {
+        if (params > 1) {
             // Last item means it's empty
-            while (temp.size() > 1)
-            {
+            while (temp.size() > 1) {
                 try {
                     SyntaxNode again = ReflectionHelper.createInstanceOf(command.getClass(), temp);
                     temp.push(again);
@@ -61,10 +60,8 @@ public class ParamListNode extends SyntaxNode {
                 }
             }
         }
-        else
-        {
-            for (int i = 0; i < temp.size(); i++)
-            {
+        else {
+            for (int i = 0; i < temp.size(); i++) {
                 try {
                     SyntaxNode again = ReflectionHelper.createInstanceOf(command.getClass(), temp);
                     temp.add(again);
@@ -75,8 +72,7 @@ public class ParamListNode extends SyntaxNode {
             }
         }
 
-        while (!(temp.isEmpty()))
-        {
+        while (!(temp.isEmpty())) {
             myContents.add(temp.pop());
         }
     }
@@ -84,8 +80,7 @@ public class ParamListNode extends SyntaxNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int val = 0;
-        for (SyntaxNode sn : myContents)
-        {
+        for (SyntaxNode sn : myContents) {
             val = sn.evaluate(w);
         }
         return val;

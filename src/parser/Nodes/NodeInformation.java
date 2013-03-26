@@ -112,24 +112,25 @@ public class NodeInformation implements Cloneable {
     }
 
     /**
-     * Returns whether a provided token matches the current Node. 
+     * Returns whether a provided token matches the current Node.
      * 
      * @param token The token to match it to.
      * @return
      */
     public boolean match (String token) {
         for (String myPattern : myPatterns) {
-            if (token.matches(myPattern))
+            if (token.matches(myPattern)) {
                 return true;
+            }
         }
         return false;
     }
 
-    @Override
     public boolean equals (Object o) {
         if (o != null) {
-            if (o instanceof String)
+            if (o instanceof String) {
                 return match((String) o);
+            }
         }
         return false;
     }
@@ -157,12 +158,19 @@ public class NodeInformation implements Cloneable {
     }
 
     /**
-     * @param myshouldCreate the myshouldCreate to set
+     * Set whether this node should be created into it's actual node.
+     * 
+     * @param create Whether or not to create it.
      */
     public void setShouldCreate (boolean create) {
         myshouldCreate = create;
     }
 
+    /**
+     * Returns whether this node should be created into it's  actual node.
+     * 
+     * @return
+     */
     public boolean shouldCreate () {
         return myshouldCreate;
     }
