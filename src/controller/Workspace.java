@@ -293,36 +293,9 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         return myPalette;
     }
 
-<<<<<<< HEAD
-    public void execute (List<SyntaxNode> commands) {
-        try {
-            for (SyntaxNode node : commands) {
-                node.evaluate(this);
-            }
-        }
-        catch (NullPointerException ne) {
-            showError("You entered an invalid command.");
-        }
-        catch (InvalidArgumentsException e) {
-            showError("Invalid Input: " + e.getMessage());
-        }
-        
-        System.out.println(commands.size());
-    }
-
-    /**
-     * @return Turtle Manager for this workspace
-     */
-    @Override
-    public TurtleManager getTurtleManager () {
-        return myTurtleManager;
-    }
-
     /**
      * @param s Stroke type to be set on active turtles' pens
      */
-=======
->>>>>>> cleaned up controller a little
     public void setStrokeType (Strokes s) {
         myTurtleManager.setStrokeType(s);
     }
