@@ -3,7 +3,6 @@ package controller;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.io.PrintWriter;
-import java.io.Serializable;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,8 +11,6 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
-import java.util.Stack;
-
 import javax.swing.JOptionPane;
 import model.ColorManager;
 import model.Paintable;
@@ -36,14 +33,13 @@ import controller.support.IError;
  * @author XuRui, Ziqiang Huang, Henrique Moraes
  * 
  */
-public class Workspace extends Observable implements Paintable, IParserProvider, IError, Serializable {
+public class Workspace extends Observable implements Paintable, IParserProvider, IError {
     public static final String UNTITLED = "Untitled";
     private Map<String, CustomCommand> myCommandMap;
     private ResourceBundle myErrorResource;
     private String myName;
 
     private List<String> myHistory;
-    private Stack<List<SyntaxNode>> myExecutableHistory;
     private VariableManager myVariables;
     private ColorManager myPalette;
     private Canvas myCanvas;
@@ -65,26 +61,10 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         myErrorResource = Controller.RESOURCE_ERROR;
         myName = UNTITLED;
         myHistory = new ArrayList<String>();
-        myExecutableHistory = new Stack<List<SyntaxNode>>();
         myVariables = new VariableManager();
         myUndoManager = new WSUndoManager(this);
         myPalette = new ColorManager();
         myCanvas = new Canvas(this);
-    }
-
-    /**
-     * @return Map with commands for this workspace
-     */
-    public Map<String, CustomCommand> getCommandMap () {
-        return myCommandMap;
-    }
-
-    /**
-     * Painting method that gets called by the Canvas
-     */
-    @Override
-    public void paint (Graphics2D pen) {
-        myTurtleManager.paint(pen);
     }
 
     /**
@@ -94,10 +74,47 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     public void update () {
         myTurtleManager.update();
     }
+    /**
+     * @return Map with commands for this workspace
+     */
+    public Map<String, CustomCommand> getCommandMap () {
+        return myCommandMap;
+    }
+
+    /**
+     * Execute command within workspace
+     * @param commands
+     */
+    public void execute (List<SyntaxNode> commands) {
+        try {
+            for (SyntaxNode node : commands) {
+                node.evaluate(this);
+            }
+        }
+        catch (NullPointerException ne) {
+            showError("You entered an invalid command.");
+        }
+        catch (InvalidArgumentsException e) {
+            showError("Invalid Input: " + e.getMessage());
+        }
+    }
 
     @Override
     public Turtle getTurtle () {
         return myTurtleManager.getCurrent();
+    }
+
+
+    @Override
+    public TurtleManager getTurtleManager () {
+        return myTurtleManager;
+    }
+    /**
+     * Painting method that gets called by the Canvas
+     */
+    @Override
+    public void paint (Graphics2D pen) {
+        myTurtleManager.paint(pen);
     }
 
     /**
@@ -147,8 +164,6 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     /**
      * save the variables and commands from the current workspace to a file
      */
-
-    // Edit to save workspace preferences as well
     public void saveWorkspace (Writer w) {
         PrintWriter output = new PrintWriter(w);
         for (String comName : myHistory) {
@@ -179,7 +194,6 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
 
     @Override
     public void addCommand (CustomCommand com) {
-    	//myUndoManager.addEdit(new UndoableEdit());
         myCommandMap.put(com.getName(), com);
 
     }
@@ -197,19 +211,17 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         myHistory.add(s);
     }
     
-
-    public void addHistory (List<SyntaxNode> command) {
-        myExecutableHistory.add(command);
+    /**
+     * Add commands to UndoManager
+     * @param command
+     */
+    public void addExecutableHistory (List<SyntaxNode> command) {
         myUndoManager.addEditToHistory(command);
     }
     
     public List<String> getHistory () 
     {
         return myHistory;
-    }
-    
-    public Stack<List<SyntaxNode>> getExecutableHistory(){
-    	return myExecutableHistory;
     }
 
     @Override
@@ -278,36 +290,11 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         return myPalette;
     }
 
-    public void execute (List<SyntaxNode> commands) {
-        try {
-            for (SyntaxNode node : commands) {
-                node.evaluate(this);
-            }
-        }
-        catch (NullPointerException ne) {
-            showError("You entered an invalid command.");
-        }
-        catch (InvalidArgumentsException e) {
-            showError("Invalid Input: " + e.getMessage());
-        }
-        
-        System.out.println(commands.size());
-    }
-
-    /**
-     * @return Turtle Manager for this workspace
-     */
-    @Override
-    public TurtleManager getTurtleManager () {
-        return myTurtleManager;
-    }
-
     /**
      * @param s Stroke type to be set on active turtles' pens
      */
     public void setStrokeType (Strokes s) {
         myTurtleManager.setStrokeType(s);
-
     }
 
     /**
@@ -316,7 +303,6 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
      */
     public void addTurtleImage (int index, String imageDir) {
         myTurtleManager.addTurtleImage(index, imageDir);
-
     }
 
     public WSUndoManager getUndoManager(){

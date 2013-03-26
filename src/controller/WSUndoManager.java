@@ -37,6 +37,10 @@ public class WSUndoManager extends UndoManager {
         return undoneCommands.pop();
     }
     
+    /**
+     * Returns last command in active commands list
+     * @return
+     */
     private List<SyntaxNode> getLastCommand(){
     	return myActiveCommands.pop();
     }
@@ -55,7 +59,7 @@ public class WSUndoManager extends UndoManager {
      */
     @Override
     public void undo(){
-        undoneCommands.push(myActiveCommands.pop());
+        undoneCommands.push(getLastCommand());
         for (Turtle turtle: myWorkspace.getTurtleManager().getTurtles().values()){	
             turtle.clear();
             executeHistory();
