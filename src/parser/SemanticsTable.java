@@ -23,13 +23,12 @@ public class SemanticsTable {
 
     private static final String TOKEN_LIST = "tokens";
     private static final String LIST_SEPERATOR = ",";
+    private static SemanticsTable instance = null;
 
     private ResourceBundle myResource;
     private IParserProvider myContext;
 
-    private static SemanticsTable instance = null;
-
-    List<NodeInformation> myNodeList;
+    private List<NodeInformation> myNodeList;
 
     /**
      * Creates a new instance of the Semantics Table and loads the properties file.
@@ -43,17 +42,14 @@ public class SemanticsTable {
      * Reads in every item in the properties file and turns it into a Node Information.
      * Builds the list of nodes that can be created.
      */
-    private void buildMap ()
-    {
+    private void buildMap () {
         myNodeList = new ArrayList<NodeInformation>();
         String tokens = myResource.getString(TOKEN_LIST);
         String[] tokenArray = tokens.split(LIST_SEPERATOR);
-        for (String tok : tokenArray)
-        {
-            tok = tok.trim();
-            try
-            {
-                NodeInformation ni = new NodeInformation(tok, myResource);
+        for (String tok : tokenArray) {
+            String token = tok.trim();
+            try {
+                NodeInformation ni = new NodeInformation(token, myResource);
                 myNodeList.add(ni);
             }
             catch (NodeDefinitionException e) {
@@ -69,10 +65,8 @@ public class SemanticsTable {
      * 
      * @return Singleton
      */
-    public static SemanticsTable getInstance ()
-    {
-        if (instance == null)
-        {
+    public static SemanticsTable getInstance () {
+        if (instance == null) {
             // Application is not threaded at the moment so don't need this
             synchronized (SemanticsTable.class) {
                 if (instance == null) {
@@ -91,13 +85,10 @@ public class SemanticsTable {
      * @param token The token of which the information is required.
      * @return
      */
-    public NodeInformation getTokenClass (String token)
-    {
+    public NodeInformation getTokenClass (String token) {
         String lower = token.toLowerCase();
-        for (NodeInformation n : myNodeList)
-        {
-            if (n.equals(lower))
-            {
+        for (NodeInformation n : myNodeList) {
+            if (n.equals(lower)) {
                 NodeInformation ni = (NodeInformation) n.clone();
                 ni.setToken(lower);
                 return ni;
@@ -106,22 +97,19 @@ public class SemanticsTable {
         return null;
     }
 
-    public void setContext (IParserProvider context)
-    {
+    public void setContext (IParserProvider context) {
         myContext = context;
     }
 
-    public void registerCustomCommand (CustomCommand c)
-    {
-        if (myContext != null && c != null)
-        {
+    public void registerCustomCommand (CustomCommand c) {
+        if (myContext != null && c != null) {
             myContext.addCommand(c);
         }
     }
 
-    public CustomCommand getCommand (String name)
-    {
-        if (myContext != null) return myContext.getCommand(name);
+    public CustomCommand getCommand (String name) {
+        if (myContext != null)
+            return myContext.getCommand(name);
         return null;
         // throw new InvalidSemanticsException(INVALID_CUSTOM_COMMAND, name);
     }

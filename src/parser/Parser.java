@@ -30,24 +30,29 @@ public class Parser {
      * 
      * @param command The string input that the parser parses.
      * @return a list of roots of each tree.
-     * @throws InvalidSemanticsException
+     * @throws InvalidSemanticsException Throws when there is something invalid in the provided commands
      */
-    public List<SyntaxNode> parseCommand (String command) throws InvalidSemanticsException
-    {
-        if (command.isEmpty()) return null;
+    public List<SyntaxNode> parseCommand (String command) throws InvalidSemanticsException {
+        if (command.isEmpty()) {
+            return null;
+        }
         List<String> tokens = LexChecker.splitTokens(command);
         List<SyntaxNode> nodes = mySemantics.evaluateExpression(tokens);
         return nodes;
     }
 
-    public List<SyntaxNode> parseCommand (Scanner s) throws InvalidSemanticsException
-    {
+    /**
+     * Parses a command from a Scanner input.
+     * 
+     * @param s The scanner that contains the commands.
+     * @return a list of roots of each tree
+     * @throws InvalidSemanticsException Throws when there is something invalid in the provided commands
+     */
+    public List<SyntaxNode> parseCommand (Scanner s) throws InvalidSemanticsException {
         StringBuilder fullCommand = new StringBuilder();
-        while (s.hasNext())
-        {
+        while (s.hasNext()) {
             String l = s.nextLine();
-            if (l.contains("#"))
-            {
+            if (l.contains("#")) {
                 continue;
             }
             fullCommand.append(l.trim());

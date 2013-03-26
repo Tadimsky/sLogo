@@ -15,6 +15,11 @@ public class TokenNode extends SyntaxNode {
 
     private String myToken;
 
+    /**
+     * Creates a Token Node from a String
+     * 
+     * @param token The Token
+     */
     public TokenNode (String token) {
         myToken = token;
     }

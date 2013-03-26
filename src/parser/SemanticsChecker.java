@@ -31,6 +31,9 @@ public class SemanticsChecker {
 
     private SemanticsTable myTable;
 
+    /**
+     * Creates an instance of the SemanticsChecker
+     */
     public SemanticsChecker () {
         myTable = SemanticsTable.getInstance();
     }
@@ -41,35 +44,31 @@ public class SemanticsChecker {
      * 
      * @param tokens a list of tokens that have been processed.
      * @return List of SyntaxNodes representing the roots of trees.
+     * @throw InvalidSemanticsException When there is an error in the tokens
      */
     public List<SyntaxNode> evaluateExpression (List<String> tokens)
-                                                                    throws InvalidSemanticsException
-    {
+                                                                    throws InvalidSemanticsException {
         // handle the end first
 
         Collections.reverse(tokens);
         List<NodeInformation> nodes = new ArrayList<NodeInformation>();
 
         // Run through it a first time in order to identify and register custom commands
-        for (int i = 0; i < tokens.size(); i++)
-        {
+        for (int i = 0; i < tokens.size(); i++) {
             String token = tokens.get(i);
             NodeInformation node = myTable.getTokenClass(token);
             nodes.add(node);
-            if (node.getName().equals("to"))
-            {
+            if (node.getName().equals("to")) {
                 myTable.registerCustomCommand(createCustomCommand(nodes, i));
             }
         }
 
         // Create nodes
         Deque<SyntaxNode> stack = new ArrayDeque<SyntaxNode>();
-        for (int i = 0; i < nodes.size(); i++)
-        {
+        for (int i = 0; i < nodes.size(); i++) {
             NodeInformation node = nodes.get(i);
             String token = tokens.get(i);
-            if (node != null)
-            {
+            if (node != null) {
                 try {
                     SyntaxNode sn = createNode(token, node, stack);
                     stack.push(sn);
@@ -78,12 +77,13 @@ public class SemanticsChecker {
                     throw new InvalidSemanticsException(e.getMessage(), token);
                 }
             }
-            else throw new InvalidSemanticsException("%s is not a valid command.", token);
+            else {
+                throw new InvalidSemanticsException("%s is not a valid command.", token);
+            }
         }
 
         List<SyntaxNode> result = new ArrayList<SyntaxNode>();
-        while (!stack.isEmpty())
-        {
+        while (!stack.isEmpty()) {
             result.add(stack.pop());
         }
 
@@ -103,7 +103,7 @@ public class SemanticsChecker {
      * @throws InvocationTargetException
      * @throws ClassDefinitionException
      * @throws InvalidSemanticsException
-     * @throws InvalidArgumentsException 
+     * @throws InvalidArgumentsException
      */
     private SyntaxNode createNode (String token, NodeInformation n, Deque<SyntaxNode> params)
                                                                                              throws InstantiationException,
@@ -111,41 +111,39 @@ public class SemanticsChecker {
                                                                                              IllegalArgumentException,
                                                                                              InvocationTargetException,
                                                                                              ClassDefinitionException,
-                                                                                             InvalidSemanticsException, InvalidArgumentsException
-    {
+                                                                                             InvalidSemanticsException,
+                                                                                             InvalidArgumentsException {
         if (n.getName().equals("custom")) {
             if (myTable.getCommand(token) == null)
                 throw new InvalidSemanticsException("%s is not a valid command.", token);
         }
         // Stop custom functions from messing things up and gobbling arguments.
-        if (!n.shouldCreate()) return new TokenNode(token);
+        if (!n.shouldCreate())
+            return new TokenNode(token);
 
-        if (n.getArgs() == 0)
-        {
+        if (n.getArgs() == 0) {
             // Add the token as the first item in the queue.
             params.push(new TokenNode(token));
         }
-        if (params.size() >= n.getArgs())
+        if (params.size() >= n.getArgs()) {
             return ReflectionHelper.createInstanceOf(n.getType(), params);
-        else throw new InvalidArgumentsException(InvalidArgumentsException.INCORRECT_NUMBER_ARGS,
-                                                 n.getName());
+        }
+        else {
+            throw new InvalidArgumentsException(InvalidArgumentsException.INCORRECT_NUMBER_ARGS, n.getName());
+        }
     }
 
     private CustomCommand createCustomCommand (List<NodeInformation> nodeI, int pos)
-                                                                                    throws InvalidSemanticsException
-    {
-        try
-        {
+                                                                                    throws InvalidSemanticsException {
+        try {
             NodeInformation comName = nodeI.get(pos - 1);
             comName.setShouldCreate(false);
             String commandName = comName.getToken();
             NodeInformation cur = nodeI.get(pos - 2);
-            if (cur.getType().getName().contains("ListNode"))
-            {
+            if (cur.getType().getName().contains("ListNode")) {
                 int argc = 0;
 
-                for (int i = pos - 3; i > 0; i--)
-                {
+                for (int i = pos - 3; i > 0; i--) {
                     cur = nodeI.get(i);
                     if (cur.getType().getName().contains("ListEndNode"))
                         return new CustomCommand(commandName, argc);
@@ -153,8 +151,7 @@ public class SemanticsChecker {
                 }
             }
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             throw new InvalidSemanticsException("Incorrect format for creating a custom command.",
                                                 "");
         }

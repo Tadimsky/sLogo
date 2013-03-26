@@ -2,9 +2,6 @@ package parser;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.undo.CannotRedoException;
-import javax.swing.undo.CannotUndoException;
-import javax.swing.undo.UndoableEdit;
 import parser.nodes.ListNode;
 import parser.nodes.SyntaxNode;
 import parser.nodes.VariableNode;
@@ -12,11 +9,14 @@ import parser.nodes.exceptions.InvalidArgumentsException;
 
 
 /**
+ * Contains all the Information of a custom command.
  * 
  * @author Jonathan Schmidt
  * 
  */
-public class CustomCommand implements UndoableEdit {
+public class CustomCommand {
+
+    private static final String LIST_ARGS_VAR = "The list of arguments does not exclusively contain variables.";
 
     private String myName;
 
@@ -24,48 +24,61 @@ public class CustomCommand implements UndoableEdit {
     private List<VariableNode> myArgs;
     private ListNode myCommands;
 
-    public CustomCommand (String name, int argcount)
-    {
+    /**
+     * Create a Custom Command with the specified name and number of
+     * arguments.
+     * 
+     * @param name The name of the command
+     * @param argcount The number of arguments
+     */
+    public CustomCommand (String name, int argcount) {
         myName = name;
         myArgCount = argcount;
     }
 
-    public void addParserInfo (ListNode params, ListNode commands) throws InvalidArgumentsException
-    {
+    /**
+     * Adds the information from the parser to this method.
+     * 
+     * @param params ListNode of parameters
+     * @param commands ListNode of commands to run that define this command
+     * @throws InvalidArgumentsException
+     */
+    public void addParserInfo (ListNode params, ListNode commands) throws InvalidArgumentsException {
         myArgs = new ArrayList<VariableNode>();
         myCommands = commands;
-        for (SyntaxNode s : params.getContents())
-        {
+        for (SyntaxNode s : params.getContents()) {
             // check syntax here
-            if (!(s instanceof VariableNode))
-                throw new InvalidArgumentsException(
-                                                    "The list of arguments does not exclusively contain variables.",
-                                                    "");
+            if (!(s instanceof VariableNode)) {
+                throw new InvalidArgumentsException(LIST_ARGS_VAR, "");
+            }
             myArgs.add((VariableNode) s);
         }
     }
 
     /**
-     * @return the name
+     * @return the name of the custom command
      */
     public String getName () {
         return myName;
     }
 
     /**
-     * @return the commands
+     * @return the commands to run for this command
      */
     public ListNode getCommands () {
         return myCommands;
     }
 
-    public int getNumArgs ()
-    {
+    /**
+     * 
+     * @return The number of arguments
+     */
+    public int getNumArgs () {
         return myArgCount;
     }
 
     /**
-     * @return the args
+     * @return the Arguments of this command
      */
     public List<VariableNode> getArgs () {
         return myArgs;
@@ -77,75 +90,7 @@ public class CustomCommand implements UndoableEdit {
      * 
      * @return
      */
-    public boolean isCreated ()
-    {
+    public boolean isCreated () {
         return myArgs != null;
     }
-
-	@Override
-	public boolean addEdit(UndoableEdit arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean canRedo() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean canUndo() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void die() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getPresentationName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getRedoPresentationName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getUndoPresentationName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isSignificant() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void redo() throws CannotRedoException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean replaceEdit(UndoableEdit arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void undo() throws CannotUndoException {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

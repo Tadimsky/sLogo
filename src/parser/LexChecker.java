@@ -24,22 +24,19 @@ public class LexChecker {
      * @return A list of String tokens.
      * @throws Exception
      */
-    public static List<String> splitTokens (String s)
-    {
+    public static List<String> splitTokens (String s) {
         ArrayList<String> tokens = new ArrayList<String>();
 
         // Regex check for non ASCII character
         Pattern val = Pattern.compile("[^\\x00-\\x7F]");
         Matcher m = val.matcher(s);
-        if (m.matches())
-        {
+        if (m.matches()) {
             String problem = s.substring(m.start(), m.end());
             throw new InvalidLexiconException("You have entered invalid characters: %s", problem);
         }
 
         StringTokenizer split = new StringTokenizer(s, " ");
-        while (split.hasMoreTokens())
-        {
+        while (split.hasMoreTokens()) {
             tokens.add(split.nextToken());
         }
         return tokens;
