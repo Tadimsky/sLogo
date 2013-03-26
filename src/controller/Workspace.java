@@ -3,6 +3,7 @@ package controller;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -178,6 +179,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
 
     @Override
     public void addCommand (CustomCommand com) {
+    	//myUndoManager.addEdit(new UndoableEdit());
         myCommandMap.put(com.getName(), com);
 
     }
@@ -283,25 +285,5 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     	return myUndoManager;
     }
     
-    /**
-     * Always treat de-serialization as a full-blown constructor, by
-     * validating the final state of the de-serialized object.
-     */
-     private void readObject(
-       ObjectInputStream aInputStream
-     ) throws ClassNotFoundException, IOException {
-       //always perform the default de-serialization first
-       aInputStream.defaultReadObject();
-    }
 
-      /**
-      * This is the default implementation of writeObject.
-      * Customise if necessary.
-      */
-      private void writeObject(
-        ObjectOutputStream aOutputStream
-      ) throws IOException {
-        //perform the default serialization for all non-transient, non-static fields
-        aOutputStream.defaultWriteObject();
-      }
 }
