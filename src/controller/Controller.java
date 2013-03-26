@@ -125,6 +125,8 @@ public class Controller {
     }
 
     /**
+     * This method is set private so the Window does not have access to it
+     * 
      * @return the current workspace selected on the tab used internally
      *         so this class can handle its functions
      */
