@@ -16,8 +16,8 @@ import parser.nodes.SyntaxNode;
  */
 
 public class WSUndoManager extends UndoManager {
-	private static final long serialVersionUID = 1L;
-	private Stack<List<SyntaxNode>> undoneCommands; 
+    private static final long serialVersionUID = 1L;
+    private Stack<List<SyntaxNode>> undoneCommands; 
     private Stack<List<SyntaxNode>> myActiveCommands; 
     private Workspace myWorkspace;
 

@@ -71,7 +71,7 @@ public class Controller {
     private JFileChooser myChooser;
     private HelpWindow myHelpWindow;
     private InputField myInputField;
-   // private MenuCreator myMenuCreator;
+
     
     /**
      * Constructor for controller responsible for initializing the view
