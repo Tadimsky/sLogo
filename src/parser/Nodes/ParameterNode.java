@@ -14,18 +14,19 @@ import java.util.Map;
 public abstract class ParameterNode extends SyntaxNode {
     private Map<Integer, SyntaxNode> myNodes = new HashMap<Integer, SyntaxNode>();
 
-    protected void addParameter (int index, SyntaxNode node)
-    {
+    protected void addParameter (int index, SyntaxNode node) {
         myNodes.put(index, node);
     }
 
-    protected SyntaxNode getParameter (int index)
-    {
+    protected SyntaxNode getParameter (int index) {
         return myNodes.get(index);
     }
 
-    public int getParameterCount ()
-    {
+    /**
+     * Returns the number of parameters that this parameter node contains. 
+     * @return
+     */
+    public int getParameterCount () {
         return myNodes.size();
     }
 }
