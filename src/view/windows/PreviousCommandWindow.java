@@ -1,108 +1,34 @@
 package view.windows;
 
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Vector;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.ScrollPaneConstants;
-import view.Window;
+import java.util.Observable;
+import java.util.Observer;
 import view.components.InputField;
-import controller.Controller;
+import controller.Workspace;
 
 
 /**
- * Window that show commands previously run in the workspace
+ * Window that show commands previously run in the workspace, 
+ * directly clickable to execute
  * 
  * @author Ziqiang Huang
  * 
  */
 
-public class PreviousCommandWindow extends JPanel {
+@SuppressWarnings("serial")
+public class PreviousCommandWindow extends JListCommandWindow implements Observer{
 
-    public static final Dimension DEFAULT_DIMENSION =
-            new Dimension(Window.TABBED_INFO_WINDOW_DIMENSION.width,
-                          Window.TABBED_INFO_WINDOW_DIMENSION.height - 30);
-
-    private JList myPreviousCommands;
-    private Vector<String> myCommandsVector;
-    private InputField myInputField;
-
-    /**
-     * @param field input field that will receive user commands
-     */
-    public PreviousCommandWindow (InputField field) {
-        myInputField = field;
-        myCommandsVector = new Vector<String>();
-        myPreviousCommands = new JList(myCommandsVector);
-        myPreviousCommands.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        addListSelectionListener(myPreviousCommands);
-        add(createCommandsWindow());
-        add(createClearPanel());
+    public PreviousCommandWindow(InputField myInputField) {
+        super(myInputField);
     }
 
-    /**
-     * 
-     * @return JButton which clear commands in this window
-     */
-
-    private JPanel createClearPanel () {
-        JPanel clearPanel = new JPanel();
-        JButton clearButton = new JButton(Controller.RESOURCE.getString("Clear"));
-        clearButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed (ActionEvent arg0) {
-                myCommandsVector.clear();
-                myPreviousCommands.setListData(myCommandsVector);
-            }
-        });
-        clearPanel.add(clearButton);
-        return clearPanel;
-    }
-
-    /**
-     * 
-     * @return JScrollPane as the Display window
-     */
-
-    private JScrollPane createCommandsWindow () {
-        JScrollPane InfoScrollPane = new JScrollPane(myPreviousCommands);
-        InfoScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        InfoScrollPane.setPreferredSize(DEFAULT_DIMENSION);
-        return InfoScrollPane;
-    }
-
-    /**
-     * Add actionListener to the JList
-     * 
-     * @param list
-     */
-    private void addListSelectionListener (final JList list) {
-        list.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked (MouseEvent e) {
-                myInputField.setText((String) list.getSelectedValue());
-                myInputField.getActionListeners()[1].actionPerformed(null);
-            }
-        });
-    }
-
-    /**
-     * Add command into this window
-     * 
-     * @param text
-     */
-    public void addCommand (String text) {
-        myCommandsVector.add(text);
-        myPreviousCommands.setListData(myCommandsVector);
+    @Override
+    public void update(Observable object, Object arg) {
+        Workspace w = (Workspace) object;
+        super.myCommandsVector.clear();
+        for(String commands : w.getHistory()) {
+            addCommand(commands);
+        }
+        
     }
 
 }

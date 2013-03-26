@@ -131,7 +131,7 @@ public class Controller {
      *         so this class can handle its functions
      */
     private Workspace getWorkspace () {
-        return (Workspace) myWindow.getCanvas().getPaintableResource();
+        return myWindow.getWorkspace();
     }
 
     /**

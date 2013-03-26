@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import view.Window;
+import view.components.InputField;
 import controller.Controller;
 
 /**
@@ -33,11 +34,11 @@ public class JListCommandWindow extends JPanel {
     @SuppressWarnings("rawtypes")
     private JList myCommands;
     protected Vector<String> myCommandsVector;
-    private Controller myController;
+    private InputField myInputField;
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    public JListCommandWindow (Controller c) {
-        myController = c;
+    public JListCommandWindow (InputField inputField) {
+        myInputField = inputField;
         myCommandsVector = new Vector<String>();
         myCommands = new JList(myCommandsVector);
         myCommands.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -89,7 +90,8 @@ public class JListCommandWindow extends JPanel {
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked (MouseEvent e) {
-                myController.processCommand((String) list.getSelectedValue());
+                myInputField.setText(((String) list.getSelectedValue()));
+                myInputField.getActionListeners()[1].actionPerformed(null);
             }
         });
     }
