@@ -115,7 +115,6 @@ public class TurtleManager extends Observable implements Paintable {
         Turtle turtle = createTurtle(index);
         turtle.setStroke(myStroke);
         myTurtles.put(index, turtle);
-        // TODO not rely on last index
         lastIndex = myTurtles.size();
     }
 
@@ -257,13 +256,6 @@ public class TurtleManager extends Observable implements Paintable {
         return myActiveTurtles;
     }
 
-    public ArrayList<Turtle> getActiveTurtles(){
-    	ArrayList<Turtle> turtleList = new ArrayList<Turtle>();
-    	for (Turtle turtle: myActiveTurtles.values()){
-    		turtleList.add(turtle);
-    	}
-    	return turtleList;
-    }
     /**
      * @return All the turtles associated with this manager
      */
