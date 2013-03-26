@@ -17,10 +17,16 @@ public enum Strokes {
 
     private String myName;
 
+    /**
+     * Constructor
+     */
     Strokes (String name) {
         myName = name;
     }
 
+    /**
+     * String representation of this stroke
+     */
     @Override
     public String toString () {
         return myName;

@@ -263,7 +263,6 @@ public class TurtleManager extends Observable implements Paintable {
         return myTurtles;
     }
 
-    // TODO: Combine the Iterator and Current turtle together.
     /**
      * @return the current Turtle
      */
@@ -313,6 +312,9 @@ public class TurtleManager extends Observable implements Paintable {
         return result;
     }
 
+    /**
+     * @param s stroke type to be set at the turtles
+     */
     public void setStrokeType (Strokes s) {
         if (myActiveTurtles.isEmpty()) return;
         for (Turtle t : myActiveTurtles.values()) {
@@ -320,6 +322,11 @@ public class TurtleManager extends Observable implements Paintable {
         }
     }
 
+    /**
+     * Adds the specified image to the collection of turtle images
+     * @param index of the image
+     * @param imageDir Image directory
+     */
     public void addTurtleImage (int index, String imageDir) {
 
         try {
@@ -334,11 +341,19 @@ public class TurtleManager extends Observable implements Paintable {
         }
     }
 
+    /**
+     * @param shapeid
+     * @return Bufered image associated with the id
+     */
     public Object getTurtleImage (int shapeid) {
         return myTurtleImages.get(shapeid);
 
     }
 
+    /**
+     * @param image
+     * @return id of this image
+     */
     public int getShape (BufferedImage image) {
         {
             if (myTurtleImages.containsValue(image)) {

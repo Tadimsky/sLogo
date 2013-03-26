@@ -30,8 +30,6 @@ public class InputField extends JTextField implements FocusListener {
             @Override
             public void actionPerformed (ActionEvent e) {
                 String command = getText();
-                // test
-                System.out.println(command);
             }
         });
     }

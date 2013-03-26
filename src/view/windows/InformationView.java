@@ -24,7 +24,11 @@ import view.labels.InformationLabel;
 import view.labels.LogoLabel;
 import view.labels.TitleLabel;
 
-
+/**
+ * Displays one turtle's basic information on a stylized panel
+ * @author Henrique Moraes
+ *
+ */
 @SuppressWarnings("serial")
 public class InformationView extends JPanel implements Observer {
     private static final String TITLE = "Turtle Information";
@@ -39,6 +43,9 @@ public class InformationView extends JPanel implements Observer {
 
     private List<LogoLabel> myLabelList;
 
+    /**
+     * Constructos for this class
+     */
     public InformationView () {
         setPreferredSize(Window.TABBED_INFO_WINDOW_DIMENSION);
 
@@ -50,7 +57,10 @@ public class InformationView extends JPanel implements Observer {
 
     }
 
-    public void setLabels () {
+    /**
+     * Sets the special labels inside this panel
+     */
+    private void setLabels () {
         TitleLabel title = new TitleLabel(TITLE);
         myLabelList.add(title);
         add(title, title.getGridBagConstraints());
@@ -63,14 +73,9 @@ public class InformationView extends JPanel implements Observer {
         }
     }
 
-    @Override
-    public void paintComponent (Graphics g) {
-        super.paintComponent(g);
-        g.setColor(Window.INFO_BACKGROUND_COLOR);
-        g.fillRect(0, 0, getWidth(), getHeight());
-
-    }
-
+    /**
+     * Updates the labels' information
+     */
     @Override
     public void update (Observable object, Object arg) {
         TurtleManager manager = (TurtleManager) object;

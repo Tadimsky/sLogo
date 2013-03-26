@@ -13,6 +13,10 @@ public abstract class ErrorBox extends JComponent {
     public static final ResourceBundle ERROR_RESOURCE =
             ResourceBundle.getBundle(DEFAULT_ERROR_RESOURCE_PACKAGE + "ErrorEnglish");
 
+    /**
+     * shows an error on a pop up window
+     * @param e
+     */
     public static void showError (Error e) {
         JOptionPane.showMessageDialog(WINDOW, e.getMessage(),
                                       ERROR_RESOURCE.getString("ErrorTitle"),

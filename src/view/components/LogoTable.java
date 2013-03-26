@@ -16,11 +16,9 @@ import view.windows.VariablesWindow;
 @SuppressWarnings("serial")
 public class LogoTable extends JTable {
     private boolean lastRowEditable = false;
-    @SuppressWarnings("rawtypes")
     private JComboBox myEditableComboBox;
     private TableCellEditor myComboEditor;
 
-    @SuppressWarnings("rawtypes")
     public LogoTable () {
         myEditableComboBox = new JComboBox();
         myComboEditor = new DefaultCellEditor(myEditableComboBox);

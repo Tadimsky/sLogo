@@ -35,6 +35,9 @@ public class PreviousCommandWindow extends JPanel {
     private Vector<String> myCommandsVector;
     private InputField myInputField;
 
+    /**
+     * @param field input field that will receive user commands
+     */
     public PreviousCommandWindow (InputField field) {
         myInputField = field;
         myCommandsVector = new Vector<String>();

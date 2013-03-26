@@ -1,5 +1,10 @@
 package view.components;
 
+/**
+ * 
+ * @author Henrique Moraes
+ * 
+ */
 public enum Error {
     INVALID_FILE(ErrorBox.ERROR_RESOURCE.getString("InvalidFile")),
     INVALID_IMAGE(ErrorBox.ERROR_RESOURCE.getString("InvalidImage")),

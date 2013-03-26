@@ -53,6 +53,9 @@ public class VariablesWindow extends JPanel implements Observer {
     private JPanel myCardsPanel;
     private ResourceBundle myResource;
 
+    /**
+     * Constructor for variables window, creates table that holds variables
+     */
     public VariablesWindow () {
         myResource = Controller.RESOURCE;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -148,12 +151,15 @@ public class VariablesWindow extends JPanel implements Observer {
                     restorePreviousState();
                 }
                 catch (Exception ex) {
-                    myErrorNotifier.showError(Controller.RESOURCE_ERROR.getString("Invalidinput"));
+                    myErrorNotifier.showError(Controller.RESOURCE_ERROR.getString("InvalidInput"));
                     restorePreviousState();
                 }
 
             }
 
+            /**
+             * Restores the state of the panel to before adding a variable
+             */
             private void restorePreviousState () {
                 isCellAdding = false;
                 CardLayout cards = (CardLayout) myCardsPanel.getLayout();
@@ -212,6 +218,9 @@ public class VariablesWindow extends JPanel implements Observer {
         update((Observable) myErrorNotifier, null);
     }
 
+    /**
+     * Updates the variables on this table
+     */
     @Override
     public void update (Observable work, Object arg1) {
         Workspace w = (Workspace) work;

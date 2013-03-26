@@ -4,7 +4,11 @@ import java.awt.Dimension;
 import java.awt.geom.Point2D;
 import view.Canvas;
 
-
+/**
+ * Represents a location on the canvas, supports visual location as well
+ * @author Henrique Moraes
+ *
+ */
 @SuppressWarnings("serial")
 public class Location extends Point2D.Double {
     private static final Dimension myCanvasDimension = Canvas.DEFAULT_CANVAS_DIMENSION;
@@ -39,10 +43,16 @@ public class Location extends Point2D.Double {
         setLocation(X_OFFSET, Y_OFFSET);
     }
 
+    /**
+     * @return Integer x coordinate
+     */
     public int getIntX () {
         return (int) (super.getX());
     }
 
+    /**
+     * @return Integer y coordinate
+     */
     public int getIntY () {
         return (int) (super.getY());
     }
@@ -84,10 +94,16 @@ public class Location extends Point2D.Double {
         return new Vector(this, other);
     }
 
+    /**
+     * @param x location to be set
+     */
     public void setX (double x) {
         super.x = x;
     }
 
+    /**
+     * @param y location to be set
+     */
     public void setY (double y) {
         super.y = y;
     }

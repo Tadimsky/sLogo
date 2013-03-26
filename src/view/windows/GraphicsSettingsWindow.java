@@ -128,6 +128,9 @@ public class GraphicsSettingsWindow extends SettingsWindow {
         return gridPanel;
     }
 
+    /**
+     * @return Panel to choose turtle image
+     */
     private JPanel createImagePanel () {
         JPanel imagePanel = new JPanel();
         imagePanel.setLayout(new BoxLayout(imagePanel, BoxLayout.X_AXIS));
@@ -160,6 +163,9 @@ public class GraphicsSettingsWindow extends SettingsWindow {
         return imagePanel;
     }
 
+    /**
+     * Sets the listener that will handle all inputed information on this Window
+     */
     @Override
     protected void addOkButtonListener () {
         myOkButton.addActionListener(new ActionListener() {
@@ -171,8 +177,6 @@ public class GraphicsSettingsWindow extends SettingsWindow {
                                       (Integer) myThicknessOption.getSelectedItem());
                 checkGridPanel();
                 checkImagePanel();
-                // TODO implement in the most effective way raising and lowering the pen from active
-                // turtles. Waiting until model finds a solution
                 dispose();
             }
 
@@ -192,6 +196,9 @@ public class GraphicsSettingsWindow extends SettingsWindow {
                 }
             }
 
+            /**
+             * Takes appropriate actions based on image panel input
+             */
             private void checkImagePanel () {
                 if (myImagePath.getText().isEmpty()) return;
                 try {
