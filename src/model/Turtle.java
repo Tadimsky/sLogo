@@ -54,8 +54,8 @@ public class Turtle implements Paintable, IState {
         Location initialPosition = new Location(myCenter);
         myCenter.translate(myHeading);
         myPen.addLine(initialPosition, myCenter);
-        if (wrapOnBoundary(initialPosition, pixels)) {
-            move((int) myHeading.getMagnitude());
+        while (wrapOnBoundary(initialPosition, pixels)) {
+            this.move((int) myHeading.getMagnitude());
         }
         return pixels;
     }
@@ -66,62 +66,28 @@ public class Turtle implements Paintable, IState {
     public boolean wrapOnBoundary (Location initialPosition, int pixels) {
         if (boundsExceeded()) {
             int remainingDistance = 0;
-            if (myCenter.getIntY() > Canvas.DEFAULT_CANVAS_DIMENSION.height) { // exceeded bottom
-                                                                               // bound
-                remainingDistance =
-                        pixels -
-                                (int) Vector
-                                        .distanceBetween(initialPosition,
-                                                         (new Location(
-                                                                       myCenter.getIntX(),
-                                                                       Canvas.DEFAULT_CANVAS_DIMENSION.height))
-                                                                 .getVisualLocation());
+            if (myCenter.getIntY() > Canvas.DEFAULT_CANVAS_DIMENSION.height) {//exceeded bottom bound
+                remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition,
+                		(new Location(myCenter.getIntX(),Canvas.DEFAULT_CANVAS_DIMENSION.height)).getVisualLocation());
                 myCenter.setY(0);
             }
+            
             if (myCenter.getIntY() < 0) { // exceeded top bound
-                remainingDistance =
-                        pixels -
-                                (int) Vector.distanceBetween(initialPosition,
-                                                             (new Location(myCenter.getIntX(), 0))
-                                                                     .getVisualLocation());
-                // myCenter.setY(Canvas.CANVAS_DIMENSION.height);//move turtle to bottom bound
-                /*
-                 * System.out.println(myCenter.getIntX());
-                 * System.out.println((Canvas.CANVAS_DIMENSION.width-myCenter.getIntX()));
-                 * System.out.println((Canvas.CANVAS_DIMENSION.width-myCenter.getIntX())*Math.tan(Math
-                 * .PI/4));
-                 * double num = Canvas.CANVAS_DIMENSION.width -
-                 * ((Canvas.CANVAS_DIMENSION.width-myCenter.getIntX())*Math.tan(Math.PI/4)+Canvas.
-                 * CANVAS_DIMENSION.height)
-                 * /Math.tan(Math.PI/4);
-                 * 
-                 * myCenter.setX(62);
-                 * System.out.println(num);
-                 * //myCenter.setX(300);
-                 */
-                myCenter.setLocation(getComplementPoint(myCenter, myHeading));
+                remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition,
+                		(new Location(myCenter.getIntX(), 0)).getVisualLocation());
+                myCenter.setY(Canvas.DEFAULT_CANVAS_DIMENSION.height);
 
                 System.out.println(myCenter.getIntX());
             }
             if (myCenter.getIntX() > Canvas.DEFAULT_CANVAS_DIMENSION.width) { // exceeded right
-                                                                              // bound
-                remainingDistance =
-                        pixels -
-                                (int) Vector
-                                        .distanceBetween(initialPosition,
-                                                         (new Location(
-                                                                       Canvas.DEFAULT_CANVAS_DIMENSION.width,
-                                                                       myCenter.getIntY()))
-                                                                 .getVisualLocation());
+                                                                             // bound
+                remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition,
+                		(new Location(Canvas.DEFAULT_CANVAS_DIMENSION.width, myCenter.getIntY())).getVisualLocation());
                 myCenter.setX(0 + myWidth / 2);
             }
             if (myCenter.getIntX() < myWidth / 2) { // exceeded left bound
-                remainingDistance =
-                        pixels -
-                                (int) Vector.distanceBetween(initialPosition,
-                                                             (new Location(myWidth / 2, myCenter
-                                                                     .getIntY()))
-                                                                     .getVisualLocation());
+                remainingDistance = pixels - (int) Vector.distanceBetween(initialPosition,
+                		(new Location(myWidth / 2, myCenter.getIntY())).getVisualLocation());
                 myCenter.setX(Canvas.DEFAULT_CANVAS_DIMENSION.width);
             }
             myHeading.setMagnitude(remainingDistance);
