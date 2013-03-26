@@ -3,7 +3,11 @@ package controller;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,7 +38,7 @@ import controller.support.IError;
  * @author XuRui, Ziqiang Huang, Henrique Moraes
  * 
  */
-public class Workspace extends Observable implements Paintable, IParserProvider, IError {
+public class Workspace extends Observable implements Paintable, IParserProvider, IError, Serializable {
     public static final String UNTITLED = "Untitled";
     private Map<String, CustomCommand> myCommandMap;
     private ResourceBundle myErrorResource;
@@ -263,7 +267,6 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
             for (SyntaxNode node : commands) {
                 int returnValue = node.evaluate(this);
                 System.out.printf("my return value is %d", returnValue);
-
             }
         }
         catch (NullPointerException ne) {
@@ -284,9 +287,37 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         
     }
 
+<<<<<<< HEAD
     public void addTurtleImage(int index, String imageDir) {
         myTurtleManager.addTurtleImage(index, imageDir);
         
     }
 
+=======
+    public WSUndoManager getUndoManager(){
+    	return myUndoManager;
+    }
+    
+    /**
+     * Always treat de-serialization as a full-blown constructor, by
+     * validating the final state of the de-serialized object.
+     */
+     private void readObject(
+       ObjectInputStream aInputStream
+     ) throws ClassNotFoundException, IOException {
+       //always perform the default de-serialization first
+       aInputStream.defaultReadObject();
+    }
+
+      /**
+      * This is the default implementation of writeObject.
+      * Customise if necessary.
+      */
+      private void writeObject(
+        ObjectOutputStream aOutputStream
+      ) throws IOException {
+        //perform the default serialization for all non-transient, non-static fields
+        aOutputStream.defaultWriteObject();
+      }
+>>>>>>> serializing workspace
 }
