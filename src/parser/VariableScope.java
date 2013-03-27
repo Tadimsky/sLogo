@@ -32,9 +32,7 @@ public class VariableScope {
             VariableScope ot = (VariableScope) o;
             return myName.equals(ot.getName());
         }
-        if (o instanceof String) {
-            return myName.equals(o);
-        }
+        if (o instanceof String) return myName.equals(o);
         return false;
     }
 
@@ -56,9 +54,7 @@ public class VariableScope {
      * @throws InvalidArgumentsException When the variable does not exist
      */
     public Integer getVariable (String var) throws InvalidArgumentsException {
-        if (myVariables.containsKey(var)) {
-            return myVariables.get(var);
-        }
+        if (myVariables.containsKey(var)) return myVariables.get(var);
 
         throw new InvalidArgumentsException("This variable does not exist: %s", var);
     }
@@ -67,7 +63,7 @@ public class VariableScope {
      * Removes a variable from the scope.
      * 
      * @param var The name of the variable to remove.
-     * @return 
+     * @return
      */
     public Integer removeVariable (String var) {
         return myVariables.remove(var);
@@ -83,7 +79,7 @@ public class VariableScope {
     }
 
     /**
-     * Returns whether the scope contains a variable. 
+     * Returns whether the scope contains a variable.
      * 
      * @param name The name of the variable.
      * @return Whether it exists or not.

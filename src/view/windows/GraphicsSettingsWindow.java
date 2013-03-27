@@ -41,9 +41,7 @@ public class GraphicsSettingsWindow extends SettingsWindow {
     private JCheckBox myEnableGridBox;
     private JTextField mySpacingField;
     private JTextField myImageIndex;
-    @SuppressWarnings("rawtypes")
     private JComboBox myThicknessOption;
-    @SuppressWarnings("rawtypes")
     private JComboBox myStrokeTypeOption;
     private JTextField myImagePath;
     private JFileChooser myChooser;
@@ -70,7 +68,6 @@ public class GraphicsSettingsWindow extends SettingsWindow {
     /**
      * @return Panel with Stroke options
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     private JPanel createPenPanel () {
 
         JPanel penPanel = new JPanel();
@@ -158,8 +155,8 @@ public class GraphicsSettingsWindow extends SettingsWindow {
         imagePanel.add(inputPanel);
 
         imagePanel.setBorder(BorderFactory.
-                             createTitledBorder(BorderFactory.createEtchedBorder(), 
-                                                myResource.getString("TurtleImage")));
+                createTitledBorder(BorderFactory.createEtchedBorder(),
+                                   myResource.getString("TurtleImage")));
         return imagePanel;
     }
 

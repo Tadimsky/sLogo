@@ -15,11 +15,11 @@ public abstract class TernaryNode extends BinaryNode {
     private static final int MIDDLE_PARAM = 3;
 
     /**
-     * Create the Ternary Node 
+     * Create the Ternary Node
      * 
-     * @param left Syntax Node 
-     * @param middle Syntax Node 
-     * @param right Syntax Node 
+     * @param left Syntax Node
+     * @param middle Syntax Node
+     * @param right Syntax Node
      */
     public TernaryNode (SyntaxNode left, SyntaxNode middle, SyntaxNode right) {
         super(left, right);
@@ -34,6 +34,7 @@ public abstract class TernaryNode extends BinaryNode {
     public TernaryNode (Deque<SyntaxNode> queue) {
         this(queue.pop(), queue.pop(), queue.pop());
     }
+
     /**
      * 
      * @return The middle parameter

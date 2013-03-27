@@ -45,7 +45,6 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     private Canvas myCanvas;
     private TurtleManager myTurtleManager;
     private WSUndoManager myUndoManager;
-    
 
     public Workspace (String name) {
         this();
@@ -74,6 +73,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     public void update () {
         myTurtleManager.update();
     }
+
     /**
      * @return Map with commands for this workspace
      */
@@ -83,6 +83,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
 
     /**
      * Execute command within workspace
+     * 
      * @param commands
      */
     public void execute (List<SyntaxNode> commands) {
@@ -104,11 +105,11 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         return myTurtleManager.getCurrent();
     }
 
-
     @Override
     public TurtleManager getTurtleManager () {
         return myTurtleManager;
     }
+
     /**
      * Painting method that gets called by the Canvas
      */
@@ -210,16 +211,17 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     public void addHistory (String s) {
         myHistory.add(s);
     }
-    
+
     /**
      * Add commands to UndoManager
+     * 
      * @param command
      */
     public void addExecutableHistory (List<SyntaxNode> command) {
         myUndoManager.addEditToHistory(command);
     }
-    
-    public List<String> getHistory () 
+
+    public List<String> getHistory ()
     {
         return myHistory;
     }
@@ -231,8 +233,8 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
     }
 
     /**
-     * @param active whether currently active turtles should be highlighted or 
-     * not
+     * @param active whether currently active turtles should be highlighted or
+     *        not
      */
     public void setHighlighted (boolean active) {
         myTurtleManager.setHighlighted(active);
@@ -240,6 +242,7 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
 
     /**
      * Sets image according to a given image path
+     * 
      * @param path
      */
     public void setImage (String path) {
@@ -305,9 +308,8 @@ public class Workspace extends Observable implements Paintable, IParserProvider,
         myTurtleManager.addTurtleImage(index, imageDir);
     }
 
-    public WSUndoManager getUndoManager(){
-    	return myUndoManager;
+    public WSUndoManager getUndoManager () {
+        return myUndoManager;
     }
-    
 
 }

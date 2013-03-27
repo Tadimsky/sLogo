@@ -119,18 +119,15 @@ public class NodeInformation implements Cloneable {
      */
     public boolean match (String token) {
         for (String myPattern : myPatterns) {
-            if (token.matches(myPattern)) {
-                return true;
-            }
+            if (token.matches(myPattern)) return true;
         }
         return false;
     }
 
+    @Override
     public boolean equals (Object o) {
         if (o != null) {
-            if (o instanceof String) {
-                return match((String) o);
-            }
+            if (o instanceof String) return match((String) o);
         }
         return false;
     }
@@ -167,7 +164,7 @@ public class NodeInformation implements Cloneable {
     }
 
     /**
-     * Returns whether this node should be created into it's  actual node.
+     * Returns whether this node should be created into it's actual node.
      * 
      * @return
      */

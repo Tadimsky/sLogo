@@ -6,6 +6,7 @@ import parser.nodes.BasicControl;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 /**
  * Implements the Clear Stamps function.
  * Clears all the stamps off the screen

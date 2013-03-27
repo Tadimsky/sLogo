@@ -57,9 +57,7 @@ public class ReflectionHelper {
         Constructor<?>[] constructors = c.getConstructors();
         for (Constructor<?> con : constructors) {
             Class<?>[] conParams = con.getParameterTypes();
-            if (paramsEqual(types, conParams)) {
-                return con;
-            }
+            if (paramsEqual(types, conParams)) return con;
         }
 
         throw new ClassDefinitionException(c.getCanonicalName());
@@ -96,14 +94,10 @@ public class ReflectionHelper {
     }
 
     private static boolean paramsEqual (Class<?>[] c1, Class<?>[] c2) {
-        if (c1.length != c2.length) {
-            return false;
-        }
+        if (c1.length != c2.length) return false;
         for (int i = 0; i < c1.length; i++) {
             boolean similar = c1[i].isAssignableFrom(c2[i]) || c2[i].isAssignableFrom(c1[i]);
-            if (!similar) {
-                return false;
-            }
+            if (!similar) return false;
         }
 
         return true;

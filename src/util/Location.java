@@ -4,10 +4,12 @@ import java.awt.Dimension;
 import java.awt.geom.Point2D;
 import view.Canvas;
 
+
 /**
  * Represents a location on the canvas, supports visual location as well
+ * 
  * @author Henrique Moraes
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class Location extends Point2D.Double {

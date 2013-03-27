@@ -62,12 +62,10 @@ public class Ask extends BinaryNode {
     }
 
     private void checkSyntax () throws InvalidArgumentsException {
-        if (!(getLeft() instanceof ListNode)) {
+        if (!(getLeft() instanceof ListNode))
             throw new InvalidArgumentsException(TURTLE_LIST, TOKEN);
-        }
 
-        if (!(getRight() instanceof ListNode)) {
+        if (!(getRight() instanceof ListNode))
             throw new InvalidArgumentsException(COMMAND_LIST, TOKEN);
-        }
     }
 }

@@ -30,9 +30,7 @@ public class ListNode extends SyntaxNode {
         // pop off all the nodes until we get to a ListEndNode
         while (!queue.isEmpty()) {
             SyntaxNode s = queue.pop();
-            if (s instanceof ListEndNode) {
-                return;
-            }
+            if (s instanceof ListEndNode) return;
             myContents.add(s);
         }
     }

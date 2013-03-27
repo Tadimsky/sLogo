@@ -23,7 +23,8 @@ public abstract class ParameterNode extends SyntaxNode {
     }
 
     /**
-     * Returns the number of parameters that this parameter node contains. 
+     * Returns the number of parameters that this parameter node contains.
+     * 
      * @return
      */
     public int getParameterCount () {

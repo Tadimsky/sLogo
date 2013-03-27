@@ -14,7 +14,7 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  * 
  * @author Jonathan Schmidt
  * 
-*/
+ */
 public class PenColor extends BasicControl {
 
     /**

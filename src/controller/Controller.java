@@ -63,16 +63,14 @@ public class Controller {
     public static final ResourceBundle RESOURCE = ResourceBundle
             .getBundle(DEFAULT_RESOURCE_PACKAGE + LANGUAGE);
     public static final ResourceBundle RESOURCE_ERROR = ResourceBundle
-            .getBundle(DEFAULT_RESOURCE_PACKAGE + "error.Error"+LANGUAGE);
+            .getBundle(DEFAULT_RESOURCE_PACKAGE + "error.Error" + LANGUAGE);
     private static final int INPUT_FIELD_SIZE = 70;
 
     private Parser myParser;
     private WorkspaceHandler myWorkHandler;
     private JFileChooser myChooser;
-    private HelpWindow myHelpWindow;
     private InputField myInputField;
 
-    
     /**
      * Constructor for controller responsible for initializing the view
      * and the parser
@@ -80,7 +78,7 @@ public class Controller {
     public Controller () {
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
         myInputField = new InputField(INPUT_FIELD_SIZE);
-        myInputField.addActionListener(createRunCommandListener ());
+        myInputField.addActionListener(createRunCommandListener());
         myWorkHandler = new Window(myInputField, createJMenuBar());
         myParser = new Parser();
     }
@@ -106,7 +104,7 @@ public class Controller {
         getWorkspace().addExecutableHistory(commandList);
         SemanticsTable.getInstance().setContext(null);
     }
-    
+
     /**
      * set Listener to send the input string to controller whenever the
      * run button or enter is pressed
@@ -168,6 +166,7 @@ public class Controller {
      * 
      * @return File menu for the view
      */
+    @SuppressWarnings("serial")
     private void createFileCommands (JMenu menu) {
         menu.add(new AbstractAction(RESOURCE.getString("New")) {
             @Override
@@ -210,6 +209,7 @@ public class Controller {
      * 
      * @return File menu for the view
      */
+    @SuppressWarnings("serial")
     private void createQuitCommand (JMenu menu) {
         menu.add(new AbstractAction(RESOURCE.getString("QuitProgram")) {
             @Override
@@ -241,6 +241,7 @@ public class Controller {
      * 
      * @param menu menu to have the items added
      */
+    @SuppressWarnings("serial")
     private void createPhysicalCommands (JMenu menu) {
         menu.add(new AbstractAction(RESOURCE.getString("ForwardCommand")) {
             @Override
@@ -294,6 +295,7 @@ public class Controller {
      * 
      * @param menu menu to have the items added
      */
+    @SuppressWarnings("serial")
     private void createVisualCommands (JMenu menu) {
         menu.add(new AbstractAction(RESOURCE.getString("ShowCommand")) {
             @Override
@@ -348,6 +350,7 @@ public class Controller {
      * 
      * @return
      */
+    @SuppressWarnings("serial")
     private JMenu createSettingMenu () {
         JMenu menu = new JMenu(RESOURCE.getString("SettingMenu"));
 
@@ -390,8 +393,8 @@ public class Controller {
                 JTextField G = new JTextField();
                 JTextField B = new JTextField();
                 Object[] message =
-                        { RESOURCE.getString("ColorIndex"), id, RESOURCE.getString("Rval"), R,
-                         RESOURCE.getString("Gval"), G, RESOURCE.getString("Bval"), B };
+                { RESOURCE.getString("ColorIndex"), id, RESOURCE.getString("Rval"), R,
+                 RESOURCE.getString("Gval"), G, RESOURCE.getString("Bval"), B };
                 int option =
                         JOptionPane.showConfirmDialog(null, message,
                                                       RESOURCE.getString("EnterColor"),
@@ -422,7 +425,7 @@ public class Controller {
                     int response = myChooser.showOpenDialog(null);
                     if (response == JFileChooser.APPROVE_OPTION) {
                         getWorkspace().getCanvas().setBackgroundImage(ImageIO.read(myChooser
-                                                                              .getSelectedFile()));
+                                .getSelectedFile()));
                     }
                 }
                 catch (Exception exception) {
@@ -500,6 +503,7 @@ public class Controller {
      * 
      * @return help Menu option
      */
+    @SuppressWarnings("serial")
     private JMenu createHelpMenu () {
         JMenu menu = new JMenu(RESOURCE.getString("HelpMenu"));
         menu.add(new AbstractAction(RESOURCE.getString("CommandDescription")) {
@@ -523,18 +527,19 @@ public class Controller {
      * 
      * @return help Menu option
      */
+    @SuppressWarnings("serial")
     private JMenu createEditMenu () {
         JMenu menu = new JMenu(RESOURCE.getString("EditMenu"));
         menu.add(new AbstractAction(RESOURCE.getString("UndoCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {
                 try {
-                getWorkspace().getUndoManager().undo();
-                getWorkspace().addHistory("Undo");
+                    getWorkspace().getUndoManager().undo();
+                    getWorkspace().addHistory("Undo");
 
                 }
                 catch (Exception exception) {
-                	getWorkspace().showError("Undo is not allowed.");
+                    getWorkspace().showError("Undo is not allowed.");
                 }
             }
         });
@@ -543,7 +548,7 @@ public class Controller {
             @Override
             public void actionPerformed (ActionEvent e) {
                 try {
-                	getWorkspace().getUndoManager().redo();
+                    getWorkspace().getUndoManager().redo();
                     getWorkspace().addHistory("Redo");
                 }
                 catch (Exception exception) {

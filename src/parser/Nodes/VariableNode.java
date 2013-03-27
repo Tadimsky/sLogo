@@ -41,9 +41,7 @@ public class VariableNode extends SimpleNode {
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
 
         Integer val = w.getVariables().getVariable(myName);
-        if (val == null) {
-            return 0;
-        }
+        if (val == null) return 0;
         return val;
     }
 

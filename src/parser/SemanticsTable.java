@@ -125,9 +125,7 @@ public class SemanticsTable {
      * @return The custom command
      */
     public CustomCommand getCommand (String name) {
-        if (myContext != null) {
-            return myContext.getCommand(name);
-        }
+        if (myContext != null) return myContext.getCommand(name);
         return null;
         // throw new InvalidSemanticsException(INVALID_CUSTOM_COMMAND, name);
     }

@@ -6,6 +6,7 @@ import parser.nodes.BasicControl;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 /**
  * Implements the Stamp function.
  * Stamps an image of the turtle at the current position.

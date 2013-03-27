@@ -68,13 +68,11 @@ public class AskWith extends BinaryNode {
     }
 
     private void checkSyntax () throws InvalidArgumentsException {
-        if (!(getLeft() instanceof ListNode)) {
+        if (!(getLeft() instanceof ListNode))
             throw new InvalidArgumentsException(DETERMINE_LIST, "");
-        }
 
-        if (!(getRight() instanceof ListNode)) {
+        if (!(getRight() instanceof ListNode))
             throw new InvalidArgumentsException(COMMAND_LIST, "");
-        }
     }
 
 }

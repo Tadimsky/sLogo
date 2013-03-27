@@ -4,10 +4,12 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import view.ILabelInformation;
 
+
 /**
  * Displays information with the appropriate turtle query
+ * 
  * @author Henrique Moraes
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class InformationLabel extends LogoLabel {

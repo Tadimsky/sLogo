@@ -22,9 +22,7 @@ import controller.Workspace;
  */
 @SuppressWarnings("serial")
 public class WorkspaceSettingsWindow extends SettingsWindow {
-    @SuppressWarnings("rawtypes")
     private JComboBox myBackgroundColor;
-    @SuppressWarnings("rawtypes")
     private JComboBox myPenColor;
 
     private JCheckBox myHighlightOption;
@@ -45,7 +43,6 @@ public class WorkspaceSettingsWindow extends SettingsWindow {
      * @param colorMap Map to reference colors
      * @return Panel with color options
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     private JPanel createColorPanel (ColorManager manager) {
         myBackgroundColor = new JComboBox(manager.getColorMap().values().toArray());
         myPenColor = new JComboBox(manager.getColorMap().values().toArray());

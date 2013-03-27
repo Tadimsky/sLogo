@@ -15,6 +15,7 @@ public abstract class ErrorBox extends JComponent {
 
     /**
      * shows an error on a pop up window
+     * 
      * @param e
      */
     public static void showError (Error e) {

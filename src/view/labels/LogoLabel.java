@@ -8,11 +8,13 @@ import model.IState;
 import parser.nodes.exceptions.InvalidArgumentsException;
 import view.ILabelInformation;
 
+
 /**
  * Super class for special labels to display turtle's information based on
  * command nodes instead of if statements
+ * 
  * @author Henrique Moraes
- *
+ * 
  */
 @SuppressWarnings("serial")
 public abstract class LogoLabel extends JLabel {

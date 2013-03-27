@@ -3,10 +3,12 @@ package view.labels;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 
+
 /**
  * Label that represents the title of the infoView
+ * 
  * @author Henrique Moraes
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class TitleLabel extends LogoLabel {

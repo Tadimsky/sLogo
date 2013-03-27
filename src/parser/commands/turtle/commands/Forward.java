@@ -6,6 +6,7 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 /**
  * Implements the Forward function.
  * Moves the turtles forwards an amount specified by the first argument.

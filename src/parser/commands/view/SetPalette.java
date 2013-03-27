@@ -46,9 +46,8 @@ public class SetPalette extends ParameterNode {
         colors[BLUE] = getParameter(BLUE + 1).evaluate(w);
 
         for (int i = 0; i < NUM_COLORS; i++) {
-            if (0 > colors[i] || colors[i] > MAX_COLOR_VAL) {
+            if (0 > colors[i] || colors[i] > MAX_COLOR_VAL)
                 throw new InvalidArgumentsException(RGB_VALUE_FORMAT, "");
-            }
         }
         w.getColors().setColor(colorIndex, new Color(colors[RED], colors[GREEN], colors[BLUE]));
         return colorIndex;

@@ -17,29 +17,27 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import view.Window;
-import view.components.InputField;
 import controller.Controller;
+
 
 /**
  * SuperClass for PreviousCommandWindow and CustomCommandWindow,
  * Commands directly clickable to execute, implemented using JList
  * 
  * @author Ziqiang Huang
- *
+ * 
  */
 @SuppressWarnings("serial")
-public abstract class LogoListWindow extends JPanel implements Observer{
+public abstract class LogoListWindow extends JPanel implements Observer {
 
     public static final Dimension DEFAULT_DIMENSION =
             new Dimension(Window.TABBED_INFO_WINDOW_DIMENSION.width,
                           Window.TABBED_INFO_WINDOW_DIMENSION.height - 30);
 
-    @SuppressWarnings("rawtypes")
     private JList myCommands;
     protected Vector<String> myCommandsVector;
     private JTextField myInputField;
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     public LogoListWindow (JTextField inputField) {
         myInputField = inputField;
         myCommandsVector = new Vector<String>();
@@ -60,7 +58,6 @@ public abstract class LogoListWindow extends JPanel implements Observer{
         JPanel clearPanel = new JPanel();
         JButton clearButton = new JButton(Controller.RESOURCE.getString("Clear"));
         clearButton.addActionListener(new ActionListener() {
-            @SuppressWarnings("unchecked")
             @Override
             public void actionPerformed (ActionEvent arg0) {
                 myCommandsVector.clear();
@@ -88,7 +85,6 @@ public abstract class LogoListWindow extends JPanel implements Observer{
      * 
      * @param list
      */
-    @SuppressWarnings("rawtypes")
     protected void addListSelectionListener (final JList list) {
         list.addMouseListener(new MouseAdapter() {
             @Override
@@ -104,7 +100,6 @@ public abstract class LogoListWindow extends JPanel implements Observer{
      * 
      * @param text
      */
-    @SuppressWarnings("unchecked")
     public void addCommand (String text) {
         myCommandsVector.add(text);
         myCommands.setListData(myCommandsVector);

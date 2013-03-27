@@ -4,7 +4,7 @@ package parser.nodes;
  * Superclass for basic commands that contain no parameters.
  * 
  * @author Jonathan Schmidt
- *
+ * 
  */
 public abstract class SimpleNode extends SyntaxNode {
 

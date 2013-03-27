@@ -42,9 +42,8 @@ public class Tell extends UnaryNode {
     }
 
     private void checkSyntax () throws InvalidArgumentsException {
-        if (!(getArgument() instanceof ListNode)) {
+        if (!(getArgument() instanceof ListNode))
             throw new InvalidArgumentsException(TURTLE_LIST, "");
-        }
     }
 
 }

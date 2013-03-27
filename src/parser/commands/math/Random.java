@@ -17,6 +17,7 @@ import parser.nodes.exceptions.InvalidArgumentsException;
 public class Random extends UnaryNode {
 
     private java.util.Random myRand;
+
     /**
      * Creates Random Command Node
      * 

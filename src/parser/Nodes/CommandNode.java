@@ -43,9 +43,7 @@ public class CommandNode extends SimpleNode {
         this(((TokenNode) stack.pop()).getToken());
 
         // Command does not exist right now - return
-        if (myCommand == null) { 
-            return;
-        }
+        if (myCommand == null) return;
 
         if (myCommand.getNumArgs() <= stack.size()) {
             for (int i = 0; i < myCommand.getNumArgs(); i++) {

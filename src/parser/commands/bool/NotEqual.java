@@ -28,7 +28,7 @@ public class NotEqual extends BinaryNode {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        if (getLeft().evaluate(w) != getRight().evaluate(w)) { return 1; }
+        if (getLeft().evaluate(w) != getRight().evaluate(w)) return 1;
         return 0;
     }
 

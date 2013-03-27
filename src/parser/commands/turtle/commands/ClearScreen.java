@@ -6,9 +6,10 @@ import parser.nodes.BasicControl;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 /**
  * Implements the Clear Screen function.
- * Clears the screen and moves the turtles back to the center 
+ * Clears the screen and moves the turtles back to the center
  * 
  * @author Jonathan Schmidt
  * 

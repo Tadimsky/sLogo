@@ -29,10 +29,10 @@ import controller.support.IError;
 
 @SuppressWarnings("serial")
 public class VariablesWindow extends JPanel implements Observer {
-    public static final String[] COLUMN_NAMES = 
-            new String[] { Controller.RESOURCE.getString("Name"), 
-                           Controller.RESOURCE.getString("Scope"), 
-                           Controller.RESOURCE.getString("Value") };
+    public static final String[] COLUMN_NAMES =
+            new String[] { Controller.RESOURCE.getString("Name"),
+                          Controller.RESOURCE.getString("Scope"),
+                          Controller.RESOURCE.getString("Value") };
     private static final String[] EMPTY_ROW = new String[] { "", "", "" };
     public static final Dimension TABLE_DIMENSION =
             new Dimension(Window.TABBED_INFO_WINDOW_DIMENSION.width,
@@ -194,7 +194,6 @@ public class VariablesWindow extends JPanel implements Observer {
      */
     private ActionListener createNewListener () {
         return new ActionListener() {
-            @SuppressWarnings("unchecked")
             @Override
             public void actionPerformed (ActionEvent e) {
                 isCellAdding = true;
@@ -202,7 +201,6 @@ public class VariablesWindow extends JPanel implements Observer {
                 cards.show(myCardsPanel, OK_BUTTON);
                 myModel.addRow(EMPTY_ROW);
                 myTable.setLastRowEditable(true);
-                @SuppressWarnings("rawtypes")
                 JComboBox box = myTable.getComboBox();
                 for (String s : myVariableManager.getScopeNames()) {
                     box.addItem(s);

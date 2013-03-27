@@ -21,8 +21,9 @@ import parser.nodes.exceptions.InvalidArgumentsException;
 public class DoTimes extends BinaryNode {
 
     private static final String FIRST_ARGUMENT = "First argument in first list must be a variable.";
-    private static final String FIRST_LIST_CONTENT = "The first list must contain both a " + 
-            "variable and a number of times for the loop to run.";
+    private static final String FIRST_LIST_CONTENT =
+            "The first list must contain both a " +
+                    "variable and a number of times for the loop to run.";
     private static final String FIRST_LIST = "First argument must be a list.";
     private static final String SECOND_LIST = "Second argument must be a list of commands to run.";
 
@@ -56,22 +57,17 @@ public class DoTimes extends BinaryNode {
     }
 
     private void checkSyntax () throws InvalidArgumentsException {
-        if (!(getLeft() instanceof ListNode)) {
-            throw new InvalidArgumentsException(FIRST_LIST, "");
-        }
+        if (!(getLeft() instanceof ListNode)) throw new InvalidArgumentsException(FIRST_LIST, "");
 
-        if (!(getRight() instanceof ListNode)) {
+        if (!(getRight() instanceof ListNode))
             throw new InvalidArgumentsException(SECOND_LIST, "");
-        }
 
         // Check the First List
-        ListNode ln = (ListNode)getLeft();
-        if (ln.getContents().size() != 2) {
+        ListNode ln = (ListNode) getLeft();
+        if (ln.getContents().size() != 2)
             throw new InvalidArgumentsException(FIRST_LIST_CONTENT, "");
-        }
-        if (!(ln.getContents().get(0) instanceof VariableNode)) {
+        if (!(ln.getContents().get(0) instanceof VariableNode))
             throw new InvalidArgumentsException(FIRST_ARGUMENT, "");
-        }
     }
 
 }

@@ -24,7 +24,7 @@ public class For extends BinaryNode {
             "First argument in first list must be a variable.";
     private static final int NUM_ARGS_FIRST = 4;
     private static final String FIRST_LIST_CONTENTS =
-            "The first list must contain a variable, the starting value," + 
+            "The first list must contain a variable, the starting value," +
                     " the end value and the amount to increment by.";
     private static final String SECOND_ARGUMENT =
             "Second argument must be a list of commands to run.";
@@ -69,22 +69,18 @@ public class For extends BinaryNode {
     }
 
     private void checkSyntax () throws InvalidArgumentsException {
-        if (!(getLeft() instanceof ListNode)) {
+        if (!(getLeft() instanceof ListNode))
             throw new InvalidArgumentsException(FIRST_ARGUMENT, "");
-        }
 
-        if (!(getRight() instanceof ListNode)) {
+        if (!(getRight() instanceof ListNode))
             throw new InvalidArgumentsException(SECOND_ARGUMENT, "");
-        }
 
         // Check the First List
         ListNode ln = (ListNode) getLeft();
-        if (ln.getContents().size() != NUM_ARGS_FIRST) {
+        if (ln.getContents().size() != NUM_ARGS_FIRST)
             throw new InvalidArgumentsException(FIRST_LIST_CONTENTS, "");
-        }
-        if (!(ln.getContents().get(0) instanceof VariableNode)) {
+        if (!(ln.getContents().get(0) instanceof VariableNode))
             throw new InvalidArgumentsException(FIRST_ARGUMENT_VARIABLE, "");
-        }
     }
 
 }

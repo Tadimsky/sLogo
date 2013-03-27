@@ -11,7 +11,7 @@ import parser.nodes.exceptions.InvalidSemanticsException;
 public class Main {
 
     private static JFileChooser myChooser;
-    
+
     /**
      * @param args text
      */
@@ -28,10 +28,8 @@ public class Main {
 
     }
 
-    @SuppressWarnings("unused")
     private static void checkLine (Parser p) throws InvalidSemanticsException
     {
-        @SuppressWarnings("resource")
         Scanner in = new Scanner(System.in);
         while (true)
         {

@@ -3,8 +3,6 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -19,7 +17,6 @@ import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import view.components.ErrorBox;
-import view.components.InputField;
 import view.windows.CustomCommandWindow;
 import view.windows.InformationView;
 import view.windows.PreviousCommandWindow;
@@ -35,6 +32,7 @@ import controller.Workspace;
  * @author Henrique Moraes, Ziqiang
  * 
  */
+@SuppressWarnings("serial")
 public class Window extends JFrame implements WorkspaceHandler {
     private final static int GRAY_TONE = 230;
     public final static Color INFO_BACKGROUND_COLOR = new Color(GRAY_TONE, GRAY_TONE, GRAY_TONE);
@@ -66,7 +64,8 @@ public class Window extends JFrame implements WorkspaceHandler {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         }
-        catch (Exception e) { }
+        catch (Exception e) {
+        }
 
         myResource = Controller.RESOURCE;
 
@@ -114,6 +113,7 @@ public class Window extends JFrame implements WorkspaceHandler {
      * Creates a new workspace and sets the associated canvas to it
      * on the tabbed pane
      */
+    @Override
     public void createWorkspace () {
         Workspace workspace = new Workspace(WORKSPACE_NAME + workspaceIndex);
         workspaceIndex++;
@@ -219,7 +219,8 @@ public class Window extends JFrame implements WorkspaceHandler {
         });
     }
 
-    public Workspace getWorkspace() {
+    @Override
+    public Workspace getWorkspace () {
         return (Workspace) myCurrentCanvas.getPaintableResource();
     }
 }

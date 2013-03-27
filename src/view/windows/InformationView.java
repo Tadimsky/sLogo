@@ -1,7 +1,6 @@
 package view.windows;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +23,12 @@ import view.labels.InformationLabel;
 import view.labels.LogoLabel;
 import view.labels.TitleLabel;
 
+
 /**
  * Displays one turtle's basic information on a stylized panel
+ * 
  * @author Henrique Moraes
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class InformationView extends JPanel implements Observer {

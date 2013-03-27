@@ -7,6 +7,7 @@ import parser.nodes.BasicControl;
 import parser.nodes.SyntaxNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 /**
  * Implements the Shape function.
  * Returns the index of the shape that the turtle is.

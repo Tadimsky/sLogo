@@ -26,7 +26,6 @@ public class PenLine {
         this(initialLocation, finalLocation);
         myColor = color;
         myStroke = stroke;
-        Location loc;
     }
 
     public PenLine (Location initialLocation, Location finalLocation) {

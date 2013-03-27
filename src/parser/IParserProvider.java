@@ -44,7 +44,7 @@ public interface IParserProvider {
      */
     TurtleManager getTurtleManager ();
 
-    /** 
+    /**
      * Returns the current turtle of the context.
      * This is being phased out to deal with multiple turtles.
      * 
@@ -60,7 +60,7 @@ public interface IParserProvider {
     ColorManager getColors ();
 
     /**
-     * Sets the background of the current context to the 
+     * Sets the background of the current context to the
      * color specified by the index.
      * 
      * @param colorIndex The index of the color

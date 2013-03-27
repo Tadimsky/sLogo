@@ -43,7 +43,7 @@ public class ConstantNode extends SimpleNode {
      * Creates the Constant Node from a list of parameters
      * 
      * @param stack The stack of parameters.
-     * @throws InvalidSemanticsException 
+     * @throws InvalidSemanticsException
      */
     public ConstantNode (Deque<SyntaxNode> stack) throws InvalidSemanticsException {
         this(((TokenNode) stack.pop()).getToken());

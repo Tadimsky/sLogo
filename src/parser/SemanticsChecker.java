@@ -80,9 +80,7 @@ public class SemanticsChecker {
                     throw new InvalidSemanticsException(e.getMessage(), token);
                 }
             }
-            else {
-                throw new InvalidSemanticsException(NOT_A_VALID_COMMAND, token);
-            }
+            else throw new InvalidSemanticsException(NOT_A_VALID_COMMAND, token);
         }
 
         List<SyntaxNode> result = new ArrayList<SyntaxNode>();
@@ -117,25 +115,20 @@ public class SemanticsChecker {
                                                                                              InvalidSemanticsException,
                                                                                              InvalidArgumentsException {
         if (n.getName().equals("custom")) {
-            if (myTable.getCommand(token) == null) {
+            if (myTable.getCommand(token) == null)
                 throw new InvalidSemanticsException(NOT_A_VALID_COMMAND, token);
-            }
         }
         // Stop custom functions from messing things up and gobbling arguments.
-        if (!n.shouldCreate()) {
-            return new TokenNode(token);
-        }
+        if (!n.shouldCreate()) return new TokenNode(token);
 
         if (n.getArgs() == 0) {
             // Add the token as the first item in the queue.
             params.push(new TokenNode(token));
         }
-        if (params.size() >= n.getArgs()) {
+        if (params.size() >= n.getArgs())
             return ReflectionHelper.createInstanceOf(n.getType(), params);
-        }
-        else {
-            throw new InvalidArgumentsException(InvalidArgumentsException.INCORRECT_NUMBER_ARGS, n.getName());
-        }
+        else throw new InvalidArgumentsException(InvalidArgumentsException.INCORRECT_NUMBER_ARGS,
+                                                 n.getName());
     }
 
     private CustomCommand createCustomCommand (List<NodeInformation> nodeI, int pos)
@@ -150,9 +143,8 @@ public class SemanticsChecker {
 
                 for (int i = pos - NUMBER_TO_PARAMS; i > 0; i--) {
                     cur = nodeI.get(i);
-                    if (cur.getType().getName().contains("ListEndNode")) {
+                    if (cur.getType().getName().contains("ListEndNode"))
                         return new CustomCommand(commandName, argc);
-                    }
                     argc++;
                 }
             }

@@ -31,7 +31,6 @@ public class Nothing extends UnaryNode {
         Random r = new Random();
         for (int i = 0; i < 100; i++) {
             int move = 10 - r.nextInt(20);
-            int turn = 10 - r.nextInt(20);
             w.getTurtleManager().execute("move", move);
             w.getTurtleManager().execute("turn", move);
 

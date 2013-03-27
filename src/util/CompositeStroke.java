@@ -16,6 +16,7 @@ public class CompositeStroke implements Stroke {
 
     /**
      * Constructor that takes two line thicknesses
+     * 
      * @param thickness1
      * @param thickness2
      */

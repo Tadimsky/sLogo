@@ -28,7 +28,7 @@ public class And extends BinaryNode {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        if ((getLeft().evaluate(w) == 1) && (getRight().evaluate(w) == 1)) { return 1; }
+        if ((getLeft().evaluate(w) == 1) && (getRight().evaluate(w) == 1)) return 1;
         return 0;
     }
 

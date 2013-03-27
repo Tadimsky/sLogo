@@ -33,7 +33,6 @@ public class LogoTable extends JTable {
     /**
      * @return Combo Box associated with inclusion of new variable
      */
-    @SuppressWarnings("rawtypes")
     public JComboBox getComboBox () {
         return myEditableComboBox;
     }

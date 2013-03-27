@@ -29,9 +29,7 @@ public class IfElse extends TernaryNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int times = getLeft().evaluate(w);
-        if (times != 0) {
-            return getMiddle().evaluate(w);
-        }
+        if (times != 0) return getMiddle().evaluate(w);
         return getRight().evaluate(w);
     }
 

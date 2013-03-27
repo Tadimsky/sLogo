@@ -16,7 +16,8 @@ import parser.nodes.exceptions.InvalidArgumentsException;
  */
 public class CustomCommand {
 
-    private static final String LIST_ARGS_VAR = "The list of arguments does not exclusively contain variables.";
+    private static final String LIST_ARGS_VAR =
+            "The list of arguments does not exclusively contain variables.";
 
     private String myName;
 
@@ -48,9 +49,8 @@ public class CustomCommand {
         myCommands = commands;
         for (SyntaxNode s : params.getContents()) {
             // check syntax here
-            if (!(s instanceof VariableNode)) {
+            if (!(s instanceof VariableNode))
                 throw new InvalidArgumentsException(LIST_ARGS_VAR, "");
-            }
             myArgs.add((VariableNode) s);
         }
     }

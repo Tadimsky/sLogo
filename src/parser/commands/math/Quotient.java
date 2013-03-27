@@ -32,7 +32,7 @@ public class Quotient extends BinaryNode {
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         int l = getLeft().evaluate(w);
         int r = getRight().evaluate(w);
-        if (r != 0) { return l / r; }
+        if (r != 0) return l / r;
 
         throw new InvalidArgumentsException(DIVIDE_BY_ZERO, "");
     }

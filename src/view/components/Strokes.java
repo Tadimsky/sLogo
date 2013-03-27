@@ -2,6 +2,7 @@ package view.components;
 
 import controller.Controller;
 
+
 /**
  * Defines possible strokes for this program
  * 

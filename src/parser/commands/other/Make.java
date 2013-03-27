@@ -31,9 +31,8 @@ public class Make extends BinaryNode {
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
         // This is required
-        if (!(getLeft() instanceof VariableNode)) {
+        if (!(getLeft() instanceof VariableNode))
             throw new InvalidArgumentsException(PARAMETER_TYPE, this.getClass().getCanonicalName());
-        }
         VariableNode vn = (VariableNode) getLeft();
 
         int val = getRight().evaluate(w);

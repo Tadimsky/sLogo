@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import controller.Controller;
 import parser.nodes.exceptions.InvalidArgumentsException;
+import controller.Controller;
 
 
 /**
@@ -80,9 +80,7 @@ public class VariableManager {
         // Get from current scope first, if it is local.
         Iterator<VariableScope> i = myScopes.iterator();
         while (i.hasNext()) {
-            if (i.next().removeVariable(var) != null) {
-                return;
-            }
+            if (i.next().removeVariable(var) != null) return;
         }
         JOptionPane.showMessageDialog(null, "Nothing to Remove",
                                       Controller.RESOURCE_ERROR.getString("ErrorTitle"),

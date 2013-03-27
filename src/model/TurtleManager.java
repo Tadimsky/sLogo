@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -73,12 +72,20 @@ public class TurtleManager extends Observable implements Paintable {
         activateTurtle(index);
     }
 
+    /**
+     * @param turtles Collection of turtles to be activated
+     */
     public void activate (Collection<Integer> turtles) {
         for (Integer i : turtles) {
             activate(i);
         }
     }
 
+    /**
+     * 
+     * @param addMethod type of activation (Odd or even)
+     * @return id of last activated turtle
+     */
     private int addActive (int addMethod) {
         int id = 0;
         if (addMethod < 0) {
@@ -306,7 +313,7 @@ public class TurtleManager extends Observable implements Paintable {
         for (Turtle t : myActiveTurtles.values()) {
             try {
                 Object r = m.invoke(t, args);
-                result = (T)r;
+                result = (T) r;
             }
             catch (Exception e) {
                 return null;
@@ -320,9 +327,7 @@ public class TurtleManager extends Observable implements Paintable {
      * @param s stroke type to be set at the turtles
      */
     public void setStrokeType (Strokes s) {
-        if (myActiveTurtles.isEmpty()) {
-            return;
-        }
+        if (myActiveTurtles.isEmpty()) return;
         for (Turtle t : myActiveTurtles.values()) {
             t.setStrokeType(s);
         }
@@ -364,9 +369,7 @@ public class TurtleManager extends Observable implements Paintable {
     public int getShape (BufferedImage image) {
         if (myTurtleImages.containsValue(image)) {
             for (Entry<Integer, BufferedImage> in : myTurtleImages.entrySet()) {
-                if (in.getValue().equals(image)) {
-                    return in.getKey();
-                }
+                if (in.getValue().equals(image)) return in.getKey();
             }
         }
         return -1;

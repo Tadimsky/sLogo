@@ -29,7 +29,7 @@ public class InputField extends JTextField implements FocusListener {
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed (ActionEvent e) {
-                String command = getText();
+                getText();
             }
         });
     }

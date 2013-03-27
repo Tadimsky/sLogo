@@ -29,17 +29,13 @@ public class IsShowing extends BasicControl implements ILabelInformation {
 
     @Override
     public int evaluate (IParserProvider w) throws InvalidArgumentsException {
-        if (w.getTurtleManager().<Boolean> execute("isHiding")) {
-            return 1;
-        }
+        if (w.getTurtleManager().<Boolean> execute("isHiding")) return 1;
         return 0;
     }
 
     @Override
     public String evaluateFromTurtle (IState t) throws InvalidArgumentsException {
-        if (t.isHiding()) {
-            return "Yes";
-        }
+        if (t.isHiding()) return "Yes";
         return "No";
     }
 }

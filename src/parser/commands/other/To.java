@@ -46,15 +46,11 @@ public class To extends TernaryNode {
     }
 
     private void checkSyntax () throws InvalidArgumentsException {
-        if (!(getLeft() instanceof TokenNode)) {
+        if (!(getLeft() instanceof TokenNode))
             throw new InvalidArgumentsException(COMMAND_PARAM, "");
-        }
-        if (!(getMiddle() instanceof ListNode)) {
-            throw new InvalidArgumentsException(VAR_PARM, "");
-        }
-        if (!(getRight() instanceof ListNode)) {
+        if (!(getMiddle() instanceof ListNode)) throw new InvalidArgumentsException(VAR_PARM, "");
+        if (!(getRight() instanceof ListNode))
             throw new InvalidArgumentsException(FUNCTIONS_PARAM, "");
-        }
     }
 
 }

@@ -6,6 +6,7 @@ import parser.nodes.SyntaxNode;
 import parser.nodes.UnaryNode;
 import parser.nodes.exceptions.InvalidArgumentsException;
 
+
 /**
  * Implements the Set Pen Size function.
  * Sets the pen size of the turtle's pen to be the thickness specified.
