@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$de/d84/classcontroller_1_1_workspace.html" title="controller.Workspace" alt="" coords="229,69,382,96"/>
+<area shape="rect" id="node3" href="$d8/dff/classmodel_1_1_turtle_manager.html" title="model.TurtleManager" alt="" coords="227,145,383,172"/>
+<area shape="rect" id="node4" href="$dc/d3c/interfacecontroller_1_1support_1_1_i_error.html" title="controller.support.IError" alt="" coords="6,56,178,83"/>
+<area shape="rect" id="node5" href="$dd/da7/interfaceparser_1_1_i_parser_provider.html" title="parser.IParserProvider" alt="" coords="11,5,173,32"/>
+<area shape="rect" id="node6" href="$df/dca/interfacemodel_1_1_i_state.html" title="model.IState" alt="" coords="40,208,144,235"/>
+<area shape="rect" id="node7" href="$d6/d34/classmodel_1_1_turtle.html" title="model.Turtle" alt="" coords="255,196,355,223"/>
+<area shape="rect" id="node8" href="$dc/d3c/interfacemodel_1_1_paintable.html" title="model.Paintable" alt="" coords="30,157,154,184"/>
+</map>

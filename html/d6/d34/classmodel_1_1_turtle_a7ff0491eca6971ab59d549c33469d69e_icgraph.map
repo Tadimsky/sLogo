@@ -1,0 +1,5 @@
+<map id="model.Turtle.faceTowards" name="model.Turtle.faceTowards">
+<area shape="rect" id="node2" href="$d6/d34/classmodel_1_1_turtle.html#a427ec25c0a04d906a6e5d77ae5791a20" title="model.Turtle.setPosition" alt="" coords="235,5,410,32"/>
+<area shape="rect" id="node3" href="$d6/d34/classmodel_1_1_turtle.html#a817b1ab6a35fa3deb30ea4569ab70db1" title="model.Turtle.goHome" alt="" coords="459,5,618,32"/>
+<area shape="rect" id="node4" href="$d6/d34/classmodel_1_1_turtle.html#a65bffb6b24e40350f6094e054358dcbb" title="model.Turtle.clear" alt="" coords="667,5,802,32"/>
+</map>

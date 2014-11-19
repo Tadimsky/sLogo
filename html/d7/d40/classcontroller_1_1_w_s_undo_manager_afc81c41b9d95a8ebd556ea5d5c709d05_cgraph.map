@@ -1,0 +1,7 @@
+<map id="controller.WSUndoManager.redo" name="controller.WSUndoManager.redo">
+<area shape="rect" id="node2" href="$de/d84/classcontroller_1_1_workspace.html#a6e2c1aeab69fcad61e9a29cbf4c189cc" title="controller.Workspace.execute" alt="" coords="285,12,493,39"/>
+<area shape="rect" id="node4" href="$d7/d40/classcontroller_1_1_w_s_undo_manager.html#a28e53c848519f60a423d7cffdda5cefc" title="controller.WSUndoManager.get\lLastUndoneCommand" alt="" coords="280,63,499,105"/>
+<area shape="rect" id="node5" href="$de/d84/classcontroller_1_1_workspace.html#a463927ff3ea61d412cbee3a3b0b9d74f" title="controller.Workspace.get\lTurtleManager" alt="" coords="300,129,479,170"/>
+<area shape="rect" id="node6" href="$d8/dff/classmodel_1_1_turtle_manager.html#a8679aef13c1e2b3d695b1467c2bb5e9f" title="model.TurtleManager.update" alt="" coords="287,195,491,221"/>
+<area shape="rect" id="node3" href="$de/d84/classcontroller_1_1_workspace.html#a6b1f99115388e9de9dc779e30ed16041" title="controller.Workspace.show\lError" alt="" coords="547,5,736,46"/>
+</map>

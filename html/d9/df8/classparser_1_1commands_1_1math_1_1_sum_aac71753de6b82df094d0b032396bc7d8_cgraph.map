@@ -1,0 +1,6 @@
+<map id="parser.commands.math.Sum.evaluate" name="parser.commands.math.Sum.evaluate">
+<area shape="rect" id="node2" href="$da/d96/classparser_1_1nodes_1_1_syntax_node.html#a669c370adce66a1960835323a90b9adb" title="parser.nodes.SyntaxNode.evaluate" alt="" coords="323,5,570,32"/>
+<area shape="rect" id="node3" href="$db/d11/classparser_1_1nodes_1_1_binary_node.html#a555930c71203ce7c05e1290f069b19a1" title="parser.nodes.BinaryNode.getLeft" alt="" coords="331,56,563,83"/>
+<area shape="rect" id="node5" href="$db/d11/classparser_1_1nodes_1_1_binary_node.html#a9c33799a377e3c277de0fc9138a2cb81" title="parser.nodes.BinaryNode.get\lRight" alt="" coords="343,107,551,149"/>
+<area shape="rect" id="node4" href="$d7/d93/classparser_1_1nodes_1_1_parameter_node.html#a2c57eab9997daf1efb840a189c1034c5" title="parser.nodes.ParameterNode.get\lParameter" alt="" coords="619,78,853,119"/>
+</map>

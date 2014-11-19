@@ -1,0 +1,10 @@
+<map id="model.Turtle.wrapOnBoundary" name="model.Turtle.wrapOnBoundary">
+<area shape="rect" id="node2" href="$d6/d34/classmodel_1_1_turtle.html#adc63bb1ed5f0a894a2404b5b55a60c5d" title="model.Turtle.boundsExceeded" alt="" coords="268,43,481,70"/>
+<area shape="rect" id="node3" href="$d7/d1e/classutil_1_1_location.html#a232168bda0ff164c4721dea19a7630d8" title="util.Location.getIntX" alt="" coords="531,18,679,44"/>
+<area shape="rect" id="node4" href="$d7/d1e/classutil_1_1_location.html#a1157d4dc33776ed2764c74e0f8390abe" title="util.Location.getIntY" alt="" coords="532,80,679,107"/>
+<area shape="rect" id="node5" href="$d4/d67/classutil_1_1_vector.html#a1aea3b29ec9c7374d0d5520ece2085a2" title="util.Vector.distanceBetween" alt="" coords="275,144,474,171"/>
+<area shape="rect" id="node6" href="$d7/d1e/classutil_1_1_location.html#af426bff856c968faa03f772bd112f8c3" title="util.Location.getVisualLocation" alt="" coords="267,195,483,222"/>
+<area shape="rect" id="node7" href="$d4/d67/classutil_1_1_vector.html#a45ba35e870010e16e64d697f97d1b1dc" title="util.Vector.setMagnitude" alt="" coords="287,246,463,272"/>
+<area shape="rect" id="node8" href="$d7/d1e/classutil_1_1_location.html#a36240d43a76c7ce472aa329cb496cd8f" title="util.Location.setX" alt="" coords="309,296,440,323"/>
+<area shape="rect" id="node9" href="$d7/d1e/classutil_1_1_location.html#a67bebd8b26034a51f8943a50e237f724" title="util.Location.setY" alt="" coords="309,347,440,374"/>
+</map>

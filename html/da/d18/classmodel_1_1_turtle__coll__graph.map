@@ -1,0 +1,8 @@
+<map id="model.Turtle" name="model.Turtle">
+<area shape="rect" id="node2" href="$dc/d3c/interfacemodel_1_1_paintable.html" title="model.Paintable" alt="" coords="395,5,519,32"/>
+<area shape="rect" id="node3" href="$df/dca/interfacemodel_1_1_i_state.html" title="model.IState" alt="" coords="405,56,509,83"/>
+<area shape="rect" id="node4" href="$d4/d67/classutil_1_1_vector.html" title="util.Vector" alt="" coords="414,107,501,133"/>
+<area shape="rect" id="node5" href="$d7/d1e/classutil_1_1_location.html" title="util.Location" alt="" coords="408,157,507,184"/>
+<area shape="rect" id="node9" href="$de/ded/classmodel_1_1_pen.html" title="model.Pen" alt="" coords="412,260,503,287"/>
+<area shape="rect" id="node13" href="$d7/da7/enumview_1_1components_1_1_strokes.html" title="view.components.Strokes" alt="" coords="6,360,191,387"/>
+</map>

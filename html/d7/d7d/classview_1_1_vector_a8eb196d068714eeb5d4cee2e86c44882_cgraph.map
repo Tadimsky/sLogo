@@ -1,0 +1,14 @@
+<map id="view.Vector.difference" name="view.Vector.difference">
+<area shape="rect" id="node2" href="$d7/d7d/classview_1_1_vector.html#aa033c0e2ea57f133e3d225db9010588d" title="view.Vector.negate" alt="" coords="213,56,355,83"/>
+<area shape="rect" id="node6" href="$d7/d7d/classview_1_1_vector.html#a6bb31da650b3b50ef13c2bd0c5164db8" title="view.Vector.sum" alt="" coords="222,157,346,184"/>
+<area shape="rect" id="node13" href="$d7/d7d/classview_1_1_vector.html#afdf42cc2f5841f7991ee34203bd14575" title="view.Vector.Vector" alt="" coords="215,208,353,235"/>
+<area shape="rect" id="node3" href="$d7/d7d/classview_1_1_vector.html#ad2c9c045430c737cb25ccd1ed2f2d479" title="view.Vector.turn" alt="" coords="444,5,567,32"/>
+<area shape="rect" id="node4" href="$d7/d7d/classview_1_1_vector.html#a485a40fbe58f654a1aeae82cf6b297a0" title="view.Vector.setDirection" alt="" coords="661,31,835,57"/>
+<area shape="rect" id="node5" href="$d7/d7d/classview_1_1_vector.html#a41523e735a5bfaa72067ee65d1c01fe1" title="view.Vector.getDirection" alt="" coords="661,259,835,285"/>
+<area shape="rect" id="node7" href="$d7/d7d/classview_1_1_vector.html#ae6a99f4d2d1f1a79f362b5e1cd2c77d2" title="view.Vector.getXChange" alt="" coords="419,309,592,336"/>
+<area shape="rect" id="node9" href="$d7/d7d/classview_1_1_vector.html#a2fd7acd224e15efaaa94491f7f1a9fa4" title="view.Vector.getYChange" alt="" coords="419,259,591,285"/>
+<area shape="rect" id="node10" href="$d7/d7d/classview_1_1_vector.html#a70c26c70b498930ca2f04ab3edc6ebdd" title="view.Vector.angleBetween" alt="" coords="412,107,599,133"/>
+<area shape="rect" id="node11" href="$d7/d7d/classview_1_1_vector.html#ace16f664e139892ab0c09087273877eb" title="view.Vector.setMagnitude" alt="" coords="414,157,597,184"/>
+<area shape="rect" id="node12" href="$d7/d7d/classview_1_1_vector.html#adeeb35fddfd53999832274309804f047" title="view.Vector.distanceBetween" alt="" coords="403,208,608,235"/>
+<area shape="rect" id="node8" href="$d7/d7d/classview_1_1_vector.html#a5382c66a53d3c0c1d6dc41fdaa84834f" title="view.Vector.getMagnitude" alt="" coords="656,309,840,336"/>
+</map>

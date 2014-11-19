@@ -1,0 +1,6 @@
+<map id="view.Window.updateObservers" name="view.Window.updateObservers">
+<area shape="rect" id="node2" href="$d8/ddd/classview_1_1_canvas.html#a67e3543b65e69f9e823c5d3f783531ed" title="view.Canvas.getPaintable\lResource" alt="" coords="277,5,459,46"/>
+<area shape="rect" id="node3" href="$de/d84/classcontroller_1_1_workspace.html#a06f94274c983b2edde00bcdc2b15f790" title="controller.Workspace.update" alt="" coords="267,71,469,97"/>
+<area shape="rect" id="node5" href="$de/d84/classcontroller_1_1_workspace.html#aa1d57b108a587e558d8323b5d4a87670" title="controller.Workspace.update\lInformation" alt="" coords="267,122,469,163"/>
+<area shape="rect" id="node4" href="$d8/dff/classmodel_1_1_turtle_manager.html#a8679aef13c1e2b3d695b1467c2bb5e9f" title="model.TurtleManager.update" alt="" coords="518,71,722,97"/>
+</map>

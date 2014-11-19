@@ -1,0 +1,6 @@
+<map id="view.Location.translate" name="view.Location.translate">
+<area shape="rect" id="node2" href="$d7/d7d/classview_1_1_vector.html#ae6a99f4d2d1f1a79f362b5e1cd2c77d2" title="view.Vector.getXChange" alt="" coords="221,5,395,32"/>
+<area shape="rect" id="node5" href="$d7/d7d/classview_1_1_vector.html#a2fd7acd224e15efaaa94491f7f1a9fa4" title="view.Vector.getYChange" alt="" coords="222,56,394,83"/>
+<area shape="rect" id="node3" href="$d7/d7d/classview_1_1_vector.html#a5382c66a53d3c0c1d6dc41fdaa84834f" title="view.Vector.getMagnitude" alt="" coords="443,5,627,32"/>
+<area shape="rect" id="node4" href="$d7/d7d/classview_1_1_vector.html#a41523e735a5bfaa72067ee65d1c01fe1" title="view.Vector.getDirection" alt="" coords="447,56,622,83"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="model.Turtle.faceTowards" name="model.Turtle.faceTowards">
+<area shape="rect" id="node2" href="$d4/d67/classutil_1_1_vector.html#a3e38cf524cc0903761bbe0cba746fab5" title="util.Vector.getAngleBetween" alt="" coords="235,5,437,32"/>
+<area shape="rect" id="node4" href="$d4/d67/classutil_1_1_vector.html#a60833e2e656743a823aea9e5899dd301" title="util.Vector.turn" alt="" coords="279,56,393,83"/>
+<area shape="rect" id="node3" href="$d4/d67/classutil_1_1_vector.html#acebe00e22995a3514458ffa3db195295" title="util.Vector.getDirection" alt="" coords="486,5,653,32"/>
+<area shape="rect" id="node5" href="$d4/d67/classutil_1_1_vector.html#a338b7c1377d3bc795527c2fbeeb25639" title="util.Vector.setDirection" alt="" coords="486,56,653,83"/>
+</map>

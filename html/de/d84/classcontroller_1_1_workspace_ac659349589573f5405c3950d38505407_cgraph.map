@@ -1,0 +1,5 @@
+<map id="controller.Workspace.addTurtleImage" name="controller.Workspace.addTurtleImage">
+<area shape="rect" id="node2" href="$d8/dff/classmodel_1_1_turtle_manager.html#a14022290b69ac8fd9c2e1530798a3a44" title="model.TurtleManager.addTurtle\lImage" alt="" coords="235,5,453,46"/>
+<area shape="rect" id="node3" href="$d3/dcf/classview_1_1components_1_1_error_box.html#aca5c0d49cf82077b4e67e4e32f311a64" title="view.components.ErrorBox.show\lError" alt="" coords="501,5,728,46"/>
+<area shape="rect" id="node4" href="$dd/d60/enumview_1_1components_1_1_error.html#aaaf045ebafea6177dfa658991af59af8" title="view.components.Error.get\lMessage" alt="" coords="777,5,967,46"/>
+</map>

@@ -1,0 +1,16 @@
+<map id="view.components.ErrorBox" name="view.components.ErrorBox">
+<area shape="rect" id="node31" href="$d8/ddd/classview_1_1_canvas.html" title="view.Canvas" alt="" coords="1617,424,1716,451"/>
+<area shape="rect" id="node4" href="$d9/dc7/classview_1_1_window.html" title="view.Window" alt="" coords="2000,631,2099,657"/>
+<area shape="rect" id="node9" href="$d3/daf/classview_1_1windows_1_1_variables_window.html" title="view.windows.VariablesWindow" alt="" coords="1131,591,1344,617"/>
+<area shape="rect" id="node6" href="$dc/dbd/interfaceview_1_1_workspace_handler.html" title="view.WorkspaceHandler" alt="" coords="1581,681,1752,708"/>
+<area shape="rect" id="node24" href="$d3/d50/classview_1_1windows_1_1_logo_list_window.html" title="view.windows.LogoListWindow" alt="" coords="1133,872,1341,899"/>
+<area shape="rect" id="node28" href="$db/da5/classview_1_1windows_1_1_information_view.html" title="view.windows.InformationView" alt="" coords="1132,83,1343,109"/>
+<area shape="rect" id="node12" href="$dc/d3c/interfacecontroller_1_1support_1_1_i_error.html" title="controller.support.IError" alt="" coords="750,379,922,405"/>
+<area shape="rect" id="node13" href="$df/d37/classview_1_1components_1_1_logo_table.html" title="view.components.LogoTable" alt="" coords="737,443,935,469"/>
+<area shape="rect" id="node17" href="$db/d29/classparser_1_1_variable_manager.html" title="parser.VariableManager" alt="" coords="749,505,923,532"/>
+<area shape="rect" id="node19" href="$da/d34/classparser_1_1_variable_scope.html" title="parser.VariableScope" alt="" coords="343,556,500,583"/>
+<area shape="rect" id="node23" href="$dd/d47/classview_1_1windows_1_1_custom_command_window.html" title="view.windows.CustomCommand\lWindow" alt="" coords="1554,914,1779,955"/>
+<area shape="rect" id="node35" href="$dd/d14/classview_1_1windows_1_1_previous_command_window.html" title="view.windows.PreviousCommand\lWindow" alt="" coords="1552,849,1781,890"/>
+<area shape="rect" id="node30" href="$d0/d32/interfaceview_1_1_i_label_information.html" title="view.ILabelInformation" alt="" coords="755,56,917,83"/>
+<area shape="rect" id="node32" href="$dc/d3c/interfacemodel_1_1_paintable.html" title="model.Paintable" alt="" coords="1175,295,1299,321"/>
+</map>

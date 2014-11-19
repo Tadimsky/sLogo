@@ -1,0 +1,4 @@
+<map id="controller.Workspace.setBackground" name="controller.Workspace.setBackground">
+<area shape="rect" id="node2" href="$d6/dda/classmodel_1_1_color_manager.html#a10a3846959a6027d8726d2f21de6520d" title="model.ColorManager.getColor" alt="" coords="233,5,445,32"/>
+<area shape="rect" id="node3" href="$d8/ddd/classview_1_1_canvas.html#ad777a7873a7461a93735ab08768da9bd" title="view.Canvas.setBackground\lColor" alt="" coords="239,57,438,98"/>
+</map>

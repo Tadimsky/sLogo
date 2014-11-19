@@ -1,0 +1,5 @@
+<map id="model.Turtle.turn" name="model.Turtle.turn">
+<area shape="rect" id="node2" href="$d4/d67/classutil_1_1_vector.html#a60833e2e656743a823aea9e5899dd301" title="util.Vector.turn" alt="" coords="184,31,299,57"/>
+<area shape="rect" id="node3" href="$d4/d67/classutil_1_1_vector.html#a338b7c1377d3bc795527c2fbeeb25639" title="util.Vector.setDirection" alt="" coords="347,5,514,32"/>
+<area shape="rect" id="node4" href="$d4/d67/classutil_1_1_vector.html#acebe00e22995a3514458ffa3db195295" title="util.Vector.getDirection" alt="" coords="347,56,514,83"/>
+</map>

@@ -1,0 +1,21 @@
+<map id="parser.nodes.BasicControl" name="parser.nodes.BasicControl">
+<area shape="rect" id="node4" href="$d7/dd6/classparser_1_1commands_1_1turtle_1_1commands_1_1_clear_screen.html" title="parser.commands.turtle.commands.\lClearScreen" alt="" coords="732,5,988,46"/>
+<area shape="rect" id="node5" href="$d7/d9c/classparser_1_1commands_1_1turtle_1_1commands_1_1_clear_stamps.html" title="parser.commands.turtle.commands.\lClearStamps" alt="" coords="732,70,988,111"/>
+<area shape="rect" id="node6" href="$dd/d89/classparser_1_1commands_1_1turtle_1_1commands_1_1_hide_turtle.html" title="parser.commands.turtle.commands.\lHideTurtle" alt="" coords="732,135,988,177"/>
+<area shape="rect" id="node7" href="$df/d5b/classparser_1_1commands_1_1turtle_1_1commands_1_1_home.html" title="parser.commands.turtle.commands.Home" alt="" coords="713,201,1007,228"/>
+<area shape="rect" id="node8" href="$d0/df3/classparser_1_1commands_1_1turtle_1_1commands_1_1_pen_down.html" title="parser.commands.turtle.commands.\lPenDown" alt="" coords="732,253,988,294"/>
+<area shape="rect" id="node9" href="$da/d5a/classparser_1_1commands_1_1turtle_1_1commands_1_1_pen_up.html" title="parser.commands.turtle.commands.\lPenUp" alt="" coords="732,318,988,359"/>
+<area shape="rect" id="node10" href="$da/dd8/classparser_1_1commands_1_1turtle_1_1commands_1_1_show_turtle.html" title="parser.commands.turtle.commands.\lShowTurtle" alt="" coords="732,383,988,425"/>
+<area shape="rect" id="node11" href="$d3/d25/classparser_1_1commands_1_1turtle_1_1commands_1_1_stamp.html" title="parser.commands.turtle.commands.\lStamp" alt="" coords="732,449,988,490"/>
+<area shape="rect" id="node12" href="$d7/d77/classparser_1_1commands_1_1turtle_1_1queries_1_1_heading.html" title="parser.commands.turtle.queries.\lHeading" alt="" coords="745,514,975,555"/>
+<area shape="rect" id="node13" href="$d5/d57/classparser_1_1commands_1_1turtle_1_1queries_1_1_is_pen_down.html" title="parser.commands.turtle.queries.\lIsPenDown" alt="" coords="745,579,975,621"/>
+<area shape="rect" id="node14" href="$de/dfc/classparser_1_1commands_1_1turtle_1_1queries_1_1_is_showing.html" title="parser.commands.turtle.queries.\lIsShowing" alt="" coords="745,645,975,686"/>
+<area shape="rect" id="node15" href="$d3/dab/classparser_1_1commands_1_1turtle_1_1queries_1_1_pen_color.html" title="parser.commands.turtle.queries.\lPenColor" alt="" coords="745,710,975,751"/>
+<area shape="rect" id="node16" href="$d9/d77/classparser_1_1commands_1_1turtle_1_1queries_1_1_shape.html" title="parser.commands.turtle.queries.\lShape" alt="" coords="745,775,975,817"/>
+<area shape="rect" id="node17" href="$dc/da7/classparser_1_1commands_1_1turtle_1_1queries_1_1_x_cor.html" title="parser.commands.turtle.queries.XCor" alt="" coords="730,841,990,868"/>
+<area shape="rect" id="node18" href="$d5/d3e/classparser_1_1commands_1_1turtle_1_1queries_1_1_y_cor.html" title="parser.commands.turtle.queries.YCor" alt="" coords="731,892,989,919"/>
+<area shape="rect" id="node19" href="$d7/df1/classparser_1_1commands_1_1workspace_1_1_tell_even.html" title="parser.commands.workspace.\lTellEven" alt="" coords="753,943,967,985"/>
+<area shape="rect" id="node20" href="$d7/d84/classparser_1_1commands_1_1workspace_1_1_tell_odd.html" title="parser.commands.workspace.\lTellOdd" alt="" coords="753,1009,967,1050"/>
+<area shape="rect" id="node2" href="$da/df7/classparser_1_1nodes_1_1_simple_node.html" title="parser.nodes.SimpleNode" alt="" coords="240,521,427,548"/>
+<area shape="rect" id="node3" href="$da/d96/classparser_1_1nodes_1_1_syntax_node.html" title="parser.nodes.SyntaxNode" alt="" coords="5,521,192,548"/>
+</map>

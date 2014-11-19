@@ -1,0 +1,5 @@
+<map id="parser.commands.workspace.Tell.evaluate" name="parser.commands.workspace.Tell.evaluate">
+<area shape="rect" id="node2" href="$de/d96/classparser_1_1commands_1_1workspace_1_1_tell.html#a95838b915534bd40645104c234df15bd" title="parser.commands.workspace.\lTell.checkSyntax" alt="" coords="267,5,480,46"/>
+<area shape="rect" id="node3" href="$d3/d36/classparser_1_1nodes_1_1_unary_node.html#a5075c2524d5d8551552e4cb93d4b0aac" title="parser.nodes.UnaryNode.get\lArgument" alt="" coords="529,34,735,75"/>
+<area shape="rect" id="node4" href="$d7/d93/classparser_1_1nodes_1_1_parameter_node.html#a2c57eab9997daf1efb840a189c1034c5" title="parser.nodes.ParameterNode.get\lParameter" alt="" coords="784,34,1019,75"/>
+</map>

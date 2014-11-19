@@ -1,0 +1,15 @@
+<map id="view.Window" name="view.Window">
+<area shape="rect" id="node3" href="$dc/dbd/interfaceview_1_1_workspace_handler.html" title="view.WorkspaceHandler" alt="" coords="1669,62,1840,88"/>
+<area shape="rect" id="node7" href="$d3/daf/classview_1_1windows_1_1_variables_window.html" title="view.windows.VariablesWindow" alt="" coords="1192,359,1405,386"/>
+<area shape="rect" id="node29" href="$d8/ddd/classview_1_1_canvas.html" title="view.Canvas" alt="" coords="1249,1122,1348,1148"/>
+<area shape="rect" id="node22" href="$d3/d50/classview_1_1windows_1_1_logo_list_window.html" title="view.windows.LogoListWindow" alt="" coords="1195,640,1403,667"/>
+<area shape="rect" id="node26" href="$db/da5/classview_1_1windows_1_1_information_view.html" title="view.windows.InformationView" alt="" coords="1193,938,1404,964"/>
+<area shape="rect" id="node10" href="$dc/d3c/interfacecontroller_1_1support_1_1_i_error.html" title="controller.support.IError" alt="" coords="750,238,922,264"/>
+<area shape="rect" id="node11" href="$df/d37/classview_1_1components_1_1_logo_table.html" title="view.components.LogoTable" alt="" coords="737,288,935,315"/>
+<area shape="rect" id="node15" href="$db/d29/classparser_1_1_variable_manager.html" title="parser.VariableManager" alt="" coords="749,364,923,391"/>
+<area shape="rect" id="node17" href="$da/d34/classparser_1_1_variable_scope.html" title="parser.VariableScope" alt="" coords="343,415,500,442"/>
+<area shape="rect" id="node21" href="$dd/d47/classview_1_1windows_1_1_custom_command_window.html" title="view.windows.CustomCommand\lWindow" alt="" coords="1642,666,1867,708"/>
+<area shape="rect" id="node34" href="$dd/d14/classview_1_1windows_1_1_previous_command_window.html" title="view.windows.PreviousCommand\lWindow" alt="" coords="1640,601,1869,642"/>
+<area shape="rect" id="node28" href="$d0/d32/interfaceview_1_1_i_label_information.html" title="view.ILabelInformation" alt="" coords="755,998,917,1024"/>
+<area shape="rect" id="node31" href="$dc/d3c/interfacemodel_1_1_paintable.html" title="model.Paintable" alt="" coords="774,1346,898,1372"/>
+</map>

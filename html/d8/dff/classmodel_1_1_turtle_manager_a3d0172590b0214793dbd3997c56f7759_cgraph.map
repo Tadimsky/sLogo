@@ -1,0 +1,6 @@
+<map id="model.TurtleManager.addNew" name="model.TurtleManager.addNew">
+<area shape="rect" id="node2" href="$d8/dff/classmodel_1_1_turtle_manager.html#a9831377a60a443edcedede2e809e36f4" title="model.TurtleManager.create\lTurtle" alt="" coords="264,5,464,46"/>
+<area shape="rect" id="node4" href="$d6/d34/classmodel_1_1_turtle.html#a65a22c7a1a7abfbc46a6f339479e7646" title="model.Turtle.setStroke" alt="" coords="281,71,447,97"/>
+<area shape="rect" id="node3" href="$d6/d34/classmodel_1_1_turtle.html#a27ce4fa61b6e292b1cfff08d511e7fc4" title="model.Turtle.setImage" alt="" coords="513,12,677,39"/>
+<area shape="rect" id="node5" href="$de/ded/classmodel_1_1_pen.html#a00c08e5bfc9d04986e0ff7ae4ceae10b" title="model.Pen.setStroke" alt="" coords="517,71,673,97"/>
+</map>

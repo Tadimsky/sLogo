@@ -1,0 +1,7 @@
+<map id="model.Turtle.getPaintingPoint" name="model.Turtle.getPaintingPoint">
+<area shape="rect" id="node2" href="$d7/d1e/classutil_1_1_location.html#a82f3e59d7d3e3d46df862be2e63c80e3" title="util.Location.translate" alt="" coords="229,31,389,57"/>
+<area shape="rect" id="node3" href="$d4/d67/classutil_1_1_vector.html#a3509d652ff8c361b07447f55e0007f31" title="util.Vector.getXChange" alt="" coords="438,5,605,32"/>
+<area shape="rect" id="node6" href="$d4/d67/classutil_1_1_vector.html#aca15e89ce2edd3e93dcb73621c26237f" title="util.Vector.getYChange" alt="" coords="439,56,604,83"/>
+<area shape="rect" id="node4" href="$d4/d67/classutil_1_1_vector.html#afa760c6d12c93fbfcfacd6e279d08d88" title="util.Vector.getMagnitude" alt="" coords="654,5,831,32"/>
+<area shape="rect" id="node5" href="$d4/d67/classutil_1_1_vector.html#acebe00e22995a3514458ffa3db195295" title="util.Vector.getDirection" alt="" coords="659,56,826,83"/>
+</map>

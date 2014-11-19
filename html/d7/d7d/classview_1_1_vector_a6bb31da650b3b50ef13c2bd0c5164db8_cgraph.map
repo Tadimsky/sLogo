@@ -1,0 +1,10 @@
+<map id="view.Vector.sum" name="view.Vector.sum">
+<area shape="rect" id="node2" href="$d7/d7d/classview_1_1_vector.html#a70c26c70b498930ca2f04ab3edc6ebdd" title="view.Vector.angleBetween" alt="" coords="188,5,375,32"/>
+<area shape="rect" id="node3" href="$d7/d7d/classview_1_1_vector.html#adeeb35fddfd53999832274309804f047" title="view.Vector.distanceBetween" alt="" coords="179,56,384,83"/>
+<area shape="rect" id="node4" href="$d7/d7d/classview_1_1_vector.html#ae6a99f4d2d1f1a79f362b5e1cd2c77d2" title="view.Vector.getXChange" alt="" coords="195,107,368,133"/>
+<area shape="rect" id="node7" href="$d7/d7d/classview_1_1_vector.html#a2fd7acd224e15efaaa94491f7f1a9fa4" title="view.Vector.getYChange" alt="" coords="195,157,367,184"/>
+<area shape="rect" id="node8" href="$d7/d7d/classview_1_1_vector.html#a485a40fbe58f654a1aeae82cf6b297a0" title="view.Vector.setDirection" alt="" coords="195,208,368,235"/>
+<area shape="rect" id="node9" href="$d7/d7d/classview_1_1_vector.html#ace16f664e139892ab0c09087273877eb" title="view.Vector.setMagnitude" alt="" coords="190,259,373,285"/>
+<area shape="rect" id="node5" href="$d7/d7d/classview_1_1_vector.html#a41523e735a5bfaa72067ee65d1c01fe1" title="view.Vector.getDirection" alt="" coords="437,107,611,133"/>
+<area shape="rect" id="node6" href="$d7/d7d/classview_1_1_vector.html#a5382c66a53d3c0c1d6dc41fdaa84834f" title="view.Vector.getMagnitude" alt="" coords="432,157,616,184"/>
+</map>

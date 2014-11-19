@@ -1,0 +1,6 @@
+<map id="parser.nodes.ParameterNode.addParameter" name="parser.nodes.ParameterNode.addParameter">
+<area shape="rect" id="node2" href="$db/d11/classparser_1_1nodes_1_1_binary_node.html#adeb9884b38229ab9caa3011d381f772d" title="parser.nodes.BinaryNode.\lBinaryNode" alt="" coords="329,5,516,46"/>
+<area shape="rect" id="node3" href="$d2/dce/classparser_1_1commands_1_1view_1_1_set_palette.html#a240d14cc4c537f09274667129e467428" title="parser.commands.view.Set\lPalette.SetPalette" alt="" coords="325,70,520,111"/>
+<area shape="rect" id="node4" href="$d5/dba/classparser_1_1nodes_1_1_ternary_node.html#a1411166836c6063fe91e0f255d7b4e37" title="parser.nodes.TernaryNode.\lTernaryNode" alt="" coords="326,135,519,177"/>
+<area shape="rect" id="node5" href="$d3/d36/classparser_1_1nodes_1_1_unary_node.html#a24efd4e49ac85ff954d5f0e4bf304d65" title="parser.nodes.UnaryNode.UnaryNode" alt="" coords="294,201,551,228"/>
+</map>

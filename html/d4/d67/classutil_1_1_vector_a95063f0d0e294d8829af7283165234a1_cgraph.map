@@ -1,0 +1,10 @@
+<map id="util.Vector.sum" name="util.Vector.sum">
+<area shape="rect" id="node2" href="$d4/d67/classutil_1_1_vector.html#a7ae34648236878f08cf4120e0f047c02" title="util.Vector.angleBetween" alt="" coords="181,5,360,32"/>
+<area shape="rect" id="node3" href="$d4/d67/classutil_1_1_vector.html#a1aea3b29ec9c7374d0d5520ece2085a2" title="util.Vector.distanceBetween" alt="" coords="171,56,370,83"/>
+<area shape="rect" id="node4" href="$d4/d67/classutil_1_1_vector.html#a3509d652ff8c361b07447f55e0007f31" title="util.Vector.getXChange" alt="" coords="187,107,354,133"/>
+<area shape="rect" id="node7" href="$d4/d67/classutil_1_1_vector.html#aca15e89ce2edd3e93dcb73621c26237f" title="util.Vector.getYChange" alt="" coords="188,157,353,184"/>
+<area shape="rect" id="node8" href="$d4/d67/classutil_1_1_vector.html#a338b7c1377d3bc795527c2fbeeb25639" title="util.Vector.setDirection" alt="" coords="187,208,354,235"/>
+<area shape="rect" id="node9" href="$d4/d67/classutil_1_1_vector.html#a45ba35e870010e16e64d697f97d1b1dc" title="util.Vector.setMagnitude" alt="" coords="183,259,359,285"/>
+<area shape="rect" id="node5" href="$d4/d67/classutil_1_1_vector.html#acebe00e22995a3514458ffa3db195295" title="util.Vector.getDirection" alt="" coords="425,107,591,133"/>
+<area shape="rect" id="node6" href="$d4/d67/classutil_1_1_vector.html#afa760c6d12c93fbfcfacd6e279d08d88" title="util.Vector.getMagnitude" alt="" coords="419,157,597,184"/>
+</map>

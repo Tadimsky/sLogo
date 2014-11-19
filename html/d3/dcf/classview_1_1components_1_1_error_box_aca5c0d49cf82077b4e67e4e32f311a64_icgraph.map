@@ -1,0 +1,8 @@
+<map id="view.components.ErrorBox.showError" name="view.components.ErrorBox.showError">
+<area shape="rect" id="node2" href="$d8/dff/classmodel_1_1_turtle_manager.html#a14022290b69ac8fd9c2e1530798a3a44" title="model.TurtleManager.addTurtle\lImage" alt="" coords="281,9,498,50"/>
+<area shape="rect" id="node4" href="$d8/dff/classmodel_1_1_turtle_manager.html#ad3a7dfe2894f5335c74644ad749dd77a" title="model.TurtleManager.setImage" alt="" coords="280,77,499,104"/>
+<area shape="rect" id="node6" href="$d8/dff/classmodel_1_1_turtle_manager.html#a86e0e9159dad59c6aee3d0563a40e241" title="model.TurtleManager.setImage\lRelative" alt="" coords="280,131,499,173"/>
+<area shape="rect" id="node3" href="$de/d84/classcontroller_1_1_workspace.html#ac659349589573f5405c3950d38505407" title="controller.Workspace.add\lTurtleImage" alt="" coords="553,5,735,46"/>
+<area shape="rect" id="node5" href="$de/d84/classcontroller_1_1_workspace.html#a836bba8f70a28fe652d3ab9684394b7d" title="controller.Workspace.set\lImage" alt="" coords="555,70,733,111"/>
+<area shape="rect" id="node7" href="$d8/dff/classmodel_1_1_turtle_manager.html#aaf9a9034c70a70c0b8e6317192c064d9" title="model.TurtleManager.Turtle\lManager" alt="" coords="547,135,741,177"/>
+</map>

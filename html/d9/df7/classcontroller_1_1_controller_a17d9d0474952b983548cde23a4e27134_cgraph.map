@@ -1,0 +1,21 @@
+<map id="controller.Controller.createTellMenuListener" name="controller.Controller.createTellMenuListener">
+<area shape="rect" id="node2" href="$d9/df7/classcontroller_1_1_controller.html#acd242cba05fd983be695439ef2186966" title="controller.Controller.create\lCheckBoxItemListener" alt="" coords="261,209,451,250"/>
+<area shape="rect" id="node15" href="$d9/df7/classcontroller_1_1_controller.html#a318978485f5c3bbf5a89f5dac0db71ae" title="controller.Controller.get\lWorkspace" alt="" coords="541,271,712,313"/>
+<area shape="rect" id="node17" href="$de/d84/classcontroller_1_1_workspace.html#a376960fdadb99029dd6585c07f3a33c0" title="controller.Workspace.get\lAllTurtles" alt="" coords="267,330,445,371"/>
+<area shape="rect" id="node19" href="$de/d84/classcontroller_1_1_workspace.html#a463927ff3ea61d412cbee3a3b0b9d74f" title="controller.Workspace.get\lTurtleManager" alt="" coords="267,395,445,437"/>
+<area shape="rect" id="node20" href="$d8/dff/classmodel_1_1_turtle_manager.html#ae661b1676bacbdfac66e971c950e8cf3" title="model.TurtleManager.getTurtles" alt="" coords="245,461,467,488"/>
+<area shape="rect" id="node3" href="$de/d84/classcontroller_1_1_workspace.html#abceb71fe227a560303f42bb77b0a1113" title="controller.Workspace.activate\lTurtle" alt="" coords="523,141,731,182"/>
+<area shape="rect" id="node13" href="$de/d84/classcontroller_1_1_workspace.html#a497dad2e57c3d43cd971274660863e6c" title="controller.Workspace.deactivate\lTurtle" alt="" coords="515,206,739,247"/>
+<area shape="rect" id="node4" href="$d8/dff/classmodel_1_1_turtle_manager.html#a1c46b383a49e06a2436ad084bf7cd5aa" title="model.TurtleManager.activate" alt="" coords="795,100,1005,127"/>
+<area shape="rect" id="node11" href="$de/d84/classcontroller_1_1_workspace.html#a06f94274c983b2edde00bcdc2b15f790" title="controller.Workspace.update" alt="" coords="799,155,1001,181"/>
+<area shape="rect" id="node5" href="$d8/dff/classmodel_1_1_turtle_manager.html#a3d0172590b0214793dbd3997c56f7759" title="model.TurtleManager.addNew" alt="" coords="1061,41,1272,68"/>
+<area shape="rect" id="node10" href="$d8/dff/classmodel_1_1_turtle_manager.html#a2c8eed018128d3a0be175415b36445d9" title="model.TurtleManager.activate\lTurtle" alt="" coords="1061,93,1272,134"/>
+<area shape="rect" id="node6" href="$d8/dff/classmodel_1_1_turtle_manager.html#a9831377a60a443edcedede2e809e36f4" title="model.TurtleManager.create\lTurtle" alt="" coords="1320,5,1520,46"/>
+<area shape="rect" id="node8" href="$d6/d34/classmodel_1_1_turtle.html#a65a22c7a1a7abfbc46a6f339479e7646" title="model.Turtle.setStroke" alt="" coords="1337,71,1503,97"/>
+<area shape="rect" id="node7" href="$d6/d34/classmodel_1_1_turtle.html#a27ce4fa61b6e292b1cfff08d511e7fc4" title="model.Turtle.setImage" alt="" coords="1569,12,1733,39"/>
+<area shape="rect" id="node9" href="$de/ded/classmodel_1_1_pen.html#a00c08e5bfc9d04986e0ff7ae4ceae10b" title="model.Pen.setStroke" alt="" coords="1573,71,1729,97"/>
+<area shape="rect" id="node12" href="$d8/dff/classmodel_1_1_turtle_manager.html#a8679aef13c1e2b3d695b1467c2bb5e9f" title="model.TurtleManager.update" alt="" coords="1065,159,1269,185"/>
+<area shape="rect" id="node14" href="$d8/dff/classmodel_1_1_turtle_manager.html#a9d3fda35812c5961b645ebcc5cf0c77a" title="model.TurtleManager.deactivate\lTurtle" alt="" coords="787,206,1013,247"/>
+<area shape="rect" id="node16" href="$dc/dbd/interfaceview_1_1_workspace_handler.html#ac88b6c9e5fb3ffa06ab3ef23b9ce2ae0" title="view.WorkspaceHandler.get\lWorkspace" alt="" coords="803,271,997,313"/>
+<area shape="rect" id="node18" href="$d8/dff/classmodel_1_1_turtle_manager.html#a5d4d01dd0d2fb3c5142614a74dee11af" title="model.TurtleManager.getAll\lTurtles" alt="" coords="529,337,724,378"/>
+</map>

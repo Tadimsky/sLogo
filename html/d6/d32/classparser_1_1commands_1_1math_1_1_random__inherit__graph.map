@@ -1,0 +1,5 @@
+<map id="parser.commands.math.Random" name="parser.commands.math.Random">
+<area shape="rect" id="node2" href="$d3/d36/classparser_1_1nodes_1_1_unary_node.html" title="parser.nodes.UnaryNode" alt="" coords="31,155,212,181"/>
+<area shape="rect" id="node3" href="$d7/d93/classparser_1_1nodes_1_1_parameter_node.html" title="parser.nodes.ParameterNode" alt="" coords="16,80,225,107"/>
+<area shape="rect" id="node4" href="$da/d96/classparser_1_1nodes_1_1_syntax_node.html" title="parser.nodes.SyntaxNode" alt="" coords="28,5,215,32"/>
+</map>

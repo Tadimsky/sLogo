@@ -1,0 +1,15 @@
+<map id="util.Vector.getXChange" name="util.Vector.getXChange">
+<area shape="rect" id="node2" href="$d4/d67/classutil_1_1_vector.html#a95063f0d0e294d8829af7283165234a1" title="util.Vector.sum" alt="" coords="243,61,360,88"/>
+<area shape="rect" id="node4" href="$d7/d1e/classutil_1_1_location.html#a82f3e59d7d3e3d46df862be2e63c80e3" title="util.Location.translate" alt="" coords="221,145,381,172"/>
+<area shape="rect" id="node3" href="$d4/d67/classutil_1_1_vector.html#a06fc54969a49c22c070452cc6940f98c" title="util.Vector.difference" alt="" coords="441,44,593,71"/>
+<area shape="rect" id="node5" href="$d6/d34/classmodel_1_1_turtle.html#aeeab176e64d1ad18647e37aee02affc7" title="model.Turtle.getPainting\lPoint" alt="" coords="430,95,605,137"/>
+<area shape="rect" id="node11" href="$d6/d34/classmodel_1_1_turtle.html#a84ecdb68ad525c369c4dc7dedd675607" title="model.Turtle.move" alt="" coords="447,161,587,188"/>
+<area shape="rect" id="node12" href="$d6/d34/classmodel_1_1_turtle.html#a427ec25c0a04d906a6e5d77ae5791a20" title="model.Turtle.setPosition" alt="" coords="430,212,605,239"/>
+<area shape="rect" id="node6" href="$d6/d34/classmodel_1_1_turtle.html#a9eb4cbe280f1a7f2d15df187986eecb8" title="model.Turtle.getBounds" alt="" coords="653,5,827,32"/>
+<area shape="rect" id="node7" href="$d8/dff/classmodel_1_1_turtle_manager.html#a7f2863fbe8420cb5859ab922bd866b1d" title="model.TurtleManager.paint" alt="" coords="875,81,1066,108"/>
+<area shape="rect" id="node9" href="$d6/d34/classmodel_1_1_turtle.html#a7d850c710649567ac20161f847b2ad11" title="model.Turtle.paint" alt="" coords="672,107,808,133"/>
+<area shape="rect" id="node10" href="$d6/d34/classmodel_1_1_turtle.html#a094c7d59e4551b8280a793199f612740" title="model.Turtle.stamp" alt="" coords="667,157,813,184"/>
+<area shape="rect" id="node8" href="$de/d84/classcontroller_1_1_workspace.html#aa3ec59da02e89f7882fb31677330af80" title="controller.Workspace.paint" alt="" coords="1115,81,1304,108"/>
+<area shape="rect" id="node13" href="$d6/d34/classmodel_1_1_turtle.html#a817b1ab6a35fa3deb30ea4569ab70db1" title="model.Turtle.goHome" alt="" coords="661,212,819,239"/>
+<area shape="rect" id="node14" href="$d6/d34/classmodel_1_1_turtle.html#a65bffb6b24e40350f6094e054358dcbb" title="model.Turtle.clear" alt="" coords="903,212,1038,239"/>
+</map>

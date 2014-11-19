@@ -1,0 +1,5 @@
+<map id="controller.Controller.createHelpMenu" name="controller.Controller.createHelpMenu">
+<area shape="rect" id="node2" href="$d9/df7/classcontroller_1_1_controller.html#a318978485f5c3bbf5a89f5dac0db71ae" title="controller.Controller.get\lWorkspace" alt="" coords="255,5,425,46"/>
+<area shape="rect" id="node4" href="$de/d84/classcontroller_1_1_workspace.html#a6b1f99115388e9de9dc779e30ed16041" title="controller.Workspace.show\lError" alt="" coords="245,70,435,111"/>
+<area shape="rect" id="node3" href="$dc/dbd/interfaceview_1_1_workspace_handler.html#ac88b6c9e5fb3ffa06ab3ef23b9ce2ae0" title="view.WorkspaceHandler.get\lWorkspace" alt="" coords="483,5,677,46"/>
+</map>

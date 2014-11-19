@@ -1,0 +1,5 @@
+<map id="model.Turtle.paintStamp" name="model.Turtle.paintStamp">
+<area shape="rect" id="node2" href="$d6/d34/classmodel_1_1_turtle.html#a7d850c710649567ac20161f847b2ad11" title="model.Turtle.paint" alt="" coords="232,5,368,32"/>
+<area shape="rect" id="node3" href="$d8/dff/classmodel_1_1_turtle_manager.html#a7f2863fbe8420cb5859ab922bd866b1d" title="model.TurtleManager.paint" alt="" coords="417,5,607,32"/>
+<area shape="rect" id="node4" href="$de/d84/classcontroller_1_1_workspace.html#aa3ec59da02e89f7882fb31677330af80" title="controller.Workspace.paint" alt="" coords="656,5,845,32"/>
+</map>

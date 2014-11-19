@@ -1,0 +1,19 @@
+<map id="parser.commands.workspace.AskWith.evaluate" name="parser.commands.workspace.AskWith.evaluate">
+<area shape="rect" id="node2" href="$d8/dff/classmodel_1_1_turtle_manager.html#a1c46b383a49e06a2436ad084bf7cd5aa" title="model.TurtleManager.activate" alt="" coords="285,43,496,69"/>
+<area shape="rect" id="node9" href="$db/d77/classparser_1_1commands_1_1workspace_1_1_ask_with.html#ac831d7c1b648c218daeea32ddc90dd35" title="parser.commands.workspace.\lAskWith.checkSyntax" alt="" coords="284,145,497,186"/>
+<area shape="rect" id="node10" href="$db/d11/classparser_1_1nodes_1_1_binary_node.html#a555930c71203ce7c05e1290f069b19a1" title="parser.nodes.BinaryNode.getLeft" alt="" coords="563,125,795,152"/>
+<area shape="rect" id="node12" href="$db/d11/classparser_1_1nodes_1_1_binary_node.html#a9c33799a377e3c277de0fc9138a2cb81" title="parser.nodes.BinaryNode.get\lRight" alt="" coords="575,177,783,218"/>
+<area shape="rect" id="node13" href="$d8/dff/classmodel_1_1_turtle_manager.html#a574d2559ea66b6d03c753ef8498103d4" title="model.TurtleManager.clear\lActive" alt="" coords="295,262,486,303"/>
+<area shape="rect" id="node14" href="$d8/dff/classmodel_1_1_turtle_manager.html#a97d7fc3f46cfc4e419c5638b5d17ed71" title="model.TurtleManager.copy\lActive" alt="" coords="296,327,485,369"/>
+<area shape="rect" id="node16" href="$da/d96/classparser_1_1nodes_1_1_syntax_node.html#a669c370adce66a1960835323a90b9adb" title="parser.nodes.SyntaxNode.evaluate" alt="" coords="267,393,514,420"/>
+<area shape="rect" id="node17" href="$d4/d1c/classparser_1_1nodes_1_1_list_node.html#abfbc6ff7aa0cbf42cb7575aefeb966a1" title="parser.nodes.ListNode.evaluate" alt="" coords="279,444,503,471"/>
+<area shape="rect" id="node18" href="$d8/dff/classmodel_1_1_turtle_manager.html#a5d4d01dd0d2fb3c5142614a74dee11af" title="model.TurtleManager.getAll\lTurtles" alt="" coords="293,495,488,537"/>
+<area shape="rect" id="node3" href="$d8/dff/classmodel_1_1_turtle_manager.html#a2c8eed018128d3a0be175415b36445d9" title="model.TurtleManager.activate\lTurtle" alt="" coords="573,5,784,46"/>
+<area shape="rect" id="node4" href="$d8/dff/classmodel_1_1_turtle_manager.html#a3d0172590b0214793dbd3997c56f7759" title="model.TurtleManager.addNew" alt="" coords="573,71,784,97"/>
+<area shape="rect" id="node5" href="$d8/dff/classmodel_1_1_turtle_manager.html#a9831377a60a443edcedede2e809e36f4" title="model.TurtleManager.create\lTurtle" alt="" coords="860,19,1060,61"/>
+<area shape="rect" id="node7" href="$d6/d34/classmodel_1_1_turtle.html#a65a22c7a1a7abfbc46a6f339479e7646" title="model.Turtle.setStroke" alt="" coords="877,85,1043,112"/>
+<area shape="rect" id="node6" href="$d6/d34/classmodel_1_1_turtle.html#a27ce4fa61b6e292b1cfff08d511e7fc4" title="model.Turtle.setImage" alt="" coords="1126,27,1290,53"/>
+<area shape="rect" id="node8" href="$de/ded/classmodel_1_1_pen.html#a00c08e5bfc9d04986e0ff7ae4ceae10b" title="model.Pen.setStroke" alt="" coords="1130,85,1286,112"/>
+<area shape="rect" id="node11" href="$d7/d93/classparser_1_1nodes_1_1_parameter_node.html#a2c57eab9997daf1efb840a189c1034c5" title="parser.nodes.ParameterNode.get\lParameter" alt="" coords="843,150,1077,191"/>
+<area shape="rect" id="node15" href="$d8/dff/classmodel_1_1_turtle_manager.html#ae661b1676bacbdfac66e971c950e8cf3" title="model.TurtleManager.getTurtles" alt="" coords="568,335,789,361"/>
+</map>

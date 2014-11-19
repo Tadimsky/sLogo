@@ -1,0 +1,8 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$d9/dc7/classview_1_1_window.html" title="view.Window" alt="" coords="279,5,377,32"/>
+<area shape="rect" id="node3" href="$dd/da3/classview_1_1windows_1_1_help_window.html" title="view.windows.HelpWindow" alt="" coords="236,56,420,83"/>
+<area shape="rect" id="node4" href="$de/d6c/classview_1_1windows_1_1_settings_window.html" title="view.windows.SettingsWindow" alt="" coords="224,107,432,133"/>
+<area shape="rect" id="node5" href="$d5/d1a/classview_1_1windows_1_1_graphics_settings_window.html" title="view.windows.GraphicsSettings\lWindow" alt="" coords="486,66,703,107"/>
+<area shape="rect" id="node6" href="$d1/dcf/classview_1_1windows_1_1_workspace_settings_window.html" title="view.windows.WorkspaceSettings\lWindow" alt="" coords="480,131,709,173"/>
+<area shape="rect" id="node7" href="$dc/dbd/interfaceview_1_1_workspace_handler.html" title="view.WorkspaceHandler" alt="" coords="5,5,176,32"/>
+</map>

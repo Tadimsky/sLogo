@@ -1,0 +1,5 @@
+<map id="parser.commands.turtle.queries.Shape" name="parser.commands.turtle.queries.Shape">
+<area shape="rect" id="node2" href="$d4/d4c/classparser_1_1nodes_1_1_basic_control.html" title="parser.nodes.BasicControl" alt="" coords="25,155,215,181"/>
+<area shape="rect" id="node3" href="$da/df7/classparser_1_1nodes_1_1_simple_node.html" title="parser.nodes.SimpleNode" alt="" coords="27,80,213,107"/>
+<area shape="rect" id="node4" href="$da/d96/classparser_1_1nodes_1_1_syntax_node.html" title="parser.nodes.SyntaxNode" alt="" coords="27,5,213,32"/>
+</map>

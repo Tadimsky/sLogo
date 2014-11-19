@@ -1,0 +1,18 @@
+<map id="controller.Controller.getWorkspace" name="controller.Controller.getWorkspace">
+<area shape="rect" id="node2" href="$d9/df7/classcontroller_1_1_controller.html#acd242cba05fd983be695439ef2186966" title="controller.Controller.create\lCheckBoxItemListener" alt="" coords="239,120,430,162"/>
+<area shape="rect" id="node3" href="$d9/df7/classcontroller_1_1_controller.html#a17d9d0474952b983548cde23a4e27134" title="controller.Controller.create\lTellMenuListener" alt="" coords="494,171,685,212"/>
+<area shape="rect" id="node4" href="$d9/df7/classcontroller_1_1_controller.html#ac03add001882f876041934dfe435b43f" title="controller.Controller.create\lSettingMenu" alt="" coords="738,222,929,263"/>
+<area shape="rect" id="node7" href="$d9/df7/classcontroller_1_1_controller.html#a028264f3c286e8e1a2d897dda5ff0b53" title="controller.Controller.create\lEditMenu" alt="" coords="982,280,1173,322"/>
+<area shape="rect" id="node8" href="$d9/df7/classcontroller_1_1_controller.html#aa46804b9ca132af8504b5dafb1cadb0d" title="controller.Controller.create\lFileCommands" alt="" coords="738,70,929,111"/>
+<area shape="rect" id="node10" href="$d9/df7/classcontroller_1_1_controller.html#ad4ea3ddba3a6da5e7d84dfcea4af939b" title="controller.Controller.create\lHelpMenu" alt="" coords="494,339,685,380"/>
+<area shape="rect" id="node11" href="$d9/df7/classcontroller_1_1_controller.html#a19e3ac02ba1459ff9e16013584ba0ae5" title="controller.Controller.create\lPhysicalCommands" alt="" coords="239,455,430,496"/>
+<area shape="rect" id="node13" href="$d9/df7/classcontroller_1_1_controller.html#aaa03ac2d4ba85ce0aea59ded9a2f65b9" title="controller.Controller.create\lVisualCommands" alt="" coords="239,390,430,431"/>
+<area shape="rect" id="node14" href="$d9/df7/classcontroller_1_1_controller.html#a89b63f37e67efbeddda1f247016c837b" title="controller.Controller.process\lCommand" alt="" coords="733,487,933,528"/>
+<area shape="rect" id="node16" href="$d9/df7/classcontroller_1_1_controller.html#aec5e242ff69899c974dbd6302510f70b" title="controller.Controller.processFile" alt="" coords="225,69,445,96"/>
+<area shape="rect" id="node5" href="$d9/df7/classcontroller_1_1_controller.html#a2901bf43bb8e47b485558dbf00d40d6d" title="controller.Controller.create\lJMenuBar" alt="" coords="1222,310,1413,351"/>
+<area shape="rect" id="node6" href="$d9/df7/classcontroller_1_1_controller.html#a47511ec57338c8e75e71e9314cda5271" title="controller.Controller.Controller" alt="" coords="1462,365,1674,392"/>
+<area shape="rect" id="node9" href="$d9/df7/classcontroller_1_1_controller.html#af4c05286f1534b1fa6de523c54549288" title="controller.Controller.create\lFileMenu" alt="" coords="982,116,1173,158"/>
+<area shape="rect" id="node12" href="$d9/df7/classcontroller_1_1_controller.html#aa81e4dbd87e3f8b9a1c43acb096304dd" title="controller.Controller.create\lCommandMenu" alt="" coords="494,404,685,446"/>
+<area shape="rect" id="node15" href="$d9/df7/classcontroller_1_1_controller.html#a2bfb87bca460d87b2c97e0b5045a2175" title="controller.Controller.create\lRunCommandListener" alt="" coords="982,471,1173,512"/>
+<area shape="rect" id="node17" href="$d9/df7/classcontroller_1_1_controller.html#a37c3009658f66dc4de0be01b75adf660" title="controller.Controller.load\lWorkspace" alt="" coords="501,70,678,111"/>
+</map>

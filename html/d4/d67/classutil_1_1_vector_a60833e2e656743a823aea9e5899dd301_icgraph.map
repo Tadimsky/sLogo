@@ -1,0 +1,10 @@
+<map id="util.Vector.turn" name="util.Vector.turn">
+<area shape="rect" id="node2" href="$d6/d34/classmodel_1_1_turtle.html#a7ff0491eca6971ab59d549c33469d69e" title="model.Turtle.faceTowards" alt="" coords="168,5,349,32"/>
+<area shape="rect" id="node6" href="$d4/d67/classutil_1_1_vector.html#a3186fe1ffdad30bd397dee8fd313cb26" title="util.Vector.negate" alt="" coords="191,56,326,83"/>
+<area shape="rect" id="node8" href="$d6/d34/classmodel_1_1_turtle.html#a849598fc06250bf6f435a9837e0f1dfe" title="model.Turtle.setHeading" alt="" coords="398,107,575,133"/>
+<area shape="rect" id="node9" href="$d6/d34/classmodel_1_1_turtle.html#a4e78ca660d2d834622280c081e3a4c65" title="model.Turtle.turn" alt="" coords="193,157,324,184"/>
+<area shape="rect" id="node3" href="$d6/d34/classmodel_1_1_turtle.html#a427ec25c0a04d906a6e5d77ae5791a20" title="model.Turtle.setPosition" alt="" coords="399,5,574,32"/>
+<area shape="rect" id="node4" href="$d6/d34/classmodel_1_1_turtle.html#a817b1ab6a35fa3deb30ea4569ab70db1" title="model.Turtle.goHome" alt="" coords="625,56,783,83"/>
+<area shape="rect" id="node5" href="$d6/d34/classmodel_1_1_turtle.html#a65bffb6b24e40350f6094e054358dcbb" title="model.Turtle.clear" alt="" coords="833,56,967,83"/>
+<area shape="rect" id="node7" href="$d4/d67/classutil_1_1_vector.html#a06fc54969a49c22c070452cc6940f98c" title="util.Vector.difference" alt="" coords="411,56,563,83"/>
+</map>

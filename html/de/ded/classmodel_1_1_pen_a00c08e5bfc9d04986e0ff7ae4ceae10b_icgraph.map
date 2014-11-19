@@ -1,0 +1,17 @@
+<map id="model.Pen.setStroke" name="model.Pen.setStroke">
+<area shape="rect" id="node2" href="$d6/d34/classmodel_1_1_turtle.html#adc6c54cdc695221f3b39474ec8fc2962" title="model.Turtle.setPenSize" alt="" coords="211,29,386,56"/>
+<area shape="rect" id="node3" href="$d6/d34/classmodel_1_1_turtle.html#a65a22c7a1a7abfbc46a6f339479e7646" title="model.Turtle.setStroke" alt="" coords="215,80,382,107"/>
+<area shape="rect" id="node4" href="$d8/dff/classmodel_1_1_turtle_manager.html#a3d0172590b0214793dbd3997c56f7759" title="model.TurtleManager.addNew" alt="" coords="435,80,645,107"/>
+<area shape="rect" id="node5" href="$de/d84/classcontroller_1_1_workspace.html#a6edc5179c7840bd8bdd91bb19ef7405b" title="controller.Workspace.add\lTurtle" alt="" coords="1219,5,1400,46"/>
+<area shape="rect" id="node9" href="$d8/dff/classmodel_1_1_turtle_manager.html#a1c46b383a49e06a2436ad084bf7cd5aa" title="model.TurtleManager.activate" alt="" coords="693,171,904,197"/>
+<area shape="rect" id="node6" href="$d9/df7/classcontroller_1_1_controller.html#ac03add001882f876041934dfe435b43f" title="controller.Controller.create\lSettingMenu" alt="" coords="1694,38,1885,79"/>
+<area shape="rect" id="node7" href="$d9/df7/classcontroller_1_1_controller.html#a2901bf43bb8e47b485558dbf00d40d6d" title="controller.Controller.create\lJMenuBar" alt="" coords="1934,38,2125,79"/>
+<area shape="rect" id="node8" href="$d9/df7/classcontroller_1_1_controller.html#a47511ec57338c8e75e71e9314cda5271" title="controller.Controller.Controller" alt="" coords="2174,45,2386,72"/>
+<area shape="rect" id="node10" href="$de/d84/classcontroller_1_1_workspace.html#abceb71fe227a560303f42bb77b0a1113" title="controller.Workspace.activate\lTurtle" alt="" coords="955,69,1163,110"/>
+<area shape="rect" id="node13" href="$d8/dff/classmodel_1_1_turtle_manager.html#aaf9a9034c70a70c0b8e6317192c064d9" title="model.TurtleManager.Turtle\lManager" alt="" coords="962,134,1155,175"/>
+<area shape="rect" id="node14" href="$d8/dff/classmodel_1_1_turtle_manager.html#a2dfe5fb02eb65a21ec2a752731b3b75c" title="model.TurtleManager.activate" alt="" coords="953,200,1164,227"/>
+<area shape="rect" id="node15" href="$d5/d6d/classparser_1_1commands_1_1workspace_1_1_ask.html#a837a075ce77789761e3060413c51e882" title="parser.commands.workspace.\lAsk.evaluate" alt="" coords="952,251,1165,293"/>
+<area shape="rect" id="node16" href="$db/d77/classparser_1_1commands_1_1workspace_1_1_ask_with.html#a1de9ef4326a655f16ceec2a53302a0b5" title="parser.commands.workspace.\lAskWith.evaluate" alt="" coords="952,317,1165,358"/>
+<area shape="rect" id="node11" href="$d9/df7/classcontroller_1_1_controller.html#acd242cba05fd983be695439ef2186966" title="controller.Controller.create\lCheckBoxItemListener" alt="" coords="1214,70,1405,111"/>
+<area shape="rect" id="node12" href="$d9/df7/classcontroller_1_1_controller.html#a17d9d0474952b983548cde23a4e27134" title="controller.Controller.create\lTellMenuListener" alt="" coords="1454,67,1645,109"/>
+</map>

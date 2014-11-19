@@ -1,0 +1,12 @@
+<map id="util.Location.translate" name="util.Location.translate">
+<area shape="rect" id="node2" href="$d6/d34/classmodel_1_1_turtle.html#aeeab176e64d1ad18647e37aee02affc7" title="model.Turtle.getPainting\lPoint" alt="" coords="214,95,389,137"/>
+<area shape="rect" id="node8" href="$d6/d34/classmodel_1_1_turtle.html#a84ecdb68ad525c369c4dc7dedd675607" title="model.Turtle.move" alt="" coords="231,161,371,188"/>
+<area shape="rect" id="node9" href="$d6/d34/classmodel_1_1_turtle.html#a427ec25c0a04d906a6e5d77ae5791a20" title="model.Turtle.setPosition" alt="" coords="214,212,389,239"/>
+<area shape="rect" id="node3" href="$d6/d34/classmodel_1_1_turtle.html#a9eb4cbe280f1a7f2d15df187986eecb8" title="model.Turtle.getBounds" alt="" coords="437,5,611,32"/>
+<area shape="rect" id="node4" href="$d8/dff/classmodel_1_1_turtle_manager.html#a7f2863fbe8420cb5859ab922bd866b1d" title="model.TurtleManager.paint" alt="" coords="659,81,850,108"/>
+<area shape="rect" id="node6" href="$d6/d34/classmodel_1_1_turtle.html#a7d850c710649567ac20161f847b2ad11" title="model.Turtle.paint" alt="" coords="456,107,592,133"/>
+<area shape="rect" id="node7" href="$d6/d34/classmodel_1_1_turtle.html#a094c7d59e4551b8280a793199f612740" title="model.Turtle.stamp" alt="" coords="451,157,597,184"/>
+<area shape="rect" id="node5" href="$de/d84/classcontroller_1_1_workspace.html#aa3ec59da02e89f7882fb31677330af80" title="controller.Workspace.paint" alt="" coords="899,81,1088,108"/>
+<area shape="rect" id="node10" href="$d6/d34/classmodel_1_1_turtle.html#a817b1ab6a35fa3deb30ea4569ab70db1" title="model.Turtle.goHome" alt="" coords="445,212,603,239"/>
+<area shape="rect" id="node11" href="$d6/d34/classmodel_1_1_turtle.html#a65bffb6b24e40350f6094e054358dcbb" title="model.Turtle.clear" alt="" coords="687,212,822,239"/>
+</map>

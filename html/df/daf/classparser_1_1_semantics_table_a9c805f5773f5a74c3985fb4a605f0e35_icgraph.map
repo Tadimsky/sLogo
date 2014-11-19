@@ -1,0 +1,14 @@
+<map id="parser.SemanticsTable.buildMap" name="parser.SemanticsTable.buildMap">
+<area shape="rect" id="node2" href="$df/daf/classparser_1_1_semantics_table.html#a1ee110bb77636170fa5e8bb1921b8296" title="parser.SemanticsTable.Semantics\lTable" alt="" coords="281,97,519,138"/>
+<area shape="rect" id="node3" href="$df/daf/classparser_1_1_semantics_table.html#a737b71f0ef1c252dbe00b3862c45bc74" title="parser.SemanticsTable.get\lInstance" alt="" coords="569,97,759,138"/>
+<area shape="rect" id="node4" href="$d9/df7/classcontroller_1_1_controller.html#a89b63f37e67efbeddda1f247016c837b" title="controller.Controller.process\lCommand" alt="" coords="819,7,1019,49"/>
+<area shape="rect" id="node7" href="$d9/df7/classcontroller_1_1_controller.html#aec5e242ff69899c974dbd6302510f70b" title="controller.Controller.processFile" alt="" coords="809,75,1029,101"/>
+<area shape="rect" id="node12" href="$df/ddc/classparser_1_1nodes_1_1_command_node.html#afc528cdec7c087a621e6828b02bce48b" title="parser.nodes.CommandNode.\lCommandNode" alt="" coords="811,126,1026,167"/>
+<area shape="rect" id="node13" href="$d7/d0d/classparser_1_1_semantics_checker.html#a21d75c2c82bd1c79cb8817689b912466" title="parser.SemanticsChecker.\lSemanticsChecker" alt="" coords="824,191,1013,233"/>
+<area shape="rect" id="node5" href="$d9/df7/classcontroller_1_1_controller.html#a2bfb87bca460d87b2c97e0b5045a2175" title="controller.Controller.create\lRunCommandListener" alt="" coords="1305,5,1495,46"/>
+<area shape="rect" id="node6" href="$d9/df7/classcontroller_1_1_controller.html#a47511ec57338c8e75e71e9314cda5271" title="controller.Controller.Controller" alt="" coords="2025,44,2237,71"/>
+<area shape="rect" id="node8" href="$d9/df7/classcontroller_1_1_controller.html#a37c3009658f66dc4de0be01b75adf660" title="controller.Controller.load\lWorkspace" alt="" coords="1078,70,1255,111"/>
+<area shape="rect" id="node9" href="$d9/df7/classcontroller_1_1_controller.html#aa46804b9ca132af8504b5dafb1cadb0d" title="controller.Controller.create\lFileCommands" alt="" coords="1305,70,1495,111"/>
+<area shape="rect" id="node10" href="$d9/df7/classcontroller_1_1_controller.html#af4c05286f1534b1fa6de523c54549288" title="controller.Controller.create\lFileMenu" alt="" coords="1545,67,1735,109"/>
+<area shape="rect" id="node11" href="$d9/df7/classcontroller_1_1_controller.html#a2901bf43bb8e47b485558dbf00d40d6d" title="controller.Controller.create\lJMenuBar" alt="" coords="1785,66,1975,107"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="parser.commands.math.Minus.evaluate" name="parser.commands.math.Minus.evaluate">
+<area shape="rect" id="node2" href="$da/d96/classparser_1_1nodes_1_1_syntax_node.html#a669c370adce66a1960835323a90b9adb" title="parser.nodes.SyntaxNode.evaluate" alt="" coords="331,5,578,32"/>
+<area shape="rect" id="node3" href="$d3/d36/classparser_1_1nodes_1_1_unary_node.html#a5075c2524d5d8551552e4cb93d4b0aac" title="parser.nodes.UnaryNode.get\lArgument" alt="" coords="351,57,558,98"/>
+<area shape="rect" id="node4" href="$d7/d93/classparser_1_1nodes_1_1_parameter_node.html#a2c57eab9997daf1efb840a189c1034c5" title="parser.nodes.ParameterNode.get\lParameter" alt="" coords="627,57,861,98"/>
+</map>

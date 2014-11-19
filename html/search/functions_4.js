@@ -1,0 +1,9 @@
+var searchData=
+[
+  ['deactivateturtle',['deactivateTurtle',['../de/d84/classcontroller_1_1_workspace.html#a497dad2e57c3d43cd971274660863e6c',1,'controller.Workspace.deactivateTurtle()'],['../d8/dff/classmodel_1_1_turtle_manager.html#a9d3fda35812c5961b645ebcc5cf0c77a',1,'model.TurtleManager.deactivateTurtle()']]],
+  ['difference',['Difference',['../d3/da1/classparser_1_1commands_1_1math_1_1_difference.html#a5fae8b1974fc96af7e191c93eeeba456',1,'parser.commands.math.Difference.Difference()'],['../d7/d1e/classutil_1_1_location.html#af2d8e476926d234a5c691a72c855bc0c',1,'util.Location.difference()'],['../d4/d67/classutil_1_1_vector.html#a06fc54969a49c22c070452cc6940f98c',1,'util.Vector.difference()'],['../d5/db8/classview_1_1_location.html#aeee7722ba01627bbafb2fd531d0ef318',1,'view.Location.difference()'],['../d7/d7d/classview_1_1_vector.html#a8eb196d068714eeb5d4cee2e86c44882',1,'view.Vector.difference()']]],
+  ['distancebetween',['distanceBetween',['../d4/d67/classutil_1_1_vector.html#a1aea3b29ec9c7374d0d5520ece2085a2',1,'util.Vector.distanceBetween(Point2D p1, Point2D p2)'],['../d4/d67/classutil_1_1_vector.html#aa660d4dab1822a100f8c56cf5e4c907b',1,'util.Vector.distanceBetween(double dx, double dy)'],['../d7/d7d/classview_1_1_vector.html#adeeb35fddfd53999832274309804f047',1,'view.Vector.distanceBetween(Point2D p1, Point2D p2)'],['../d7/d7d/classview_1_1_vector.html#a8e2e5f9aad1e8ace1ceacfbd2d74974c',1,'view.Vector.distanceBetween(double dx, double dy)']]],
+  ['doclick',['doClick',['../d7/d60/classcontroller_1_1support_1_1_stay_open_check_box_menu_item.html#a516239effcb111d009719ab592fbe047',1,'controller::support::StayOpenCheckBoxMenuItem']]],
+  ['dotimes',['DoTimes',['../d0/d05/classparser_1_1commands_1_1other_1_1_do_times.html#a4a18c662ee076d173f13fa80f76364c5',1,'parser::commands::other::DoTimes']]],
+  ['drawgrid',['drawGrid',['../d8/ddd/classview_1_1_canvas.html#a9293c6f34e52a7aed6948dbbbfc16d2b',1,'view::Canvas']]]
+];

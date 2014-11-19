@@ -1,0 +1,5 @@
+<map id="view.windows.VariablesWindow.createNewListener" name="view.windows.VariablesWindow.createNewListener">
+<area shape="rect" id="node2" href="$df/d37/classview_1_1components_1_1_logo_table.html#a1f01ef9e47e2c5582718594dd76055d9" title="view.components.LogoTable.get\lComboBox" alt="" coords="312,5,536,46"/>
+<area shape="rect" id="node3" href="$db/d29/classparser_1_1_variable_manager.html#a57940c6ff0aedab715e4560ba6bdcd3b" title="parser.VariableManager.get\lScopeNames" alt="" coords="325,70,523,111"/>
+<area shape="rect" id="node4" href="$df/d37/classview_1_1components_1_1_logo_table.html#a9b6f7e6d321d7d777aa1d06d2d236be6" title="view.components.LogoTable.set\lLastRowEditable" alt="" coords="313,135,535,177"/>
+</map>

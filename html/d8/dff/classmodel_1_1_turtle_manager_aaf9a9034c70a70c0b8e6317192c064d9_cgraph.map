@@ -1,0 +1,12 @@
+<map id="model.TurtleManager.TurtleManager" name="model.TurtleManager.TurtleManager">
+<area shape="rect" id="node2" href="$d8/dff/classmodel_1_1_turtle_manager.html#a1c46b383a49e06a2436ad084bf7cd5aa" title="model.TurtleManager.activate" alt="" coords="252,100,463,127"/>
+<area shape="rect" id="node9" href="$d8/dff/classmodel_1_1_turtle_manager.html#a86e0e9159dad59c6aee3d0563a40e241" title="model.TurtleManager.setImage\lRelative" alt="" coords="248,154,467,195"/>
+<area shape="rect" id="node3" href="$d8/dff/classmodel_1_1_turtle_manager.html#a3d0172590b0214793dbd3997c56f7759" title="model.TurtleManager.addNew" alt="" coords="523,41,733,68"/>
+<area shape="rect" id="node8" href="$d8/dff/classmodel_1_1_turtle_manager.html#a2c8eed018128d3a0be175415b36445d9" title="model.TurtleManager.activate\lTurtle" alt="" coords="523,93,733,134"/>
+<area shape="rect" id="node4" href="$d8/dff/classmodel_1_1_turtle_manager.html#a9831377a60a443edcedede2e809e36f4" title="model.TurtleManager.create\lTurtle" alt="" coords="789,5,989,46"/>
+<area shape="rect" id="node6" href="$d6/d34/classmodel_1_1_turtle.html#a65a22c7a1a7abfbc46a6f339479e7646" title="model.Turtle.setStroke" alt="" coords="806,71,973,97"/>
+<area shape="rect" id="node5" href="$d6/d34/classmodel_1_1_turtle.html#a27ce4fa61b6e292b1cfff08d511e7fc4" title="model.Turtle.setImage" alt="" coords="1038,12,1202,39"/>
+<area shape="rect" id="node7" href="$de/ded/classmodel_1_1_pen.html#a00c08e5bfc9d04986e0ff7ae4ceae10b" title="model.Pen.setStroke" alt="" coords="1042,71,1198,97"/>
+<area shape="rect" id="node10" href="$d3/dcf/classview_1_1components_1_1_error_box.html#aca5c0d49cf82077b4e67e4e32f311a64" title="view.components.ErrorBox.show\lError" alt="" coords="515,158,741,199"/>
+<area shape="rect" id="node11" href="$dd/d60/enumview_1_1components_1_1_error.html#aaaf045ebafea6177dfa658991af59af8" title="view.components.Error.get\lMessage" alt="" coords="794,158,985,199"/>
+</map>

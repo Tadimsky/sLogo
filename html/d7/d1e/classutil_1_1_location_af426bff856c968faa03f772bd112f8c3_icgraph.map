@@ -1,0 +1,5 @@
+<map id="util.Location.getVisualLocation" name="util.Location.getVisualLocation">
+<area shape="rect" id="node2" href="$d6/d34/classmodel_1_1_turtle.html#a189f2fb7a7e556387ce460aae67d88f7" title="model.Turtle.getCenter" alt="" coords="292,5,460,32"/>
+<area shape="rect" id="node3" href="$d6/d34/classmodel_1_1_turtle.html#aa8650975441f4ca6e0d938c38ac2639c" title="model.Turtle.wrapOnBoundary" alt="" coords="269,56,483,83"/>
+<area shape="rect" id="node4" href="$d6/d34/classmodel_1_1_turtle.html#a84ecdb68ad525c369c4dc7dedd675607" title="model.Turtle.move" alt="" coords="531,56,671,83"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="controller.Workspace" name="controller.Workspace">
+<area shape="rect" id="node7" href="$d7/d40/classcontroller_1_1_w_s_undo_manager.html" title="controller.WSUndoManager" alt="" coords="1915,368,2109,395"/>
+<area shape="rect" id="node16" href="$d8/dff/classmodel_1_1_turtle_manager.html" title="model.TurtleManager" alt="" coords="1182,371,1338,397"/>
+<area shape="rect" id="node3" href="$dc/d3c/interfacemodel_1_1_paintable.html" title="model.Paintable" alt="" coords="421,547,545,573"/>
+<area shape="rect" id="node18" href="$d6/d34/classmodel_1_1_turtle.html" title="model.Turtle" alt="" coords="838,371,938,397"/>
+<area shape="rect" id="node32" href="$d8/ddd/classview_1_1_canvas.html" title="view.Canvas" alt="" coords="839,763,937,789"/>
+<area shape="rect" id="node4" href="$dd/da7/interfaceparser_1_1_i_parser_provider.html" title="parser.IParserProvider" alt="" coords="1179,168,1341,195"/>
+<area shape="rect" id="node5" href="$dc/d3c/interfacecontroller_1_1support_1_1_i_error.html" title="controller.support.IError" alt="" coords="1174,219,1346,245"/>
+<area shape="rect" id="node11" href="$db/d29/classparser_1_1_variable_manager.html" title="parser.VariableManager" alt="" coords="1173,53,1347,80"/>
+<area shape="rect" id="node13" href="$da/d34/classparser_1_1_variable_scope.html" title="parser.VariableScope" alt="" coords="809,7,967,33"/>
+<area shape="rect" id="node19" href="$df/dca/interfacemodel_1_1_i_state.html" title="model.IState" alt="" coords="431,385,535,412"/>
+<area shape="rect" id="node20" href="$d4/d67/classutil_1_1_vector.html" title="util.Vector" alt="" coords="439,436,526,463"/>
+<area shape="rect" id="node21" href="$d7/d1e/classutil_1_1_location.html" title="util.Location" alt="" coords="433,284,532,311"/>
+<area shape="rect" id="node25" href="$de/ded/classmodel_1_1_pen.html" title="model.Pen" alt="" coords="437,496,528,523"/>
+<area shape="rect" id="node36" href="$d6/dda/classmodel_1_1_color_manager.html" title="model.ColorManager" alt="" coords="405,1032,560,1059"/>
+<area shape="rect" id="node29" href="$d7/da7/enumview_1_1components_1_1_strokes.html" title="view.components.Strokes" alt="" coords="6,667,191,693"/>
+</map>

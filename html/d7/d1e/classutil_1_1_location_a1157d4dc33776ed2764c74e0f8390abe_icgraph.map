@@ -1,0 +1,12 @@
+<map id="util.Location.getIntY" name="util.Location.getIntY">
+<area shape="rect" id="node2" href="$d6/d34/classmodel_1_1_turtle.html#adc63bb1ed5f0a894a2404b5b55a60c5d" title="model.Turtle.boundsExceeded" alt="" coords="209,5,423,32"/>
+<area shape="rect" id="node3" href="$d6/d34/classmodel_1_1_turtle.html#aa8650975441f4ca6e0d938c38ac2639c" title="model.Turtle.wrapOnBoundary" alt="" coords="480,31,693,57"/>
+<area shape="rect" id="node5" href="$d5/d3e/classparser_1_1commands_1_1turtle_1_1queries_1_1_y_cor.html#aad7a45e54ae49d997bb8549fe0467a8d" title="parser.commands.turtle.queries.\lYCor.evaluate" alt="" coords="201,107,431,149"/>
+<area shape="rect" id="node6" href="$d6/d34/classmodel_1_1_turtle.html#a9eb4cbe280f1a7f2d15df187986eecb8" title="model.Turtle.getBounds" alt="" coords="229,173,403,200"/>
+<area shape="rect" id="node7" href="$d8/dff/classmodel_1_1_turtle_manager.html#a7f2863fbe8420cb5859ab922bd866b1d" title="model.TurtleManager.paint" alt="" coords="931,249,1122,276"/>
+<area shape="rect" id="node9" href="$d6/d34/classmodel_1_1_turtle.html#a91368e42c1530a73f909499d8d7b8ef3" title="model.Turtle.paintTurtle" alt="" coords="231,275,401,301"/>
+<area shape="rect" id="node4" href="$d6/d34/classmodel_1_1_turtle.html#a84ecdb68ad525c369c4dc7dedd675607" title="model.Turtle.move" alt="" coords="742,31,882,57"/>
+<area shape="rect" id="node8" href="$de/d84/classcontroller_1_1_workspace.html#aa3ec59da02e89f7882fb31677330af80" title="controller.Workspace.paint" alt="" coords="1171,249,1360,276"/>
+<area shape="rect" id="node10" href="$d6/d34/classmodel_1_1_turtle.html#a7d850c710649567ac20161f847b2ad11" title="model.Turtle.paint" alt="" coords="744,275,880,301"/>
+<area shape="rect" id="node11" href="$d6/d34/classmodel_1_1_turtle.html#aae6d22acacfa7bd29fb818f4f9dd3d2e" title="model.Turtle.paintStamp" alt="" coords="497,325,676,352"/>
+</map>

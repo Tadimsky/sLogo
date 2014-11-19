@@ -1,0 +1,10 @@
+<map id="model.Turtle.getBounds" name="model.Turtle.getBounds">
+<area shape="rect" id="node2" href="$d7/d1e/classutil_1_1_location.html#a232168bda0ff164c4721dea19a7630d8" title="util.Location.getIntX" alt="" coords="241,5,389,32"/>
+<area shape="rect" id="node3" href="$d7/d1e/classutil_1_1_location.html#a1157d4dc33776ed2764c74e0f8390abe" title="util.Location.getIntY" alt="" coords="241,56,388,83"/>
+<area shape="rect" id="node4" href="$d6/d34/classmodel_1_1_turtle.html#aeeab176e64d1ad18647e37aee02affc7" title="model.Turtle.getPainting\lPoint" alt="" coords="227,107,402,149"/>
+<area shape="rect" id="node5" href="$d7/d1e/classutil_1_1_location.html#a82f3e59d7d3e3d46df862be2e63c80e3" title="util.Location.translate" alt="" coords="451,115,611,141"/>
+<area shape="rect" id="node6" href="$d4/d67/classutil_1_1_vector.html#a3509d652ff8c361b07447f55e0007f31" title="util.Vector.getXChange" alt="" coords="659,89,826,116"/>
+<area shape="rect" id="node9" href="$d4/d67/classutil_1_1_vector.html#aca15e89ce2edd3e93dcb73621c26237f" title="util.Vector.getYChange" alt="" coords="660,140,825,167"/>
+<area shape="rect" id="node7" href="$d4/d67/classutil_1_1_vector.html#afa760c6d12c93fbfcfacd6e279d08d88" title="util.Vector.getMagnitude" alt="" coords="875,89,1053,116"/>
+<area shape="rect" id="node8" href="$d4/d67/classutil_1_1_vector.html#acebe00e22995a3514458ffa3db195295" title="util.Vector.getDirection" alt="" coords="881,140,1047,167"/>
+</map>

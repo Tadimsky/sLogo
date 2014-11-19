@@ -1,0 +1,9 @@
+<map id="util.Vector.setMagnitude" name="util.Vector.setMagnitude">
+<area shape="rect" id="node2" href="$d6/d34/classmodel_1_1_turtle.html#a84ecdb68ad525c369c4dc7dedd675607" title="model.Turtle.move" alt="" coords="497,62,637,88"/>
+<area shape="rect" id="node3" href="$d4/d67/classutil_1_1_vector.html#a7804c8d7daf0e1238a33f5c2a0f1cc62" title="util.Vector.reset" alt="" coords="275,36,397,63"/>
+<area shape="rect" id="node4" href="$d4/d67/classutil_1_1_vector.html#a9d1fe4bd1e470674778f4fb07a8a6c76" title="util.Vector.scale" alt="" coords="275,87,397,114"/>
+<area shape="rect" id="node5" href="$d4/d67/classutil_1_1_vector.html#a95063f0d0e294d8829af7283165234a1" title="util.Vector.sum" alt="" coords="277,239,395,266"/>
+<area shape="rect" id="node7" href="$d4/d67/classutil_1_1_vector.html#a1283665df8d5fabd9d2d42579be52e81" title="util.Vector.Vector" alt="" coords="271,188,401,215"/>
+<area shape="rect" id="node8" href="$d6/d34/classmodel_1_1_turtle.html#aa8650975441f4ca6e0d938c38ac2639c" title="model.Turtle.wrapOnBoundary" alt="" coords="229,138,443,164"/>
+<area shape="rect" id="node6" href="$d4/d67/classutil_1_1_vector.html#a06fc54969a49c22c070452cc6940f98c" title="util.Vector.difference" alt="" coords="491,239,643,266"/>
+</map>

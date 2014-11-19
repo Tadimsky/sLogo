@@ -1,0 +1,18 @@
+<map id="view.windows.SettingsWindow" name="view.windows.SettingsWindow">
+<area shape="rect" id="node4" href="$de/d84/classcontroller_1_1_workspace.html" title="controller.Workspace" alt="" coords="1587,385,1741,412"/>
+<area shape="rect" id="node10" href="$d7/d40/classcontroller_1_1_w_s_undo_manager.html" title="controller.WSUndoManager" alt="" coords="1956,433,2151,460"/>
+<area shape="rect" id="node19" href="$d8/dff/classmodel_1_1_turtle_manager.html" title="model.TurtleManager" alt="" coords="1217,579,1373,605"/>
+<area shape="rect" id="node6" href="$dc/d3c/interfacemodel_1_1_paintable.html" title="model.Paintable" alt="" coords="421,272,545,299"/>
+<area shape="rect" id="node21" href="$d6/d34/classmodel_1_1_turtle.html" title="model.Turtle" alt="" coords="838,509,938,536"/>
+<area shape="rect" id="node35" href="$d8/ddd/classview_1_1_canvas.html" title="view.Canvas" alt="" coords="839,880,937,907"/>
+<area shape="rect" id="node7" href="$dd/da7/interfaceparser_1_1_i_parser_provider.html" title="parser.IParserProvider" alt="" coords="1214,259,1375,285"/>
+<area shape="rect" id="node8" href="$dc/d3c/interfacecontroller_1_1support_1_1_i_error.html" title="controller.support.IError" alt="" coords="1209,309,1381,336"/>
+<area shape="rect" id="node14" href="$db/d29/classparser_1_1_variable_manager.html" title="parser.VariableManager" alt="" coords="1208,157,1381,184"/>
+<area shape="rect" id="node16" href="$da/d34/classparser_1_1_variable_scope.html" title="parser.VariableScope" alt="" coords="809,107,967,133"/>
+<area shape="rect" id="node22" href="$df/dca/interfacemodel_1_1_i_state.html" title="model.IState" alt="" coords="431,323,535,349"/>
+<area shape="rect" id="node23" href="$d4/d67/classutil_1_1_vector.html" title="util.Vector" alt="" coords="439,373,526,400"/>
+<area shape="rect" id="node24" href="$d7/d1e/classutil_1_1_location.html" title="util.Location" alt="" coords="433,424,532,451"/>
+<area shape="rect" id="node28" href="$de/ded/classmodel_1_1_pen.html" title="model.Pen" alt="" coords="437,589,528,616"/>
+<area shape="rect" id="node39" href="$d6/dda/classmodel_1_1_color_manager.html" title="model.ColorManager" alt="" coords="405,1152,560,1179"/>
+<area shape="rect" id="node32" href="$d7/da7/enumview_1_1components_1_1_strokes.html" title="view.components.Strokes" alt="" coords="6,592,191,619"/>
+</map>

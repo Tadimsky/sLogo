@@ -1,0 +1,5 @@
+<map id="parser.commands.workspace.AskWith.checkSyntax" name="parser.commands.workspace.AskWith.checkSyntax">
+<area shape="rect" id="node2" href="$db/d11/classparser_1_1nodes_1_1_binary_node.html#a555930c71203ce7c05e1290f069b19a1" title="parser.nodes.BinaryNode.getLeft" alt="" coords="267,5,499,32"/>
+<area shape="rect" id="node4" href="$db/d11/classparser_1_1nodes_1_1_binary_node.html#a9c33799a377e3c277de0fc9138a2cb81" title="parser.nodes.BinaryNode.get\lRight" alt="" coords="279,57,487,98"/>
+<area shape="rect" id="node3" href="$d7/d93/classparser_1_1nodes_1_1_parameter_node.html#a2c57eab9997daf1efb840a189c1034c5" title="parser.nodes.ParameterNode.get\lParameter" alt="" coords="547,27,781,69"/>
+</map>

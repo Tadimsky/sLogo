@@ -1,0 +1,8 @@
+<map id="view.windows.VariablesWindow.createOkButton" name="view.windows.VariablesWindow.createOkButton">
+<area shape="rect" id="node2" href="$db/d29/classparser_1_1_variable_manager.html#ab6b4d986f801921f4433d4ef7880b2c6" title="parser.VariableManager.add\lToScope" alt="" coords="324,27,524,69"/>
+<area shape="rect" id="node5" href="$df/d37/classview_1_1components_1_1_logo_table.html#a1f01ef9e47e2c5582718594dd76055d9" title="view.components.LogoTable.get\lComboBox" alt="" coords="312,93,536,134"/>
+<area shape="rect" id="node6" href="$df/d37/classview_1_1components_1_1_logo_table.html#a9b6f7e6d321d7d777aa1d06d2d236be6" title="view.components.LogoTable.set\lLastRowEditable" alt="" coords="313,158,535,199"/>
+<area shape="rect" id="node7" href="$dc/d3c/interfacecontroller_1_1support_1_1_i_error.html#abeaf08aec62a493bcf863d69f147be72" title="controller.support.IError.show\lError" alt="" coords="321,223,527,265"/>
+<area shape="rect" id="node3" href="$da/d34/classparser_1_1_variable_scope.html#a63f35d1ba60e450f319d87f3afbf4fd2" title="parser.VariableScope.getName" alt="" coords="584,5,805,32"/>
+<area shape="rect" id="node4" href="$da/d34/classparser_1_1_variable_scope.html#a49590398e11784b1310e8b65d9933011" title="parser.VariableScope.set\lVariable" alt="" coords="604,57,785,98"/>
+</map>

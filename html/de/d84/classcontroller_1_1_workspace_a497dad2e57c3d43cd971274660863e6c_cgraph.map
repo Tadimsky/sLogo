@@ -1,0 +1,5 @@
+<map id="controller.Workspace.deactivateTurtle" name="controller.Workspace.deactivateTurtle">
+<area shape="rect" id="node2" href="$d8/dff/classmodel_1_1_turtle_manager.html#a9d3fda35812c5961b645ebcc5cf0c77a" title="model.TurtleManager.deactivate\lTurtle" alt="" coords="277,5,504,46"/>
+<area shape="rect" id="node3" href="$de/d84/classcontroller_1_1_workspace.html#a06f94274c983b2edde00bcdc2b15f790" title="controller.Workspace.update" alt="" coords="289,71,492,97"/>
+<area shape="rect" id="node4" href="$d8/dff/classmodel_1_1_turtle_manager.html#a8679aef13c1e2b3d695b1467c2bb5e9f" title="model.TurtleManager.update" alt="" coords="553,71,757,97"/>
+</map>

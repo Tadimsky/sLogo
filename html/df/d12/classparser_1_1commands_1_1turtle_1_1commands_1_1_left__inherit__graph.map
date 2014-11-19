@@ -1,0 +1,5 @@
+<map id="parser.commands.turtle.commands.Left" name="parser.commands.turtle.commands.Left">
+<area shape="rect" id="node2" href="$d3/d36/classparser_1_1nodes_1_1_unary_node.html" title="parser.nodes.UnaryNode" alt="" coords="55,155,236,181"/>
+<area shape="rect" id="node3" href="$d7/d93/classparser_1_1nodes_1_1_parameter_node.html" title="parser.nodes.ParameterNode" alt="" coords="40,80,249,107"/>
+<area shape="rect" id="node4" href="$da/d96/classparser_1_1nodes_1_1_syntax_node.html" title="parser.nodes.SyntaxNode" alt="" coords="52,5,239,32"/>
+</map>

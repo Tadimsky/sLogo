@@ -1,0 +1,6 @@
+<map id="parser.commands.other.IfElse" name="parser.commands.other.IfElse">
+<area shape="rect" id="node2" href="$d5/dba/classparser_1_1nodes_1_1_ternary_node.html" title="parser.nodes.TernaryNode" alt="" coords="16,229,205,256"/>
+<area shape="rect" id="node3" href="$db/d11/classparser_1_1nodes_1_1_binary_node.html" title="parser.nodes.BinaryNode" alt="" coords="19,155,201,181"/>
+<area shape="rect" id="node4" href="$d7/d93/classparser_1_1nodes_1_1_parameter_node.html" title="parser.nodes.ParameterNode" alt="" coords="5,80,215,107"/>
+<area shape="rect" id="node5" href="$da/d96/classparser_1_1nodes_1_1_syntax_node.html" title="parser.nodes.SyntaxNode" alt="" coords="17,5,204,32"/>
+</map>

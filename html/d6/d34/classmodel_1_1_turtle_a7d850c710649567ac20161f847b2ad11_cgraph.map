@@ -1,0 +1,14 @@
+<map id="model.Turtle.paint" name="model.Turtle.paint">
+<area shape="rect" id="node2" href="$d6/d34/classmodel_1_1_turtle.html#aeeab176e64d1ad18647e37aee02affc7" title="model.Turtle.getPainting\lPoint" alt="" coords="191,29,366,70"/>
+<area shape="rect" id="node8" href="$de/ded/classmodel_1_1_pen.html#aae048b738178ae20513d49cbd5a3740c" title="model.Pen.paint" alt="" coords="215,247,342,273"/>
+<area shape="rect" id="node9" href="$d6/d34/classmodel_1_1_turtle.html#aae6d22acacfa7bd29fb818f4f9dd3d2e" title="model.Turtle.paintStamp" alt="" coords="189,145,368,172"/>
+<area shape="rect" id="node10" href="$d6/d34/classmodel_1_1_turtle.html#ad0ffa5dc7c5e9876e0083f4232035679" title="model.Turtle.transform" alt="" coords="418,107,585,133"/>
+<area shape="rect" id="node11" href="$d6/d34/classmodel_1_1_turtle.html#a91368e42c1530a73f909499d8d7b8ef3" title="model.Turtle.paintTurtle" alt="" coords="416,171,587,197"/>
+<area shape="rect" id="node3" href="$d7/d1e/classutil_1_1_location.html#a82f3e59d7d3e3d46df862be2e63c80e3" title="util.Location.translate" alt="" coords="421,36,581,63"/>
+<area shape="rect" id="node4" href="$d4/d67/classutil_1_1_vector.html#a3509d652ff8c361b07447f55e0007f31" title="util.Vector.getXChange" alt="" coords="635,5,802,32"/>
+<area shape="rect" id="node7" href="$d4/d67/classutil_1_1_vector.html#aca15e89ce2edd3e93dcb73621c26237f" title="util.Vector.getYChange" alt="" coords="636,56,801,83"/>
+<area shape="rect" id="node5" href="$d4/d67/classutil_1_1_vector.html#afa760c6d12c93fbfcfacd6e279d08d88" title="util.Vector.getMagnitude" alt="" coords="851,5,1029,32"/>
+<area shape="rect" id="node6" href="$d4/d67/classutil_1_1_vector.html#acebe00e22995a3514458ffa3db195295" title="util.Vector.getDirection" alt="" coords="857,56,1023,83"/>
+<area shape="rect" id="node12" href="$d7/d1e/classutil_1_1_location.html#a232168bda0ff164c4721dea19a7630d8" title="util.Location.getIntX" alt="" coords="645,215,793,241"/>
+<area shape="rect" id="node13" href="$d7/d1e/classutil_1_1_location.html#a1157d4dc33776ed2764c74e0f8390abe" title="util.Location.getIntY" alt="" coords="645,164,792,191"/>
+</map>

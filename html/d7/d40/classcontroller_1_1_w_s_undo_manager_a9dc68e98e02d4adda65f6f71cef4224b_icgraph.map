@@ -1,0 +1,6 @@
+<map id="controller.WSUndoManager.addEditToHistory" name="controller.WSUndoManager.addEditToHistory">
+<area shape="rect" id="node2" href="$de/d84/classcontroller_1_1_workspace.html#a634efce33a36707188f79c84a4ef80c4" title="controller.Workspace.add\lExecutableHistory" alt="" coords="277,5,459,46"/>
+<area shape="rect" id="node3" href="$d9/df7/classcontroller_1_1_controller.html#a89b63f37e67efbeddda1f247016c837b" title="controller.Controller.process\lCommand" alt="" coords="507,5,707,46"/>
+<area shape="rect" id="node4" href="$d9/df7/classcontroller_1_1_controller.html#a2bfb87bca460d87b2c97e0b5045a2175" title="controller.Controller.create\lRunCommandListener" alt="" coords="755,5,946,46"/>
+<area shape="rect" id="node5" href="$d9/df7/classcontroller_1_1_controller.html#a47511ec57338c8e75e71e9314cda5271" title="controller.Controller.Controller" alt="" coords="995,12,1207,39"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="view.Vector.setDirection" name="view.Vector.setDirection">
+<area shape="rect" id="node2" href="$d7/d7d/classview_1_1_vector.html#a032466b8f7758eacb8ed54396d4a27bd" title="view.Vector.reset" alt="" coords="231,5,361,32"/>
+<area shape="rect" id="node3" href="$d7/d7d/classview_1_1_vector.html#a6bb31da650b3b50ef13c2bd0c5164db8" title="view.Vector.sum" alt="" coords="422,56,546,83"/>
+<area shape="rect" id="node5" href="$d7/d7d/classview_1_1_vector.html#ad2c9c045430c737cb25ccd1ed2f2d479" title="view.Vector.turn" alt="" coords="235,107,357,133"/>
+<area shape="rect" id="node7" href="$d7/d7d/classview_1_1_vector.html#a57cfd0d7cfde8bbf092def6cf6d974ad" title="view.Vector.Vector" alt="" coords="227,157,365,184"/>
+<area shape="rect" id="node4" href="$d7/d7d/classview_1_1_vector.html#a8eb196d068714eeb5d4cee2e86c44882" title="view.Vector.difference" alt="" coords="603,81,762,108"/>
+<area shape="rect" id="node6" href="$d7/d7d/classview_1_1_vector.html#aa033c0e2ea57f133e3d225db9010588d" title="view.Vector.negate" alt="" coords="413,107,555,133"/>
+</map>

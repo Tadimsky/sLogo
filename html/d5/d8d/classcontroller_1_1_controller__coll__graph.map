@@ -1,0 +1,8 @@
+<map id="controller.Controller" name="controller.Controller">
+<area shape="rect" id="node3" href="$db/d1b/classview_1_1components_1_1_input_field.html" title="view.components.InputField" alt="" coords="1051,72,1247,99"/>
+<area shape="rect" id="node7" href="$dc/dbd/interfaceview_1_1_workspace_handler.html" title="view.WorkspaceHandler" alt="" coords="1064,123,1235,149"/>
+<area shape="rect" id="node11" href="$df/daf/classparser_1_1_semantics_table.html" title="parser.SemanticsTable" alt="" coords="441,263,607,289"/>
+<area shape="rect" id="node9" href="$d6/d95/classparser_1_1_parser.html" title="parser.Parser" alt="" coords="1096,228,1203,255"/>
+<area shape="rect" id="node10" href="$d7/d0d/classparser_1_1_semantics_checker.html" title="parser.SemanticsChecker" alt="" coords="715,241,901,268"/>
+<area shape="rect" id="node12" href="$dd/da7/interfaceparser_1_1_i_parser_provider.html" title="parser.IParserProvider" alt="" coords="59,251,221,277"/>
+</map>
